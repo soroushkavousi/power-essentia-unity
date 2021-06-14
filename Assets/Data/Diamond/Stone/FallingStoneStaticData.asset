@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 037d9a44a949a034fbfdd07ea038dc1a, type: 3}
+  m_Name: FallingStoneStaticData
+  m_EditorClassIdentifier: 
+  _startImpactDamage: 400
+  _startStunDuration: 1
+  _startCriticalChance: 40
+  _startCriticalDamage: 200
+  _spawnXOffset: -500
+  _spawnYPosition: 1400
+  _hitSound: {fileID: 8300000, guid: a5b9aab7ead5c0f43a238ec0c20f81ae, type: 3}
+  _movementStaticData:
+    _speed: 700
+    _startDirection: {x: 0, y: 1}
+    _startDelay: 0
+    _animationSpeed: 400
+    _dontStopWhenReach: 0

@@ -1,0 +1,131 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8625aafef4e39694b899abaf378d32ff, type: 3}
+  m_Name: StoneDiamondStaticData
+  m_EditorClassIdentifier: 
+  _diamondStaticData:
+    _name: 6
+    _isPermanent: 0
+    _startActiveTime: 20
+    _startCooldownTime: 5
+    _icon: {fileID: 21300000, guid: 677068433f8a6bc4397e731a638fd5d9, type: 3}
+    _description: 
+    _upgradeResourceBoxes:
+    - _resourceBunches:
+      - _type: 2
+        _amount: 20
+    - _resourceBunches:
+      - _type: 0
+        _amount: 1000
+      - _type: 1
+        _amount: 10
+    - _resourceBunches:
+      - _type: 0
+        _amount: 1500
+      - _type: 1
+        _amount: 15
+    - _resourceBunches:
+      - _type: 0
+        _amount: 2000
+      - _type: 1
+        _amount: 20
+    - _resourceBunches:
+      - _type: 0
+        _amount: 2500
+      - _type: 1
+        _amount: 25
+    - _resourceBunches:
+      - _type: 0
+        _amount: 3000
+      - _type: 1
+        _amount: 30
+    - _resourceBunches:
+      - _type: 0
+        _amount: 3500
+      - _type: 1
+        _amount: 35
+    - _resourceBunches:
+      - _type: 0
+        _amount: 4000
+      - _type: 1
+        _amount: 40
+    - _resourceBunches:
+      - _type: 0
+        _amount: 4500
+      - _type: 1
+        _amount: 45
+    - _resourceBunches:
+      - _type: 0
+        _amount: 5000
+      - _type: 1
+        _amount: 50
+    - _resourceBunches:
+      - _type: 2
+        _amount: 20
+    - _resourceBunches:
+      - _type: 0
+        _amount: 5500
+      - _type: 1
+        _amount: 55
+    - _resourceBunches:
+      - _type: 0
+        _amount: 6000
+      - _type: 1
+        _amount: 60
+    - _resourceBunches:
+      - _type: 0
+        _amount: 6500
+      - _type: 1
+        _amount: 65
+    - _resourceBunches:
+      - _type: 0
+        _amount: 7000
+      - _type: 1
+        _amount: 70
+    - _resourceBunches:
+      - _type: 0
+        _amount: 7500
+      - _type: 1
+        _amount: 75
+    - _resourceBunches:
+      - _type: 0
+        _amount: 8000
+      - _type: 1
+        _amount: 80
+    - _resourceBunches:
+      - _type: 0
+        _amount: 8500
+      - _type: 1
+        _amount: 85
+    - _resourceBunches:
+      - _type: 0
+        _amount: 9000
+      - _type: 1
+        _amount: 90
+    - _resourceBunches:
+      - _type: 0
+        _amount: 9500
+      - _type: 1
+        _amount: 95
+    - _resourceBunches:
+      - _type: 0
+        _amount: 10000
+      - _type: 1
+        _amount: 100
+  _fallingStoneBehavior: {fileID: -5072360949165659967, guid: 15d869bd407f0bb4787b5b97bdbd0dc8,
+    type: 3}
+  _startFallingStoneChance: 30
+  _fallingStoneChancePerLevel: 0.5
+  _fallingStoneImpactDamagePerLevel: 10
+  _fallingStoneStunDurationPerLevel: 0.2
+  _fallingStoneCriticalChancePerLevel: 1
+  _fallingStoneCriticalDamagePerLevel: 10

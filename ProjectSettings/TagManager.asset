@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - ENVIRONMENT
+  - INVADER
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - ForeUI
+  - Water
+  - UI
+  - 
+  - 
+  - Foreground
+  - Ground
+  - Background
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 2932259215
+    locked: 0
+  - name: Foreground
+    uniqueID: 583300407
+    locked: 0
+  - name: Core
+    uniqueID: 1929763437
+    locked: 0
+  - name: Air
+    uniqueID: 3227910527
+    locked: 0
+  - name: UI Base
+    uniqueID: 4001197709
+    locked: 0
+  - name: UI Interaction 1
+    uniqueID: 3834120443
+    locked: 0
+  - name: UI Interaction 2
+    uniqueID: 1196153297
+    locked: 0

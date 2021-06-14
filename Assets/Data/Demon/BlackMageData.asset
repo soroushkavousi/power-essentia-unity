@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3a5469f68aca674a8f24942eb850d1a, type: 3}
+  m_Name: BlackMageData
+  m_EditorClassIdentifier: 
+  _demonStaticData:
+    _name: BlackMage
+    _healthStaticData:
+      _startHealth: 1000
+      _deathVfxPrefab: {fileID: 0}
+      _resistanceStaticData:
+        _startPhysicalResistance: 0
+        _startMagicResistance: 0
+        _startStatusResistance: 0
+    _healthPerLevel: 50
+  _movementStaticData:
+    _speed: 60
+    _startDirection: {x: -1, y: 0}
+    _startDelay: 0
+    _animationSpeed: 60
+    _dontStopWhenReach: 0
+  _rangeAttackerStaticData:
+    _shootSound: {fileID: 0}
+    _attackerStaticData:
+      _startDamage: 100
+      _startSpeed: 1
+      _attackSound: {fileID: 8300000, guid: 194f086892f01174a9d71a5b0dd840c4, type: 3}
+    _projectileBehavior: {fileID: 4537281238113661694, guid: 92813e99f09edaa4ca30a3f721551bc3,
+      type: 3}
+    _projectileStaticData:
+      _movementStaticData:
+        _speed: 800
+        _startDirection: {x: -1, y: 0}
+        _startDelay: 0
+        _animationSpeed: 1
+        _dontStopWhenReach: 1
+  _aiAttackerStaticData:
+    _visionStaticData:
+      _centerPoint: {x: -700, y: 0}
+      _size: {x: 1400, y: 30}

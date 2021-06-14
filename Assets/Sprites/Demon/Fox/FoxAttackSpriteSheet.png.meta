@@ -1,0 +1,744 @@
+fileFormatVersion: 2
+guid: 06de4fbb709341641a402d9769cfb21f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -9149090957692901399
+    second: FoxAttackingSpriteSheet_0
+  - first:
+      213: 7816347951560013815
+    second: FoxAttackingSpriteSheet_1
+  - first:
+      213: 1899779739956430637
+    second: FoxAttackingSpriteSheet_2
+  - first:
+      213: -1662920911096138510
+    second: FoxAttackingSpriteSheet_3
+  - first:
+      213: -2838075331376708634
+    second: FoxAttackingSpriteSheet_4
+  - first:
+      213: 4683896356762547533
+    second: FoxAttackingSpriteSheet_5
+  - first:
+      213: -9158721720364918808
+    second: FoxAttackingSpriteSheet_6
+  - first:
+      213: 4658366728863351005
+    second: FoxAttackingSpriteSheet_7
+  - first:
+      213: -1241128643317956031
+    second: FoxAttackingSpriteSheet_8
+  - first:
+      213: -4992821333440475164
+    second: FoxAttackingSpriteSheet_9
+  - first:
+      213: -2375258345580454115
+    second: FoxAttackingSpriteSheet_10
+  - first:
+      213: -6786647864392309120
+    second: FoxAttackingSpriteSheet_11
+  - first:
+      213: -8031251952117705838
+    second: FoxAttackingSpriteSheet_12
+  - first:
+      213: 8460267207913709916
+    second: FoxAttackingSpriteSheet_13
+  - first:
+      213: -2432219364701115326
+    second: FoxAttackingSpriteSheet_14
+  - first:
+      213: 1933566841652650179
+    second: FoxAttackingSpriteSheet_15
+  - first:
+      213: 7498919032086272788
+    second: FoxAttackingSpriteSheet_16
+  - first:
+      213: -1351855191328965050
+    second: FoxAttackingSpriteSheet_17
+  - first:
+      213: -4546296982861004831
+    second: FoxAttackingSpriteSheet_18
+  - first:
+      213: -5952832279575939363
+    second: FoxAttackingSpriteSheet_19
+  - first:
+      213: 4118898231632472767
+    second: FoxAttackSpriteSheet_0
+  - first:
+      213: 5362368379209939168
+    second: FoxAttackSpriteSheet_1
+  - first:
+      213: -2306031932006035668
+    second: FoxAttackSpriteSheet_2
+  - first:
+      213: -5673752055417740651
+    second: FoxAttackSpriteSheet_3
+  - first:
+      213: -1081390526038590735
+    second: FoxAttackSpriteSheet_4
+  - first:
+      213: -530170979243490929
+    second: FoxAttackSpriteSheet_5
+  - first:
+      213: -4979280175401495707
+    second: FoxAttackSpriteSheet_6
+  - first:
+      213: -6169773282911419763
+    second: FoxAttackSpriteSheet_7
+  - first:
+      213: -7890140439538211632
+    second: FoxAttackSpriteSheet_8
+  - first:
+      213: 8787819268779615764
+    second: FoxAttackSpriteSheet_9
+  - first:
+      213: 1436659415273714987
+    second: FoxAttackSpriteSheet_10
+  - first:
+      213: -7093983970507006818
+    second: FoxAttackSpriteSheet_11
+  - first:
+      213: 6076110577813360390
+    second: FoxAttackSpriteSheet_12
+  - first:
+      213: 7576302863738182390
+    second: FoxAttackSpriteSheet_13
+  - first:
+      213: 5929793580078253718
+    second: FoxAttackSpriteSheet_14
+  - first:
+      213: 4351636731935883489
+    second: FoxAttackSpriteSheet_15
+  - first:
+      213: 3802752185818559386
+    second: FoxAttackSpriteSheet_16
+  - first:
+      213: 7681486409614088092
+    second: FoxAttackSpriteSheet_17
+  - first:
+      213: -3205099408532646657
+    second: FoxAttackSpriteSheet_18
+  - first:
+      213: -1977543243820287689
+    second: FoxAttackSpriteSheet_19
+  - first:
+      213: -727317943123542232
+    second: FoxAttackSpriteSheet_0
+  - first:
+      213: -6300107276947189543
+    second: FoxAttackSpriteSheet_1
+  - first:
+      213: -4774616442251974981
+    second: FoxAttackSpriteSheet_2
+  - first:
+      213: -3762747450728154388
+    second: FoxAttackSpriteSheet_3
+  - first:
+      213: -7818159141663335449
+    second: FoxAttackSpriteSheet_4
+  - first:
+      213: -254232459056088738
+    second: FoxAttackSpriteSheet_5
+  - first:
+      213: -1812756674771329664
+    second: FoxAttackSpriteSheet_6
+  - first:
+      213: -7644719132526843002
+    second: FoxAttackSpriteSheet_7
+  - first:
+      213: 5930497386438244119
+    second: FoxAttackSpriteSheet_8
+  - first:
+      213: 7556885503726350377
+    second: FoxAttackSpriteSheet_9
+  - first:
+      213: -3504896839548470465
+    second: FoxAttackSpriteSheet_10
+  - first:
+      213: 8521255168837660641
+    second: FoxAttackSpriteSheet_11
+  - first:
+      213: -2160922153009936407
+    second: FoxAttackSpriteSheet_12
+  - first:
+      213: -7191756187342483115
+    second: FoxAttackSpriteSheet_13
+  - first:
+      213: 2036900571404728297
+    second: FoxAttackSpriteSheet_14
+  - first:
+      213: 1104024292406540864
+    second: FoxAttackSpriteSheet_15
+  - first:
+      213: 8109185549471778503
+    second: FoxAttackSpriteSheet_16
+  - first:
+      213: -47125528138247066
+    second: FoxAttackSpriteSheet_17
+  - first:
+      213: -721083014313056257
+    second: FoxAttackSpriteSheet_18
+  - first:
+      213: -2362494841405626785
+    second: FoxAttackSpriteSheet_19
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 1
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: FoxAttackSpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 417
+        width: 153
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82f7a592f2c08e5f0800000000000000
+      internalID: -727317943123542232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxAttackSpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 417
+        width: 153
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d095be9fc58198a0800000000000000
+      internalID: -6300107276947189543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxAttackSpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 417
+        width: 153
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb6e4dc84a72dbdb0800000000000000
+      internalID: -4774616442251974981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxAttackSpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 459
+        y: 417
+        width: 153
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cea77d3212908cbc0800000000000000
+      internalID: -3762747450728154388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxAttackSpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 417
+        width: 153
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7eb1fabdea1508390800000000000000
+      internalID: -7818159141663335449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxAttackSpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 278
+        width: 153
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e59769bece8c87cf0800000000000000
+      internalID: -254232459056088738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxAttackSpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 278
+        width: 153
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08d5900a86bc7d6e0800000000000000
+      internalID: -1812756674771329664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxAttackSpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 278
+        width: 153
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68bea12d37088e590800000000000000
+      internalID: -7644719132526843002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxAttackSpriteSheet_8
+      rect:
+        serializedVersion: 2
+        x: 459
+        y: 278
+        width: 153
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 717b80ca3fb5d4250800000000000000
+      internalID: 5930497386438244119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxAttackSpriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 278
+        width: 153
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92078e9d3537fd860800000000000000
+      internalID: 7556885503726350377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxAttackSpriteSheet_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 139
+        width: 153
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3bf258e4ea1c5fc0800000000000000
+      internalID: -3504896839548470465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxAttackSpriteSheet_11
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 139
+        width: 153
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1efa703bd64914670800000000000000
+      internalID: 8521255168837660641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxAttackSpriteSheet_12
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 139
+        width: 153
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e7029a30ccd202e0800000000000000
+      internalID: -2160922153009936407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxAttackSpriteSheet_13
+      rect:
+        serializedVersion: 2
+        x: 459
+        y: 139
+        width: 153
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 551db36e9dfb13c90800000000000000
+      internalID: -7191756187342483115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxAttackSpriteSheet_14
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 139
+        width: 153
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e77e591746844c10800000000000000
+      internalID: 2036900571404728297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxAttackSpriteSheet_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 153
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04a3b4c9e38425f00800000000000000
+      internalID: 1104024292406540864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxAttackSpriteSheet_16
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 0
+        width: 153
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c60ffdfa4d998070800000000000000
+      internalID: 8109185549471778503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxAttackSpriteSheet_17
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 0
+        width: 153
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6649773f493985ff0800000000000000
+      internalID: -47125528138247066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxAttackSpriteSheet_18
+      rect:
+        serializedVersion: 2
+        x: 459
+        y: 0
+        width: 153
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff76d46a1d23ef5f0800000000000000
+      internalID: -721083014313056257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxAttackSpriteSheet_19
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 0
+        width: 153
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f562352757bb63fd0800000000000000
+      internalID: -2362494841405626785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

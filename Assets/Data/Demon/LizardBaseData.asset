@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d996e839c0e30d4c837472c4a91bc75, type: 3}
+  m_Name: LizardBaseData
+  m_EditorClassIdentifier: 
+  _demonStaticData:
+    _name: Lizard
+    _healthStaticData:
+      _startHealth: 2000
+      _deathVfxPrefab: {fileID: 0}
+      _resistanceStaticData:
+        _startPhysicalResistance: 0
+        _startMagicResistance: 0
+        _startStatusResistance: 0
+    _healthPerLevel: 50
+  _movementStaticData:
+    _speed: 60
+    _startDirection: {x: -1, y: 0}
+    _startDelay: 0
+    _animationSpeed: 60
+    _dontStopWhenReach: 0
+  _meleeAttackerStaticData:
+    _attackerData:
+      _startDamage: 200
+      _startSpeed: 1
+      _attackSound: {fileID: 0}
+  _aiAttackerStaticData:
+    _visionStaticData:
+      _centerPoint: {x: -25, y: 0}
+      _size: {x: 50, y: 30}
