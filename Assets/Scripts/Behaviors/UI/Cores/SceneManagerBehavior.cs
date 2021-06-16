@@ -97,22 +97,10 @@ public class SceneManagerBehavior : MonoBehaviour
         LoadScene(_currentSceneName);
     }
 
-    public void LoadNextLevel(float delayInSeconds)
-    {
-        var nextLevelSceneName = (SceneName)((int)_currentSceneName + 1);
-        StartCoroutine(LoadScene(nextLevelSceneName, delayInSeconds));
-    }
-
     public void LoadScene(SceneName sceneName)
     {
+        Time.timeScale = 1;
         _currentSceneName = sceneName;
-        SceneManager.LoadScene(sceneName.To<int>());
-    }
-
-    public IEnumerator LoadScene(SceneName sceneName, float delayInSeconds)
-    {
-        _currentSceneName = sceneName;
-        yield return new WaitForSeconds(delayInSeconds);
         SceneManager.LoadScene(sceneName.To<int>());
     }
 
