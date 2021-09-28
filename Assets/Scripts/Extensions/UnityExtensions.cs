@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.Enums;
+using System;
 using UnityEngine;
 
 public static class UnityExtensions

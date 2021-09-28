@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Enums;
+using Assets.Scripts.Models;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -23,7 +24,13 @@ public class MeleeAttackerBehavior : MonoBehaviour
         if (_attackerBehavior.CurrentEnemy == null)
             return;
         var enemyHealthBehavior = _attackerBehavior.CurrentEnemy.GetComponent<HealthBehavior>();
-        enemyHealthBehavior.Health.Current.Change(_attackerBehavior.AttackDamage.Value * -1,
-            name, HealthChangeType.PHYSICAL_DAMAGE, "Melee attaker striked.");
+        var criticalEffect = new CriticalEffect(-_attackerBehavior.AttackDamage.Value,
+                    _attackerBehavior.CriticalChance.Value, _attackerBehavior.CriticalDamage.Value);
+        var damage = criticalEffect.Result;
+        var healthChangeType = criticalEffect.IsApplied ?
+            HealthChangeType.CRITICAL_PHYSICAL_DAMAGE :
+            HealthChangeType.PHYSICAL_DAMAGE;
+        enemyHealthBehavior.Health.Current.Change(damage,
+            name, healthChangeType);
     }
 }

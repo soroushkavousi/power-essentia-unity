@@ -19,8 +19,11 @@ namespace Assets.Scripts.Enums
     {
         LEVEL,
         PHYSICAL_DAMAGE,
+        CRITICAL_PHYSICAL_DAMAGE,
         MAGICAL_DAMAGE,
+        CRITICAL_MAGICAL_DAMAGE,
         PURE_DAMAGE,
+        CRITICAL_PURE_DAMAGE,
         HEAL
     }
 

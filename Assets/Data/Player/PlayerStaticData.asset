@@ -17,6 +17,8 @@ MonoBehaviour:
     _attackerStaticData:
       _startDamage: 30
       _startSpeed: 10
+      _startCriticalChance: 10
+      _startCriticalDamage: 700
       _attackSound: {fileID: 8300000, guid: 2fe50d0c1f0e2e849998a2bea3606775, type: 3}
     _projectileBehavior: {fileID: 4537281238113661694, guid: 09dbe972c9a3d58478b5bcd3e96812f2,
       type: 3}

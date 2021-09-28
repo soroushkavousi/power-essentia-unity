@@ -47,9 +47,14 @@ namespace Assets.Scripts.Models
         {
             var newChangeCommand = new NumberChangeCommand(Part,
                 amount, gameObjectName, type, description, sourceFilePath);
-            OnNewChangeCommandActions.CallActionsSafely(newChangeCommand);
-            ApplyChange(newChangeCommand);
-            OnNewValueActions.CallActionsSafely(newChangeCommand);
+            Change(newChangeCommand);
+        }
+
+        private void Change(NumberChangeCommand changeCommand)
+        {
+            OnNewChangeCommandActions.CallActionsSafely(changeCommand);
+            ApplyChange(changeCommand);
+            OnNewValueActions.CallActionsSafely(changeCommand);
         }
 
         //public void RemoveChange(string changeCommandId)

@@ -16,6 +16,8 @@ public class ProjectileBehavior : MonoBehaviour
     [Header(Constants.DebugSectionHeader, order = -1000)]
 
     [SerializeField] private ThreePartAdvancedNumber _damage = new ThreePartAdvancedNumber(currentDummyMin: 0f);
+    [SerializeField] private ThreePartAdvancedNumber _criticalChance = new ThreePartAdvancedNumber();
+    [SerializeField] private ThreePartAdvancedNumber _criticalDamage = new ThreePartAdvancedNumber();
     [SerializeField] private ThreePartAdvancedNumber _projectileFlightSpeed = new ThreePartAdvancedNumber(currentDummyMin: 0f);
     [SerializeField] private bool _done = false;
     private ProjectileStaticData _staticData = default;
@@ -24,19 +26,24 @@ public class ProjectileBehavior : MonoBehaviour
     private MovementBehavior _movementBehavior = default;
 
     public ThreePartAdvancedNumber Damage => _damage;
+    public ThreePartAdvancedNumber CriticalChance => _criticalChance;
+    public ThreePartAdvancedNumber CriticalDamage => _criticalDamage;
     public ThreePartAdvancedNumber ProjectileFlightSpeed => _projectileFlightSpeed;
     public MovementBehavior MovementBehavior => _movementBehavior;
     public Func<GameObject, GameObject> IsTargetEnemyFunction { get; set; }
     public OrderedList<Action<HitParameters>> OnHitActions { get; } = new OrderedList<Action<HitParameters>>();
 
     public void Initialize(ProjectileStaticData staticData,
-        float startDamage, AudioClip hitSound, 
+        float startDamage, float startCriticalChance,
+        float startCriticalDamage, AudioClip hitSound, 
         Func<GameObject, GameObject> isTargetEnemyFunction)
     {
         _staticData = staticData;
         _bodyBehavior = GetComponent<BodyBehavior>();
         _movementBehavior = GetComponent<MovementBehavior>();
         _movementBehavior.FeedData(_staticData.MovementStaticData);
+        _criticalChance.FeedData(startCriticalChance);
+        _criticalDamage.FeedData(startCriticalDamage);
         _damage.FeedData(startDamage);
         _hitSound = hitSound;
         IsTargetEnemyFunction = isTargetEnemyFunction;
@@ -68,8 +75,15 @@ public class ProjectileBehavior : MonoBehaviour
             return;
         _done = true;
         MusicPlayerBehavior.Instance.AudioSource.PlayOneShot(_hitSound, 0.2f);
-        healthBehavior.Health.Current.Change(Damage.Value * -1, 
-            name, HealthChangeType.PHYSICAL_DAMAGE);
+        Debug.Log($"_criticalChance: {_criticalChance.Value} | _criticalDamage: {_criticalDamage.Value}");
+
+        var criticalEffect = new CriticalEffect(-Damage.Value, 
+            _criticalChance.Value, _criticalDamage.Value);
+        var damage = criticalEffect.Result;
+        var healthChangeType = criticalEffect.IsApplied ?
+            HealthChangeType.CRITICAL_PHYSICAL_DAMAGE :
+            HealthChangeType.PHYSICAL_DAMAGE;
+        healthBehavior.Health.Change(damage, name, healthChangeType);
         Destroy(gameObject);
         var hitParameters = new HitParameters(gameObject, otherCollider, enemy);
         OnHitActions.CallActionsSafely(hitParameters);

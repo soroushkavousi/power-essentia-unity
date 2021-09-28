@@ -10,13 +10,14 @@ public class PrefabContainerBehavior : MonoBehaviour
     private static PrefabContainerBehavior _instance = default;
     [SerializeField] private List<DiamondBehavior> _diamondPrefabs = default;
     [SerializeField] private List<DemonBehavior> _demonPrefabs = default;
+    [SerializeField] private CriticalShowBehavior _criticalShowBehavior = default;
     private Dictionary<DiamondName, DiamondBehavior> _diamondPrefabDictionary = default;
     private Dictionary<DemonName, DemonBehavior> _demonPrefabDictionary = default;
 
     public static PrefabContainerBehavior Instance => Utils.GetInstance(ref _instance);
     public Dictionary<DiamondName, DiamondBehavior> DiamondPrefabs => _diamondPrefabDictionary;
     public Dictionary<DemonName, DemonBehavior> DemonPrefabs => _demonPrefabDictionary;
-    //public DiamondNameConverter DiamonNameConverter => _diamonNameConverter;
+    public CriticalShowBehavior CriticalShowBehavior => _criticalShowBehavior;
 
     public void FeedData()
     {

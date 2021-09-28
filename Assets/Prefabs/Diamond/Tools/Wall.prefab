@@ -35,7 +35,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 2, y: 0}
-  m_SizeDelta: {x: 75, y: 75}
+  m_SizeDelta: {x: 65, y: 65}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6033476110872776651
 CanvasRenderer:
@@ -398,8 +398,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 1163.54, y: -465}
-  m_SizeDelta: {x: 486.92004, y: 58.5}
+  m_AnchoredPosition: {x: 967, y: -483}
+  m_SizeDelta: {x: 394.5, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3399968612308702927
 MonoBehaviour:
@@ -702,6 +702,7 @@ MonoBehaviour:
   _bodyAreaBehaviors:
   - {fileID: 8658195325459027407}
   _isColliderDisabled: 0
+  _isStarted: 0
 --- !u!114 &8658195326953022502
 MonoBehaviour:
   m_ObjectHideFlags: 0

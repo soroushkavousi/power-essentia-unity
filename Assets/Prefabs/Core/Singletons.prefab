@@ -257,6 +257,8 @@ MonoBehaviour:
   _demonPrefabs:
   - {fileID: 3964942050338670582, guid: 8c3ca1420430d5d49b3a9cfe4dfb7b3a, type: 3}
   - {fileID: 3964942050338670582, guid: 83a01e9ee589f274d84083f5b7796165, type: 3}
+  _criticalShowBehavior: {fileID: 4203942547089975566, guid: 6522732b07195f948a3bcf635d01c605,
+    type: 3}
 --- !u!114 &3367301737314219040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,40 +277,3 @@ MonoBehaviour:
     _projectileBehavior: {fileID: 0}
   _tempCircle: {fileID: 6705229153128001160, guid: 2e5a27ff9e6a7c34185de908f1ac81a5,
     type: 3}
-  _playerDynamicData:
-    _patchNumber: 0
-    _demonLevel:
-      _changeAmountFromSub: 0
-      _rawValue: 0
-      _lastValue: 0
-      _value: 0
-      _compressOnCount: 0
-      _changeCommands: []
-      _startValue: 0
-      _removeMinExceed: 0
-      _removeMaxExceed: 0
-      _isFix: 0
-      _fixValue: 0
-    _playerSetName:
-      _lastValue: 
-      _value: 
-      _isFix: 0
-      _fixValue: 
-      _removeOldCommandOnCount: 10
-      _changeCommands: []
-    _selectedItems:
-      _demonLevel:
-        _changeAmountFromSub: 0
-        _rawValue: 0
-        _lastValue: 0
-        _value: 0
-        _compressOnCount: 100
-        _changeCommands: []
-        _startValue: 0
-        _removeMinExceed: 0
-        _removeMaxExceed: 0
-        _isFix: 0
-        _fixValue: 0
-    _diamonds: []
-    _resourceBox:
-      _resourceBunches: []

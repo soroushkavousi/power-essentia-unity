@@ -40,6 +40,8 @@ public class RangeAttackerBehavior : MonoBehaviour
             _animationProjectileBehavior.Initialize(
                 _staticData.ProjectileStaticData,
                 _attackerBehavior.AttackDamage.Value,
+                _attackerBehavior.CriticalChance.Value,
+                _attackerBehavior.CriticalDamage.Value,
                 _attackerBehavior.AttackSound, _attackerBehavior.IsTargetEnemyFunction);
     }
 
@@ -50,6 +52,8 @@ public class RangeAttackerBehavior : MonoBehaviour
         newProjectileBehavior.Initialize(
             _staticData.ProjectileStaticData,
             _attackerBehavior.AttackDamage.Value,
+            _attackerBehavior.CriticalChance.Value,
+            _attackerBehavior.CriticalDamage.Value,
             _attackerBehavior.AttackSound, _attackerBehavior.IsTargetEnemyFunction);
         newProjectileBehavior.MovementBehavior.TargetPosition = _aimTargetPosition;
         OnCreateProjectileActions.CallActionsSafely(newProjectileBehavior);

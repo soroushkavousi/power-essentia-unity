@@ -16,6 +16,8 @@ public class AttackerBehavior : MonoBehaviour
     [SerializeField] private bool _isAttacking = default;
     [SerializeField] private ThreePartAdvancedNumber _attackDamage = new ThreePartAdvancedNumber(currentDummyMin: 0f);
     [SerializeField] private ThreePartAdvancedNumber _attackSpeed = new ThreePartAdvancedNumber(currentDummyMin: 0f);
+    [SerializeField] private ThreePartAdvancedNumber _criticalChance = new ThreePartAdvancedNumber();
+    [SerializeField] private ThreePartAdvancedNumber _criticalDamage = new ThreePartAdvancedNumber();
     [SerializeField] private GameObject _currentEnemy = default;
     private AttackerStaticData _staticData = default;
     private readonly string _attackSpeedName = "AttackSpeed";
@@ -26,6 +28,8 @@ public class AttackerBehavior : MonoBehaviour
     public bool IsAttacking => _isAttacking;
     public ThreePartAdvancedNumber AttackDamage => _attackDamage;
     public ThreePartAdvancedNumber AttackSpeed => _attackSpeed;
+    public ThreePartAdvancedNumber CriticalChance => _criticalChance;
+    public ThreePartAdvancedNumber CriticalDamage => _criticalDamage;
     public AudioClip AttackSound => _staticData.AttackSound;
     public Func<GameObject, GameObject> IsTargetEnemyFunction { get; set; }
     public OrderedList<Action<GameObject>> OnStartAttackingActions { get; } = new OrderedList<Action<GameObject>>();
@@ -45,6 +49,8 @@ public class AttackerBehavior : MonoBehaviour
         _attackDamage.FeedData(_staticData.StartDamage);
         _attackSpeed.FeedData(_staticData.StartSpeed);
         _attackSpeed.Current.OnNewValueActions.Add(SubmitAttackSpeedChange);
+        _criticalChance.FeedData(_staticData.StartCriticalChance);
+        _criticalDamage.FeedData(_staticData.StartCriticalDamage);
         _animator.SetFloat(_attackSpeedName, _attackSpeed.Value);
         IsTargetEnemyFunction = isTargetEnemyFunction;
     }
