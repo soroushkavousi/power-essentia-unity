@@ -26,4 +26,9 @@ public class TestBehavior : MonoBehaviour
         _rotationBehavior.RotateToTarget(_mousePosition);
         _movementBehavior.StartMoving();
     }
+
+    public void WriteASample()
+    {
+        Debug.Log($"A Sample!");
+    }
 }

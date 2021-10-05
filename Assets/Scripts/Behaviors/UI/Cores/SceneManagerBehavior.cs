@@ -38,6 +38,19 @@ public class SceneManagerBehavior : MonoBehaviour
         InitializeCurrentScene();
     }
 
+    private void Update()
+    {
+        CloseOnBackButtonPressed();
+    }
+
+    private void CloseOnBackButtonPressed()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            QuitGame();
+        }
+    }
+
     private void InitializeCurrentScene()
     {
         if (_currentSceneName == SceneName.MISSION)

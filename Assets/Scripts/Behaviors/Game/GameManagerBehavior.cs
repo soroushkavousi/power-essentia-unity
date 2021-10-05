@@ -27,23 +27,11 @@ public class GameManagerBehavior : MonoBehaviour
 
     private void Awake()
     {
+        Application.targetFrameRate = 60;
         _defaultContainerBehavior = GetComponent<DefaultContainerBehavior>();
         _prefabContainerBehavior = GetComponent<PrefabContainerBehavior>();
 
         _defaultContainerBehavior.FeedData();
         _prefabContainerBehavior.FeedData();
-    }
-
-    void OnGUI()
-    {
-        if (!_isTest)
-            return;
-        var style = new GUIStyle { fontSize = 40 };
-        style.normal.textColor = Color.yellow;
-        var text = "" +
-$@"{(int)(Time.deltaTime * Mathf.Pow(10, 6))}Ms
-{(int)(1.0f / Time.deltaTime)}
-";
-        GUI.Label(new Rect(1920 - 170, 1080 - 120, 100, 100), text, style);
     }
 }
