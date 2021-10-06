@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -20,6 +18,7 @@ public class ButtonBehavior : MonoBehaviour
     [Space(Constants.DebugSectionSpace, order = -1001)]
     [Header(Constants.DebugSectionHeader, order = -1000)]
     [SerializeField] private bool _isColliderDisabled = default;
+    [SerializeField] private Collider2D _collider2D = default;
 
     //[Space(Constants.DebugSectionSpace, order = -1001)]
     //[Header(Constants.DebugSectionHeader, order = -1000)]
@@ -35,6 +34,41 @@ public class ButtonBehavior : MonoBehaviour
     {
         if (_normalColor == default)
             _normalColor = _targetGraphic.color;
+
+        _collider2D = GetComponent<Collider2D>();
+    }
+
+    private void Update()
+    {
+        CheckMultiTouch();
+    }
+
+    private void CheckMultiTouch()
+    {
+        if (Input.touchCount <= 1)
+            return;
+        foreach (var touch in Input.touches)
+        {
+            if (touch.phase == TouchPhase.Began)
+            {
+                var touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
+                if (_collider2D.bounds.Contains(touchPosition))
+                    Debug.Log($"!!!!!!!!!!! Method 1");
+
+                touchPosition = Camera.main.ScreenToWorldPoint(touch.rawPosition);
+                if (_collider2D.bounds.Contains(touchPosition))
+                    Debug.Log($"!!!!!!!!!!! Method 2");
+
+                if (_collider2D.bounds.Contains(touch.rawPosition))
+                    Debug.Log($"!!!!!!!!!!! Method 3");
+
+                if (_collider2D.bounds.Contains(touch.position))
+                {
+                    Debug.Log($"!!!!!!!!!!! Method 4");
+                    OnMouseDown();
+                }
+            }
+        }
     }
 
     private void OnMouseDown()

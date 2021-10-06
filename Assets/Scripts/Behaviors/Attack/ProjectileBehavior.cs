@@ -75,7 +75,6 @@ public class ProjectileBehavior : MonoBehaviour
             return;
         _done = true;
         MusicPlayerBehavior.Instance.AudioSource.PlayOneShot(_hitSound, 0.2f);
-        Debug.Log($"_criticalChance: {_criticalChance.Value} | _criticalDamage: {_criticalDamage.Value}");
 
         var criticalEffect = new CriticalEffect(-Damage.Value, 
             _criticalChance.Value, _criticalDamage.Value);

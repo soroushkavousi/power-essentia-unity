@@ -56,8 +56,8 @@ public class MissionMenuBehavior : MonoBehaviour
 
     public void OpenPauseMenu()
     {
-        Time.timeScale = 0.2f;
-        Time.fixedDeltaTime = fixedDeltaTime * Time.timeScale;
+        Time.timeScale = 0f;
+        //Time.fixedDeltaTime = fixedDeltaTime * Time.timeScale;
         PauseMenuBehavior.Instance.Show();
     }
 }

@@ -337,10 +337,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ringName: 0
   _index: 0
+  _keyCode: 0
   _diamondImage: {fileID: 7909624119308936385}
   _diamondNameText: {fileID: 3674351339686459121}
   _shadowImage: {fileID: 4916145888620200929}
-  _diamondName: 0
 --- !u!1 &7909624120043628676
 GameObject:
   m_ObjectHideFlags: 0
@@ -459,8 +459,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ddf1c6ee17e1d74d97a6933a7c31709, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _owner: {fileID: 0}
-  _text: {fileID: 0}
+  _owner: {fileID: 7909624119381180500}
+  _text: {fileID: 3674351339686459121}
   _targetGraphic: {fileID: 7909624120043628678}
   _pressedColor: {r: 0, g: 0, b: 0, a: 0}
   _lockColor: {r: 0, g: 0, b: 0, a: 0}
