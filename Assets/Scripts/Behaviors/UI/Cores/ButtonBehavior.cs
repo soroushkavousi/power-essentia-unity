@@ -52,21 +52,9 @@ public class ButtonBehavior : MonoBehaviour
             if (touch.phase == TouchPhase.Began)
             {
                 var touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
+                touchPosition.z = 0;
                 if (_collider2D.bounds.Contains(touchPosition))
-                    Debug.Log($"!!!!!!!!!!! Method 1");
-
-                touchPosition = Camera.main.ScreenToWorldPoint(touch.rawPosition);
-                if (_collider2D.bounds.Contains(touchPosition))
-                    Debug.Log($"!!!!!!!!!!! Method 2");
-
-                if (_collider2D.bounds.Contains(touch.rawPosition))
-                    Debug.Log($"!!!!!!!!!!! Method 3");
-
-                if (_collider2D.bounds.Contains(touch.position))
-                {
-                    Debug.Log($"!!!!!!!!!!! Method 4");
                     OnMouseDown();
-                }
             }
         }
     }
