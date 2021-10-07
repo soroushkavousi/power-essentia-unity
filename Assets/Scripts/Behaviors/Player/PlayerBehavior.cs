@@ -105,7 +105,7 @@ public class PlayerBehavior : MonoBehaviour
         if (_mouseIsDown)
         {
             _rangeAttackerBehavior.AttackTargetPosition =
-                    Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
             _stateManagerBehavior.GoToTheNextState(PlayerState.AIMING);
         }
     }
@@ -121,7 +121,7 @@ public class PlayerBehavior : MonoBehaviour
         if (_mouseIsDown)
         {
             _rangeAttackerBehavior.AttackTargetPosition =
-                    Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
             _stateManagerBehavior.GoToTheNextState(PlayerState.AIMING);
         }
         else
