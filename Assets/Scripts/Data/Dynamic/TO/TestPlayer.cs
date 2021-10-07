@@ -29,15 +29,15 @@ public static class TestPlayer
         //if (stoneDiamond.Level == 1)
         //    stoneDiamond.Level = 12;
 
-        var coinData = data.ResourceBox.ResourceBunches.Single(r => r.Type == ResourceType.COIN.ToString());
-        if (coinData.Amount == 0)
-            coinData.Amount = 100000;
+        //var coinData = data.ResourceBox.ResourceBunches.Single(r => r.Type == ResourceType.COIN.ToString());
+        //if (coinData.Amount == 0)
+        //    coinData.Amount = 100000;
 
-        var demonBloodData = data.ResourceBox.ResourceBunches.Single(r => r.Type == ResourceType.DEMON_BLOOD.ToString());
-        if (demonBloodData.Amount == 0)
-            demonBloodData.Amount = 1000;
+        //var demonBloodData = data.ResourceBox.ResourceBunches.Single(r => r.Type == ResourceType.DEMON_BLOOD.ToString());
+        //if (demonBloodData.Amount == 0)
+        //    demonBloodData.Amount = 1000;
 
-        data.SelectedItems.DemonLevel = 1;
+        //data.SelectedItems.DemonLevel = 1;
         //data.SelectedItems.DeckItemDiamondNames[1] = DiamondName.BOW.ToString();
     }
 }

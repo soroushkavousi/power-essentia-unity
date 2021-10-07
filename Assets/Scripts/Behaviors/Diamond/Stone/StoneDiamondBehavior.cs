@@ -108,7 +108,7 @@ public class StoneDiamondBehavior : MonoBehaviour
         var upgradeColor = "#55540E";
         //------------------------------------------------
 
-        var currentFallingStoneChance = _fallingStoneChance.IntValue;
+        var currentFallingStoneChance = _fallingStoneChance.Value;
         var nextFallingStoneChance = currentFallingStoneChance + _staticData.FallingStoneChancePerLevel;
 
         var currentFallingStoneChanceShow = NoteUtils.MakeBold(NoteUtils.AddColor(currentFallingStoneChance + "%", "black"));

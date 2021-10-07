@@ -16,12 +16,14 @@ public class HealSpellBehavior : MonoBehaviour
     [Space(Constants.DebugSectionSpace, order = -1001)]
     [Header(Constants.DebugSectionHeader, order = -1000)]
 
+    [SerializeField] private int _level = default;
     private BodyBehavior _bodyBehavior = default;
     private SpellBehavior _spellBehavior = default;
     private ParticleSystem _particleSystem = default;
 
-    public void FeedData()
+    public void FeedData(int level)
     {
+        _level = level;
         _bodyBehavior = GetComponent<BodyBehavior>();
         _spellBehavior = GetComponent<SpellBehavior>();
         _particleSystem = GetComponent<ParticleSystem>();
@@ -81,7 +83,7 @@ public class HealSpellBehavior : MonoBehaviour
         var invaderHealthBehavior = invaderBehavior.GetComponent<HealthBehavior>();
         if (invaderHealthBehavior == null)
             yield break;
-        invaderHealthBehavior.Health.Current.Change(+500, name,
+        invaderHealthBehavior.Health.Current.Change(500 +  300 * _level, name,
             HealthChangeType.HEAL);
     }
 }

@@ -107,7 +107,21 @@ public class DemonBehavior : MonoBehaviour
         if (_healthBehavior.Health.Value > 0)
             return;
 
-        _gameResourceBox.ResourceBunches[ResourceType.COIN].Change(100, name, $"INVADER_DEAD");
+        int rewardCoinCount;
+        switch (_name)
+        {
+            case DemonName.LIZARD:
+                rewardCoinCount = 500;
+                break;
+            case DemonName.BLACK_MAGE:
+                rewardCoinCount = 2500;
+                break;
+            default:
+                rewardCoinCount = 150;
+                break;
+        }
+        rewardCoinCount += 250 * _level.IntValue;
+        _gameResourceBox.ResourceBunches[ResourceType.COIN].Change(rewardCoinCount, name, $"INVADER_DEAD");
 
         MusicPlayerBehavior.Instance.PlayEnemyDeathGoldRewardSound();
         WaveManagerBehavior.Instance.OnNewDeadInvaderActions.CallActionsSafely(this);

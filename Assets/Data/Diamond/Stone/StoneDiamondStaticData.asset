@@ -16,7 +16,7 @@ MonoBehaviour:
     _name: 6
     _isPermanent: 0
     _startActiveTime: 20
-    _startCooldownTime: 5
+    _startCooldownTime: 3.5
     _icon: {fileID: 21300000, guid: 677068433f8a6bc4397e731a638fd5d9, type: 3}
     _description: 
     _upgradeResourceBoxes:
@@ -30,29 +30,9 @@ MonoBehaviour:
         _amount: 10
     - _resourceBunches:
       - _type: 0
-        _amount: 1500
-      - _type: 1
-        _amount: 15
-    - _resourceBunches:
-      - _type: 0
         _amount: 2000
       - _type: 1
         _amount: 20
-    - _resourceBunches:
-      - _type: 0
-        _amount: 2500
-      - _type: 1
-        _amount: 25
-    - _resourceBunches:
-      - _type: 0
-        _amount: 3000
-      - _type: 1
-        _amount: 30
-    - _resourceBunches:
-      - _type: 0
-        _amount: 3500
-      - _type: 1
-        _amount: 35
     - _resourceBunches:
       - _type: 0
         _amount: 4000
@@ -60,42 +40,52 @@ MonoBehaviour:
         _amount: 40
     - _resourceBunches:
       - _type: 0
-        _amount: 4500
+        _amount: 8000
       - _type: 1
-        _amount: 45
+        _amount: 80
     - _resourceBunches:
       - _type: 0
-        _amount: 5000
+        _amount: 16000
       - _type: 1
-        _amount: 50
+        _amount: 160
+    - _resourceBunches:
+      - _type: 0
+        _amount: 32000
+      - _type: 1
+        _amount: 320
+    - _resourceBunches:
+      - _type: 0
+        _amount: 64000
+      - _type: 1
+        _amount: 640
+    - _resourceBunches:
+      - _type: 0
+        _amount: 128000
+      - _type: 1
+        _amount: 1280
+    - _resourceBunches:
+      - _type: 0
+        _amount: 256000
+      - _type: 1
+        _amount: 2560
     - _resourceBunches:
       - _type: 2
         _amount: 20
     - _resourceBunches:
       - _type: 0
-        _amount: 5500
+        _amount: 1000
       - _type: 1
-        _amount: 55
+        _amount: 10
     - _resourceBunches:
       - _type: 0
-        _amount: 6000
+        _amount: 2000
       - _type: 1
-        _amount: 60
+        _amount: 20
     - _resourceBunches:
       - _type: 0
-        _amount: 6500
+        _amount: 4000
       - _type: 1
-        _amount: 65
-    - _resourceBunches:
-      - _type: 0
-        _amount: 7000
-      - _type: 1
-        _amount: 70
-    - _resourceBunches:
-      - _type: 0
-        _amount: 7500
-      - _type: 1
-        _amount: 75
+        _amount: 40
     - _resourceBunches:
       - _type: 0
         _amount: 8000
@@ -103,29 +93,37 @@ MonoBehaviour:
         _amount: 80
     - _resourceBunches:
       - _type: 0
-        _amount: 8500
+        _amount: 16000
       - _type: 1
-        _amount: 85
+        _amount: 160
     - _resourceBunches:
       - _type: 0
-        _amount: 9000
+        _amount: 32000
       - _type: 1
-        _amount: 90
+        _amount: 320
     - _resourceBunches:
       - _type: 0
-        _amount: 9500
+        _amount: 64000
       - _type: 1
-        _amount: 95
+        _amount: 640
     - _resourceBunches:
       - _type: 0
-        _amount: 10000
+        _amount: 128000
       - _type: 1
-        _amount: 100
+        _amount: 1280
+    - _resourceBunches:
+      - _type: 0
+        _amount: 256000
+      - _type: 1
+        _amount: 2560
+    - _resourceBunches:
+      - _type: 2
+        _amount: 20
   _fallingStoneBehavior: {fileID: -5072360949165659967, guid: 15d869bd407f0bb4787b5b97bdbd0dc8,
     type: 3}
-  _startFallingStoneChance: 30
-  _fallingStoneChancePerLevel: 0.5
-  _fallingStoneImpactDamagePerLevel: 10
+  _startFallingStoneChance: 4
+  _fallingStoneChancePerLevel: 1
+  _fallingStoneImpactDamagePerLevel: 50
   _fallingStoneStunDurationPerLevel: 0.2
   _fallingStoneCriticalChancePerLevel: 1
   _fallingStoneCriticalDamagePerLevel: 10

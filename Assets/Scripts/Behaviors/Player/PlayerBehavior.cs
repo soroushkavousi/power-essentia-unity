@@ -100,12 +100,23 @@ public class PlayerBehavior : MonoBehaviour
         }
     }
 
+    private Vector3 GetAttackPosition()
+    {
+        Vector3 attackPosition;
+        if (Input.touchCount == 0)
+            attackPosition = Input.mousePosition;
+        else
+            attackPosition = Input.GetTouch(0).position;
+
+        attackPosition = Camera.main.ScreenToWorldPoint(attackPosition);
+        return attackPosition;
+    }
+
     private void CheckIdlingState()
     {
         if (_mouseIsDown)
         {
-            _rangeAttackerBehavior.AttackTargetPosition =
-                    Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+            _rangeAttackerBehavior.AttackTargetPosition = GetAttackPosition();
             _stateManagerBehavior.GoToTheNextState(PlayerState.AIMING);
         }
     }
@@ -120,8 +131,7 @@ public class PlayerBehavior : MonoBehaviour
     {
         if (_mouseIsDown)
         {
-            _rangeAttackerBehavior.AttackTargetPosition =
-                    Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+            _rangeAttackerBehavior.AttackTargetPosition = GetAttackPosition();
             _stateManagerBehavior.GoToTheNextState(PlayerState.AIMING);
         }
         else

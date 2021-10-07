@@ -567,6 +567,64 @@ MonoBehaviour:
       _keepRatio: 0
       _isFix: 0
       _fixCurrentValue: 0
+  _criticalChance:
+    _base:
+      _changeAmountFromSub: 0
+      _rawValue: 0
+      _lastValue: 0
+      _value: 0
+      _compressOnCount: 100
+      _changeCommands: []
+      _startValue: 0
+    _peak:
+      _changeAmountFromSub: 0
+      _rawValue: 0
+      _lastValue: 0
+      _value: 0
+      _compressOnCount: 100
+      _changeCommands: []
+    _current:
+      _changeAmountFromSub: 0
+      _rawValue: 0
+      _lastValue: 0
+      _value: 0
+      _compressOnCount: 10
+      _changeCommands: []
+      _dummyMaxBaseOnValue: 0
+      _removeMinExceed: 0
+      _removeMaxExceed: 0
+      _keepRatio: 0
+      _isFix: 0
+      _fixCurrentValue: 0
+  _criticalDamage:
+    _base:
+      _changeAmountFromSub: 0
+      _rawValue: 0
+      _lastValue: 0
+      _value: 0
+      _compressOnCount: 100
+      _changeCommands: []
+      _startValue: 0
+    _peak:
+      _changeAmountFromSub: 0
+      _rawValue: 0
+      _lastValue: 0
+      _value: 0
+      _compressOnCount: 100
+      _changeCommands: []
+    _current:
+      _changeAmountFromSub: 0
+      _rawValue: 0
+      _lastValue: 0
+      _value: 0
+      _compressOnCount: 10
+      _changeCommands: []
+      _dummyMaxBaseOnValue: 0
+      _removeMinExceed: 0
+      _removeMaxExceed: 0
+      _keepRatio: 0
+      _isFix: 0
+      _fixCurrentValue: 0
   _currentEnemy: {fileID: 0}
 --- !u!114 &998875760994330756
 MonoBehaviour:
@@ -10651,8 +10709,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healAreaCircle: {fileID: 4344349356973733883}
-  _maxHealAreaRadius: 1000
+  _maxHealAreaRadius: 1200
   _healAreaGrowTime: 1.3
+  _level: 0
 --- !u!1 &4663718268541534428
 GameObject:
   m_ObjectHideFlags: 0

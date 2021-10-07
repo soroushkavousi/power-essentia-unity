@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f59900460e444a746883e0583181f7e4, type: 3}
   m_Name: GroundFireStaticData
   m_EditorClassIdentifier: 
-  _startDuration: 4
-  _startDamage: 100
+  _startDuration: 8
+  _startDamage: 250
   _startCriticalChance: 10
   _startCriticalDamage: 100
   _startSlow: 40

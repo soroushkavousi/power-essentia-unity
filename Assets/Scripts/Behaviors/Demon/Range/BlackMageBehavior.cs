@@ -47,7 +47,7 @@ public class BlackMageBehavior : MonoBehaviour
         _statusOwnerBehavior = GetComponent<StatusOwnerBehavior>();
         _attackerBehavior = GetComponent<AttackerBehavior>();
 
-        _healSpellBehavior.GetComponent<HealSpellBehavior>().FeedData();
+        _healSpellBehavior.GetComponent<HealSpellBehavior>().FeedData(_demonBehavior.Level.IntValue);
     }
 
     private void Start()

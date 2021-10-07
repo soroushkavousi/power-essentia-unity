@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 037d9a44a949a034fbfdd07ea038dc1a, type: 3}
   m_Name: FallingStoneStaticData
   m_EditorClassIdentifier: 
-  _startImpactDamage: 400
+  _startImpactDamage: 600
   _startStunDuration: 1
   _startCriticalChance: 40
   _startCriticalDamage: 200
@@ -20,7 +20,7 @@ MonoBehaviour:
   _spawnYPosition: 1400
   _hitSound: {fileID: 8300000, guid: a5b9aab7ead5c0f43a238ec0c20f81ae, type: 3}
   _movementStaticData:
-    _speed: 700
+    _speed: 1000
     _startDirection: {x: 0, y: 1}
     _startDelay: 0
     _animationSpeed: 400

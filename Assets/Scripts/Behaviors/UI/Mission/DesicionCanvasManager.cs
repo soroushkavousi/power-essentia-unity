@@ -34,18 +34,20 @@ public class DesicionCanvasManager : MonoBehaviour
 
     public void GoNextLevel()
     {
-        _selectedDemonLevel.Change(1, name, "VICTORY");
         SceneManagerBehavior.Instance.RestartCurrentScene();
     }
 
     public void GoPreviousLevel()
     {
-        _selectedDemonLevel.Change(-1, name, "VICTORY");
+        _selectedDemonLevel.Change(-1, name, "PREVIOUS");
         SceneManagerBehavior.Instance.RestartCurrentScene();
     }
 
     public void RepeatOrTryAgainLevel()
     {
+        if (WinSystemBehavior.Instance.Win)
+            _selectedDemonLevel.Change(-1, name, "REPEAT");
+
         SceneManagerBehavior.Instance.RestartCurrentScene();
     }
 
@@ -61,6 +63,7 @@ public class DesicionCanvasManager : MonoBehaviour
             _winCanvas.SetActive(true);
             _loseCanvas.SetActive(false);
             _winTitle.text = $"Congragulations! You have completed level {_selectedDemonLevel.Value}.";
+            _selectedDemonLevel.Change(1, name, "VICTORY");
         }
         else if(LoseSystemBehavior.Instance.Lose)
         {

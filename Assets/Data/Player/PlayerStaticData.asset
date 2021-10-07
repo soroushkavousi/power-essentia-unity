@@ -15,8 +15,8 @@ MonoBehaviour:
   _rangeAttackerData:
     _shootSound: {fileID: 8300000, guid: 6df3ae1686621ba4aaa7970674754d0a, type: 3}
     _attackerStaticData:
-      _startDamage: 30
-      _startSpeed: 10
+      _startDamage: 25
+      _startSpeed: 4
       _startCriticalChance: 10
       _startCriticalDamage: 700
       _attackSound: {fileID: 8300000, guid: 2fe50d0c1f0e2e849998a2bea3606775, type: 3}

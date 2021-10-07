@@ -1,15 +1,11 @@
 ﻿using Assets.Scripts.Enums;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 public static class PlayerStart
 {
     public static PlayerDynamicDataTO Data { get; set; } = new PlayerDynamicDataTO
     {
-        PatchNumber = 27,
+        PatchNumber = 31,
         PlayerSetName = PlayerSetName.ARCHER.ToString(),
         DemonLevel = 1,
         SelectedItems = new SelectedItemsDynamicDataTO
@@ -57,9 +53,9 @@ public static class PlayerStart
         (
             new List<ResourceBunchDynamicDataTO>
             {
-                new ResourceBunchDynamicDataTO(ResourceType.COIN.ToString(), 80000),
-                new ResourceBunchDynamicDataTO(ResourceType.DEMON_BLOOD.ToString(), 1000),
-                new ResourceBunchDynamicDataTO(ResourceType.DARK_DEMON_BLOOD.ToString(), 40),
+                new ResourceBunchDynamicDataTO(ResourceType.COIN.ToString(), 8000),
+                new ResourceBunchDynamicDataTO(ResourceType.DEMON_BLOOD.ToString(), 80),
+                new ResourceBunchDynamicDataTO(ResourceType.DARK_DEMON_BLOOD.ToString(), 400),
             }
         ),
     };

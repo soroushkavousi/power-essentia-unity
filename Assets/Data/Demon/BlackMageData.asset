@@ -15,13 +15,13 @@ MonoBehaviour:
   _demonStaticData:
     _name: BlackMage
     _healthStaticData:
-      _startHealth: 1000
+      _startHealth: 4000
       _deathVfxPrefab: {fileID: 0}
       _resistanceStaticData:
         _startPhysicalResistance: 0
         _startMagicResistance: 0
         _startStatusResistance: 0
-    _healthPerLevel: 50
+    _healthPerLevel: 400
   _movementStaticData:
     _speed: 60
     _startDirection: {x: -1, y: 0}
@@ -33,6 +33,8 @@ MonoBehaviour:
     _attackerStaticData:
       _startDamage: 100
       _startSpeed: 1
+      _startCriticalChance: 0
+      _startCriticalDamage: 0
       _attackSound: {fileID: 8300000, guid: 194f086892f01174a9d71a5b0dd840c4, type: 3}
     _projectileBehavior: {fileID: 4537281238113661694, guid: 92813e99f09edaa4ca30a3f721551bc3,
       type: 3}
@@ -45,5 +47,5 @@ MonoBehaviour:
         _dontStopWhenReach: 1
   _aiAttackerStaticData:
     _visionStaticData:
-      _centerPoint: {x: -700, y: 0}
-      _size: {x: 1400, y: 30}
+      _centerPoint: {x: -500, y: 0}
+      _size: {x: 1000, y: 30}

@@ -15,13 +15,13 @@ MonoBehaviour:
   _demonStaticData:
     _name: Lizard
     _healthStaticData:
-      _startHealth: 2000
+      _startHealth: 1000
       _deathVfxPrefab: {fileID: 0}
       _resistanceStaticData:
         _startPhysicalResistance: 0
         _startMagicResistance: 0
         _startStatusResistance: 0
-    _healthPerLevel: 50
+    _healthPerLevel: 100
   _movementStaticData:
     _speed: 60
     _startDirection: {x: -1, y: 0}
@@ -32,6 +32,8 @@ MonoBehaviour:
     _attackerData:
       _startDamage: 200
       _startSpeed: 1
+      _startCriticalChance: 0
+      _startCriticalDamage: 0
       _attackSound: {fileID: 0}
   _aiAttackerStaticData:
     _visionStaticData:

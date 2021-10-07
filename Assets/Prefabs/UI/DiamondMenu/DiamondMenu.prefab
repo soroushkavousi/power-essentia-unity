@@ -420,6 +420,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _isColliderDisabled: 0
+  _collider2D: {fileID: 0}
 --- !u!1 &4927812421170349812
 GameObject:
   m_ObjectHideFlags: 0
@@ -1230,6 +1231,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _isColliderDisabled: 0
+  _collider2D: {fileID: 0}
 --- !u!1 &6752933829547258955
 GameObject:
   m_ObjectHideFlags: 0
@@ -3460,12 +3462,12 @@ PrefabInstance:
     - target: {fileID: 1925590343717518605, guid: 7e93d1a36bd8ad642bde834abc15fc14,
         type: 3}
       propertyPath: _diamondName
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2010561796104641923, guid: 7e93d1a36bd8ad642bde834abc15fc14,
         type: 3}
       propertyPath: _diamondName
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4707280836575721537, guid: 7e93d1a36bd8ad642bde834abc15fc14,
         type: 3}
@@ -3475,7 +3477,7 @@ PrefabInstance:
     - target: {fileID: 4832830375206145316, guid: 7e93d1a36bd8ad642bde834abc15fc14,
         type: 3}
       propertyPath: _diamondName
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5511098550386397629, guid: 7e93d1a36bd8ad642bde834abc15fc14,
         type: 3}
@@ -3485,7 +3487,7 @@ PrefabInstance:
     - target: {fileID: 6848292213026042102, guid: 7e93d1a36bd8ad642bde834abc15fc14,
         type: 3}
       propertyPath: _diamondName
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7510199964314787754, guid: 7e93d1a36bd8ad642bde834abc15fc14,
         type: 3}

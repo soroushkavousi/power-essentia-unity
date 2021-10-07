@@ -46,6 +46,8 @@ public class MissionMenuBehavior : MonoBehaviour
 
     private void HandleDemonLevelChange(NumberChangeCommand changeCommand)
     {
+        if (WinSystemBehavior.Instance.Win || LoseSystemBehavior.Instance.Lose)
+            return;
         _demonLevelText.text = $"Level {_demonLevel.IntValue}";
     }
 

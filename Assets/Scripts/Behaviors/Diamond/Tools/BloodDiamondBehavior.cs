@@ -46,7 +46,7 @@ public class BloodDiamondBehavior : MonoBehaviour
 
     private void AddBlood(DemonBehavior demonBehavior)
     {
-        var bloodIncrement = (int)(demonBehavior.Level.IntValue * _bloodPerDemonLevel.Value);
+        var bloodIncrement = (int)(demonBehavior.Level.IntValue * 2 + _bloodPerDemonLevel.Value);
         _gameResourceBox.ResourceBunches[ResourceType.DEMON_BLOOD].Change(bloodIncrement, name, $"INVADER_DEAD");
         // Todo
         //if (Random.value * 100 <= 30)
