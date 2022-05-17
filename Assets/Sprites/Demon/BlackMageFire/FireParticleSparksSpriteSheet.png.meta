@@ -120,6 +120,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -544,6 +545,23 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      FireParticleSparksSpriteSheet_7: 2305902948065446541
+      FireParticleSparksSpriteSheet_1: -5696804969656694894
+      FireParticleSparksSpriteSheet_13: 196969878803802693
+      FireParticleSparksSpriteSheet_2: 4185211922159996498
+      FireParticleSparksSpriteSheet_4: -7703212403541932632
+      FireParticleSparksSpriteSheet_12: 3980926773237882497
+      FireParticleSparksSpriteSheet_15: -1951137055237593295
+      FireParticleSparksSpriteSheet_11: 5509382391158592078
+      FireParticleSparksSpriteSheet_10: -666829288307639434
+      FireParticleSparksSpriteSheet_6: -8243039651174061010
+      FireParticleSparksSpriteSheet_9: 3240498977558875003
+      FireParticleSparksSpriteSheet_3: -4814616068554456913
+      FireParticleSparksSpriteSheet_5: 1115963349644775778
+      FireParticleSparksSpriteSheet_0: -5746271320613888435
+      FireParticleSparksSpriteSheet_14: -1346031884913040085
+      FireParticleSparksSpriteSheet_8: 2719288701970675376
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

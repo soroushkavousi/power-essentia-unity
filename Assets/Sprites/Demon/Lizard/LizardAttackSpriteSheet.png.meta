@@ -291,6 +291,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -2272,6 +2273,96 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      LizardAttackingSpriteSheet_24: 4487978791279581469
+      LizardAttackingSpriteSheet_75: 1398605639934605777
+      LizardAttackingSpriteSheet_9: 5746589294334526807
+      LizardAttackingSpriteSheet_86: -2204575013391656409
+      LizardAttackingSpriteSheet_65: -7305260578544891248
+      LizardAttackingSpriteSheet_88: -6412610737218897571
+      LizardAttackingSpriteSheet_66: -6618425479578466449
+      LizardAttackingSpriteSheet_56: 1426570977976697807
+      LizardAttackingSpriteSheet_80: 4554640501109287518
+      LizardAttackingSpriteSheet_27: 3132873584087293278
+      LizardAttackingSpriteSheet_85: -1533840369585642929
+      LizardAttackingSpriteSheet_42: -1048081006695220737
+      LizardAttackingSpriteSheet_62: 6266508290302052399
+      LizardAttackingSpriteSheet_63: 2771254185268402630
+      LizardAttackingSpriteSheet_13: -3574265572187168086
+      LizardAttackingSpriteSheet_70: 4706207791605575067
+      LizardAttackingSpriteSheet_15: 3211479661634941223
+      LizardAttackingSpriteSheet_38: -6496978465921063334
+      LizardAttackingSpriteSheet_18: -2683195558193552535
+      LizardAttackingSpriteSheet_6: 422010341131318459
+      LizardAttackingSpriteSheet_69: 3663720327178172289
+      LizardAttackingSpriteSheet_22: 2389709008330273157
+      LizardAttackingSpriteSheet_60: -7065212877763196516
+      LizardAttackingSpriteSheet_72: 7101736049711360215
+      LizardAttackingSpriteSheet_57: -557515134829000211
+      LizardAttackingSpriteSheet_68: 3850825709952930804
+      LizardAttackingSpriteSheet_19: -3118122340605467492
+      LizardAttackingSpriteSheet_7: 1912788269366299976
+      LizardAttackingSpriteSheet_53: -3373356759218768503
+      LizardAttackingSpriteSheet_17: -8816995220878105839
+      LizardAttackingSpriteSheet_84: 2895816388869559777
+      LizardAttackingSpriteSheet_12: 7841943280502014804
+      LizardAttackingSpriteSheet_52: -589197935085496620
+      LizardAttackingSpriteSheet_87: -6305550897875863176
+      LizardAttackingSpriteSheet_77: 562767809986865078
+      LizardAttackingSpriteSheet_5: 7632714440346361510
+      LizardAttackingSpriteSheet_45: 3833303818387583054
+      LizardAttackingSpriteSheet_49: 4534070842711632008
+      LizardAttackingSpriteSheet_64: 5989867634015623031
+      LizardAttackingSpriteSheet_0: -39571853529435694
+      LizardAttackingSpriteSheet_58: 2265135106483844487
+      LizardAttackingSpriteSheet_33: -801841018506125319
+      LizardAttackingSpriteSheet_4: 1459327510772884112
+      LizardAttackingSpriteSheet_28: 2958712141198993708
+      LizardAttackingSpriteSheet_44: -7593519755593203679
+      LizardAttackingSpriteSheet_8: 3271103158855523458
+      LizardAttackingSpriteSheet_2: 7386407374608510060
+      LizardAttackingSpriteSheet_51: 3143995103861078462
+      LizardAttackingSpriteSheet_73: -8731031701888580675
+      LizardAttackingSpriteSheet_67: 8799671513447513810
+      LizardAttackingSpriteSheet_78: -2372827089869811691
+      LizardAttackingSpriteSheet_29: 8498949355164632940
+      LizardAttackingSpriteSheet_82: 5157411173710526590
+      LizardAttackingSpriteSheet_30: 8540442184395266014
+      LizardAttackingSpriteSheet_83: -1604281537022801608
+      LizardAttackingSpriteSheet_41: -8913545572376399882
+      LizardAttackingSpriteSheet_61: -5141795086899843633
+      LizardAttackingSpriteSheet_10: -1066066931564460319
+      LizardAttackingSpriteSheet_16: -8151453725805135242
+      LizardAttackingSpriteSheet_1: 8866802813671643645
+      LizardAttackingSpriteSheet_35: -1988289702761928026
+      LizardAttackingSpriteSheet_40: 4719190714634840644
+      LizardAttackingSpriteSheet_79: -1505581380640954531
+      LizardAttackingSpriteSheet_31: 2452556579177765860
+      LizardAttackingSpriteSheet_32: -2779755946872696716
+      LizardAttackingSpriteSheet_54: 4521314768071853199
+      LizardAttackingSpriteSheet_11: -403698854170188439
+      LizardAttackingSpriteSheet_39: -6873559728905470897
+      LizardAttackingSpriteSheet_48: 3152653217680000088
+      LizardAttackingSpriteSheet_26: -3911875955521186071
+      LizardAttackingSpriteSheet_25: 8500202299864267172
+      LizardAttackingSpriteSheet_21: -7227428621042330091
+      LizardAttackingSpriteSheet_23: 1265779821079502468
+      LizardAttackingSpriteSheet_47: 474767988127115710
+      LizardAttackingSpriteSheet_37: 7487903046892342686
+      LizardAttackingSpriteSheet_76: 162071225940043596
+      LizardAttackingSpriteSheet_36: 613629741034386437
+      LizardAttackingSpriteSheet_46: -2363243458480541891
+      LizardAttackingSpriteSheet_59: 8144592894644142866
+      LizardAttackingSpriteSheet_43: -3101243450260543288
+      LizardAttackingSpriteSheet_55: 3239660834915197377
+      LizardAttackingSpriteSheet_71: -5785506821130688248
+      LizardAttackingSpriteSheet_50: 1045367667467633223
+      LizardAttackingSpriteSheet_74: -1280257513045309497
+      LizardAttackingSpriteSheet_3: 5100798731829537091
+      LizardAttackingSpriteSheet_34: 6610211088877353393
+      LizardAttackingSpriteSheet_20: 1034318151501546038
+      LizardAttackingSpriteSheet_81: 6150033906644051576
+      LizardAttackingSpriteSheet_14: 2525254663720222660
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

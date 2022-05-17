@@ -192,6 +192,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -892,6 +893,35 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      FoxJumpSpriteSheet_14: 6278117447164354404
+      FoxJumpSpriteSheet_17: 5108227300087814041
+      FoxJumpSpriteSheet_23: 2171599827387058833
+      FoxJumpSpriteSheet_26: 2467468309040000094
+      FoxJumpSpriteSheet_16: -1798749687004863788
+      FoxJumpSpriteSheet_9: -1331800871295617076
+      FoxJumpSpriteSheet_6: 3435419395889752118
+      FoxJumpSpriteSheet_11: -825164694960558598
+      FoxJumpSpriteSheet_8: 5570139256084293124
+      FoxJumpSpriteSheet_22: 5790686858497243412
+      FoxJumpSpriteSheet_1: -754333060465409210
+      FoxJumpSpriteSheet_19: -8441177533860398403
+      FoxJumpSpriteSheet_18: -6925477195921428721
+      FoxJumpSpriteSheet_27: -5682545831103465751
+      FoxJumpSpriteSheet_2: 1396077749231006078
+      FoxJumpSpriteSheet_13: -7634090492762444218
+      FoxJumpSpriteSheet_5: -2924733139151929494
+      FoxJumpSpriteSheet_24: 8150008773255330680
+      FoxJumpSpriteSheet_25: 8558923858539432106
+      FoxJumpSpriteSheet_20: -2894452437311498071
+      FoxJumpSpriteSheet_0: 5323876807498074657
+      FoxJumpSpriteSheet_12: 7805840289662580732
+      FoxJumpSpriteSheet_10: -1440713871730722564
+      FoxJumpSpriteSheet_3: 1187149811845276348
+      FoxJumpSpriteSheet_21: -2897717565417870913
+      FoxJumpSpriteSheet_15: -273415186980755219
+      FoxJumpSpriteSheet_4: 4103462569155208061
+      FoxJumpSpriteSheet_7: -5582470857316111742
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

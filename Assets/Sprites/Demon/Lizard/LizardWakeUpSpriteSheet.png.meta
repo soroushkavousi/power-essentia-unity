@@ -144,6 +144,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -529,6 +530,20 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      LizardWakeUpSpriteSheet_0: -991461823452100765
+      LizardWakeUpSpriteSheet_4: -9149476129474609218
+      LizardWakeUpSpriteSheet_6: -482245342542643623
+      LizardWakeUpSpriteSheet_3: -2305750096696110065
+      LizardWakeUpSpriteSheet_10: -2217440877334422688
+      LizardWakeUpSpriteSheet_1: -3707315481796146510
+      LizardWakeUpSpriteSheet_8: 77742245336833607
+      LizardWakeUpSpriteSheet_7: -8597775106573043830
+      LizardWakeUpSpriteSheet_12: 4918907558792555210
+      LizardWakeUpSpriteSheet_2: 7704890207139527715
+      LizardWakeUpSpriteSheet_11: 1973628401083478128
+      LizardWakeUpSpriteSheet_5: -5306253186088127792
+      LizardWakeUpSpriteSheet_9: -4867012630950069960
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
