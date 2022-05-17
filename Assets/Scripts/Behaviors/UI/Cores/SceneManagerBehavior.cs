@@ -87,12 +87,12 @@ public class SceneManagerBehavior : MonoBehaviour
 
     public void LoadPreparation()
     {
-        if (_currentSceneName == SceneName.PREPARATION)
-            return;
-        //GameSessionBehavior.Instance.ResetGame();
-        if (MusicPlayerBehavior.Instance.AudioSource.isPlaying == false)
-            MusicPlayerBehavior.Instance.AudioSource.Play();
-        LoadScene(SceneName.PREPARATION);
+        //if (_currentSceneName == SceneName.PREPARATION)
+        //    return;
+        ////GameSessionBehavior.Instance.ResetGame();
+        //if (MusicPlayerBehavior.Instance.AudioSource.isPlaying == false)
+        //    MusicPlayerBehavior.Instance.AudioSource.Play();
+        //LoadScene(SceneName.PREPARATION);
     }
 
     public void LoadMission()

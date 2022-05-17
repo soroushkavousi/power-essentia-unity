@@ -8,6 +8,5 @@ public enum SceneName
 {
     START = 0,
     COUNTRY = 1,
-    PREPARATION = 2,
-    MISSION = 3,
+    MISSION = 2,
 }
