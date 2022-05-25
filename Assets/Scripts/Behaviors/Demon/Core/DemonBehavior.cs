@@ -9,7 +9,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(HealthBehavior))]
 [RequireComponent(typeof(StatusOwnerBehavior))]
 
-public class DemonBehavior : MonoBehaviour
+public class DemonBehavior : MonoBehaviour, IObserver
 {
     [SerializeField] private DemonName _name = default;
     [SerializeField] private UnityEvent _InitializeEvent;
@@ -49,9 +49,9 @@ public class DemonBehavior : MonoBehaviour
         _bodyBehavior.OnUnconstrainedEnterActions.Add(ComeIntoAction);
 
         _healthBehavior = GetComponent<HealthBehavior>();
-        _healthBehavior.FeedData(_staticData.HealthData);
-        _healthBehavior.Health.Base.Change(level * _staticData.HealthPerLevel,
-            name, HealthChangeType.LEVEL);
+        //_healthBehavior.FeedData(_staticData.HealthData);
+        //_healthBehavior.Health.Base.Change(level * _staticData.HealthPerLevel,
+        //    name, HealthChangeType.LEVEL);
 
         //_resistanceBehavior.PhysicalResistance.Base.Change(level * _staticData.PhysicalResistancePerLevel,
         //    name, ResistanceChangeType.LEVEL);
@@ -68,6 +68,42 @@ public class DemonBehavior : MonoBehaviour
         _gameResourceBox = PlayerBehavior.Main.DynamicData.ResourceBox;
         if (GetComponent<LizardBehavior>() != null)
             StartCoroutine(Test());
+    }
+
+    private void InitializeHealthBehavior()
+    {
+        var maxHealth = new MaxHealth(_staticData.HealthData.StartHealth);
+        maxHealth.AddModifier(new MaxHealthLevelModifier(1, _staticData.HealthPerLevel));
+
+        var physicalResistance = new PhysicalResistance(_staticData.HealthData.ResistanceStaticData.StartPhysicalResistance);
+        var physicalDamageModifier = new CurrentHealthPhysicalDamageModifier(physicalResistance);
+
+        var magicResistance = new MagicResistance(_staticData.HealthData.ResistanceStaticData.StartMagicResistance);
+        var magicDamageModifier = new CurrentHealthMagicDamageModifier(magicResistance);
+
+        var currentHealth = new CurrentHealth(maxHealth, physicalDamageModifier, magicDamageModifier);
+
+        _healthBehavior = GetComponent<HealthBehavior>();
+        var death = new Death(_healthBehavior, _staticData.HealthData.DeathVfxPrefab);
+        death.Attach(this);
+
+        _healthBehavior.FeedData(maxHealth, currentHealth, death);
+    }
+
+    public void Update(ISubject subject)
+    {
+        //switch (subject)
+        //{
+        //    case Death death
+        //}
+        //if (subject.GetType().IsSubclassOf(typeof(Death)))
+        //{
+        //    if(!_healthBehavior.Death.IsDead)
+        //        return;
+
+        //}
+        //if (_currentHealth.Value <= 0)
+        //    Die();
     }
 
     private IEnumerator Test()
@@ -104,7 +140,7 @@ public class DemonBehavior : MonoBehaviour
         if (WinSystemBehavior.Instance == null || WinSystemBehavior.Instance.Win)
             return;
 
-        if (_healthBehavior.Health.Value > 0)
+        if (_healthBehavior.CurrentHealth.Value > 0)
             return;
 
         int rewardCoinCount;

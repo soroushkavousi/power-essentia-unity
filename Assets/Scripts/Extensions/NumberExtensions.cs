@@ -24,5 +24,16 @@ public static class NumberExtensions
         number = Mathf.Round(number * decimalWeight) / decimalWeight;
         return number;
     }
+
+    public static float MeasurePercentage(this float number, float percentage)
+    {
+        number = number * percentage / 100;
+        return number;
+    }
+
+    public static float MeasureRemainingPercentage(this float number, float percentage)
+    {
+        return number.MeasurePercentage(100f - percentage);
+    }
 }
 

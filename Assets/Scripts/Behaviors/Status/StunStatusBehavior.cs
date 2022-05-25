@@ -61,7 +61,7 @@ public class StunStatusBehavior : MonoBehaviour
 
     private IEnumerator Damage(StunStatusInstance instance)
     {
-        _healthBehavior.Health.Current.Change(-instance.Damage.Value, 
+        _healthBehavior.CurrentHealth.Current.Change(-instance.Damage.Value, 
             name, HealthChangeType.MAGICAL_DAMAGE);
         yield return null;
     }
