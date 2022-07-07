@@ -19,7 +19,6 @@ public class WaveManagerBehavior : MonoBehaviour, ISubject<DemonBehavior>, IObse
     [SerializeField] private List<int> _pickedRandomNumbers = default;
     [SerializeField] private Observable<int> _totalDemonCount;
     [SerializeField] private Observable<int> _deadDemonCount;
-    private bool _initialized = default;
     private Dictionary<RowNumber, Transform> _rowSpawnLocations = default;
     private Observable<int> _selectedDemonLevel = default;
     protected readonly ObserverCollection<DemonBehavior> _observers = new();
@@ -31,12 +30,10 @@ public class WaveManagerBehavior : MonoBehaviour, ISubject<DemonBehavior>, IObse
     public Observable<int> TotalDemonCount => _totalDemonCount;
     public Observable<int> DeadDemonCount => _deadDemonCount;
 
-    public void Initialize(WaveDescription waveDescription)
+    private void Awake()
     {
-        if (!_initialized)
-        {
-            _selectedDemonLevel = PlayerBehavior.Main.DynamicData.SelectedItems.DemonLevel;
-            _rowSpawnLocations = new Dictionary<RowNumber, Transform>
+        _selectedDemonLevel = PlayerBehavior.Main.DynamicData.SelectedItems.DemonLevel;
+        _rowSpawnLocations = new Dictionary<RowNumber, Transform>
             {
                 { RowNumber.ONE, _rowSpawnLocationList[0] },
                 { RowNumber.TWO, _rowSpawnLocationList[1] },
@@ -44,17 +41,16 @@ public class WaveManagerBehavior : MonoBehaviour, ISubject<DemonBehavior>, IObse
                 { RowNumber.FOUR, _rowSpawnLocationList[3] },
                 { RowNumber.FIVE, _rowSpawnLocationList[4] },
             };
-            _waveNumber = new(1);
-            _totalDemonCount = new(0);
-            _deadDemonCount = new(0);
-        }
-        else
-        {
-            _waveNumber.Value += 1;
-        }
-        _initialized = true;
-        _finished = false;
+        _waveNumber = new(1);
+        _totalDemonCount = new(0);
+        _deadDemonCount = new(0);
+    }
+
+    public void Initialize(WaveDescription waveDescription)
+    {
         _description = waveDescription;
+        _waveNumber.Value = _description.WaveNumber;
+        _finished = false;
 
         StartCoroutine(SpawnDemonsRandomly(waveDescription));
     }
@@ -71,15 +67,6 @@ public class WaveManagerBehavior : MonoBehaviour, ISubject<DemonBehavior>, IObse
                 StartCoroutine(SpawnDemon(prefab, level, waveDescription.ColumnCount));
             }
         }
-        //var rowSpawnLocation = RowSpawnLocations[waveRowData.RowNumber];
-        //for (int i = 0; i < waveRowData.Count; i++)
-        //{
-        //    var invaderPosition = new Vector2(
-        //        rowSpawnLocation.position.x + waveRowData.XOffset + i * waveRowData.Distance,
-        //        rowSpawnLocation.position.y);
-        //    StartCoroutine(SpawnDemon(waveRowData.DemonBehavior,
-        //        invaderLevel, rowSpawnLocation, invaderPosition));
-        //}
         yield return null;
     }
 
@@ -103,7 +90,7 @@ public class WaveManagerBehavior : MonoBehaviour, ISubject<DemonBehavior>, IObse
         {
             do
             {
-                randomNumber = UnityEngine.Random.Range(0, cellCount);
+                randomNumber = Random.Range(0, cellCount);
             }
             while (_pickedRandomNumbers.Contains(randomNumber));
             _pickedRandomNumbers.Add(randomNumber);

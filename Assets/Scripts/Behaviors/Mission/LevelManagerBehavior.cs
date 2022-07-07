@@ -28,8 +28,6 @@ public class LevelManagerBehavior : MonoBehaviour
 
     public void Initialize(LevelDescriptionStaticData levelDescriptionStaticData)
     {
-        _instance ??= FindObjectOfType<LevelManagerBehavior>(true);
-        _instance = FindObjectOfType<LevelManagerBehavior>(true);
         if (!_initialized)
         {
             _levelResourceSystemBehavior = GetComponent<LevelResourceSystemBehavior>();
@@ -53,12 +51,14 @@ public class LevelManagerBehavior : MonoBehaviour
 
     private IEnumerator StartWaves()
     {
+        yield return new WaitForEndOfFrame();
         WaveDescription waveDescription;
         float deadLine;
         _totalWaveCount.Value = _levelDescriptionStaticData.WaveDescriptions.Count;
         for (int i = 0; i < _totalWaveCount.Value; i++)
         {
             waveDescription = _levelDescriptionStaticData.WaveDescriptions[i];
+            waveDescription.WaveNumber = i + 1;
             deadLine = _staticData.WaveTime * (i + 1);
             WaveManagerBehavior.Instance.Initialize(waveDescription);
             yield return new WaitUntil(() =>

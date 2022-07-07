@@ -6,12 +6,12 @@ using UnityEngine;
 public class LevelResourceSystemBehavior : MonoBehaviour, IObserver<DemonBehavior>, IObserver
 {
     private static LevelResourceSystemBehavior _instance = default;
-    private static readonly BloodDiamondBehavior _bloodDiamondBehavior = default;
 
     [Space(Constants.SpaceSection)]
     [Header(Constants.DebugSectionHeader)]
 
     [SerializeField] private List<ResourceBunch> _resourceBunches = default;
+    [SerializeField] private BloodDiamondBehavior _bloodDiamondBehavior = default;
     private List<ResourceBunch> _gameResourceBunches = default;
 
     public static LevelResourceSystemBehavior Instance => Utils.GetInstance(ref _instance);
@@ -32,6 +32,7 @@ public class LevelResourceSystemBehavior : MonoBehaviour, IObserver<DemonBehavio
     private void Start()
     {
         WaveManagerBehavior.Instance.Attach(this);
+        _bloodDiamondBehavior = (BloodDiamondBehavior)((DiamondOwnerBehavior)PlayerBehavior.Main).AllDiamondBehaviors[DiamondName.BLOOD];
     }
 
     private void AddResourceForDeadDemon(DemonBehavior demonBehavior)

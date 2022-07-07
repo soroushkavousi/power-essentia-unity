@@ -15,6 +15,7 @@ namespace Assets.Scripts.Models
         public int ColumnCount => _columnCount;
         public List<DemonBunch> DemonBunches => _demonBunches;
         public int DemonCount => _demonBunches.Sum(ib => ib.Count);
+        public int WaveNumber { get; set; }
     }
 
     [Serializable]

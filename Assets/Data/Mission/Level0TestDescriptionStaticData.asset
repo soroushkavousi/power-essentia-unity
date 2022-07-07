@@ -13,19 +13,21 @@ MonoBehaviour:
   m_Name: Level0TestDescriptionStaticData
   m_EditorClassIdentifier: 
   WaveDescriptions:
-  - _columnCount: 5
+  - _columnCount: 3
     _demonBunches:
     - _demonName: 0
-      _count: 8
+      _count: 4
     - _demonName: 1
       _count: 1
-  - _columnCount: 5
+  - _columnCount: 3
     _demonBunches:
     - _demonName: 0
-      _count: 5
+      _count: 4
     - _demonName: 1
-      _count: 1
-  - _columnCount: 5
+      _count: 2
+  - _columnCount: 3
     _demonBunches:
+    - _demonName: 0
+      _count: 4
     - _demonName: 1
-      _count: 1
+      _count: 3
