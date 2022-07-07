@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
@@ -15,8 +13,8 @@ public class BattleDetailsMenuBehavior : MonoBehaviour
 
     public static BattleDetailsMenuBehavior Instance => Utils.GetInstance(ref _instance);
 
-    //[Space(Constants.DebugSectionSpace, order = -1001)]
-    //[Header(Constants.DebugSectionHeader, order = -1000)]
+    //[Space(Constants.DebugSectionSpace)]
+    //[Header(Constants.DebugSectionHeader)]
 
 
     private void Awake()

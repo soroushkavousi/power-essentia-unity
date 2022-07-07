@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-public interface ISubject
+﻿public interface ISubject
 {
     public void Attach(IObserver observer);
     public void Detach(IObserver observer);
     public void Notify();
+}
+
+public interface ISubject<TData>
+{
+    public void Attach(IObserver<TData> observer);
+    public void Detach(IObserver<TData> observer);
+    public void Notify(TData data);
 }

@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-public interface IObserver
+﻿public interface IObserver
 {
-    void Update(ISubject subject);
+    void OnNotify(ISubject subject);
+}
+
+public interface IObserver<TChange>
+{
+    void OnNotify(ISubject<TChange> subject, TChange change);
 }

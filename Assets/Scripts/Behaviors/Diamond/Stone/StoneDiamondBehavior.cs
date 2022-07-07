@@ -1,151 +1,105 @@
 ﻿using Assets.Scripts.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
-[RequireComponent(typeof(DiamondBehavior))]
-public class StoneDiamondBehavior : MonoBehaviour
+public class StoneDiamondBehavior : DiamondBehavior, IObserver<HitParameters>
 {
+    [Space(Constants.SpaceSection)]
+    [Header(Constants.HeaderStart + nameof(StoneDiamondBehavior) + Constants.HeaderEnd)]
+
     [SerializeField] private StoneDiamondStaticData _staticData = default;
+
+    [Space(Constants.SpaceSection)]
+    [Header(Constants.DebugSectionHeader)]
     [SerializeField] private FallingStoneBehavior _sampleFallingStoneBehavior = default;
+    [SerializeField] private Number _chance;
 
-    [Space(Constants.DebugSectionSpace, order = -1001)]
-    [Header(Constants.DebugSectionHeader, order = -1000)]
-    [SerializeField, TextArea] private string _description = default;
-    [SerializeField] private ThreePartAdvancedNumber _fallingStoneChance = new ThreePartAdvancedNumber();
-    private DiamondBehavior _diamondBehavior = default;
-
-    public void Initialize()
+    private void Awake()
     {
-        _diamondBehavior = GetComponent<DiamondBehavior>();
-        _diamondBehavior.FeedData(_staticData.DiamondStaticData, Activate, Deactivate);
-        _diamondBehavior.Level.OnNewValueActions.Add(50, OnDiamondUpgraded);
-        _diamondBehavior.GetDescription = GetDescription;
-        _fallingStoneChance.FeedData(_staticData.StartFallingStoneChance);
-        ApplyLevel();
+        base.FeedData(_staticData);
+    }
+
+    public override void Initialize(Observable<DiamondKnowledgeState> state, Observable<int> level,
+        DiamondOwnerBehavior diamondOwnerBehavior)
+    {
+        base.Initialize(state, level, diamondOwnerBehavior);
+        _chance = new(_staticData.Chance, _level, _staticData.ChanceLevelPercentage,
+            min: 0f, max: 100f);
         _sampleFallingStoneBehavior = CreateFallingStone(OutBoxBehavior.Instance.Location1.gameObject);
-        _sampleFallingStoneBehavior.name = "SampleFallingStone";
     }
 
-    private void Activate()
+    protected override void DoActivationWork()
     {
-        _diamondBehavior.OwnerAttackerBehavior.OnHitActions.Add(HandleHitEvent);
+        OwnerAttackerBehavior.Attach(this);
     }
 
-    private void Deactivate()
+    protected override void DoDeactivationWork()
     {
-        _diamondBehavior.OwnerAttackerBehavior.OnHitActions.Remove(HandleHitEvent);
+        OwnerAttackerBehavior.Detach(this);
     }
 
     private void HandleHitEvent(HitParameters hitParameters)
     {
-        if (UnityEngine.Random.value * 100 > _fallingStoneChance.Value)
+        if (Random.value * 100 > _chance.Value)
             return;
         CreateFallingStone(hitParameters.Destination);
     }
 
     private FallingStoneBehavior CreateFallingStone(GameObject targetEnemy)
     {
-        var fallingStoneBehavior = Instantiate(_staticData.FallingStoneBehavior, 
-            _diamondBehavior.DiamondEffectsParent);
-        InitializeFallingStone(fallingStoneBehavior, targetEnemy);
+        var fallingStoneBehavior = Instantiate(_staticData.FallingStoneBehavior,
+            DiamondEffectsParent);
+        fallingStoneBehavior.Initialize(_level, targetEnemy, IsTargetEnemyFunction);
 
         return fallingStoneBehavior;
     }
 
-    private void InitializeFallingStone(FallingStoneBehavior fallingStoneBehavior, GameObject targetEnemy)
+    public void OnNotify(ISubject<HitParameters> subject, HitParameters hitParameters)
     {
-        fallingStoneBehavior.Initialize(targetEnemy, _diamondBehavior.IsTargetEnemyFunction);
-        ApplyLevelToFallingStone(fallingStoneBehavior);
-    }
-
-    private void ApplyLevelToFallingStone(FallingStoneBehavior fallingStoneBehavior)
-    {
-        var diamondLevel = _diamondBehavior.Level.IntValue;
-
-        var fallingStoneDurationIncrement = diamondLevel * _staticData.FallingStoneImpactDamagePerLevel;
-        fallingStoneBehavior.ImpactDamage.Base.Change(fallingStoneDurationIncrement, name, "LEVEL");
-
-        var fallingStoneDamageIncrement = diamondLevel * _staticData.FallingStoneStunDurationPerLevel;
-        fallingStoneBehavior.StunDuration.Base.Change(fallingStoneDamageIncrement, name, "LEVEL");
-
-        var fallingStoneCriticalChanceIncrement = diamondLevel * _staticData.FallingStoneCriticalChancePerLevel;
-        fallingStoneBehavior.CriticalChance.Base.Change(fallingStoneCriticalChanceIncrement, name, "LEVEL");
-
-        var fallingStoneCriticalDamageIncrement = diamondLevel * _staticData.FallingStoneCriticalDamagePerLevel;
-        fallingStoneBehavior.CriticalDamage.Base.Change(fallingStoneCriticalDamageIncrement, name, "LEVEL");
-    }
-
-    private void OnDiamondUpgraded(NumberChangeCommand changeCommand)
-    {
-        if (changeCommand.Amount.IntValue != 1)
+        if (ReferenceEquals(subject, OwnerAttackerBehavior))
         {
-            Debug.LogError($"Too much upgrades!!!!!!");
-            return;
+            HandleHitEvent(hitParameters);
         }
-
-        _fallingStoneChance.Base.Change(_staticData.FallingStoneChancePerLevel, name, "UPGRADE_LEVEL");
-        _sampleFallingStoneBehavior.ImpactDamage.Base.Change(_staticData.FallingStoneImpactDamagePerLevel, name, "UPGRADE_LEVEL");
-        _sampleFallingStoneBehavior.StunDuration.Base.Change(_staticData.FallingStoneStunDurationPerLevel, name, "UPGRADE_LEVEL");
-        _sampleFallingStoneBehavior.CriticalChance.Base.Change(_staticData.FallingStoneCriticalChancePerLevel, name, "UPGRADE_LEVEL");
-        _sampleFallingStoneBehavior.CriticalDamage.Base.Change(_staticData.FallingStoneCriticalDamagePerLevel, name, "UPGRADE_LEVEL");
     }
 
-    private void ApplyLevel()
-    {
-        var diamondLevel = _diamondBehavior.Level.IntValue;
-
-        var fallingStoneChanceIncrement = diamondLevel * _staticData.FallingStoneChancePerLevel;
-        _fallingStoneChance.Base.Change(fallingStoneChanceIncrement, name, "LEVEL");
-    }
-
-    public string GetDescription()
+    protected override string GetDescription()
     {
         var upgradeColor = "#55540E";
         //------------------------------------------------
 
-        var currentFallingStoneChance = _fallingStoneChance.Value;
-        var nextFallingStoneChance = currentFallingStoneChance + _staticData.FallingStoneChancePerLevel;
+        var currentChacne = _chance.Value;
+        var nextChance = _chance.NextLevelValue;
 
-        var currentFallingStoneChanceShow = NoteUtils.MakeBold(NoteUtils.AddColor(currentFallingStoneChance + "%", "black"));
-        var nextFallingStoneChanceShow = NoteUtils.AddColor(nextFallingStoneChance + "%", upgradeColor);
-
-        //------------------------------------------------
-
-        var currentImpactDamage = _sampleFallingStoneBehavior.ImpactDamage.Value;
-        var nextImpactDamage = _sampleFallingStoneBehavior.ImpactDamage.Current
-            .CalculateValueWithAdditions(baseAddition: _staticData.FallingStoneImpactDamagePerLevel);
-
-        var currentImpactDamageShow = NoteUtils.MakeBold(NoteUtils.AddColor(currentImpactDamage, "black"));
-        var nextImpactDamageShow = NoteUtils.AddColor(nextImpactDamage, upgradeColor);
+        var currentChanceShow = NoteUtils.MakeBold(NoteUtils.AddColor(currentChacne + "%", "black"));
+        var nextChanceShow = NoteUtils.AddColor(nextChance + "%", upgradeColor);
 
         //------------------------------------------------
 
-        var currentStunDuration = _sampleFallingStoneBehavior.StunDuration.Value;
-        var nextStunDuration = _sampleFallingStoneBehavior.StunDuration.Current
-            .CalculateValueWithAdditions(baseAddition: _staticData.FallingStoneStunDurationPerLevel);
+        var currentImpactDamage = _sampleFallingStoneBehavior.ImpactDamage.Value.ToLong();
+        var nextImpactDamage = _sampleFallingStoneBehavior.ImpactDamage.NextLevelValue.ToLong();
+
+        var currentImpactDamageShow = NoteUtils.MakeBold(NoteUtils.AddColor(currentImpactDamage + "dps", "black"));
+        var nextImpactDamageShow = NoteUtils.AddColor(nextImpactDamage + "dps", upgradeColor);
+
+        //------------------------------------------------
+
+        var currentStunDuration = _sampleFallingStoneBehavior.StunDuration.Value.ToLong();
+        var nextStunDuration = _sampleFallingStoneBehavior.StunDuration.Value.ToLong();
 
         var currentStunDurationShow = NoteUtils.MakeBold(NoteUtils.AddColor(currentStunDuration + "s", "black"));
         var nextStunDurationShow = NoteUtils.AddColor(nextStunDuration + "s", upgradeColor);
 
         //------------------------------------------------
 
-        var currentCriticalChance = _sampleFallingStoneBehavior.CriticalChance.Value;
-        var nextCriticalChance = _sampleFallingStoneBehavior.CriticalChance.Current
-            .CalculateValueWithAdditions(baseAddition: _staticData.FallingStoneCriticalChancePerLevel);
+        var currentCriticalChance = _sampleFallingStoneBehavior.CriticalChance.Value.ToLong();
+        var nextCriticalChance = _sampleFallingStoneBehavior.CriticalChance.Value.ToLong();
 
         var currentCriticalChanceShow = NoteUtils.MakeBold(NoteUtils.AddColor(currentCriticalChance + "%", "black"));
         var nextCriticalChanceShow = NoteUtils.AddColor(nextCriticalChance + "%", upgradeColor);
 
         //------------------------------------------------
 
-        var currentCriticalDamage = _sampleFallingStoneBehavior.CriticalDamage.Value;
-        var nextCriticalDamage = _sampleFallingStoneBehavior.CriticalDamage.Current
-            .CalculateValueWithAdditions(baseAddition: _staticData.FallingStoneCriticalDamagePerLevel);
+        var currentCriticalDamage = _sampleFallingStoneBehavior.CriticalDamage.Value.ToLong();
+        var nextCriticalDamage = _sampleFallingStoneBehavior.CriticalDamage.Value.ToLong();
 
         var currentCriticalDamageShow = NoteUtils.MakeBold(NoteUtils.AddColor(currentCriticalDamage + "%", "black"));
         var nextCriticalDamageShow = NoteUtils.AddColor(nextCriticalDamage + "%", upgradeColor);
@@ -154,7 +108,7 @@ public class StoneDiamondBehavior : MonoBehaviour
 
         var description = $"" +
             $"It has a chance to fall a stone on the enemy target.\n\n" +
-            $" Chance: {currentFallingStoneChanceShow} (next: {nextFallingStoneChanceShow})\n" +
+            $" Chance: {currentChanceShow} (next: {nextChanceShow})\n" +
             $" Impact Damage: {currentImpactDamageShow} (next: {nextImpactDamageShow})\n" +
             $" Duration: {currentStunDurationShow} (next: {nextStunDurationShow})\n" +
             $" Critical chance: {currentCriticalChanceShow} (next: {nextCriticalChanceShow})\n" +

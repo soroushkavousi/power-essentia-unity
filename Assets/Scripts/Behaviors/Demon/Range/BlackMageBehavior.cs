@@ -1,63 +1,54 @@
 ﻿using Assets.Scripts.Enums;
-using Assets.Scripts.Models;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(StateManagerBehavior))]
-[RequireComponent(typeof(DemonBehavior))]
 [RequireComponent(typeof(MovementBehavior))]
 [RequireComponent(typeof(RangeAttackerBehavior))]
 [RequireComponent(typeof(AIAttackerBehavior))]
-public class BlackMageBehavior : MonoBehaviour
+public class BlackMageBehavior : DemonBehavior
 {
-    [SerializeField] private BlackMageStaticData _staticData = default;
-    [SerializeField] private SpellBehavior _healSpellBehavior = default;
+    [Space(Constants.SpaceSection)]
+    [Header(Constants.HeaderStart + nameof(BlackMageBehavior) + Constants.HeaderEnd)]
+    [SerializeField] private RangeDemonStaticData _staticData = default;
+    [SerializeField] private RangeWeaponBehavior _rangeWeaponBehavior = default;
+    [SerializeField] private HealSpellBehavior _healSpellBehavior = default;
+    [SerializeField] private Transform _fireLocation = default;
 
-    [Space(Constants.DebugSectionSpace, order = -1001)]
-    [Header(Constants.DebugSectionHeader, order = -1000)]
+    [Space(Constants.SpaceSection)]
+    [Header(Constants.DebugSectionHeader)]
 
-    private StateManagerBehavior _stateManagerBehavior = default;
-    private DemonBehavior _demonBehavior = default;
-    private RangeAttackerBehavior _rangeAttackerBehavior = default;
-    private AttackerBehavior _attackerBehavior = default;
-    private AIAttackerBehavior _aiAttackerBehavior = default;
-    private MovementBehavior _movementBehavior = default;
-    private StatusOwnerBehavior _statusOwnerBehavior = default;
+    protected StateManagerBehavior _stateManagerBehavior = default;
+    protected AIAttackerBehavior _aiAttackerBehavior = default;
+    protected RangeAttackerBehavior _rangeAttackerBehavior = default;
+    protected MovementBehavior _movementBehavior = default;
 
-    public void Initialize()
+    public override void Initialize(int level)
     {
-        _demonBehavior = GetComponent<DemonBehavior>();
-        _demonBehavior.FeedData(_staticData.DemonStaticData);
+        base.Initialize(level);
+        base.FeedData(_staticData);
 
         _stateManagerBehavior = GetComponent<StateManagerBehavior>();
         _stateManagerBehavior.FeedData(typeof(BlackMageState), BlackMageState.IDLING,
             CheckState, StopOldState, StartNewState);
 
+        _rangeWeaponBehavior.Initialize(_level, IsTargetEnemy);
         _rangeAttackerBehavior = GetComponent<RangeAttackerBehavior>();
-        _rangeAttackerBehavior.FeedData(_staticData.RangeAttackerStaticData, IsTargetEnemy);
+        _rangeAttackerBehavior.FeedData(_staticData.RangeAttackerStaticData,
+            _rangeWeaponBehavior, IsTargetEnemy);
 
         _aiAttackerBehavior = GetComponent<AIAttackerBehavior>();
         _aiAttackerBehavior.FeedData(_staticData.AIAttackerStaticData);
 
         _movementBehavior = GetComponent<MovementBehavior>();
         _movementBehavior.FeedData(_staticData.MovementStaticData);
-        _movementBehavior.StartMoving();
+        _movementBehavior.MoveWithDirection(Vector2.left);
 
-        _statusOwnerBehavior = GetComponent<StatusOwnerBehavior>();
-        _attackerBehavior = GetComponent<AttackerBehavior>();
-
-        _healSpellBehavior.GetComponent<HealSpellBehavior>().FeedData(_demonBehavior.Level.IntValue);
-    }
-
-    private void Start()
-    {
-
+        _healSpellBehavior.Initialize(_level);
     }
 
     private void CheckState()
     {
-        var currentState = _stateManagerBehavior.State.EnumValue.To<BlackMageState>();
+        var currentState = _stateManagerBehavior.State.Value.ToEnum<BlackMageState>();
         switch (currentState)
         {
             case BlackMageState.IDLING:
@@ -84,10 +75,9 @@ public class BlackMageBehavior : MonoBehaviour
         }
     }
 
-
     private void StopOldState()
     {
-        var oldState = _stateManagerBehavior.State.LastEnumValue.To<BlackMageState>();
+        var oldState = _stateManagerBehavior.State.LastValue.ToEnum<BlackMageState>();
         switch (oldState)
         {
             case BlackMageState.IDLING:
@@ -96,7 +86,7 @@ public class BlackMageBehavior : MonoBehaviour
                 _movementBehavior.StopMoving();
                 break;
             case BlackMageState.SHOOTING:
-                _attackerBehavior.StopAttacking();
+                _rangeAttackerBehavior.StopAttacking();
                 break;
             case BlackMageState.PRE_STUNNING:
                 _statusOwnerBehavior.StunStatusBehavior.StopPreStunning();
@@ -114,18 +104,20 @@ public class BlackMageBehavior : MonoBehaviour
 
     private void StartNewState()
     {
-        var newState = _stateManagerBehavior.State.EnumValue.To<BlackMageState>();
+        var newState = _stateManagerBehavior.State.Value.ToEnum<BlackMageState>();
         switch (newState)
         {
             case BlackMageState.IDLING:
                 break;
             case BlackMageState.MOVING:
-                _movementBehavior.StartMoving();
+                _movementBehavior.MoveWithDirection(Vector2.left);
                 break;
             case BlackMageState.SHOOTING:
-                _rangeAttackerBehavior.AttackTargetPosition = new Vector2(WallBehavior.Instance.transform.position.x,
-                    _rangeAttackerBehavior.ProjectileSpawnLocation.position.y);
+                _rangeAttackerBehavior.AttackTargetPosition = new Vector2(
+                    WallBehavior.Instance.transform.position.x,
+                    _rangeAttackerBehavior.ProjectileShotLocation.position.y);
                 _rangeAttackerBehavior.Aim();
+                _rangeAttackerBehavior.RangeWeaponBehavior.CreateProjectile(_fireLocation);
                 //_attackerBehavior.StartAttacking();
                 break;
             case BlackMageState.PRE_STUNNING:
@@ -145,7 +137,7 @@ public class BlackMageBehavior : MonoBehaviour
 
     private void CheckIdlingState()
     {
-        if(_demonBehavior.IsInAttackArea == false)
+        if (IsInAttackArea == false)
             _stateManagerBehavior.GoToTheNextState(BlackMageState.MOVING);
 
         if (_statusOwnerBehavior.StunStatusBehavior.IsAffected)
@@ -160,7 +152,7 @@ public class BlackMageBehavior : MonoBehaviour
 
     private void CheckMovingState()
     {
-        if (_demonBehavior.IsInAttackArea == false)
+        if (IsInAttackArea == false)
             return;
 
         if (_statusOwnerBehavior.StunStatusBehavior.IsAffected)
@@ -215,20 +207,5 @@ public class BlackMageBehavior : MonoBehaviour
     }
 
     private void CastHealSpell() => _healSpellBehavior.Cast();
-
-    private GameObject IsTargetEnemy(GameObject target)
-    {
-        var bodyAreaBehavior = target.GetComponent<BodyAreaBehavior>();
-        if (bodyAreaBehavior != null)
-        {
-            target = bodyAreaBehavior.BodyBehavior.gameObject;
-        }
-
-        var castleBehavior = target.GetComponent<WallBehavior>();
-        if (castleBehavior != null)
-            return target;
-
-        return null;
-    }
 }
 

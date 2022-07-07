@@ -1,88 +1,89 @@
-﻿using Assets.Scripts.Models;
-using System;
+﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(AttackerBehavior))]
-public class RangeAttackerBehavior : MonoBehaviour
+public class RangeAttackerBehavior : AttackerBehavior
 {
-    [SerializeField] private Transform _projectileSpawnLocation = default;
-    [SerializeField] private ProjectileBehavior _animationProjectileBehavior = default;
+    [Space(Constants.SpaceSection)]
+    [Header(Constants.HeaderStart + nameof(RangeAttackerBehavior) + Constants.HeaderEnd)]
+    [SerializeField] protected Transform _projectileShotLocation = default;
 
-    [Space(Constants.DebugSectionSpace, order = -1001)]
-    [Header(Constants.DebugSectionHeader, order = -1000)]
-
-    [SerializeField] private Vector2 _attackTargetPosition = default;
-    [SerializeField] private Vector2 _aimTargetPosition = default;
-    [SerializeField] private bool _aimingIsFinished = default;
+    [Space(Constants.SpaceSection)]
+    [Header(Constants.DebugSectionHeader)]
+    [SerializeField] protected RangeAttackerState _state = default;
+    [SerializeField] protected RangeWeaponBehavior _rangeWeaponBehavior = default;
+    [SerializeField] protected Vector2 _attackTargetPosition = default;
+    [SerializeField] protected Vector2 _aimTargetPosition = default;
+    [SerializeField] protected bool _aimingIsFinished = default;
+    [SerializeField] protected AudioClip _fireSound;
     private RangeAttackerStaticData _staticData = default;
-    private AttackerBehavior _attackerBehavior = default;
-    private RotationBehavior _rotationBehavior = default;
+    protected RotationUtils _rotationUtils = default;
 
+    public override AttackerState AttackerState => (AttackerState)_state;
+    public RangeAttackerState State => _state;
+    public RangeWeaponBehavior RangeWeaponBehavior => _rangeWeaponBehavior;
     public Vector2 AttackTargetPosition { get => _attackTargetPosition; set => _attackTargetPosition = value; }
-    public Transform ProjectileSpawnLocation => _projectileSpawnLocation;
-    public OrderedList<Action> OnReloadActions { get; } = new OrderedList<Action>();
-    public OrderedList<Action> OnAimActions { get; } = new OrderedList<Action>();
-    public OrderedList<Action<ProjectileBehavior>> OnCreateProjectileActions { get; } = new OrderedList<Action<ProjectileBehavior>>();
     public bool AimingIsFinished => _aimingIsFinished;
+    public Transform ProjectileShotLocation => _projectileShotLocation;
 
-    public void FeedData(RangeAttackerStaticData staticData,
+    public void FeedData(RangeAttackerStaticData staticData, RangeWeaponBehavior rangeWeaponBehavior,
         Func<GameObject, GameObject> isTargetEnemyFunction)
     {
-        _attackerBehavior = GetComponent<AttackerBehavior>();
-        _rotationBehavior = GetComponent<RotationBehavior>();
-
         _staticData = staticData;
-        _attackerBehavior.FeedData(staticData.AttackerData, isTargetEnemyFunction);
-        _attackerBehavior.OnAttackingActions.Add(FireProjectile);
-        if(_animationProjectileBehavior != default)
-            _animationProjectileBehavior.Initialize(
-                _staticData.ProjectileStaticData,
-                _attackerBehavior.AttackDamage.Value,
-                _attackerBehavior.CriticalChance.Value,
-                _attackerBehavior.CriticalDamage.Value,
-                _attackerBehavior.AttackSound, _attackerBehavior.IsTargetEnemyFunction);
+        _rangeWeaponBehavior = rangeWeaponBehavior;
+        base.FeedData(_staticData, _rangeWeaponBehavior, isTargetEnemyFunction);
+        _rotationUtils = new RotationUtils(this, _projectileShotLocation.localPosition);
     }
 
-    public void FireProjectile()
+    public override void StartAttacking()
     {
-        var newProjectileBehavior = Instantiate(_staticData.ProjectileBehavior, _projectileSpawnLocation.position,
-            _projectileSpawnLocation.rotation, transform.parent);
-        newProjectileBehavior.Initialize(
-            _staticData.ProjectileStaticData,
-            _attackerBehavior.AttackDamage.Value,
-            _attackerBehavior.CriticalChance.Value,
-            _attackerBehavior.CriticalDamage.Value,
-            _attackerBehavior.AttackSound, _attackerBehavior.IsTargetEnemyFunction);
-        newProjectileBehavior.MovementBehavior.TargetPosition = _aimTargetPosition;
-        OnCreateProjectileActions.CallActionsSafely(newProjectileBehavior);
-        newProjectileBehavior.OnHitActions.Add(_attackerBehavior.HandleHitEvent);
+        if (_state == RangeAttackerState.STARTED)
+            return;
+        _state = RangeAttackerState.STARTED;
+        Notify();
+        if (_movementBehavior != null)
+            _movementBehavior.StopMoving();
+    }
 
-        //newProjectileMovementBehavior.transform.SetParent(transform.parent, true);
-        newProjectileBehavior.MovementBehavior.StartMoving();
-        MusicPlayerBehavior.Instance.AudioSource.PlayOneShot(_staticData.ShootSound);
+    protected override void Attack()
+    {
+        //if(_staticData.AttackSound != null)
+        //    _audioSource.PlayOneShot(_staticData.AttackSound, 0.5f);
+        //_audioSource.Play();
+
+        _state = RangeAttackerState.ATTACKING;
+        _rangeWeaponBehavior.FireRoundProjectiles(_aimTargetPosition);
+        Notify();
+    }
+
+    public override void StopAttacking()
+    {
+        if (_state == RangeAttackerState.STOPPED)
+            return;
+        _state = RangeAttackerState.STOPPED;
+        Notify();
     }
 
     public void Reload()
     {
-        OnReloadActions.CallActionsSafely();
+        _state = RangeAttackerState.RELOADING;
+        Notify();
     }
 
     public void Aim()
     {
         _aimingIsFinished = false;
         _aimTargetPosition = AttackTargetPosition;
-        _attackerBehavior.StartAttacking();
-        OnAimActions.CallActionsSafely();
-        if (_rotationBehavior == null)
+        StartAttacking();
+        _state = RangeAttackerState.AIMING;
+        if (_rotationUtils == null)
         {
             _aimingIsFinished = true;
             return;
         }
-        _rotationBehavior.RotateToTarget(_aimTargetPosition,
-            ProjectileSpawnLocation.localPosition);
+        _rotationUtils.RotateToTarget(_aimTargetPosition);
         StartCoroutine(CheckAimingStatus());
+        Notify();
     }
 
     //public void AimToMousePosition()
@@ -93,7 +94,7 @@ public class RangeAttackerBehavior : MonoBehaviour
 
     private IEnumerator CheckAimingStatus()
     {
-        yield return new WaitWhile(() => _rotationBehavior.IsRotating);
+        yield return new WaitWhile(() => _rotationUtils.IsRotating);
         _aimingIsFinished = true;
     }
 }

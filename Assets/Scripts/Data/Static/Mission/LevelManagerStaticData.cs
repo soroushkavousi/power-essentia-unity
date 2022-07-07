@@ -1,13 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "LevelManagerStaticData", 
+[CreateAssetMenu(fileName = "LevelManagerStaticData",
     menuName = "StaticData/Mission/LevelManagerStaticData", order = 1)]
 public class LevelManagerStaticData : ScriptableObject
 {
-    [SerializeField] private float _waveTime = default;
-
-    public float WaveTime => _waveTime;
+    public float WaveTime = default;
 }

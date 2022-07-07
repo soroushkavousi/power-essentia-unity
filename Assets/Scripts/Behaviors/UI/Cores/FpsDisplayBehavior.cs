@@ -6,8 +6,8 @@ public class FpsDisplayBehavior : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _textComponent = default;
     private int _passedTime = 0;
 
-    //[Space(Constants.DebugSectionSpace, order = -1001)]
-    //[Header(Constants.DebugSectionHeader, order = -1000)]
+    //[Space(Constants.DebugSectionSpace)]
+    //[Header(Constants.DebugSectionHeader)]
 
     void Update()
     {

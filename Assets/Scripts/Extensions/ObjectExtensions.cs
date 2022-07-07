@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-
 public static class ObjectExtensions
 {
     public static DestinationType To<DestinationType>(this object obj)

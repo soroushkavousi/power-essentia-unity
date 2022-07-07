@@ -1,36 +1,53 @@
-﻿using Assets.Scripts.Enums;
-using Assets.Scripts.Models;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
-[RequireComponent(typeof(AttackerBehavior))]
-public class MeleeAttackerBehavior : MonoBehaviour
+public class MeleeAttackerBehavior : AttackerBehavior
 {
-    private AttackerBehavior _attackerBehavior = default;
+    [Space(Constants.SpaceSection)]
+    [Header(Constants.HeaderStart + nameof(MeleeAttackerBehavior) + Constants.HeaderEnd)]
 
-    public void FeedData(MeleeAttackerStaticData data, 
+    [Space(Constants.SpaceSection)]
+    [Header(Constants.DebugSectionHeader)]
+    [SerializeField] private MeleeAttackerState _state = default;
+    [SerializeField] protected MeleeWeaponBehavior _meleeWeaponBehavior = default;
+    private MeleeAttackerStaticData _staticData = default;
+
+    public override AttackerState AttackerState => (AttackerState)_state;
+    public MeleeAttackerState State => _state;
+
+    public void FeedData(MeleeAttackerStaticData staticData, MeleeWeaponBehavior _meleeWeaponBehavior,
         Func<GameObject, GameObject> isTargetEnemyFunction)
     {
-        _attackerBehavior = GetComponent<AttackerBehavior>();
-      
-        _attackerBehavior.FeedData(data.AttackerData, isTargetEnemyFunction);
-        _attackerBehavior.OnAttackingActions.Add(StrikeTheEnemy);
+        _staticData = staticData;
+        base.FeedData(staticData, _meleeWeaponBehavior, isTargetEnemyFunction);
     }
 
-    private void StrikeTheEnemy()
+    public override void StartAttacking()
     {
-        if (_attackerBehavior.CurrentEnemy == null)
+        if (_state == MeleeAttackerState.STARTED)
             return;
-        var enemyHealthBehavior = _attackerBehavior.CurrentEnemy.GetComponent<HealthBehavior>();
-        var criticalEffect = new CriticalEffect(-_attackerBehavior.AttackDamage.Value,
-                    _attackerBehavior.CriticalChance.Value, _attackerBehavior.CriticalDamage.Value);
-        var damage = criticalEffect.Result;
-        var healthChangeType = criticalEffect.IsApplied ?
-            HealthChangeType.CRITICAL_PHYSICAL_DAMAGE :
-            HealthChangeType.PHYSICAL_DAMAGE;
-        enemyHealthBehavior.Health.Current.Change(damage,
-            name, healthChangeType);
+        _state = MeleeAttackerState.STARTED;
+        Notify();
+        if (_movementBehavior != null)
+            _movementBehavior.StopMoving();
+    }
+
+    protected override void Attack()
+    {
+        //if(_staticData.AttackSound != null)
+        //    _audioSource.PlayOneShot(_staticData.AttackSound, 0.5f);
+        //_audioSource.Play();
+
+        _state = MeleeAttackerState.ATTACKING;
+        _meleeWeaponBehavior.StrikeTheEnemy(CurrentEnemy);
+        Notify();
+    }
+
+    public override void StopAttacking()
+    {
+        if (_state == MeleeAttackerState.STOPPED)
+            return;
+        _state = MeleeAttackerState.STOPPED;
+        Notify();
     }
 }

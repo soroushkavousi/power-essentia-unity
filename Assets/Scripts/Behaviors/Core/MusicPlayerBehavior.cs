@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
 public class MusicPlayerBehavior : MonoBehaviour
@@ -11,8 +8,8 @@ public class MusicPlayerBehavior : MonoBehaviour
     [SerializeField] private AudioClip _clickSound = default;
     [SerializeField] private AudioClip _enemyDeathGoldRewardSound = default;
 
-    //[Space(Constants.DebugSectionSpace, order = -1001)]
-    //[Header(Constants.DebugSectionHeader, order = -1000)]
+    //[Space(Constants.DebugSectionSpace)]
+    //[Header(Constants.DebugSectionHeader)]
 
     private AudioSource _audioSource = default;
 

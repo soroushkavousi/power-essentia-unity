@@ -1,57 +1,58 @@
-﻿using Assets.Scripts.Models;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class MissionMenuBehavior : MonoBehaviour
+public class MissionMenuBehavior : MonoBehaviour, IObserver
 {
     [SerializeField] private TextMeshProUGUI _demonLevelText = default;
     [SerializeField] private TextMeshProUGUI _waveNumberText = default;
     [SerializeField] private TextMeshProUGUI _waveDemonsText = default;
 
-    //[Space(Constants.DebugSectionSpace, order = -1001)]
-    //[Header(Constants.DebugSectionHeader, order = -1000)]
-    private OnePartAdvancedNumber _demonLevel = default;
-    private OnePartAdvancedNumber _totalWaveCount = default;
-    private OnePartAdvancedNumber _waveNumber = default;
-    private OnePartAdvancedNumber _totalDemonCount = default;
-    private OnePartAdvancedNumber _deadDemonCount = default;
-    private float fixedDeltaTime;
+    //[Space(Constants.DebugSectionSpace)]
+    //[Header(Constants.DebugSectionHeader)]
+    private Observable<int> _demonLevel = default;
+    private Observable<int> _totalWaveCount = default;
+    private Observable<int> _waveNumber = default;
+    private Observable<int> _totalDemonCount = default;
+    private Observable<int> _deadDemonCount = default;
+    private float _fixedDeltaTime;
 
-    private void Awake()
+    private void Start()
     {
-        fixedDeltaTime = Time.fixedDeltaTime;
+        _fixedDeltaTime = Time.fixedDeltaTime;
 
         _demonLevel = PlayerBehavior.Main.DynamicData.SelectedItems.DemonLevel;
+        _demonLevel.Attach(this);
+
         _totalWaveCount = LevelManagerBehavior.Instance.TotalWaveCount;
+        _totalWaveCount.Attach(this);
+
         _waveNumber = WaveManagerBehavior.Instance.WaveNumber;
+        _waveNumber.Attach(this);
+
         _totalDemonCount = WaveManagerBehavior.Instance.TotalDemonCount;
+        _totalDemonCount.Attach(this);
+
         _deadDemonCount = WaveManagerBehavior.Instance.DeadDemonCount;
-        _demonLevel.OnNewValueActions.Add(HandleDemonLevelChange);
-        _totalWaveCount.OnNewValueActions.Add(HandleWaveNumberChange);
-        _waveNumber.OnNewValueActions.Add(HandleWaveNumberChange);
-        _totalDemonCount.OnNewValueActions.Add(HandleDemonCountChange);
-        _deadDemonCount.OnNewValueActions.Add(HandleDemonCountChange);
-        HandleDemonLevelChange(null);
-        HandleWaveNumberChange(null);
-        HandleDemonCountChange(null);
+        _deadDemonCount.Attach(this);
+
+        HandleDemonLevelChange();
+        HandleWaveNumberChange();
+        HandleDemonCountChange();
     }
 
-    private void HandleWaveNumberChange(NumberChangeCommand changeCommand)
+    private void HandleWaveNumberChange()
     {
-        _waveNumberText.text = $"Wave {_waveNumber.IntValue} / {_totalWaveCount.IntValue}";
+        _waveNumberText.text = $"Wave {_waveNumber.Value} / {_totalWaveCount.Value}";
     }
 
-    private void HandleDemonLevelChange(NumberChangeCommand changeCommand)
+    private void HandleDemonLevelChange()
     {
         if (WinSystemBehavior.Instance.Win || LoseSystemBehavior.Instance.Lose)
             return;
-        _demonLevelText.text = $"Level {_demonLevel.IntValue}";
+        _demonLevelText.text = $"Level {_demonLevel.Value}";
     }
 
-    private void HandleDemonCountChange(NumberChangeCommand changeCommand)
+    private void HandleDemonCountChange()
     {
         _waveDemonsText.text = $"Demons {_deadDemonCount.Value} / {_totalDemonCount.Value}";
     }
@@ -61,5 +62,23 @@ public class MissionMenuBehavior : MonoBehaviour
         Time.timeScale = 0f;
         //Time.fixedDeltaTime = fixedDeltaTime * Time.timeScale;
         PauseMenuBehavior.Instance.Show();
+    }
+
+    public void OnNotify(ISubject subject)
+    {
+        if (subject == _demonLevel)
+        {
+            HandleDemonLevelChange();
+        }
+        else if (subject == _totalWaveCount
+            || subject == _waveNumber)
+        {
+            HandleWaveNumberChange();
+        }
+        else if (subject == _totalDemonCount
+            || subject == _deadDemonCount)
+        {
+            HandleDemonCountChange();
+        }
     }
 }

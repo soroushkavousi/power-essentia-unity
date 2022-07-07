@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
 
 [Serializable]
-public class StatsDynamicDataTO
+public class StatsDynamicDataTO : IObserver
 {
     public int Level = default;
     private StatsDynamicData _statsDynamicData = default;
@@ -14,13 +9,21 @@ public class StatsDynamicDataTO
     public StatsDynamicData GetStatsDynamicData()
     {
         _statsDynamicData = new StatsDynamicData(Level);
-        _statsDynamicData.Level.Current.OnNewValueActions.Add(OnLevelChanged);
+        _statsDynamicData.Level.Attach(this);
         return _statsDynamicData;
     }
 
-    private void OnLevelChanged(NumberChangeCommand changeCommand)
+    private void OnLevelChanged()
     {
-        Level = _statsDynamicData.Level.Current.IntValue;
+        Level = _statsDynamicData.Level.Value;
         PlayerDynamicDataTO.Instance.Save();
+    }
+
+    public void OnNotify(ISubject subject)
+    {
+        if (subject == _statsDynamicData.Level)
+        {
+            OnLevelChanged();
+        }
     }
 }

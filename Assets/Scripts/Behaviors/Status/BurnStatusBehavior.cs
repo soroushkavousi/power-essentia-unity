@@ -1,6 +1,4 @@
-﻿using Assets.Scripts.Enums;
-using Assets.Scripts.Models;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +9,8 @@ public class BurnStatusBehavior : MonoBehaviour
 {
     [SerializeField] private StatusOwnerBehavior _statusOwnerBehavior = default;
 
-    [Space(Constants.DebugSectionSpace, order = -1001)]
-    [Header(Constants.DebugSectionHeader, order = -1000)]
+    [Space(Constants.SpaceSection)]
+    [Header(Constants.DebugSectionHeader)]
 
     [SerializeField] private List<BurnStatusInstance> _instances = new List<BurnStatusInstance>();
     private ParticleSystem _particleSystem = default;
@@ -31,13 +29,13 @@ public class BurnStatusBehavior : MonoBehaviour
         _movementBehavior = _statusOwnerBehavior.GetComponent<MovementBehavior>();
     }
 
-    public void AddNewInstance(GameObject refGameObject, ThreePartAdvancedNumber dps,
-        ThreePartAdvancedNumber movementSlow, ThreePartAdvancedNumber criticalChance, ThreePartAdvancedNumber criticalDamage)
+    public void AddNewInstance(GameObject refGameObject, float dps,
+        float movementSlow, float criticalChance, float criticalDamage)
     {
         var instance = new BurnStatusInstance(refGameObject, dps,
             criticalChance, criticalDamage, movementSlow);
         OnPreApplyInstanceActions.CallActionsSafely(instance);
-        if (instance.Dps.Value == 0 || instance.MovementSlow.Value == 0)
+        if (instance.Dps == 0 || instance.MovementSlow == 0)
             return;
         StartCoroutine(ApplyInstance(instance));
     }
@@ -84,27 +82,29 @@ public class BurnStatusBehavior : MonoBehaviour
 
     private IEnumerator Damage(BurnStatusInstance instance)
     {
-        var dps = instance.Dps.Value;
+        var dps = instance.Dps;
         //enemy.GetComponentInChildren<SpriteRenderer>().color = Color.red;
         yield return new WaitForSeconds(1);
         while (_instances.Contains(instance) && instance != null && instance.RefGameObject != null)
         {
-            _healthBehavior.Health.Current.Change(-dps, instance.OwnerID, HealthChangeType.MAGICAL_DAMAGE);
+            _healthBehavior.Health.Damage(
+                new Damage(DamageType.MAGIC, dps));
             yield return new WaitForSeconds(1);
         }
-        _healthBehavior.Health.Current.Change(-dps, instance.OwnerID, HealthChangeType.MAGICAL_DAMAGE);
+        _healthBehavior.Health.Damage(
+                new Damage(DamageType.MAGIC, dps));
         if (_instances.Contains(instance))
             RemoveInstance(instance);
     }
 
     private IEnumerator Slow(BurnStatusInstance instance)
     {
-        _movementBehavior.Speed.Peak.Change(-instance.MovementSlow.Value, instance.OwnerID, MovementChangeType.BURN);
+        _movementBehavior.Speed.Decrease(instance.MovementSlow);
 
         yield return new WaitUntil(
             () => _instances.Contains(instance) == false
             || instance == null || instance.RefGameObject == null);
-        
-        _movementBehavior.Speed.Peak.Change(instance.MovementSlow.Value, instance.OwnerID, MovementChangeType.BURN);
+
+        _movementBehavior.Speed.Increase(instance.MovementSlow);
     }
 }

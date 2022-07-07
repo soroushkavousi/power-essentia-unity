@@ -1,6 +1,4 @@
-﻿using Assets.Scripts.Enums;
-using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public static class UnityExtensions
 {
@@ -17,14 +15,14 @@ public static class UnityExtensions
         var targetBodyAreaBehavior = target.GetComponent<BodyAreaBehavior>();
         if (targetBodyAreaBehavior != null)
         {
-            if (targetBodyAreaBehavior.BodyBehavior.IsColliderDisabled)
+            if (targetBodyAreaBehavior.BodyBehavior.IsCollidingDisabled)
                 return true;
         }
 
         var targetVisionAreaBehavior = target.GetComponent<VisionAreaBehavior>();
         if (targetVisionAreaBehavior != null)
         {
-            if (targetVisionAreaBehavior.VisionBehavior.IsColliderDisabled)
+            if (targetVisionAreaBehavior.VisionBehavior.IsCollidingDisabled)
                 return true;
         }
         return false;

@@ -1,25 +1,20 @@
-﻿using Assets.Scripts.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using UnityEngine;
 
 [Serializable]
 public class StatsDynamicData
 {
-    [SerializeField] private ThreePartAdvancedNumber _level = new ThreePartAdvancedNumber(currentDummyMin: 0f);
+    [SerializeField] private Observable<int> _level = new();
 
-    public ThreePartAdvancedNumber Level => _level;
+    public Observable<int> Level => _level;
 
     private StatsDynamicData() { }
 
     public StatsDynamicData(int level)
     {
-        _level.FeedData(level);
+        _level.Value = level;
     }
 
-    public StatsDynamicData Copy() => 
-        new StatsDynamicData(_level.Current.IntValue);
+    public StatsDynamicData Copy() =>
+        new(_level.Value);
 }

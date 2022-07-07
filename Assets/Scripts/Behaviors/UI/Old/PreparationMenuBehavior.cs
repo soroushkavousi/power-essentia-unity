@@ -1,14 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 public class PreparationMenuBehavior : MonoBehaviour
 {
-    //[Space(Constants.DebugSectionSpace, order = -1001)]
-    //[Header(Constants.DebugSectionHeader, order = -1000)]
+    //[Space(Constants.DebugSectionSpace)]
+    //[Header(Constants.DebugSectionHeader)]
 
     public void StartMission()
     {

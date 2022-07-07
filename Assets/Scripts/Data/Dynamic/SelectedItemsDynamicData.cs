@@ -1,91 +1,77 @@
 ﻿using Assets.Scripts.Enums;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
 
 namespace Assets.Scripts.Models
 {
     [Serializable]
-    public class SelectedItemsDynamicData
+    public class SelectedItemsDynamicData : IObserver
     {
-        [SerializeField] private OnePartAdvancedNumber _demonLevel = new OnePartAdvancedNumber();
+        public Observable<int> DemonLevel = new();
 
-        public OnePartAdvancedNumber DemonLevel => _demonLevel;
-        public Dictionary<RingName, List<AdvancedString>> RingDiamondNamesMap { get; set; } = new Dictionary<RingName, List<AdvancedString>>
+        public Dictionary<RingName, List<Observable<DiamondName>>> RingDiamondNamesMap { get; set; } = new Dictionary<RingName, List<Observable<DiamondName>>>
         {
-            [RingName.TOOLS] = new List<AdvancedString>
+            [RingName.TOOLS] = new List<Observable<DiamondName>>
             {
-                new AdvancedString(),
-                new AdvancedString(),
-                new AdvancedString(),
-                new AdvancedString(),
+                new(),
+                new(),
+                new(),
+                new(),
             },
-            [RingName.LEFT] = new List<AdvancedString>
+            [RingName.LEFT] = new List<Observable<DiamondName>>
             {
-                new AdvancedString(),
-                new AdvancedString(),
-                new AdvancedString(),
-                new AdvancedString(),
+                new(),
+                new(),
+                new(),
+                new(),
             },
-            [RingName.RIGHT] = new List<AdvancedString>
+            [RingName.RIGHT] = new List<Observable<DiamondName>>
             {
-                new AdvancedString(),
-                new AdvancedString(),
-                new AdvancedString(),
-                new AdvancedString(),
+                new(),
+                new(),
+                new(),
+                new(),
             },
         };
-        public Dictionary<RingName, AdvancedString> MenuDiamondName { get; set; } = new Dictionary<RingName, AdvancedString>()
+        public Dictionary<RingName, Observable<DiamondName>> MenuDiamondName { get; set; } = new Dictionary<RingName, Observable<DiamondName>>()
         {
-            [RingName.DECK] = new AdvancedString(),
-            [RingName.TOOLS] = new AdvancedString(),
+            [RingName.DECK] = new Observable<DiamondName>(),
+            [RingName.TOOLS] = new Observable<DiamondName>(),
         };
 
         private SelectedItemsDynamicData() { }
 
-        public SelectedItemsDynamicData(int demonLevel, List<DiamondName> toolsRingDiamondNames, 
-            List<DiamondName> leftRingDiamondNames, List<DiamondName> righRingDiamondNames, 
+        public SelectedItemsDynamicData(int demonLevel, List<DiamondName> toolsRingDiamondNames,
+            List<DiamondName> leftRingDiamondNames, List<DiamondName> righRingDiamondNames,
             DiamondName menuDeckDiamondName, DiamondName menuToolsDiamondName)
         {
-            _demonLevel.FeedData(demonLevel);
+            DemonLevel.Value = demonLevel;
             MenuDiamondName[RingName.LEFT] = MenuDiamondName[RingName.RIGHT] = MenuDiamondName[RingName.DECK];
 
             for (int i = 0; i < RingDiamondNamesMap[RingName.TOOLS].Count; i++)
             {
-                RingDiamondNamesMap[RingName.TOOLS][i].FeedData(toolsRingDiamondNames[i]);
+                RingDiamondNamesMap[RingName.TOOLS][i].Value = toolsRingDiamondNames[i];
             }
 
             for (int i = 0; i < RingDiamondNamesMap[RingName.LEFT].Count; i++)
             {
-                RingDiamondNamesMap[RingName.LEFT][i].FeedData(leftRingDiamondNames[i]);
+                RingDiamondNamesMap[RingName.LEFT][i].Value = leftRingDiamondNames[i];
+                RingDiamondNamesMap[RingName.LEFT][i].Attach(this);
             }
-            RingDiamondNamesMap[RingName.LEFT][0].OnNewValueActions.Add(cc => RemoveSameDiamondFromDeck(cc, RingName.LEFT, 0));
-            RingDiamondNamesMap[RingName.LEFT][1].OnNewValueActions.Add(cc => RemoveSameDiamondFromDeck(cc, RingName.LEFT, 1));
-            RingDiamondNamesMap[RingName.LEFT][2].OnNewValueActions.Add(cc => RemoveSameDiamondFromDeck(cc, RingName.LEFT, 2));
-            RingDiamondNamesMap[RingName.LEFT][3].OnNewValueActions.Add(cc => RemoveSameDiamondFromDeck(cc, RingName.LEFT, 3));
 
             for (int i = 0; i < RingDiamondNamesMap[RingName.RIGHT].Count; i++)
             {
-                RingDiamondNamesMap[RingName.RIGHT][i].FeedData(righRingDiamondNames[i]);
+                RingDiamondNamesMap[RingName.RIGHT][i].Value = righRingDiamondNames[i];
+                RingDiamondNamesMap[RingName.RIGHT][i].Attach(this);
             }
-            RingDiamondNamesMap[RingName.RIGHT][0].OnNewValueActions.Add(cc => RemoveSameDiamondFromDeck(cc, RingName.RIGHT, 0));
-            RingDiamondNamesMap[RingName.RIGHT][1].OnNewValueActions.Add(cc => RemoveSameDiamondFromDeck(cc, RingName.RIGHT, 1));
-            RingDiamondNamesMap[RingName.RIGHT][2].OnNewValueActions.Add(cc => RemoveSameDiamondFromDeck(cc, RingName.RIGHT, 2));
-            RingDiamondNamesMap[RingName.RIGHT][3].OnNewValueActions.Add(cc => RemoveSameDiamondFromDeck(cc, RingName.RIGHT, 3));
 
-            MenuDiamondName[RingName.DECK].FeedData(menuDeckDiamondName);
-            MenuDiamondName[RingName.TOOLS].FeedData(menuToolsDiamondName);
+            MenuDiamondName[RingName.DECK].Value = menuDeckDiamondName;
+            MenuDiamondName[RingName.TOOLS].Value = menuToolsDiamondName;
         }
 
-        private void RemoveSameDiamondFromDeck(StringChangeCommand cc, RingName ringName,
-            int index)
+        private void RemoveSameDiamondFromDeck(RingName ringName, int index)
         {
             var targetName = RingDiamondNamesMap[ringName][index].Value;
-            if (targetName == DiamondName.NONE.ToString())
-                return;
             foreach (var currentRingName in new List<RingName> { RingName.LEFT, RingName.RIGHT })
             {
                 for (int i = 0; i < RingDiamondNamesMap[currentRingName].Count; i++)
@@ -93,7 +79,27 @@ namespace Assets.Scripts.Models
                     if (ringName == currentRingName && i == index)
                         continue;
                     if (RingDiamondNamesMap[currentRingName][i].Value == targetName)
-                        RingDiamondNamesMap[currentRingName][i].Change(DiamondName.NONE, nameof(SelectedItemsDynamicData));
+                        RingDiamondNamesMap[currentRingName][i].Value = DiamondName.NONE;
+                }
+            }
+        }
+
+        public void OnNotify(ISubject subject)
+        {
+            if (subject is Observable<DiamondName> observable)
+            {
+                if (observable.Value == DiamondName.NONE)
+                    return;
+                foreach (var currentRingName in new List<RingName> { RingName.LEFT, RingName.RIGHT })
+                {
+                    for (int i = 0; i < RingDiamondNamesMap[currentRingName].Count; i++)
+                    {
+                        if (subject == RingDiamondNamesMap[currentRingName][i])
+                        {
+                            RemoveSameDiamondFromDeck(currentRingName, i);
+                            return;
+                        }
+                    }
                 }
             }
         }

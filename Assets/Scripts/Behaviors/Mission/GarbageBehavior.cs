@@ -1,13 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(BodyBehavior))]
-public class GarbageBehavior : MonoBehaviour
+public class GarbageBehavior : MonoBehaviour, IObserver<CollideData>
 {
-    //[Space(Constants.DebugSectionSpace, order = -1001)]
-    //[Header(Constants.DebugSectionHeader, order = -1000)]
+    //[Space(Constants.DebugSectionSpace)]
+    //[Header(Constants.DebugSectionHeader)]
 
     private BodyBehavior _bodyBehavior = default;
 
@@ -15,7 +12,7 @@ public class GarbageBehavior : MonoBehaviour
     {
         _bodyBehavior = GetComponent<BodyBehavior>();
         _bodyBehavior.FeedData();
-        _bodyBehavior.OnUnconstrainedEnterActions.Add(OnBodyEnter);
+        _bodyBehavior.Attach(this);
         //_bodyBehavior.OnExitActions.Add(OnBodyExit);
     }
 
@@ -33,8 +30,21 @@ public class GarbageBehavior : MonoBehaviour
             return;
 
         //projectileBehavior.Damage.Fix(0);
-        projectileBehavior.GetComponent<BodyBehavior>().IsColliderDisabled = true;
+        projectileBehavior.GetComponent<BodyBehavior>().IsCollidingDisabled = true;
         Destroy(projectileBehavior.gameObject, 1);
+    }
+
+    public void OnNotify(ISubject<CollideData> subject, CollideData data)
+    {
+        if (ReferenceEquals(subject, _bodyBehavior))
+        {
+            switch (data.Type)
+            {
+                case CollideType.ENTER:
+                    OnBodyEnter(data.TargetCollider2D);
+                    break;
+            }
+        }
     }
 
     //private void OnBodyExit(Collider2D otherCollider)
@@ -52,4 +62,6 @@ public class GarbageBehavior : MonoBehaviour
 
     //    Destroy(owner);
     //}
+
+
 }

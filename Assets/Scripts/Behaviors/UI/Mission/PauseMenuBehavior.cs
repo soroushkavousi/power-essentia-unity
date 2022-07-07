@@ -1,15 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(InteractionLayerPageBehavior))]
 public class PauseMenuBehavior : MonoBehaviour
 {
     private static PauseMenuBehavior _instance = default;
-    //[Space(Constants.DebugSectionSpace, order = -1001)]
-    //[Header(Constants.DebugSectionHeader, order = -1000)]
+    //[Space(Constants.DebugSectionSpace)]
+    //[Header(Constants.DebugSectionHeader)]
 
     private InteractionLayerPageBehavior _interactionLayerComponentBehavior = default;
 

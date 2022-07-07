@@ -1,89 +1,95 @@
-﻿using Assets.Scripts.Models;
-using Assets.Scripts.Enums;
+﻿using Assets.Scripts.Enums;
+using Assets.Scripts.Models;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.UI;
-using Random = UnityEngine.Random;
-using UnityEngine.Events;
 
-public class DiamondBehavior : MonoBehaviour
+public abstract class DiamondBehavior : MonoBehaviour
 {
-    [SerializeField] private DiamondName _name = default;
-    [SerializeField] private UnityEvent _InitializeEvent;
+    [Header(Constants.HeaderStart + nameof(DiamondBehavior) + Constants.HeaderEnd)]
+    [SerializeField] protected DiamondName _name = default;
 
-    [Space(Constants.DebugSectionSpace, order = -1001)]
-    [Header(Constants.DebugSectionHeader, order = -1000)]
-    [SerializeField] private DiamondStaticData _staticData = default;
-    [SerializeField] private AdvancedBoolean _isDiscovered = default;
-    [SerializeField] private AdvancedBoolean _isOwned = default;
-    [SerializeField] private OnePartAdvancedNumber _level = default;
-    [SerializeField] private ThreePartAdvancedNumber _activeTime = new ThreePartAdvancedNumber();
-    [SerializeField] private ThreePartAdvancedNumber _cooldownTime = new ThreePartAdvancedNumber();
-    [SerializeField] private bool _isReady = default;
-    [SerializeField] private bool _onUsing = default;
-    [SerializeField] private bool _onCooldown = default;
-    [SerializeField] private float _ramainingTime = default;
-    [SerializeField] private float _ramainingPercentage = default;
-    [SerializeField] private bool _isPermanent = default;
-    private DiamondOwnerBehavior _diamondOwnerBehavior = default;
-    private AttackerBehavior _ownerAttackerBehavior = default;
-    private Action _activateAction = default;
-    private Action _deactivateAction = default;
-    private Transform _diamondEffectsParent = default;
+    [Space(Constants.SpaceSection)]
+    [Header(Constants.DebugSectionHeader)]
+    [SerializeField] protected Observable<DiamondKnowledgeState> _knowledgeState = default;
+    [SerializeField] protected Observable<int> _level = default;
+    [SerializeField] protected Number _activeTime;
+    [SerializeField] protected Number _cooldownTime;
+    [SerializeField] protected List<ResourceBunch> _buyResourceBunches = default;
+    [SerializeField] protected List<ResourceBunchWithLevel> _upgradeResourceBunches = default;
+    [SerializeField] protected bool _isReady = default;
+    [SerializeField] protected bool _onUsing = default;
+    [SerializeField] protected bool _onCooldown = default;
+    [SerializeField] protected float _ramainingTime = default;
+    [SerializeField] protected float _ramainingPercentage = default;
+    [SerializeField] protected bool _isPermanent = default;
+    private DiamondStaticData _staticData = default;
+    protected DiamondOwnerBehavior _diamondOwnerBehavior = default;
+    protected AttackerBehavior _ownerAttackerBehavior = default;
+    protected Transform _diamondEffectsParent = default;
 
     public DiamondName Name => _name;
     public string ShowName => _staticData.ShowName;
     public Sprite Icon => _staticData.Icon;
-    public ResourceBoxStaticData BuyOrUpgradeResourceBox => 
-        _isOwned.Value ? _staticData.UpgradeResourceBoxes[_level.IntValue] : _staticData.UpgradeResourceBoxes[0];
-    public AdvancedBoolean IsDiscovered => _isDiscovered;
-    public AdvancedBoolean IsOwned => _isOwned;
-    public OnePartAdvancedNumber Level => _level;
-    public ThreePartAdvancedNumber ActiveTime => _activeTime;
-    public ThreePartAdvancedNumber CooldownTime => _cooldownTime;
+    public List<ResourceBunch> BuyResourceBunches => _buyResourceBunches;
+    public List<ResourceBunchWithLevel> UpgradeResourceBunches => _upgradeResourceBunches;
+    public Observable<DiamondKnowledgeState> KnowledgeState => _knowledgeState;
+    public Observable<int> Level => _level;
+    public Number ActiveTime => _activeTime;
+    public Number CooldownTime => _cooldownTime;
     public bool IsReady => _isReady;
     public bool OnUsing => _onUsing;
     public bool OnCooldown => _onCooldown;
     public float RamainingTime => _ramainingTime;
     public float RamainingPercentage => _ramainingPercentage;
-    public string Description => _staticData.Description;
     public DiamondOwnerBehavior DiamondOwnerBehavior => _diamondOwnerBehavior;
     public AttackerBehavior OwnerAttackerBehavior => _ownerAttackerBehavior;
-    public Func<string> GetDescription { get; set; }
     public Func<GameObject, GameObject> IsTargetEnemyFunction { get; private set; }
     public Transform DiamondEffectsParent => _diamondEffectsParent;
+    public string Description => GetDescription();
 
-    public void Initialize(AdvancedBoolean isDiscovered, AdvancedBoolean isOwned,
-        OnePartAdvancedNumber level, DiamondOwnerBehavior diamondOwnerBehavior)
+    public virtual void Initialize(Observable<DiamondKnowledgeState> knowledgeState,
+        Observable<int> level, DiamondOwnerBehavior diamondOwnerBehavior)
     {
         _isReady = true;
-        _isDiscovered = isDiscovered;
-        _isOwned = isOwned;
+        _knowledgeState = knowledgeState;
         _level = level;
         _diamondOwnerBehavior = diamondOwnerBehavior;
+
+        _activeTime = new(_staticData.ActiveTime, level, _staticData.ActiveTimeLevelPercentage, min: 0f);
+        _cooldownTime = new(_staticData.CooldownTime, level, _staticData.CooldownTimeLevelPercentage, min: 0f);
+
+        InitializeBuyAndUpgradeResourceBunches();
         if (diamondOwnerBehavior != null)
             _ownerAttackerBehavior = diamondOwnerBehavior.GetComponent<AttackerBehavior>();
-        IsTargetEnemyFunction = _ownerAttackerBehavior.IsTargetEnemyFunction;
+        IsTargetEnemyFunction = diamondOwnerBehavior.IsTargetEnemy;
         if (SceneManagerBehavior.Instance.CurrentSceneName == SceneName.MISSION)
             _diamondEffectsParent = MissionManagerBehavior.Instance.DiamondEffectsParent;
         else
             _diamondEffectsParent = OutBoxBehavior.Instance.Location1;
-        _InitializeEvent.Invoke();
+
     }
 
-    public void FeedData(DiamondStaticData staticData, 
-        Action activateAction, Action deactivateAction)
+    private void InitializeBuyAndUpgradeResourceBunches()
+    {
+        _buyResourceBunches = new List<ResourceBunch>();
+        foreach (var resourceBunchData in GameManagerBehavior.Instance.StaticData.Settings.BuyDiamondResourceBunches)
+        {
+            _buyResourceBunches.Add(new ResourceBunch(resourceBunchData.Type, resourceBunchData.Amount));
+        }
+
+        _upgradeResourceBunches = new List<ResourceBunchWithLevel>();
+        foreach (var resourceBunchWithLevelData in GameManagerBehavior.Instance.StaticData.Settings.DiamondUpgradeResourceBunches)
+        {
+            var amount = new Number(resourceBunchWithLevelData.Amount, _level, resourceBunchWithLevelData.LevelPercentage);
+            _upgradeResourceBunches.Add(new ResourceBunchWithLevel(resourceBunchWithLevelData.Type, amount));
+        }
+    }
+
+    public void FeedData(DiamondStaticData staticData)
     {
         _staticData = staticData;
-        _activeTime.FeedData(_staticData.StartActiveTime);
-        _cooldownTime.FeedData(_staticData.StartCooldownTime);
-        _activateAction = activateAction;
-        _deactivateAction = deactivateAction;
+
     }
 
     private void Update()
@@ -91,7 +97,7 @@ public class DiamondBehavior : MonoBehaviour
         if (_isPermanent)
             return;
 
-        if(_onUsing)
+        if (_onUsing)
             UpdateRemainingTime(_activeTime.Value, Deactivate);
         else if (_onCooldown)
             UpdateRemainingTime(_cooldownTime.Value, GetReady);
@@ -100,18 +106,20 @@ public class DiamondBehavior : MonoBehaviour
     public void Activate()
     {
         _isReady = false;
-        _activateAction();
+        DoActivationWork();
         _ramainingTime = _activeTime.Value;
         _onUsing = true;
     }
+    protected abstract void DoActivationWork();
 
     public void Deactivate()
     {
         _onUsing = false;
-        _deactivateAction();
+        DoDeactivationWork();
         _ramainingTime = _cooldownTime.Value;
         _onCooldown = true;
     }
+    protected abstract void DoDeactivationWork();
 
     public void GetReady()
     {
@@ -130,4 +138,6 @@ public class DiamondBehavior : MonoBehaviour
             finishingAction();
         }
     }
+
+    protected abstract string GetDescription();
 }

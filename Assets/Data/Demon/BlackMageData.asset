@@ -12,40 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3a5469f68aca674a8f24942eb850d1a, type: 3}
   m_Name: BlackMageData
   m_EditorClassIdentifier: 
-  _demonStaticData:
-    _name: BlackMage
-    _healthStaticData:
-      _startHealth: 4000
-      _deathVfxPrefab: {fileID: 0}
-      _resistanceStaticData:
-        _startPhysicalResistance: 0
-        _startMagicResistance: 0
-        _startStatusResistance: 0
-    _healthPerLevel: 400
-  _movementStaticData:
-    _speed: 60
-    _startDirection: {x: -1, y: 0}
-    _startDelay: 0
-    _animationSpeed: 60
-    _dontStopWhenReach: 0
-  _rangeAttackerStaticData:
-    _shootSound: {fileID: 0}
-    _attackerStaticData:
-      _startDamage: 100
-      _startSpeed: 1
-      _startCriticalChance: 0
-      _startCriticalDamage: 0
-      _attackSound: {fileID: 8300000, guid: 194f086892f01174a9d71a5b0dd840c4, type: 3}
-    _projectileBehavior: {fileID: 4537281238113661694, guid: 92813e99f09edaa4ca30a3f721551bc3,
-      type: 3}
-    _projectileStaticData:
-      _movementStaticData:
-        _speed: 800
-        _startDirection: {x: -1, y: 0}
-        _startDelay: 0
-        _animationSpeed: 1
-        _dontStopWhenReach: 1
-  _aiAttackerStaticData:
-    _visionStaticData:
-      _centerPoint: {x: -500, y: 0}
-      _size: {x: 1000, y: 30}
+  Name: Black Mage
+  HealthData:
+    Health: 500
+    HealthLevelPercentage: 5
+    PhysicalResistance: 10
+    PhysicalResistanceLevelPercentage: 1
+    MagicResistance: 30
+    MagicResistanceLevelPercentage: 2
+    DeathVfxPrefab: {fileID: 0}
+    DeathRewardsData:
+    - Type: 0
+      Amount: 1000
+      LevelPercentage: 1
+    - Type: 1
+      Amount: 100
+      LevelPercentage: 1
+  AIAttackerStaticData:
+    VisionStaticData:
+      CenterPoint: {x: -400, y: 0}
+      Size: {x: 800, y: 100}
+  MovementStaticData:
+    Speed: 75
+    StartDelay: 0
+    AnimationSpeed: 100
+    DontStopWhenReach: 0

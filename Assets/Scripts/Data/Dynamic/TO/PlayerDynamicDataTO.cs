@@ -1,15 +1,12 @@
 ﻿using Assets.Scripts.Models;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-
 [Serializable]
-public class PlayerDynamicDataTO
+public class PlayerDynamicDataTO : IObserver
 {
     private static readonly string _relativeDataPath = @"player.json";
     private static readonly int _automaticSavePeriod = 500;
@@ -22,7 +19,7 @@ public class PlayerDynamicDataTO
     public int DemonLevel;
     public SelectedItemsDynamicDataTO SelectedItems;
     public List<DiamondDynamicDataTO> Diamonds;
-    public ResourceBoxDynamicDataTO ResourceBox;
+    public List<ResourceBunchDynamicDataTO> ResourceBunches;
     public PlayerDynamicData PlayerDynamicData => _playerDynamicData;
 
     static PlayerDynamicDataTO()
@@ -81,26 +78,34 @@ public class PlayerDynamicDataTO
     private PlayerDynamicData GetPlayerDynamicData()
     {
         _playerDynamicData = new PlayerDynamicData(
-            PatchNumber, PlayerSetName.ToEnum<PlayerSetName>(), DemonLevel, 
+            PatchNumber, PlayerSetName.ToEnum<PlayerSetName>(), DemonLevel,
             SelectedItems.GetSelectedItemsDynamicData(),
             Diamonds.Select(cd => cd.GetDiamondDynamicData()).ToList(),
-            ResourceBox.GetResourceBox()
+            ResourceBunches.Select(rb => rb.GetResourceBunch()).ToList()
             );
 
-        _playerDynamicData.PlayerSetName.OnNewValueActions.Add(OnPlayerSetNameChanged);
-        _playerDynamicData.DemonLevel.OnNewValueActions.Add(OnDemonLevelChanged);
+        _playerDynamicData.PlayerSetName.Attach(this);
+        _playerDynamicData.DemonLevel.Attach(this);
         return _playerDynamicData;
     }
 
-    private void OnPlayerSetNameChanged(StringChangeCommand changeCommand)
+    private void OnPlayerSetNameChanged()
     {
-        PlayerSetName = _playerDynamicData.PlayerSetName.Value;
+        PlayerSetName = _playerDynamicData.PlayerSetName.Value.ToString();
         Save();
     }
 
-    private void OnDemonLevelChanged(NumberChangeCommand changeCommand)
+    private void OnDemonLevelChanged()
     {
-        DemonLevel = _playerDynamicData.DemonLevel.IntValue;
+        DemonLevel = _playerDynamicData.DemonLevel.Value;
         Save();
+    }
+
+    public void OnNotify(ISubject subject)
+    {
+        if (subject == _playerDynamicData.PlayerSetName)
+            OnPlayerSetNameChanged();
+        else if (subject == _playerDynamicData.DemonLevel)
+            OnDemonLevelChanged();
     }
 }

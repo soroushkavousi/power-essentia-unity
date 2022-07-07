@@ -1,18 +1,10 @@
-﻿using Assets.Scripts.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-
-namespace Assets.Scripts.Models
+﻿namespace Assets.Scripts.Models
 {
     public class CriticalEffect
     {
-        private float _number = default;
-        private float _chance = default;
-        private float _multiplier = default;
+        private readonly float _number = default;
+        private readonly float _chance = default;
+        private readonly float _multiplier = default;
         private bool _isApplied = default;
         private float _result = default;
 

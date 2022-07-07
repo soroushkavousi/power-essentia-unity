@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class ParticleGroupBehavior : MonoBehaviour
 {
     [SerializeField] private List<ParticleMemberBehavior> _particleMemberBehaviors = default;
 
-    [Space(Constants.DebugSectionSpace, order = -1001)]
-    [Header(Constants.DebugSectionHeader, order = -1000)]
+    [Space(Constants.SpaceSection)]
+    [Header(Constants.DebugSectionHeader)]
     [SerializeField] private bool _isColliderDisabled = default;
 
     private ParticleSystem _particleSystem = default;
@@ -22,8 +20,8 @@ public class ParticleGroupBehavior : MonoBehaviour
     {
         _particleSystem = GetComponent<ParticleSystem>();
 
-        _particleMemberBehaviors.ForEach(particleMemberBehavior 
-            => particleMemberBehavior.FeedStaticData(HandleParticleCollision));
+        _particleMemberBehaviors.ForEach(particleMemberBehavior
+            => particleMemberBehavior.FeedData(HandleParticleCollision));
     }
 
     private void HandleParticleCollision(GameObject sender, GameObject other)

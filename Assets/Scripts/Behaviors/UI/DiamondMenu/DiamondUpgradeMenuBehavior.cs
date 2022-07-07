@@ -1,12 +1,12 @@
 ﻿using Assets.Scripts.Enums;
+using Assets.Scripts.Models;
 using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class DiamondUpgradeMenuBehavior : MonoBehaviour
+public class DiamondUpgradeMenuBehavior : MonoBehaviour, IObserver
 {
     [SerializeField] private TextMeshProUGUI _diamondTitle = default;
     [SerializeField] private TextMeshProUGUI _diamondDetails = default;
@@ -17,22 +17,22 @@ public class DiamondUpgradeMenuBehavior : MonoBehaviour
     [SerializeField] private ButtonBehavior _buyButtonBehavior = default;
     [SerializeField] private List<DiamondUpgradeMenuItemBehavior> _items = default;
 
-    [Space(Constants.DebugSectionSpace, order = -1001)]
-    [Header(Constants.DebugSectionHeader, order = -1000)]
-    [SerializeField] private AdvancedString _selectedDiamondName = default;
+    [Space(Constants.SpaceSection)]
+    [Header(Constants.DebugSectionHeader)]
+    [SerializeField] private Observable<DiamondName> _selectedDiamondName = default;
     [SerializeField] private DiamondBehavior _selectedDiamondBehavior = default;
 
     private DiamondOwnerBehavior _diamondOwnerBehavior = default;
 
-    public AdvancedString SelectedDiamondName => _selectedDiamondName;
+    public Observable<DiamondName> SelectedDiamondName => _selectedDiamondName;
     public DiamondBehavior SelectedDiamondBehavior => _selectedDiamondBehavior;
     public DiamondOwnerBehavior DiamondOwnerBehavior => _diamondOwnerBehavior;
     public OrderedList<Action> OnShowSelectedDiamondDetailsActions { get; } = new OrderedList<Action>();
 
-    public void FeedData(AdvancedString selectedDiamondName)
+    public void FeedData(Observable<DiamondName> selectedDiamondName)
     {
         _selectedDiamondName = selectedDiamondName;
-        _selectedDiamondName.OnNewValueActions.Add(10, cc => ChangeSelectedDiamond());
+        _selectedDiamondName.Attach(this);
         _diamondOwnerBehavior = PlayerBehavior.Main.GetComponent<DiamondOwnerBehavior>();
         ChangeSelectedDiamond();
         _items.ForEach(item => item.FeedData());
@@ -40,88 +40,73 @@ public class DiamondUpgradeMenuBehavior : MonoBehaviour
 
     private void ChangeSelectedDiamond()
     {
-        var diamondName = _selectedDiamondName.EnumValue.To<DiamondName>();
-        if (diamondName == DiamondName.NONE)
+        if (_selectedDiamondName.Value == DiamondName.NONE)
             return;
 
-        _selectedDiamondBehavior = _diamondOwnerBehavior.AllDiamondBehaviors[diamondName];
+        _selectedDiamondBehavior = _diamondOwnerBehavior
+            .AllDiamondBehaviors[_selectedDiamondName.Value];
         ShowSelectedDiamondDetails();
     }
 
     public void BuyDiamond()
     {
-        ConsumeResources();
-        _selectedDiamondBehavior.IsOwned.Change(true, name, "Bought");
+        ConsumeResourceBunches(_selectedDiamondBehavior.BuyResourceBunches);
+        _selectedDiamondBehavior.KnowledgeState.Value = DiamondKnowledgeState.OWNED;
         ShowSelectedDiamondDetails();
     }
 
     public void UpgradeDiamond()
     {
-        ConsumeResources();
-        _selectedDiamondBehavior.Level.Change(1, name, "Upgraded");
+        var resouceBunches = _selectedDiamondBehavior.UpgradeResourceBunches.Select(urb => urb.ToResourceBunch()).ToList();
+        ConsumeResourceBunches(resouceBunches);
+        _selectedDiamondBehavior.Level.Value += 1;
         ShowSelectedDiamondDetails();
     }
 
-    private void ConsumeResources()
+    private void ConsumeResourceBunches(List<ResourceBunch> resourceBunches)
     {
-        var resourceBox = _selectedDiamondBehavior.BuyOrUpgradeResourceBox;
-        var playerResourceBox = PlayerBehavior.Main.DynamicData.ResourceBox;
-
-        var upgradeCoinAmount = resourceBox.GetResourceAmount(ResourceType.COIN);
-        if (upgradeCoinAmount != 0)
-        {
-            playerResourceBox.ResourceBunches[ResourceType.COIN]
-                .Change(-upgradeCoinAmount, name, "");
-        }
-
-        var upgradeDemonBloodAmount = resourceBox.GetResourceAmount(ResourceType.DEMON_BLOOD);
-        if (upgradeDemonBloodAmount != 0)
-        {
-            playerResourceBox.ResourceBunches[ResourceType.DEMON_BLOOD]
-                .Change(-upgradeDemonBloodAmount, name, "");
-        }
-
-        var upgradeDarkDemonBloodAmount = resourceBox.GetResourceAmount(ResourceType.DARK_DEMON_BLOOD);
-        if (upgradeDarkDemonBloodAmount != 0)
-        {
-            playerResourceBox.ResourceBunches[ResourceType.DARK_DEMON_BLOOD]
-                .Change(-upgradeDarkDemonBloodAmount, name, "");
-        }
+        resourceBunches.ForEach(rb =>
+            PlayerBehavior.Main.DynamicData.ResourceBunches.Find(prb => prb.Type == rb.Type).Amount.Value -= rb.Amount.Value
+        );
     }
 
     private void ShowSelectedDiamondDetails()
     {
-        var level = _selectedDiamondBehavior.Level.IntValue;
+        var level = _selectedDiamondBehavior.Level.Value;
         var title = $"{_selectedDiamondBehavior.ShowName} Diamond (Level {level})";
         _diamondTitle.text = title;
 
-        _diamondDetails.text = _selectedDiamondBehavior.GetDescription();
+        _diamondDetails.text = _selectedDiamondBehavior.Description;
         UpdateUpgradeDetails();
-        _upgradeButtonBehavior.Owner.SetActive(_selectedDiamondBehavior.IsOwned.Value);
-        _buyButtonBehavior.Owner.SetActive(!_selectedDiamondBehavior.IsOwned.Value);
+        _upgradeButtonBehavior.Owner.SetActive(_selectedDiamondBehavior.KnowledgeState.Value == DiamondKnowledgeState.OWNED);
+        _buyButtonBehavior.Owner.SetActive(_selectedDiamondBehavior.KnowledgeState.Value == DiamondKnowledgeState.DISCOVERED);
         OnShowSelectedDiamondDetailsActions.CallActionsSafely();
     }
 
     private void UpdateUpgradeDetails()
     {
-        var upgradeResourceBox = _selectedDiamondBehavior.BuyOrUpgradeResourceBox;
+        List<ResourceBunch> resourceBunches;
+        if (_selectedDiamondBehavior.KnowledgeState.Value == DiamondKnowledgeState.DISCOVERED)
+            resourceBunches = _selectedDiamondBehavior.BuyResourceBunches;
+        else
+            resourceBunches = _selectedDiamondBehavior.UpgradeResourceBunches.Select(urb => urb.ToResourceBunch()).ToList();
 
-        var upgradeCoinAmount = upgradeResourceBox.GetResourceAmount(ResourceType.COIN);
+        var upgradeCoinAmount = resourceBunches.Find(rb => rb.Type == ResourceType.COIN)?.Amount?.Value ?? 0;
         _upgradeCoinDisplay.AmountText.text = upgradeCoinAmount.ToString();
         _upgradeCoinDisplay.gameObject.SetActive(upgradeCoinAmount != 0);
 
-        var upgradeDemonBloodAmount = upgradeResourceBox.GetResourceAmount(ResourceType.DEMON_BLOOD);
+        var upgradeDemonBloodAmount = resourceBunches.Find(rb => rb.Type == ResourceType.DEMON_BLOOD)?.Amount?.Value ?? 0;
         _upgradeDemonBloodDisplay.AmountText.text = upgradeDemonBloodAmount.ToString();
         _upgradeDemonBloodDisplay.gameObject.SetActive(upgradeDemonBloodAmount != 0);
 
-        var upgradeDarkDemonBloodAmount = upgradeResourceBox.GetResourceAmount(ResourceType.DARK_DEMON_BLOOD);
+        var upgradeDarkDemonBloodAmount = resourceBunches.Find(rb => rb.Type == ResourceType.DARK_DEMON_BLOOD)?.Amount?.Value ?? 0;
         _upgradeDarkDemonBloodDisplay.AmountText.text = upgradeDarkDemonBloodAmount.ToString();
         _upgradeDarkDemonBloodDisplay.gameObject.SetActive(upgradeDarkDemonBloodAmount != 0);
 
-        var playerResourceBox = PlayerBehavior.Main.DynamicData.ResourceBox;
-        var playerCoinAmount = playerResourceBox.ResourceBunches[ResourceType.COIN].LongValue;
-        var playerDemonBloodAmount = playerResourceBox.ResourceBunches[ResourceType.DEMON_BLOOD].LongValue;
-        var playerDarkDemonBloodAmount = playerResourceBox.ResourceBunches[ResourceType.DARK_DEMON_BLOOD].LongValue;
+        var playerResourceBunches = PlayerBehavior.Main.DynamicData.ResourceBunches;
+        var playerCoinAmount = playerResourceBunches.Find(prb => prb.Type == ResourceType.COIN).Amount.Value;
+        var playerDemonBloodAmount = playerResourceBunches.Find(prb => prb.Type == ResourceType.DEMON_BLOOD).Amount.Value;
+        var playerDarkDemonBloodAmount = playerResourceBunches.Find(prb => prb.Type == ResourceType.DARK_DEMON_BLOOD).Amount.Value;
 
         if (upgradeCoinAmount > playerCoinAmount
             || upgradeDemonBloodAmount > playerDemonBloodAmount
@@ -134,6 +119,14 @@ public class DiamondUpgradeMenuBehavior : MonoBehaviour
         {
             _upgradeButtonBehavior.Unlock();
             _buyButtonBehavior.Unlock();
+        }
+    }
+
+    public void OnNotify(ISubject subject)
+    {
+        if (subject == _selectedDiamondName)
+        {
+            ChangeSelectedDiamond();
         }
     }
 }

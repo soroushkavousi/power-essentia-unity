@@ -1,57 +1,51 @@
 ﻿using Assets.Scripts.Enums;
 using Assets.Scripts.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
 
 [Serializable]
-public class DiamondDynamicDataTO
+public class DiamondDynamicDataTO : IObserver
 {
     private DiamondDynamicData _diamondDynamicData = default;
 
     public string Name;
-    public bool IsDiscovered;
-    public bool IsOwned;
+    public string KnowledgeState;
     public int Level;
 
-    public DiamondDynamicDataTO(string name, bool isDiscovered,
-        bool isOwned, int level)
+    public DiamondDynamicDataTO(string name, string knowledgeState, int level)
     {
         Name = name;
-        IsDiscovered = isDiscovered;
-        IsOwned = isOwned;
+        KnowledgeState = knowledgeState;
         Level = level;
     }
 
     public DiamondDynamicData GetDiamondDynamicData()
     {
         var diamondName = Name.ToEnum<DiamondName>();
+        var knowledgeState = KnowledgeState.ToEnum<DiamondKnowledgeState>();
         _diamondDynamicData = new DiamondDynamicData(diamondName,
-            IsDiscovered, IsOwned, Level);
-        _diamondDynamicData.IsDiscovered.OnNewValueActions.Add(OnIsDiscoveredChanged);
-        _diamondDynamicData.IsOwned.OnNewValueActions.Add(OnIsOwnedChanged);
-        _diamondDynamicData.Level.OnNewValueActions.Add(OnLevelChanged);
+            knowledgeState, Level);
+        _diamondDynamicData.KnowledgeState.Attach(this);
+        _diamondDynamicData.Level.Attach(this);
         return _diamondDynamicData;
     }
 
-    private void OnIsDiscoveredChanged(BooleanChangeCommand changeCommand)
+    private void OnKnowledgeStateChanged()
     {
-        IsDiscovered = _diamondDynamicData.IsDiscovered.Value;
+        KnowledgeState = _diamondDynamicData.KnowledgeState.Value.ToString();
         PlayerDynamicDataTO.Instance.Save();
     }
 
-    private void OnIsOwnedChanged(BooleanChangeCommand changeCommand)
+    private void OnLevelChanged()
     {
-        IsOwned = _diamondDynamicData.IsOwned.Value;
+        Level = _diamondDynamicData.Level.Value;
         PlayerDynamicDataTO.Instance.Save();
     }
 
-    private void OnLevelChanged(NumberChangeCommand changeCommand)
+    public void OnNotify(ISubject subject)
     {
-        Level = _diamondDynamicData.Level.IntValue;
-        PlayerDynamicDataTO.Instance.Save();
+        if (subject == _diamondDynamicData.Level)
+            OnLevelChanged();
+        else if (subject == _diamondDynamicData.KnowledgeState)
+            OnKnowledgeStateChanged();
     }
 }

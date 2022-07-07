@@ -1,17 +1,17 @@
-﻿using Assets.Scripts.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using System;
 
-[Serializable]
-public class ResourceBunchStaticData
+namespace Assets.Scripts.Data
 {
-    [SerializeField] public ResourceType _type = default;
-    [SerializeField] public long _amount = default;
+    [Serializable]
+    public class ResourceBunchStaticData
+    {
+        public ResourceType Type = default;
+        public long Amount = default;
+    }
 
-    public ResourceType Type => _type;
-    public long Amount => _amount;
+    [Serializable]
+    public class ResourceBunchWithLevelStaticData : ResourceBunchStaticData
+    {
+        public long LevelPercentage = default;
+    }
 }

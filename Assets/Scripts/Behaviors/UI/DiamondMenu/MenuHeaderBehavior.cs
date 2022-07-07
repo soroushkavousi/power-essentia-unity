@@ -1,16 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class MenuHeaderBehavior : MonoBehaviour
 {
     [SerializeField, Range(0f, 1f)] private float _alpha = default;
     [SerializeField] private List<ButtonBehavior> _headerButtons = default;
-    [SerializeField] private List<GameObject> _subMenus= default;
+    [SerializeField] private List<GameObject> _subMenus = default;
 
-    //[Space(Constants.DebugSectionSpace, order = -1001)]
-    //[Header(Constants.DebugSectionHeader, order = -1000)]
+    //[Space(Constants.DebugSectionSpace)]
+    //[Header(Constants.DebugSectionHeader)]
 
     private void Start()
     {

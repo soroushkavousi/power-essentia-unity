@@ -1,18 +1,15 @@
-﻿using Assets.Scripts.Enums;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.XR.WSA.Input;
 
 [RequireComponent(typeof(ParticleSystem))]
 public class StunStatusBehavior : MonoBehaviour
 {
     [SerializeField] private StatusOwnerBehavior _statusOwnerBehavior = default;
 
-    [Space(Constants.DebugSectionSpace, order = -1001)]
-    [Header(Constants.DebugSectionHeader, order = -1000)]
+    [Space(Constants.SpaceSection)]
+    [Header(Constants.DebugSectionHeader)]
 
     [SerializeField] private List<StunStatusInstance> _instances = new List<StunStatusInstance>();
     private ParticleSystem _particleSystem = default;
@@ -32,13 +29,13 @@ public class StunStatusBehavior : MonoBehaviour
         _movementBehavior = _statusOwnerBehavior.GetComponent<MovementBehavior>();
     }
 
-    public void AddNewInstance(GameObject refGameObject, 
+    public void AddNewInstance(GameObject refGameObject,
         float damage, float duration)
     {
-        var instance = new StunStatusInstance(refGameObject, 
+        var instance = new StunStatusInstance(refGameObject,
             damage, duration);
         OnPreApplyInstanceActions.CallActionsSafely(instance);
-        if (instance.Damage.Value == 0 || instance.Duration.Value == 0)
+        if (instance.Damage == 0 || instance.Duration == 0)
             return;
         StartCoroutine(ApplyInstance(instance));
     }
@@ -55,14 +52,14 @@ public class StunStatusBehavior : MonoBehaviour
     {
         _instances.Add(instance);
         StartCoroutine(Damage(instance));
-        yield return new WaitForSeconds(instance.Duration.Value);
+        yield return new WaitForSeconds(instance.Duration);
         _instances.Remove(instance);
     }
 
     private IEnumerator Damage(StunStatusInstance instance)
     {
-        _healthBehavior.CurrentHealth.Current.Change(-instance.Damage.Value, 
-            name, HealthChangeType.MAGICAL_DAMAGE);
+        _healthBehavior.Health.Damage(
+            new Damage(DamageType.MAGIC, instance.Damage));
         yield return null;
     }
 

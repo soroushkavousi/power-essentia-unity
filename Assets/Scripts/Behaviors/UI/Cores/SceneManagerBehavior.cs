@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneManagerBehavior : MonoBehaviour
 {
     private static SceneManagerBehavior _instance = default;
-    [Space(Constants.DebugSectionSpace, order = -1001)]
-    [Header(Constants.DebugSectionHeader, order = -1000)]
+    [Space(Constants.SpaceSection)]
+    [Header(Constants.DebugSectionHeader)]
 
     [SerializeField] private SceneName _currentSceneName = default;
 
@@ -20,7 +14,7 @@ public class SceneManagerBehavior : MonoBehaviour
     {
         get
         {
-            if(_currentSceneName == default)
+            if (_currentSceneName == default)
                 _currentSceneName = SceneManager.GetActiveScene().buildIndex.To<SceneName>();
 
             return _currentSceneName;
@@ -70,7 +64,7 @@ public class SceneManagerBehavior : MonoBehaviour
         if (_currentSceneName == SceneName.START)
             return;
         //GameSessionBehavior.Instance.ResetGame();
-        if(MusicPlayerBehavior.Instance.AudioSource.isPlaying == false)
+        if (MusicPlayerBehavior.Instance.AudioSource.isPlaying == false)
             MusicPlayerBehavior.Instance.AudioSource.Play();
         LoadScene(SceneName.START);
     }

@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 [RequireComponent(typeof(EventTrigger))]
 public class CarouselViewBehavior : MonoBehaviour
@@ -14,16 +10,16 @@ public class CarouselViewBehavior : MonoBehaviour
     [SerializeField] private float _distanceBetweenItems = default;
     [SerializeField] private int _pivotItemIndex = default;
     [SerializeField] private float _lerpSpeed = default;
-    
 
-    [Space(Constants.DebugSectionSpace, order = -1001)]
-    [Header(Constants.DebugSectionHeader, order = -1000)]
+
+    [Space(Constants.SpaceSection)]
+    [Header(Constants.DebugSectionHeader)]
     [SerializeField] private List<Transform> _items = default;
     [SerializeField] private int _closestItemIndex = default;
     [SerializeField] private float _targetContentPanelXOffset = default;
     [SerializeField] private float _firstItemLocalX = default;
 
-    private List<float> _itemDistances = default;
+    private readonly List<float> _itemDistances = default;
     private bool _isDragging = default;
     private List<Transform> _itemsWithoutLast = default;
 
@@ -56,7 +52,7 @@ public class CarouselViewBehavior : MonoBehaviour
     {
         var contentPanelWidth = _items.Count * _distanceBetweenItems + 23;
         var contentPanelHeight = _contentPanel.GetComponent<RectTransform>().sizeDelta.y;
-        _contentPanel.GetComponent<RectTransform>().sizeDelta = 
+        _contentPanel.GetComponent<RectTransform>().sizeDelta =
             new Vector2(contentPanelWidth, contentPanelHeight);
     }
 
@@ -73,7 +69,7 @@ public class CarouselViewBehavior : MonoBehaviour
 
     private void AdjustPivotItem()
     {
-        var contentPanelLocalX = - (_firstItemLocalX + _distanceBetweenItems / 2) 
+        var contentPanelLocalX = -(_firstItemLocalX + _distanceBetweenItems / 2)
             - _pivotItemIndex * _distanceBetweenItems;
         _targetContentPanelXOffset = contentPanelLocalX;
     }

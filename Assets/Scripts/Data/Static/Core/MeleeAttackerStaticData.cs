@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
 
 [Serializable]
-public class MeleeAttackerStaticData
+public class MeleeAttackerStaticData : AttackerStaticData
 {
-    [SerializeField] private AttackerStaticData _attackerData = default;
 
-    public AttackerStaticData AttackerData => _attackerData;
 }

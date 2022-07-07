@@ -1,54 +1,49 @@
 ﻿using Assets.Scripts.Enums;
-using Assets.Scripts.Models;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(StateManagerBehavior))]
-[RequireComponent(typeof(DemonBehavior))]
 [RequireComponent(typeof(MeleeAttackerBehavior))]
 [RequireComponent(typeof(AIAttackerBehavior))]
-public class LizardBehavior : MonoBehaviour
+public class LizardBehavior : DemonBehavior
 {
-    [SerializeField] private LizardStaticData _staticData = default;
+    [Space(Constants.SpaceSection)]
+    [Header(Constants.HeaderStart + nameof(LizardBehavior) + Constants.HeaderEnd)]
+    [SerializeField] private MeleeDemonStaticData _staticData = default;
+    [SerializeField] private MeleeWeaponBehavior _meleeWeaponBehavior = default;
 
-    [Space(Constants.DebugSectionSpace, order = -1001)]
-    [Header(Constants.DebugSectionHeader, order = -1000)]
+    [Space(Constants.SpaceSection)]
+    [Header(Constants.DebugSectionHeader)]
 
     private StateManagerBehavior _stateManagerBehavior = default;
-    private DemonBehavior _demonBehavior = default;
     private MeleeAttackerBehavior _meleeAttackerBehavior = default;
-    private AttackerBehavior _attackerBehavior = default;
     private AIAttackerBehavior _aiAttackerBehavior = default;
     private MovementBehavior _movementBehavior = default;
-    private StatusOwnerBehavior _statusOwnerBehavior = default;
 
-    public void Initialize()
+    public override void Initialize(int level)
     {
-        _demonBehavior = GetComponent<DemonBehavior>();
-        _demonBehavior.FeedData(_staticData.DemonStaticData);
+        base.Initialize(level);
+        base.FeedData(_staticData);
 
         _stateManagerBehavior = GetComponent<StateManagerBehavior>();
         _stateManagerBehavior.FeedData(typeof(LizardState), LizardState.IDLING,
             CheckState, StopOldState, StartNewState);
 
+        _meleeWeaponBehavior.Initialize(_level, IsTargetEnemy);
         _meleeAttackerBehavior = GetComponent<MeleeAttackerBehavior>();
-        _meleeAttackerBehavior.FeedData(_staticData.MeleeAttackerStaticData, IsTargetEnemy);
+        _meleeAttackerBehavior.FeedData(_staticData.MeleeAttackerStaticData,
+            _meleeWeaponBehavior, IsTargetEnemy);
 
         _aiAttackerBehavior = GetComponent<AIAttackerBehavior>();
         _aiAttackerBehavior.FeedData(_staticData.AIAttackerStaticData);
 
         _movementBehavior = GetComponent<MovementBehavior>();
         _movementBehavior.FeedData(_staticData.MovementStaticData);
-        _movementBehavior.StartMoving();
-
-        _statusOwnerBehavior = GetComponent<StatusOwnerBehavior>();
-        _attackerBehavior = GetComponent<AttackerBehavior>();
+        _movementBehavior.MoveWithDirection(Vector2.left);
     }
 
     private void CheckState()
     {
-        var currentState = _stateManagerBehavior.State.EnumValue.To<LizardState>();
+        var currentState = _stateManagerBehavior.State.Value.ToEnum<LizardState>();
         switch (currentState)
         {
             case LizardState.IDLING:
@@ -74,7 +69,7 @@ public class LizardBehavior : MonoBehaviour
 
     private void StopOldState()
     {
-        var oldState = _stateManagerBehavior.State.LastEnumValue.To<LizardState>();
+        var oldState = _stateManagerBehavior.State.LastValue.ToEnum<LizardState>();
         switch (oldState)
         {
             case LizardState.IDLING:
@@ -83,7 +78,7 @@ public class LizardBehavior : MonoBehaviour
                 _movementBehavior.StopMoving();
                 break;
             case LizardState.ATTACKING:
-                _attackerBehavior.StopAttacking();
+                _meleeAttackerBehavior.StopAttacking();
                 break;
             case LizardState.PRE_STUNNING:
                 _statusOwnerBehavior.StunStatusBehavior.StopPreStunning();
@@ -99,16 +94,16 @@ public class LizardBehavior : MonoBehaviour
 
     private void StartNewState()
     {
-        var newState = _stateManagerBehavior.State.EnumValue.To<LizardState>();
+        var newState = _stateManagerBehavior.State.Value.ToEnum<LizardState>();
         switch (newState)
         {
             case LizardState.IDLING:
                 break;
             case LizardState.MOVING:
-                _movementBehavior.StartMoving();
+                _movementBehavior.MoveWithDirection(Vector2.left);
                 break;
             case LizardState.ATTACKING:
-                _attackerBehavior.StartAttacking();
+                _meleeAttackerBehavior.StartAttacking();
                 break;
             case LizardState.PRE_STUNNING:
                 _statusOwnerBehavior.StunStatusBehavior.StartPreStunning();
@@ -167,22 +162,5 @@ public class LizardBehavior : MonoBehaviour
             _stateManagerBehavior.GoToTheNextState(LizardState.ATTACKING);
         else
             _stateManagerBehavior.GoToTheNextState(LizardState.MOVING);
-    }
-
-    private GameObject IsTargetEnemy(GameObject target)
-    {
-        var bodyAreaBehavior = target.GetComponent<BodyAreaBehavior>();
-        if (bodyAreaBehavior != null)
-        {
-            target = bodyAreaBehavior.BodyBehavior.gameObject;
-        }
-
-        var castleBehavior = target.GetComponent<WallBehavior>();
-        if (castleBehavior != null)
-        {
-            return target;
-        }
-
-        return null;
     }
 }

@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 643819710129880499}
-  - component: {fileID: 3817989234309650952}
   - component: {fileID: -7251427964666986556}
   m_Layer: 0
   m_Name: StoneDiamond
@@ -28,122 +27,11 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3817989234309650952
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5025466395950761448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61e13ab64b860a74092d5110ecaa2833, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _name: 6
-  _InitializeEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -7251427964666986556}
-        m_TargetAssemblyTypeName: StoneDiamondBehavior, Assembly-CSharp
-        m_MethodName: Initialize
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _staticData:
-    _name: 0
-    _isPermanent: 0
-    _startActiveTime: 0
-    _startCooldownTime: 0
-    _icon: {fileID: 0}
-    _description: 
-    _upgradeResourceBoxes: []
-  _level:
-    _changeAmountFromSub: 0
-    _rawValue: 0
-    _lastValue: 0
-    _value: 0
-    _compressOnCount: 0
-    _changeCommands: []
-    _startValue: 0
-    _removeMinExceed: 0
-    _removeMaxExceed: 0
-    _isFix: 0
-    _fixValue: 0
-  _activeTime:
-    _base:
-      _changeAmountFromSub: 0
-      _rawValue: 0
-      _lastValue: 0
-      _value: 0
-      _compressOnCount: 100
-      _changeCommands: []
-      _startValue: 0
-    _peak:
-      _changeAmountFromSub: 0
-      _rawValue: 0
-      _lastValue: 0
-      _value: 0
-      _compressOnCount: 100
-      _changeCommands: []
-    _current:
-      _changeAmountFromSub: 0
-      _rawValue: 0
-      _lastValue: 0
-      _value: 0
-      _compressOnCount: 10
-      _changeCommands: []
-      _dummyMaxBaseOnValue: 0
-      _removeMinExceed: 0
-      _removeMaxExceed: 0
-      _keepRatio: 0
-      _isFix: 0
-      _fixCurrentValue: 0
-  _cooldownTime:
-    _base:
-      _changeAmountFromSub: 0
-      _rawValue: 0
-      _lastValue: 0
-      _value: 0
-      _compressOnCount: 100
-      _changeCommands: []
-      _startValue: 0
-    _peak:
-      _changeAmountFromSub: 0
-      _rawValue: 0
-      _lastValue: 0
-      _value: 0
-      _compressOnCount: 100
-      _changeCommands: []
-    _current:
-      _changeAmountFromSub: 0
-      _rawValue: 0
-      _lastValue: 0
-      _value: 0
-      _compressOnCount: 10
-      _changeCommands: []
-      _dummyMaxBaseOnValue: 0
-      _removeMinExceed: 0
-      _removeMaxExceed: 0
-      _keepRatio: 0
-      _isFix: 0
-      _fixCurrentValue: 0
-  _isReady: 0
-  _onUsing: 0
-  _onCooldown: 0
-  _ramainingTime: 0
-  _ramainingPercentage: 0
-  _isPermanent: 0
 --- !u!114 &-7251427964666986556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,35 +44,74 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc71e5cbbafe4a84f8fcd721ceb9dc0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _name: 6
+  _knowledgeState:
+    _value: 0
+    _lastValue: 0
+  _level:
+    _value: 0
+    _lastValue: 0
+  _activeTime:
+    _value: 0
+    _basePercentage: 0
+    _baseValue: 0
+    _levelPercentage: 0
+    _startValue: 0
+    _lastValue: 0
+    _nextLevelValue: 0
+    _min: 0
+    _max: 0
+    _minPercentage: 0
+    _maxPercentage: 0
+    _fixValue: 0
+    _isFixed: 0
+    _oneLevelPercentage: 0
+    _level:
+      _value: 0
+      _lastValue: 0
+  _cooldownTime:
+    _value: 0
+    _basePercentage: 0
+    _baseValue: 0
+    _levelPercentage: 0
+    _startValue: 0
+    _lastValue: 0
+    _nextLevelValue: 0
+    _min: 0
+    _max: 0
+    _minPercentage: 0
+    _maxPercentage: 0
+    _fixValue: 0
+    _isFixed: 0
+    _oneLevelPercentage: 0
+    _level:
+      _value: 0
+      _lastValue: 0
+  _buyResourceBunches: []
+  _upgradeResourceBunches: []
+  _isReady: 0
+  _onUsing: 0
+  _onCooldown: 0
+  _ramainingTime: 0
+  _ramainingPercentage: 0
+  _isPermanent: 0
   _staticData: {fileID: 11400000, guid: 65de52ded0f66d3448b84b1c93f6a877, type: 2}
   _sampleFallingStoneBehavior: {fileID: 0}
-  _description: 
-  _fallingStoneChance:
-    _base:
-      _changeAmountFromSub: 0
-      _rawValue: 0
-      _lastValue: 0
+  _chance:
+    _value: 0
+    _basePercentage: 0
+    _baseValue: 0
+    _levelPercentage: 0
+    _startValue: 0
+    _lastValue: 0
+    _nextLevelValue: 0
+    _min: 0
+    _max: 0
+    _minPercentage: 0
+    _maxPercentage: 0
+    _fixValue: 0
+    _isFixed: 0
+    _oneLevelPercentage: 0
+    _level:
       _value: 0
-      _compressOnCount: 100
-      _changeCommands: []
-      _startValue: 0
-    _peak:
-      _changeAmountFromSub: 0
-      _rawValue: 0
       _lastValue: 0
-      _value: 0
-      _compressOnCount: 100
-      _changeCommands: []
-    _current:
-      _changeAmountFromSub: 0
-      _rawValue: 0
-      _lastValue: 0
-      _value: 0
-      _compressOnCount: 10
-      _changeCommands: []
-      _dummyMaxBaseOnValue: 0
-      _removeMinExceed: 0
-      _removeMaxExceed: 0
-      _keepRatio: 0
-      _isFix: 0
-      _fixCurrentValue: 0

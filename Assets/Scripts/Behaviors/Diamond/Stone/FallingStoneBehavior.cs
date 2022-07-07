@@ -1,61 +1,66 @@
-﻿using Assets.Scripts.Models;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(MovementBehavior))]
-public class FallingStoneBehavior : MonoBehaviour
+public class FallingStoneBehavior : MonoBehaviour, IObserver<MovementChangeData>
 {
     [SerializeField] private FallingStoneStaticData _staticData = default;
 
-    [Space(Constants.DebugSectionSpace, order = -1001)]
-    [Header(Constants.DebugSectionHeader, order = -1000)]
-    [SerializeField] private ThreePartAdvancedNumber _impactDamage = new ThreePartAdvancedNumber(currentDummyMin: 0f);
-    [SerializeField] private ThreePartAdvancedNumber _stunDuration = new ThreePartAdvancedNumber(currentDummyMin: 0f);
-    [SerializeField] private ThreePartAdvancedNumber _criticalChance = new ThreePartAdvancedNumber();
-    [SerializeField] private ThreePartAdvancedNumber _criticalDamage = new ThreePartAdvancedNumber();
+    [Space(Constants.SpaceSection)]
+    [Header(Constants.DebugSectionHeader)]
+    [SerializeField] private Number _impactDamage;
+    [SerializeField] private Number _stunDuration;
+    [SerializeField] private Number _criticalChance;
+    [SerializeField] private Number _criticalDamage;
     [SerializeField] private GameObject _enemy = default;
     [SerializeField] private bool _isSample = default;
+    protected Observable<int> _level = default;
     private MovementBehavior _movementBehavior = default;
     private AudioSource _audioSource = default;
 
-    public ThreePartAdvancedNumber ImpactDamage => _impactDamage;
-    public ThreePartAdvancedNumber StunDuration => _stunDuration;
-    public ThreePartAdvancedNumber CriticalChance => _criticalChance;
-    public ThreePartAdvancedNumber CriticalDamage => _criticalDamage;
+    public Number ImpactDamage => _impactDamage;
+    public Number StunDuration => _stunDuration;
+    public Number CriticalChance => _criticalChance;
+    public Number CriticalDamage => _criticalDamage;
     public Func<GameObject, GameObject> IsTargetEnemyFunction { get; private set; }
 
-    public void Initialize(GameObject enemy, Func<GameObject, GameObject> isTargetEnemyFunction)
+    public void Initialize(Observable<int> level,
+        GameObject enemy, Func<GameObject, GameObject> isTargetEnemyFunction)
     {
         _movementBehavior = GetComponent<MovementBehavior>();
         _audioSource = GetComponent<AudioSource>();
 
-        _impactDamage.FeedData(_staticData.StartImpactDamage);
-        _stunDuration.FeedData(_staticData.StartStunDuration);
-        _criticalChance.FeedData(_staticData.StartCriticalChance);
-        _criticalDamage.FeedData(_staticData.StartCriticalDamage);
+        _level = level;
+
+        _stunDuration = new(_staticData.StunDuration, level,
+            _staticData.StunDurationLevelPercentage);
+
+        _impactDamage = new(_staticData.ImpactDamage, level,
+            _staticData.ImpactDamageLevelPercentage, min: 0f);
+
+        _criticalChance = new(_staticData.CriticalChance, level,
+            _staticData.CriticalChanceLevelPercentage, min: 0f, max: 100f);
+
+        _criticalDamage = new(_staticData.CriticalDamage, level,
+            _staticData.CriticalDamageLevelPercentage, min: 0f);
 
         _enemy = enemy;
         IsTargetEnemyFunction = isTargetEnemyFunction;
 
-        var enemyPosition = _enemy.transform.position;
         transform.position = new Vector2(
             _enemy.transform.position.x + _staticData.SpawnXOffset,
             _staticData.SpawnYPosition);
 
-        _movementBehavior.FeedData(_staticData.MovementStaticData);
-        _movementBehavior.TargetTransform = _enemy.transform;
         _isSample = enemy == OutBoxBehavior.Instance.Location1.gameObject;
         if (_isSample)
             return;
-        _movementBehavior.OnReachActions.Add(ApplyStatusEffect);
-        _movementBehavior.StartMoving();
+
+        _movementBehavior = GetComponent<MovementBehavior>();
+        _movementBehavior.FeedData(_staticData.MovementStaticData);
+        _movementBehavior.Attach(this);
+        _movementBehavior.MoveToTarget(_enemy.transform);
     }
 
     private void Start()
@@ -85,5 +90,14 @@ public class FallingStoneBehavior : MonoBehaviour
             _impactDamage.Value, _stunDuration.Value);
 
         Destroy(gameObject);
+    }
+
+    public void OnNotify(ISubject<MovementChangeData> subject, MovementChangeData data)
+    {
+        if (ReferenceEquals(subject, _movementBehavior))
+        {
+            if (data.ChangeState == MovementChangeState.REACHED)
+                ApplyStatusEffect();
+        }
     }
 }

@@ -28,6 +28,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -40, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1181049932790168291}
   m_RootOrder: 0
@@ -4803,6 +4804,7 @@ ParticleSystemRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 10
   m_RenderMode: 0
+  m_MeshDistribution: 0
   m_SortMode: 0
   m_MinParticleSize: 0
   m_MaxParticleSize: 100
@@ -4826,6 +4828,10 @@ ParticleSystemRenderer:
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
+  m_MeshWeighting: 1
+  m_MeshWeighting1: 1
+  m_MeshWeighting2: 1
+  m_MeshWeighting3: 1
   m_MaskInteraction: 0
 --- !u!1 &1181049932790168302
 GameObject:
@@ -4838,9 +4844,9 @@ GameObject:
   - component: {fileID: 1181049932790168291}
   - component: {fileID: 1181049932790168300}
   - component: {fileID: 1181049932790168301}
-  - component: {fileID: 1181049932790168289}
   - component: {fileID: -3968938601250289594}
   - component: {fileID: 1181049932790168290}
+  - component: {fileID: 9081416365673195427}
   m_Layer: 9
   m_Name: GroundFire
   m_TagString: Untagged
@@ -4858,6 +4864,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1676, y: 657, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1181049932739324792}
   - {fileID: 1181049933457711461}
@@ -9626,6 +9633,7 @@ ParticleSystemRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_RenderMode: 0
+  m_MeshDistribution: 0
   m_SortMode: 0
   m_MinParticleSize: 0
   m_MaxParticleSize: 0.5
@@ -9649,22 +9657,11 @@ ParticleSystemRenderer:
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
+  m_MeshWeighting: 1
+  m_MeshWeighting1: 1
+  m_MeshWeighting2: 1
+  m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &1181049932790168289
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1181049932790168302}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9db32159240dc947ab1c5a837ec401b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _bodyAreaBehaviors:
-  - {fileID: 1181049933457711387}
-  _isColliderDisabled: 0
 --- !u!82 &-3968938601250289594
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9774,153 +9771,114 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _staticData: {fileID: 11400000, guid: 806f43135add725428a3c7d4bfb547a3, type: 2}
-  _isSample: 0
   _duration:
-    _base:
-      _changeAmountFromSub: 0
-      _rawValue: 0
-      _lastValue: 0
+    _value: 0
+    _basePercentage: 0
+    _baseValue: 0
+    _levelPercentage: 0
+    _startValue: 0
+    _lastValue: 0
+    _nextLevelValue: 0
+    _min: 0
+    _max: 0
+    _minPercentage: 0
+    _maxPercentage: 0
+    _fixValue: 0
+    _isFixed: 0
+    _oneLevelPercentage: 0
+    _level:
       _value: 0
-      _compressOnCount: 100
-      _changeCommands: []
-      _startValue: 0
-    _peak:
-      _changeAmountFromSub: 0
-      _rawValue: 0
       _lastValue: 0
-      _value: 0
-      _compressOnCount: 100
-      _changeCommands: []
-    _current:
-      _changeAmountFromSub: 0
-      _rawValue: 0
-      _lastValue: 0
-      _value: 0
-      _compressOnCount: 10
-      _changeCommands: []
-      _dummyMaxBaseOnValue: 0
-      _removeMinExceed: 0
-      _removeMaxExceed: 0
-      _keepRatio: 0
-      _isFix: 0
-      _fixCurrentValue: 0
   _damage:
-    _base:
-      _changeAmountFromSub: 0
-      _rawValue: 0
-      _lastValue: 0
+    _value: 0
+    _basePercentage: 0
+    _baseValue: 0
+    _levelPercentage: 0
+    _startValue: 0
+    _lastValue: 0
+    _nextLevelValue: 0
+    _min: 0
+    _max: 0
+    _minPercentage: 0
+    _maxPercentage: 0
+    _fixValue: 0
+    _isFixed: 0
+    _oneLevelPercentage: 0
+    _level:
       _value: 0
-      _compressOnCount: 100
-      _changeCommands: []
-      _startValue: 0
-    _peak:
-      _changeAmountFromSub: 0
-      _rawValue: 0
       _lastValue: 0
-      _value: 0
-      _compressOnCount: 100
-      _changeCommands: []
-    _current:
-      _changeAmountFromSub: 0
-      _rawValue: 0
-      _lastValue: 0
-      _value: 0
-      _compressOnCount: 10
-      _changeCommands: []
-      _dummyMaxBaseOnValue: 0
-      _removeMinExceed: 0
-      _removeMaxExceed: 0
-      _keepRatio: 0
-      _isFix: 0
-      _fixCurrentValue: 0
   _slow:
-    _base:
-      _changeAmountFromSub: 0
-      _rawValue: 0
-      _lastValue: 0
+    _value: 0
+    _basePercentage: 0
+    _baseValue: 0
+    _levelPercentage: 0
+    _startValue: 0
+    _lastValue: 0
+    _nextLevelValue: 0
+    _min: 0
+    _max: 0
+    _minPercentage: 0
+    _maxPercentage: 0
+    _fixValue: 0
+    _isFixed: 0
+    _oneLevelPercentage: 0
+    _level:
       _value: 0
-      _compressOnCount: 100
-      _changeCommands: []
-      _startValue: 0
-    _peak:
-      _changeAmountFromSub: 0
-      _rawValue: 0
       _lastValue: 0
-      _value: 0
-      _compressOnCount: 100
-      _changeCommands: []
-    _current:
-      _changeAmountFromSub: 0
-      _rawValue: 0
-      _lastValue: 0
-      _value: 0
-      _compressOnCount: 10
-      _changeCommands: []
-      _dummyMaxBaseOnValue: 0
-      _removeMinExceed: 0
-      _removeMaxExceed: 0
-      _keepRatio: 0
-      _isFix: 0
-      _fixCurrentValue: 0
   _criticalChance:
-    _base:
-      _changeAmountFromSub: 0
-      _rawValue: 0
-      _lastValue: 0
+    _value: 0
+    _basePercentage: 0
+    _baseValue: 0
+    _levelPercentage: 0
+    _startValue: 0
+    _lastValue: 0
+    _nextLevelValue: 0
+    _min: 0
+    _max: 0
+    _minPercentage: 0
+    _maxPercentage: 0
+    _fixValue: 0
+    _isFixed: 0
+    _oneLevelPercentage: 0
+    _level:
       _value: 0
-      _compressOnCount: 100
-      _changeCommands: []
-      _startValue: 0
-    _peak:
-      _changeAmountFromSub: 0
-      _rawValue: 0
       _lastValue: 0
-      _value: 0
-      _compressOnCount: 100
-      _changeCommands: []
-    _current:
-      _changeAmountFromSub: 0
-      _rawValue: 0
-      _lastValue: 0
-      _value: 0
-      _compressOnCount: 10
-      _changeCommands: []
-      _dummyMaxBaseOnValue: 0
-      _removeMinExceed: 0
-      _removeMaxExceed: 0
-      _keepRatio: 0
-      _isFix: 0
-      _fixCurrentValue: 0
   _criticalDamage:
-    _base:
-      _changeAmountFromSub: 0
-      _rawValue: 0
-      _lastValue: 0
+    _value: 0
+    _basePercentage: 0
+    _baseValue: 0
+    _levelPercentage: 0
+    _startValue: 0
+    _lastValue: 0
+    _nextLevelValue: 0
+    _min: 0
+    _max: 0
+    _minPercentage: 0
+    _maxPercentage: 0
+    _fixValue: 0
+    _isFixed: 0
+    _oneLevelPercentage: 0
+    _level:
       _value: 0
-      _compressOnCount: 100
-      _changeCommands: []
-      _startValue: 0
-    _peak:
-      _changeAmountFromSub: 0
-      _rawValue: 0
       _lastValue: 0
-      _value: 0
-      _compressOnCount: 100
-      _changeCommands: []
-    _current:
-      _changeAmountFromSub: 0
-      _rawValue: 0
-      _lastValue: 0
-      _value: 0
-      _compressOnCount: 10
-      _changeCommands: []
-      _dummyMaxBaseOnValue: 0
-      _removeMinExceed: 0
-      _removeMaxExceed: 0
-      _keepRatio: 0
-      _isFix: 0
-      _fixCurrentValue: 0
   _enemy: {fileID: 0}
+  _isSample: 0
+--- !u!114 &9081416365673195427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181049932790168302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0933598d6582c084c87d41f9ecc5042b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bodyAreaBehaviors:
+  - {fileID: 6524249754865581775}
+  _isCollidingDisabled: 0
+  _isStarted: 0
 --- !u!1 &1181049933457711462
 GameObject:
   m_ObjectHideFlags: 0
@@ -9931,8 +9889,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1181049933457711461}
   - component: {fileID: 1181049933457711386}
-  - component: {fileID: 1181049933457711387}
   - component: {fileID: 1181049933457711460}
+  - component: {fileID: 6524249754865581775}
   m_Layer: 9
   m_Name: Body
   m_TagString: Untagged
@@ -9950,6 +9908,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -40, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1181049932790168291}
   m_RootOrder: 1
@@ -9975,19 +9934,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1181049933457711387
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1181049933457711462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 803908fec31ab9842b0ea9160ddc76c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _bodyBehavior: {fileID: 1181049932790168289}
 --- !u!61 &1181049933457711460
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10014,3 +9960,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 367.84, y: 20}
   m_EdgeRadius: 0
+--- !u!114 &6524249754865581775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181049933457711462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dfe847a9efca4f4e9ec317f46929e0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bodyBehavior: {fileID: 9081416365673195427}

@@ -1,13 +1,8 @@
 ﻿using Assets.Scripts.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
 
 [Serializable]
-public class ResourceBunchDynamicDataTO
+public class ResourceBunchDynamicDataTO : IObserver
 {
     private ResourceBunch _resourceBunch = default;
 
@@ -25,13 +20,21 @@ public class ResourceBunchDynamicDataTO
     public ResourceBunch GetResourceBunch()
     {
         _resourceBunch = new ResourceBunch(Type.ToEnum<ResourceType>(), Amount);
-        _resourceBunch.Amount.OnNewValueActions.Add(OnResourceBunchAmountChanged);
+        _resourceBunch.Amount.Attach(this);
         return _resourceBunch;
     }
 
-    private void OnResourceBunchAmountChanged(NumberChangeCommand changeCommand)
+    private void OnResourceBunchAmountChanged()
     {
-        Amount = _resourceBunch.Amount.LongValue;
+        Amount = _resourceBunch.Amount.Value;
         PlayerDynamicDataTO.Instance.Save();
+    }
+
+    public void OnNotify(ISubject subject)
+    {
+        if (subject == _resourceBunch.Amount)
+        {
+            OnResourceBunchAmountChanged();
+        }
     }
 }

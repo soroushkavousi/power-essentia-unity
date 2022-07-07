@@ -1,14 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class StatusOwnerBehavior : MonoBehaviour
 {
     [SerializeField] private BurnStatusBehavior _burnStatusBehavior = default;
     [SerializeField] private StunStatusBehavior _stunStatusBehavior = default;
 
-    //[Space(Constants.DebugSectionSpace, order = -1001)]
-    //[Header(Constants.DebugSectionHeader, order = -1000)]
+    //[Space(Constants.DebugSectionSpace)]
+    //[Header(Constants.DebugSectionHeader)]
 
     public BurnStatusBehavior BurnStatusBehavior => _burnStatusBehavior;
     public StunStatusBehavior StunStatusBehavior => _stunStatusBehavior;
@@ -16,6 +14,6 @@ public class StatusOwnerBehavior : MonoBehaviour
 
     public void FeedData()
     {
-        
+
     }
 }

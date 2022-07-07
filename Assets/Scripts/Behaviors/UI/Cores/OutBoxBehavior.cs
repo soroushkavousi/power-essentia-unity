@@ -1,9 +1,4 @@
-﻿using Assets.Scripts.Enums;
-using Assets.Scripts.Models;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class OutBoxBehavior : MonoBehaviour
 {
@@ -13,8 +8,8 @@ public class OutBoxBehavior : MonoBehaviour
     [SerializeField] private Transform _location3 = default;
     [SerializeField] private Transform _location4 = default;
 
-    //[Space(Constants.DebugSectionSpace, order = -1001)]
-    //[Header(Constants.DebugSectionHeader, order = -1000)]
+    //[Space(Constants.DebugSectionSpace)]
+    //[Header(Constants.DebugSectionHeader)]
 
 
     public static OutBoxBehavior Instance => Utils.GetInstance(ref _instance);

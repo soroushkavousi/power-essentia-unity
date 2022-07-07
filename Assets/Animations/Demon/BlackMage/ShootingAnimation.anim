@@ -37,8 +37,17 @@ AnimationClip:
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
+        time: 0.6923077
+        value: {x: -85.9, y: -11.9, z: 0}
+        inSlope: {x: 72.36666, y: 187.77777, z: 0}
+        outSlope: {x: 72.36666, y: 187.77777, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+      - serializedVersion: 3
         time: 1
-        value: {x: -100, y: 30, z: 0}
+        value: {x: -49.9, y: 30, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -57,7 +66,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: BlackMageFire
+    path: FireLocation
   m_ScaleCurves:
   - curve:
       serializedVersion: 2
@@ -110,7 +119,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: BlackMageFire
+    path: FireLocation
   m_FloatCurves:
   - curve:
       serializedVersion: 2
@@ -146,7 +155,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: BlackMageFire
+    path: FireLocation
     classID: 1
     script: {fileID: 0}
   m_PPtrCurves:
@@ -217,21 +226,21 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 2291369030
+      path: 2844842360
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2291369030
+      path: 2844842360
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2291369030
+      path: 2844842360
       attribute: 2086281974
       script: {fileID: 0}
       typeID: 1
@@ -315,8 +324,17 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
+        time: 0.6923077
+        value: -85.9
+        inSlope: 72.36666
+        outSlope: 72.36666
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
         time: 1
-        value: -100
+        value: -49.9
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -336,7 +354,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: BlackMageFire
+    path: FireLocation
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -356,6 +374,15 @@ AnimationClip:
         value: -100
         inSlope: 0
         outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.6923077
+        value: -11.9
+        inSlope: 187.77777
+        outSlope: 187.77777
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
@@ -382,7 +409,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: BlackMageFire
+    path: FireLocation
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -410,7 +437,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: BlackMageFire
+    path: FireLocation
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -465,7 +492,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.x
-    path: BlackMageFire
+    path: FireLocation
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -520,7 +547,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.y
-    path: BlackMageFire
+    path: FireLocation
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -575,7 +602,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.z
-    path: BlackMageFire
+    path: FireLocation
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -612,7 +639,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: BlackMageFire
+    path: FireLocation
     classID: 1
     script: {fileID: 0}
   m_EulerEditorCurves: []
@@ -622,13 +649,6 @@ AnimationClip:
   - time: 0
     functionName: StartNewState
     data: SHOOTING
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.7692308
-    functionName: Reload
-    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

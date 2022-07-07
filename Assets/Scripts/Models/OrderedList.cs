@@ -1,13 +1,9 @@
-﻿using Assets.Scripts.Enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 public class OrderedList<T> : List<OrderedItem<T>> where T : class
 {
-    private int _defaultItemOrder = default;
+    private readonly int _defaultItemOrder = default;
     public new T this[int index] => base[index].Item;
 
     public OrderedList(int defaultItemOrder = 100) : base()
@@ -42,7 +38,7 @@ public class OrderedList<T> : List<OrderedItem<T>> where T : class
     {
         for (int i = 0; i < Count; i++)
         {
-            if(EqualityComparer<T>.Default.Equals(item, this[i]))
+            if (EqualityComparer<T>.Default.Equals(item, this[i]))
             //if (item == this[i])
             {
                 RemoveAt(i);

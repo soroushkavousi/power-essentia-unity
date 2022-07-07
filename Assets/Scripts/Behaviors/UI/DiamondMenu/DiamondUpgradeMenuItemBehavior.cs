@@ -1,11 +1,9 @@
 ﻿using Assets.Scripts.Enums;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DiamondUpgradeMenuItemBehavior : MonoBehaviour
+public class DiamondUpgradeMenuItemBehavior : MonoBehaviour, IObserver
 {
     [SerializeField] private DiamondUpgradeMenuBehavior _diamondUpgradeMenuBehavior = default;
     [SerializeField] private DiamondName _diamondName = default;
@@ -14,12 +12,12 @@ public class DiamondUpgradeMenuItemBehavior : MonoBehaviour
     [SerializeField] private Image _glow = default;
     private DiamondOwnerBehavior _diamondOwnerBehavior = default;
     private DiamondBehavior _diamondBehavior = default;
-    private AdvancedString _selectedDiamondName = default;
+    private Observable<DiamondName> _selectedDiamondName = default;
 
     public DiamondBehavior DiamondBehavior => _diamondBehavior;
 
-    [Space(Constants.DebugSectionSpace, order = -1001)]
-    [Header(Constants.DebugSectionHeader, order = -1000)]
+    [Space(Constants.SpaceSection)]
+    [Header(Constants.DebugSectionHeader)]
     [SerializeField] private bool _isGlowing = default;
 
     public void FeedData()
@@ -33,8 +31,8 @@ public class DiamondUpgradeMenuItemBehavior : MonoBehaviour
         _selectedDiamondName = _diamondUpgradeMenuBehavior.SelectedDiamondName;
 
         _diamondOwnerBehavior = PlayerBehavior.Main.GetComponent<DiamondOwnerBehavior>();
-        _selectedDiamondName.OnNewValueActions.Add(HandleSelectedDiamondChange);
-        HandleSelectedDiamondChange(null);
+        _selectedDiamondName.Attach(this);
+        HandleSelectedDiamondChange();
         _diamondBehavior = _diamondOwnerBehavior.AllDiamondBehaviors[_diamondName];
         _diamondImage.sprite = _diamondBehavior.Icon;
         _diamondNameText.text = _diamondBehavior.ShowName;
@@ -42,15 +40,15 @@ public class DiamondUpgradeMenuItemBehavior : MonoBehaviour
 
     public void Select()
     {
-        var diamondName = _selectedDiamondName.EnumValue.To<DiamondName>();
+        var diamondName = _selectedDiamondName.Value;
         if (_diamondName == diamondName)
             return;
-        _selectedDiamondName.Change(_diamondName, name);
+        _selectedDiamondName.Value = _diamondName;
     }
 
-    private void HandleSelectedDiamondChange(StringChangeCommand changeCommand)
+    private void HandleSelectedDiamondChange()
     {
-        var diamondName = _selectedDiamondName.EnumValue.To<DiamondName>();
+        var diamondName = _selectedDiamondName.Value;
         if (_diamondName == diamondName)
             Glow();
         else
@@ -67,5 +65,13 @@ public class DiamondUpgradeMenuItemBehavior : MonoBehaviour
     {
         _glow.gameObject.SetActive(false);
         _isGlowing = false;
+    }
+
+    public void OnNotify(ISubject subject)
+    {
+        if (subject == _selectedDiamondName)
+        {
+            HandleSelectedDiamondChange();
+        }
     }
 }

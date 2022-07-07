@@ -1,43 +1,69 @@
-﻿using Assets.Scripts.Models;
-using System;
-using System.Collections;
+﻿using Assets.Scripts.Enums;
+using Assets.Scripts.Models;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
-public class LevelResourceSystemBehavior : MonoBehaviour
+public class LevelResourceSystemBehavior : MonoBehaviour, IObserver<DemonBehavior>, IObserver
 {
     private static LevelResourceSystemBehavior _instance = default;
+    private static readonly BloodDiamondBehavior _bloodDiamondBehavior = default;
 
-    [Space(Constants.DebugSectionSpace, order = -1001)]
-    [Header(Constants.DebugSectionHeader, order = -1000)]
+    [Space(Constants.SpaceSection)]
+    [Header(Constants.DebugSectionHeader)]
 
-    [SerializeField] private ResourceBox _resourceBox = default;
-    private ResourceBox _gameResourceBox = default;
-    private Action<NumberChangeCommand> _temp = default;
+    [SerializeField] private List<ResourceBunch> _resourceBunches = default;
+    private List<ResourceBunch> _gameResourceBunches = default;
 
     public static LevelResourceSystemBehavior Instance => Utils.GetInstance(ref _instance);
-    public ResourceBox ResourceBox => _resourceBox;
+    public List<ResourceBunch> ResourceBox => _resourceBunches;
 
     public void FeedData()
     {
-        _resourceBox = new ResourceBox
-        (
-            new List<ResourceBunch>
+        _resourceBunches = new List<ResourceBunch>()
             {
                 new ResourceBunch(ResourceType.COIN, 0),
                 new ResourceBunch(ResourceType.DEMON_BLOOD, 0),
                 new ResourceBunch(ResourceType.DARK_DEMON_BLOOD, 0),
-            }
-        );
+            };
 
-        _gameResourceBox = PlayerBehavior.Main.DynamicData.ResourceBox;
-        _temp = (cc) => AddNewResourcesToResourceBox(cc, ResourceType.COIN);
-        _gameResourceBox.ResourceBunches[ResourceType.COIN].OnNewValueActions.Add(_temp);
+        _gameResourceBunches = PlayerBehavior.Main.DynamicData.ResourceBunches;
     }
 
-    private void AddNewResourcesToResourceBox(NumberChangeCommand numberChange, ResourceType resourceType)
+    private void Start()
     {
-        _resourceBox.ResourceBunches[resourceType].Change(numberChange.Amount.IntValue, name);
+        WaveManagerBehavior.Instance.Attach(this);
+    }
+
+    private void AddResourceForDeadDemon(DemonBehavior demonBehavior)
+    {
+        foreach (var deathReward in demonBehavior.HealthBehavior.DeathRewards)
+        {
+            var resourceType = deathReward.Type;
+            var resourceAmount = deathReward.Amount.Value;
+            if (deathReward.Type == ResourceType.DEMON_BLOOD)
+                resourceAmount = resourceAmount.MeasurePercentage(_bloodDiamondBehavior.BloodRatio.Value);
+            var resourceAmountAsLong = resourceAmount.ToLong();
+            _gameResourceBunches.Find(rb => rb.Type == resourceType).Amount.Value += resourceAmountAsLong;
+            _resourceBunches.Find(rb => rb.Type == resourceType).Amount.Value += resourceAmountAsLong;
+        }
+    }
+
+    public void OnNotify(ISubject<DemonBehavior> subject, DemonBehavior demonBehavior)
+    {
+        if (ReferenceEquals(subject, WaveManagerBehavior.Instance))
+        {
+            demonBehavior.Attach(this);
+        }
+    }
+
+    public void OnNotify(ISubject subject)
+    {
+        if (subject is DemonBehavior demonBehavior)
+        {
+            if (demonBehavior.State == DemonState.DEAD)
+            {
+                AddResourceForDeadDemon(demonBehavior);
+            }
+        }
     }
 }

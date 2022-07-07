@@ -1,14 +1,7 @@
-﻿using Assets.Scripts.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-public class OrderedItem<T>
+﻿public class OrderedItem<T>
 {
-    private int _order = default;
-    private T _execute = default;
+    private readonly int _order = default;
+    private readonly T _execute = default;
 
     public int Order => _order;
     public T Item => _execute;

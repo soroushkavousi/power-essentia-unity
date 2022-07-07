@@ -1,62 +1,48 @@
-﻿using Assets.Scripts.Enums;
-using Assets.Scripts.Models;
+﻿using Assets.Scripts.Models;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 [RequireComponent(typeof(BodyBehavior))]
 [RequireComponent(typeof(MovementBehavior))]
-public class ProjectileBehavior : MonoBehaviour
+public class ProjectileBehavior : MonoBehaviour, IObserver<CollideData>, ISubject<HitParameters>
 {
     //[SerializeField] private UnityEvent _InitializeEvent;
+    [SerializeField] private ProjectileStaticData _staticData = default;
 
-    [Space(Constants.DebugSectionSpace, order = -1001)]
-    [Header(Constants.DebugSectionHeader, order = -1000)]
+    [Space(Constants.SpaceSection)]
+    [Header(Constants.DebugSectionHeader)]
 
-    [SerializeField] private ThreePartAdvancedNumber _damage = new ThreePartAdvancedNumber(currentDummyMin: 0f);
-    [SerializeField] private ThreePartAdvancedNumber _criticalChance = new ThreePartAdvancedNumber();
-    [SerializeField] private ThreePartAdvancedNumber _criticalDamage = new ThreePartAdvancedNumber();
-    [SerializeField] private ThreePartAdvancedNumber _projectileFlightSpeed = new ThreePartAdvancedNumber(currentDummyMin: 0f);
+    [SerializeField] private float _damage;
+    [SerializeField] private float _criticalChance;
+    [SerializeField] private float _criticalDamage;
+    [SerializeField] private float _projectileFlightSpeed;
     [SerializeField] private bool _done = false;
-    private ProjectileStaticData _staticData = default;
-    private AudioClip _hitSound = default;
     private BodyBehavior _bodyBehavior = default;
     private MovementBehavior _movementBehavior = default;
+    private readonly ObserverCollection<HitParameters> _hitObservers = new();
 
-    public ThreePartAdvancedNumber Damage => _damage;
-    public ThreePartAdvancedNumber CriticalChance => _criticalChance;
-    public ThreePartAdvancedNumber CriticalDamage => _criticalDamage;
-    public ThreePartAdvancedNumber ProjectileFlightSpeed => _projectileFlightSpeed;
+    public float Damage => _damage;
+    public float CriticalChance => _criticalChance;
+    public float CriticalDamage => _criticalDamage;
+    public float ProjectileFlightSpeed => _projectileFlightSpeed;
     public MovementBehavior MovementBehavior => _movementBehavior;
     public Func<GameObject, GameObject> IsTargetEnemyFunction { get; set; }
-    public OrderedList<Action<HitParameters>> OnHitActions { get; } = new OrderedList<Action<HitParameters>>();
 
-    public void Initialize(ProjectileStaticData staticData,
-        float startDamage, float startCriticalChance,
-        float startCriticalDamage, AudioClip hitSound, 
-        Func<GameObject, GameObject> isTargetEnemyFunction)
+    public void Initialize(float damage, float criticalChance,
+        float criticalDamage, Func<GameObject, GameObject> isTargetEnemyFunction)
     {
-        _staticData = staticData;
         _bodyBehavior = GetComponent<BodyBehavior>();
         _movementBehavior = GetComponent<MovementBehavior>();
         _movementBehavior.FeedData(_staticData.MovementStaticData);
-        _criticalChance.FeedData(startCriticalChance);
-        _criticalDamage.FeedData(startCriticalDamage);
-        _damage.FeedData(startDamage);
-        _hitSound = hitSound;
-        IsTargetEnemyFunction = isTargetEnemyFunction;
         _bodyBehavior.FeedData();
-        _bodyBehavior.OnEnterActions.Add(HitIfEnemy);
+        _bodyBehavior.Attach(this);
+
+        _damage = damage;
+        _criticalChance = criticalChance;
+        _criticalDamage = criticalDamage;
+        IsTargetEnemyFunction = isTargetEnemyFunction;
         //_InitializeEvent.Invoke();
     }
-
-    //public void FeedData(ProjectileStaticData staticData)
-    //{
-    //    _staticData = staticData;
-    //    _movementBehavior.FeedData(_staticData.MovementStaticData);
-    //}
 
     public void HitIfEnemy(Collider2D otherCollider)
     {
@@ -67,24 +53,43 @@ public class ProjectileBehavior : MonoBehaviour
 
     private void HitEnemy(GameObject enemy, Collider2D otherCollider)
     {
-        var healthBehavior = enemy.GetComponent<HealthBehavior>();
-        if (healthBehavior == null)
+        var enemyHealthBehavior = enemy.GetComponent<HealthBehavior>();
+        if (enemyHealthBehavior == null)
             return;
 
         if (_done == true)
             return;
         _done = true;
-        MusicPlayerBehavior.Instance.AudioSource.PlayOneShot(_hitSound, 0.2f);
+        MusicPlayerBehavior.Instance.AudioSource.PlayOneShot(_staticData.HitSound, 0.2f);
 
-        var criticalEffect = new CriticalEffect(-Damage.Value, 
-            _criticalChance.Value, _criticalDamage.Value);
-        var damage = criticalEffect.Result;
-        var healthChangeType = criticalEffect.IsApplied ?
-            HealthChangeType.CRITICAL_PHYSICAL_DAMAGE :
-            HealthChangeType.PHYSICAL_DAMAGE;
-        healthBehavior.Health.Change(damage, name, healthChangeType);
-        Destroy(gameObject);
+        var criticalEffect = new CriticalEffect(Damage,
+            _criticalChance, _criticalDamage);
+        var damage = new Damage(DamageType.PHYSICAL, criticalEffect.Result,
+            criticalEffect.IsApplied);
+        enemyHealthBehavior.Health.Damage(damage);
+        gameObject.SetActive(false);
         var hitParameters = new HitParameters(gameObject, otherCollider, enemy);
-        OnHitActions.CallActionsSafely(hitParameters);
+        Notify(hitParameters);
+        Destroy(gameObject, 2f);
     }
+
+    public void OnNotify(ISubject<CollideData> subject, CollideData collideData)
+    {
+        if (collideData.IsCollidingDisabled)
+            return;
+
+        if (ReferenceEquals(subject, _bodyBehavior))
+        {
+            switch (collideData.Type)
+            {
+                case CollideType.ENTER:
+                    HitIfEnemy(collideData.TargetCollider2D);
+                    break;
+            }
+        }
+    }
+
+    public void Attach(IObserver<HitParameters> observer) => _hitObservers.Add(observer);
+    public void Detach(IObserver<HitParameters> observer) => _hitObservers.Remove(observer);
+    public void Notify(HitParameters hitParameters) => _hitObservers.Notify(this, hitParameters);
 }

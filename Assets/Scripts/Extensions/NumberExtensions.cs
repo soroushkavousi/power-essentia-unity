@@ -1,11 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 
 public static class NumberExtensions
 {
+    public static float WithMin(this float value, float min)
+    {
+        if (value < min)
+            return min;
+        return value;
+    }
+
+    public static float WithMax(this float value, float max)
+    {
+        if (value < max)
+            return max;
+        return value;
+    }
+
+    public static int ToInt(this float value)
+    {
+        return Mathf.FloorToInt(value);
+    }
+
+    public static long ToLong(this float value)
+    {
+        return Convert.ToInt64(value);
+    }
+
     public static int RemoveNegative(this int number)
     {
         number = number >= 0 ? number : 0;
@@ -18,22 +40,25 @@ public static class NumberExtensions
         return number;
     }
 
-    public static float Round(this float number, int decimalCount = 4)
+    public static float Round(this float number, int decimalCount = 2)
     {
         var decimalWeight = Mathf.Pow(10, decimalCount);
         number = Mathf.Round(number * decimalWeight) / decimalWeight;
         return number;
     }
 
+    public static float AddPercentage(this float number, float percentage)
+        => MeasurePercentage(number, 100f + percentage);
+
+    public static float RemovePercentage(this float number, float percentage)
+        => MeasurePercentage(number, 100f - percentage);
+
     public static float MeasurePercentage(this float number, float percentage)
     {
-        number = number * percentage / 100;
+        if (percentage == 100f)
+            return number;
+        number = number * percentage / 100f;
         return number;
-    }
-
-    public static float MeasureRemainingPercentage(this float number, float percentage)
-    {
-        return number.MeasurePercentage(100f - percentage);
     }
 }
 

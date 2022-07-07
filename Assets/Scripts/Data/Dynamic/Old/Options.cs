@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
-
 
 [Serializable]
 public class Options
@@ -13,7 +8,7 @@ public class Options
     private static readonly string _relativeDataPath = @"options.json";
 
     public static Options Instance { get; private set; }
-    public static Options Default => new Options
+    public static Options Default => new()
     {
         MasterVolume = 0.5f,
         Difficulty = 2,
@@ -24,7 +19,7 @@ public class Options
     [SerializeField]
     private int _difficulty;
 
-    public float MasterVolume 
+    public float MasterVolume
     {
         get => _masterVolume;
         set
@@ -57,7 +52,7 @@ public class Options
     public void ReadFromStorage()
     {
         var dataExists = StorageGateway.DoesDataExist(_relativeDataPath);
-        if(dataExists == false)
+        if (dataExists == false)
         {
             WriteToStorage();
             return;

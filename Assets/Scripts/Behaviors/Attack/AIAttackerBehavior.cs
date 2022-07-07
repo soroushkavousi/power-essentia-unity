@@ -1,21 +1,18 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(VisionBehavior))]
 [RequireComponent(typeof(AttackerBehavior))]
-public class AIAttackerBehavior : MonoBehaviour
+public class AIAttackerBehavior : MonoBehaviour, IObserver<CollideData>
 {
 
-    [Space(Constants.DebugSectionSpace, order = -1001)]
-    [Header(Constants.DebugSectionHeader, order = -1000)]
-    [SerializeField] private List<GameObject> _enemiesInVision = new List<GameObject>();
-    [SerializeField] public GameObject _closestEnemy = default;
+    [Space(Constants.SpaceSection)]
+    [Header(Constants.DebugSectionHeader)]
+    [SerializeField] private List<GameObject> _enemiesInVision = new();
+    [SerializeField] private GameObject _closestEnemy = default;
     [SerializeField] private AIAttackerStaticData _staticData = default;
 
     private VisionBehavior _visionBehavior = default;
@@ -33,8 +30,7 @@ public class AIAttackerBehavior : MonoBehaviour
 
         _visionBehavior = GetComponent<VisionBehavior>();
         _visionBehavior.FeedData(staticData.VisionStaticData);
-        _visionBehavior.OnEnterActions.Add(TrackIfTargetEnemyIsInVision);
-        _visionBehavior.OnExitActions.Add(UnTrackIfTargetEnemyIsOutOfVision);
+        _visionBehavior.Attach(this);
 
         _attackerBehavior = GetComponent<AttackerBehavior>();
     }
@@ -111,6 +107,25 @@ public class AIAttackerBehavior : MonoBehaviour
                 _attackerBehavior.CurrentEnemy = _closestEnemy;
             }
             yield return new WaitForSeconds(0.05f);
+        }
+    }
+
+    public void OnNotify(ISubject<CollideData> subject, CollideData collideData)
+    {
+        if (collideData.IsCollidingDisabled)
+            return;
+
+        if (subject is VisionBehavior)
+        {
+            switch (collideData.Type)
+            {
+                case CollideType.ENTER:
+                    TrackIfTargetEnemyIsInVision(collideData.TargetCollider2D);
+                    break;
+                case CollideType.EXIT:
+                    UnTrackIfTargetEnemyIsOutOfVision(collideData.TargetCollider2D);
+                    break;
+            }
         }
     }
 }

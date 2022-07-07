@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
-[Serializable]
-public class ProjectileStaticData
+[CreateAssetMenu(fileName = "ProjectileData",
+    menuName = "StaticData/Core/ProjectileData", order = 1)]
+public class ProjectileStaticData : ScriptableObject
 {
-    [SerializeField] private MovementStaticData _movementStaticData = default;
-
-    public MovementStaticData MovementStaticData => _movementStaticData;
+    public MovementStaticData MovementStaticData = default;
+    public AudioClip HitSound = default;
 }

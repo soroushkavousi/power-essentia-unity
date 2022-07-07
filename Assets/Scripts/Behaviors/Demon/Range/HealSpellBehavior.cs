@@ -1,43 +1,37 @@
-﻿using Assets.Scripts.Enums;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(BodyBehavior))]
-[RequireComponent(typeof(SpellBehavior))]
-public class HealSpellBehavior : MonoBehaviour
+public class HealSpellBehavior : SpellBehavior, IObserver<CollideData>
 {
+    [Space(Constants.SpaceSection)]
+    [Header(Constants.HeaderStart + nameof(HealSpellBehavior) + Constants.HeaderEnd)]
+
+    [SerializeField] private HealSpellStaticData _healSpellStaticData = default;
     [SerializeField] private CircleCollider2D _healAreaCircle = default;
-    [SerializeField] private float _maxHealAreaRadius = default;
-    [SerializeField] private float _healAreaGrowTime = default;
 
-    [Space(Constants.DebugSectionSpace, order = -1001)]
-    [Header(Constants.DebugSectionHeader, order = -1000)]
+    [Space(Constants.SpaceSection)]
+    [Header(Constants.DebugSectionHeader)]
 
-    [SerializeField] private int _level = default;
+    [SerializeField] private Number _healAmount = default;
     private BodyBehavior _bodyBehavior = default;
-    private SpellBehavior _spellBehavior = default;
     private ParticleSystem _particleSystem = default;
 
-    public void FeedData(int level)
+    public void Initialize(Observable<int> level)
     {
-        _level = level;
+        base.Initialize(_healSpellStaticData, level);
         _bodyBehavior = GetComponent<BodyBehavior>();
-        _spellBehavior = GetComponent<SpellBehavior>();
         _particleSystem = GetComponent<ParticleSystem>();
         _healAreaCircle.radius = 0;
-
         _bodyBehavior.FeedData();
-        _bodyBehavior.OnEnterActions.Add(HealIfDemon);
-        _spellBehavior.FeedData(HealAllies);
+        _bodyBehavior.Attach(this);
+        _healAmount = new(_healSpellStaticData.HealAmount, _level, _healSpellStaticData.HealAmountLevelPercentage);
+        StartCoroutine(GoOnCooldown());
     }
 
-
-    private void Update()
+    protected override void CastAction()
     {
-
+        HealAllies();
     }
 
     private void HealAllies()
@@ -49,12 +43,12 @@ public class HealSpellBehavior : MonoBehaviour
     private IEnumerator GrowHealAreaSmouthly()
     {
         var growDelayRatio = 0.05f;
-        var stepsCount = _healAreaGrowTime / growDelayRatio;
-        var growRaito = _maxHealAreaRadius / stepsCount;
+        var stepsCount = _healSpellStaticData.HealAreaGrowTime / growDelayRatio;
+        var growRaito = _healSpellStaticData.MaxHealAreaRadius / stepsCount;
         //var growRatio = new Vector3(0.05f, 0.05f, 0.05f);
-        while (_healAreaCircle.radius < _maxHealAreaRadius)
+        while (_healAreaCircle.radius < _healSpellStaticData.MaxHealAreaRadius)
         {
-            _healAreaCircle.radius +=  growRaito;
+            _healAreaCircle.radius += growRaito;
             //transform.localScale += growRatio;
             yield return new WaitForSeconds(growDelayRatio);
         }
@@ -83,7 +77,18 @@ public class HealSpellBehavior : MonoBehaviour
         var invaderHealthBehavior = invaderBehavior.GetComponent<HealthBehavior>();
         if (invaderHealthBehavior == null)
             yield break;
-        invaderHealthBehavior.Health.Current.Change(500 +  300 * _level, name,
-            HealthChangeType.HEAL);
+        invaderHealthBehavior.Health.Heal(_healAmount.Value);
+    }
+
+    public void OnNotify(ISubject<CollideData> subject, CollideData data)
+    {
+        if (data.IsCollidingDisabled)
+            return;
+
+        if (ReferenceEquals(subject, _bodyBehavior))
+        {
+            if (data.Type == CollideType.ENTER)
+                HealIfDemon(data.TargetCollider2D);
+        }
     }
 }

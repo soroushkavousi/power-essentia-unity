@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc3313f92a3d1d247af93ac5a9b28d92, type: 3}
+  m_Name: GameStaticData
+  m_EditorClassIdentifier: 
+  Defaults:
+    DiamondImage: {fileID: 21300000, guid: 7250263116f03f341bb47548a9fd373e, type: 3}
+    DiamondName: Undefined
+  Prefabs:
+    _diamondPrefabs:
+    - {fileID: 4790560946532602642, guid: e0b2a9708b40e5d4ab5931ec6092fa39, type: 3}
+    - {fileID: -7251427964666986556, guid: d569530904d49de40a0126aeb8e2d67c, type: 3}
+    - {fileID: 8536669583931556881, guid: d91e679fe720ebe42aaf7d598fafb73c, type: 3}
+    - {fileID: 6135909527425668001, guid: 9db5e5ccf1b193743aac03df9e447033, type: 3}
+    - {fileID: 2974640598178895384, guid: 15d99f6628be7e14ebaf715fdc461c6e, type: 3}
+    _demonPrefabs:
+    - {fileID: 7675108491849082111, guid: 8c3ca1420430d5d49b3a9cfe4dfb7b3a, type: 3}
+    - {fileID: -1456258274700935215, guid: 83a01e9ee589f274d84083f5b7796165, type: 3}
+    CriticalShowBehavior: {fileID: 4203942547089975566, guid: 6522732b07195f948a3bcf635d01c605,
+      type: 3}
+  Settings:
+    BuyDiamondResourceBunches:
+    - Type: 0
+      Amount: 100000
+    - Type: 1
+      Amount: 10000
+    DiamondUpgradeResourceBunches:
+    - Type: 0
+      Amount: 1000
+      LevelPercentage: 300
+    - Type: 1
+      Amount: 10
+      LevelPercentage: 300

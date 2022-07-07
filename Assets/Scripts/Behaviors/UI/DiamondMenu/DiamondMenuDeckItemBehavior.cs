@@ -1,12 +1,9 @@
 ﻿using Assets.Scripts.Enums;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DiamondMenuDeckItemBehavior : MonoBehaviour
+public class DiamondMenuDeckItemBehavior : MonoBehaviour, IObserver
 {
     [SerializeField] private DiamondMenuDeckBehavior _diamondMenuDeckBehavior = default;
     [SerializeField] private RingName _ringName = default;
@@ -15,25 +12,24 @@ public class DiamondMenuDeckItemBehavior : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _diamondNameText = default;
     [SerializeField] private Image _glow = default;
 
-    [Space(Constants.DebugSectionSpace, order = -1001)]
-    [Header(Constants.DebugSectionHeader, order = -1000)]
+    [Space(Constants.SpaceSection)]
+    [Header(Constants.DebugSectionHeader)]
 
-    [SerializeField] private DiamondName _diamondNameEnum = default;
+    [SerializeField] private Observable<DiamondName> _diamondName = default;
     [SerializeField] private bool _isGlowing = default;
     private DiamondOwnerBehavior _diamondOwnerBehavior = default;
     private DiamondBehavior _diamondBehavior = default;
-    private AdvancedString _diamondName = default;
-    private AdvancedString _selectedDiamondName = default;
+    private Observable<DiamondName> _selectedDiamondName = default;
 
     public DiamondBehavior DiamondBehavior => _diamondBehavior;
-    public DiamondName DiamondName => _diamondNameEnum;
+    public DiamondName DiamondName => _diamondName.Value;
     public bool IsGlowing => _isGlowing;
 
     private void Awake()
     {
         _diamondOwnerBehavior = PlayerBehavior.Main.GetComponent<DiamondOwnerBehavior>();
         _diamondName = PlayerBehavior.Main.DynamicData.SelectedItems.RingDiamondNamesMap[_ringName][_index];
-        _diamondName.OnNewValueActions.Add(cc => ShowDiamondDetails());
+        _diamondName.Attach(this);
         _selectedDiamondName = PlayerBehavior.Main.DynamicData.SelectedItems.
             MenuDiamondName[_ringName];
         ShowDiamondDetails();
@@ -41,35 +37,33 @@ public class DiamondMenuDeckItemBehavior : MonoBehaviour
 
     private void ShowDiamondDetails()
     {
-        _diamondNameEnum = _diamondName.EnumValue.To<DiamondName>();
-
-        if (_diamondNameEnum == DiamondName.NONE)
+        if (_diamondName.Value == DiamondName.NONE)
         {
-            _diamondImage.sprite = DefaultContainerBehavior.Instance.DiamondImage;
-            _diamondNameText.text = DefaultContainerBehavior.Instance.DiamondName;
+            _diamondImage.sprite = GameManagerBehavior.Instance.StaticData.Defaults.DiamondImage;
+            _diamondNameText.text = GameManagerBehavior.Instance.StaticData.Defaults.DiamondName;
             return;
         }
-        _diamondBehavior = _diamondOwnerBehavior.AllDiamondBehaviors[_diamondNameEnum];
+        _diamondBehavior = _diamondOwnerBehavior.AllDiamondBehaviors[_diamondName.Value];
         _diamondImage.sprite = _diamondBehavior.Icon;
         _diamondNameText.text = _diamondBehavior.ShowName;
     }
 
     public void HandleClickEvent()
     {
-        var selectedDiamondName = _selectedDiamondName.EnumValue.To<DiamondName>();
+        var selectedDiamondName = _selectedDiamondName.Value;
         if (_isGlowing)
         {
-            if (selectedDiamondName != _diamondNameEnum)
-                _diamondName.Change(selectedDiamondName, name);
+            if (selectedDiamondName != _diamondName.Value)
+                _diamondName.Value = selectedDiamondName;
             _diamondMenuDeckBehavior.FinishUseInDeckOperation();
         }
         else
         {
-            if (_diamondNameEnum == DiamondName.NONE)
+            if (_diamondName.Value == DiamondName.NONE)
                 return;
-            if (selectedDiamondName == _diamondNameEnum)
+            if (selectedDiamondName == _diamondName.Value)
                 return;
-            _selectedDiamondName.Change(_diamondNameEnum, name);
+            _selectedDiamondName.Value = _diamondName.Value;
         }
     }
 
@@ -83,5 +77,13 @@ public class DiamondMenuDeckItemBehavior : MonoBehaviour
     {
         _glow.gameObject.SetActive(false);
         _isGlowing = false;
+    }
+
+    public void OnNotify(ISubject subject)
+    {
+        if (subject == _diamondName)
+        {
+            ShowDiamondDetails();
+        }
     }
 }

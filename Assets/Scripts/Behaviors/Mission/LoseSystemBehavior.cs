@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
-public class LoseSystemBehavior : MonoBehaviour
+public class LoseSystemBehavior : MonoBehaviour, IObserver
 {
     private static LoseSystemBehavior _instance = default;
 
-    [Space(Constants.DebugSectionSpace, order = -1001)]
-    [Header(Constants.DebugSectionHeader, order = -1000)]
+    [Space(Constants.SpaceSection)]
+    [Header(Constants.DebugSectionHeader)]
 
     [SerializeField] private bool _lose = default;
     private HealthBehavior _castleHealthBehavior = default;
@@ -21,7 +18,7 @@ public class LoseSystemBehavior : MonoBehaviour
     public void FeedData()
     {
         _castleHealthBehavior = FindObjectOfType<WallBehavior>(true).GetComponent<HealthBehavior>();
-        _castleHealthBehavior.Health.Current.OnNewValueActions.Add(CheckLoseCondition);
+        _castleHealthBehavior.Health.Attach(this);
     }
 
     public void Restart()
@@ -29,7 +26,7 @@ public class LoseSystemBehavior : MonoBehaviour
         _lose = false;
     }
 
-    public void CheckLoseCondition(NumberChangeCommand changeCommand)
+    public void CheckLoseCondition()
     {
         if (_castleHealthBehavior.Health.Value > 0)
             return;
@@ -40,5 +37,13 @@ public class LoseSystemBehavior : MonoBehaviour
         _lose = true;
         OnLoseActions.CallActionsSafely();
         DesicionCanvasManager.Instance.Show();
+    }
+
+    public void OnNotify(ISubject subject)
+    {
+        if (subject == _castleHealthBehavior.Health)
+        {
+            CheckLoseCondition();
+        }
     }
 }

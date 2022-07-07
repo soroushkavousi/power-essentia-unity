@@ -1,15 +1,11 @@
-﻿using Assets.Scripts.Models;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using UnityEngine;
 
-public class WinSystemBehavior : MonoBehaviour
+public class WinSystemBehavior : MonoBehaviour, IObserver
 {
     private static WinSystemBehavior _instance = default;
-    [Space(Constants.DebugSectionSpace, order = -1001)]
-    [Header(Constants.DebugSectionHeader, order = -1000)]
+    [Space(Constants.SpaceSection)]
+    [Header(Constants.DebugSectionHeader)]
 
     [SerializeField] private bool _win = default;
 
@@ -19,7 +15,7 @@ public class WinSystemBehavior : MonoBehaviour
 
     public void FeedData()
     {
-        LevelManagerBehavior.Instance.Finished.OnNewValueActions.Add(CheckWinCondition);
+        LevelManagerBehavior.Instance.Finished.Attach(this);
     }
 
     public void Restart()
@@ -27,7 +23,7 @@ public class WinSystemBehavior : MonoBehaviour
         _win = false;
     }
 
-    public void CheckWinCondition(BooleanChangeCommand changeCommand)
+    public void CheckWinCondition()
     {
         if (LevelManagerBehavior.Instance.Finished.Value == false)
             return;
@@ -38,5 +34,13 @@ public class WinSystemBehavior : MonoBehaviour
         _win = true;
         OnWinActions.CallActionsSafely();
         DesicionCanvasManager.Instance.Show();
+    }
+
+    public void OnNotify(ISubject subject)
+    {
+        if (subject == LevelManagerBehavior.Instance.Finished)
+        {
+            CheckWinCondition();
+        }
     }
 }

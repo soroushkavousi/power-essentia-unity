@@ -21,41 +21,41 @@ AnimationClip:
   - curve:
     - time: 0
       value: {fileID: 21300000, guid: a311bafd1fcb37a448fc091d08df9a9c, type: 3}
-    - time: 0.14285715
+    - time: 0.06666667
       value: {fileID: 21300000, guid: 107d3d41f93da3248bcbdf616606fcd3, type: 3}
-    - time: 0.2857143
+    - time: 0.13333334
       value: {fileID: 21300000, guid: 28d4cae6d9a1a3f4a9ab58c79ea05906, type: 3}
-    - time: 0.42857143
+    - time: 0.2
       value: {fileID: 21300000, guid: b2b7f2a3d3cd7d74b92b1ec7a8c4f245, type: 3}
-    - time: 0.5714286
+    - time: 0.3
       value: {fileID: 21300000, guid: 1ae183a536c684341b53dcf313dfc707, type: 3}
-    - time: 0.71428573
+    - time: 0.4
       value: {fileID: 21300000, guid: 30cd361a81e8fb24a98839abdaf02868, type: 3}
-    - time: 0.85714287
+    - time: 0.46666667
       value: {fileID: 21300000, guid: 00dcfcbdee00ce9439c4c8a05288edce, type: 3}
-    - time: 1
+    - time: 0.53333336
       value: {fileID: 21300000, guid: c565610acb6982144b846e34821bf5b8, type: 3}
-    - time: 1.1428572
+    - time: 0.6
       value: {fileID: 21300000, guid: e37203e863e701f4282921872e0353b2, type: 3}
-    - time: 1.2857143
+    - time: 0.7
       value: {fileID: 21300000, guid: 48f9be521082b2e43a7f5987e802d3e2, type: 3}
-    - time: 1.4285715
+    - time: 0.8
       value: {fileID: 21300000, guid: 2bc533c31f89ee741b130f5255ded0b9, type: 3}
-    - time: 1.5714285
+    - time: 0.9
       value: {fileID: 21300000, guid: 0b92fb80eee3f4745a4baae5b5984b2d, type: 3}
-    - time: 1.7142857
+    - time: 0.96666664
       value: {fileID: 21300000, guid: dcb7243eb0c92a14bb32eecd6f971828, type: 3}
-    - time: 1.8571428
+    - time: 1.0333333
       value: {fileID: 21300000, guid: 2850832c030a4f14dbd7b9f74add6094, type: 3}
-    - time: 2
+    - time: 1.1
       value: {fileID: 21300000, guid: b4e2172f3b91cdf4aa354b8d38c031f3, type: 3}
-    - time: 2.142857
+    - time: 1.1666666
       value: {fileID: 21300000, guid: ffd506edbfcb621428cdcf488421b11c, type: 3}
     attribute: m_Sprite
     path: Body
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 7
+  m_SampleRate: 30
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -91,7 +91,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 2.2857141
+    m_StopTime: 1.1999999
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -118,7 +118,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.1428572
+  - time: 0.6
     functionName: CastHealSpell
     data: 
     objectReferenceParameter: {fileID: 0}

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class LevelTimerBehavior : MonoBehaviour
@@ -9,8 +6,8 @@ public class LevelTimerBehavior : MonoBehaviour
     private static LevelTimerBehavior _instance = default;
     [SerializeField] private Slider _slider = default;
 
-    [Space(Constants.DebugSectionSpace, order = -1001)]
-    [Header(Constants.DebugSectionHeader, order = -1000)]
+    [Space(Constants.SpaceSection)]
+    [Header(Constants.DebugSectionHeader)]
 
     [SerializeField] private float _levelTime = default;
     [SerializeField] private bool _timeFinished = default;

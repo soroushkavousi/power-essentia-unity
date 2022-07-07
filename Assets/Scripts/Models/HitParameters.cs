@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.Models
 {
@@ -13,7 +8,7 @@ namespace Assets.Scripts.Models
         public Collider2D Collider2D { get; set; }
         public GameObject Destination { get; set; }
 
-        public HitParameters(GameObject source, 
+        public HitParameters(GameObject source,
             Collider2D collider2D, GameObject destination)
         {
             Source = source;

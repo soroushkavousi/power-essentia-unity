@@ -3,12 +3,9 @@ using Assets.Scripts.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
 
 [Serializable]
-public class SelectedItemsDynamicDataTO
+public class SelectedItemsDynamicDataTO : IObserver
 {
     private SelectedItemsDynamicData _selectedItemsDynamicData = default;
 
@@ -20,7 +17,7 @@ public class SelectedItemsDynamicDataTO
     public string MenuToolsDiamondName;
 
     public SelectedItemsDynamicDataTO(int demonLevel, List<string> toolsRingDiamondNames,
-        List<string> leftRingDiamondNames, List<string> rightRingDiamondNames, 
+        List<string> leftRingDiamondNames, List<string> rightRingDiamondNames,
         string menuDeckDiamondName, string menuToolsDiamondName)
     {
         DemonLevel = demonLevel;
@@ -38,86 +35,88 @@ public class SelectedItemsDynamicDataTO
         var rightRingDiamondNames = RightRingDiamondNames.Select(didn => didn.ToEnum<DiamondName>()).ToList();
         var menuDeckDiamondName = MenuDeckDiamondName.ToEnum<DiamondName>();
         var menuToolsDiamondName = MenuToolsDiamondName.ToEnum<DiamondName>();
-        
+
         _selectedItemsDynamicData = new SelectedItemsDynamicData(DemonLevel,
-            toolsRingDiamondNames, leftRingDiamondNames, rightRingDiamondNames, 
+            toolsRingDiamondNames, leftRingDiamondNames, rightRingDiamondNames,
             menuDeckDiamondName, menuToolsDiamondName);
 
-        _selectedItemsDynamicData.DemonLevel.OnNewValueActions.Add(HandleDemonLevelChange);
+        _selectedItemsDynamicData.DemonLevel.Attach(this);
 
-        _selectedItemsDynamicData.RingDiamondNamesMap[RingName.TOOLS][0].OnNewValueActions.Add(
-                (cc) => HandleDiamondNameChange(RingName.TOOLS, 0, cc));
-        _selectedItemsDynamicData.RingDiamondNamesMap[RingName.TOOLS][1].OnNewValueActions.Add(
-                (cc) => HandleDiamondNameChange(RingName.TOOLS, 1, cc));
-        _selectedItemsDynamicData.RingDiamondNamesMap[RingName.TOOLS][2].OnNewValueActions.Add(
-                (cc) => HandleDiamondNameChange(RingName.TOOLS, 2, cc));
-        _selectedItemsDynamicData.RingDiamondNamesMap[RingName.TOOLS][3].OnNewValueActions.Add(
-                (cc) => HandleDiamondNameChange(RingName.TOOLS, 3, cc));
+        foreach (var currentRingName in new List<RingName> { RingName.TOOLS, RingName.LEFT, RingName.RIGHT })
+        {
+            for (int i = 0; i < _selectedItemsDynamicData.RingDiamondNamesMap[currentRingName].Count; i++)
+            {
+                _selectedItemsDynamicData.RingDiamondNamesMap[currentRingName][i].Attach(this);
+            }
+        }
 
-        _selectedItemsDynamicData.RingDiamondNamesMap[RingName.LEFT][0].OnNewValueActions.Add(
-                (cc) => HandleDiamondNameChange(RingName.LEFT, 0, cc));
-        _selectedItemsDynamicData.RingDiamondNamesMap[RingName.LEFT][1].OnNewValueActions.Add(
-                (cc) => HandleDiamondNameChange(RingName.LEFT, 1, cc));
-        _selectedItemsDynamicData.RingDiamondNamesMap[RingName.LEFT][2].OnNewValueActions.Add(
-                (cc) => HandleDiamondNameChange(RingName.LEFT, 2, cc));
-        _selectedItemsDynamicData.RingDiamondNamesMap[RingName.LEFT][3].OnNewValueActions.Add(
-                (cc) => HandleDiamondNameChange(RingName.LEFT, 3, cc));
-
-        _selectedItemsDynamicData.RingDiamondNamesMap[RingName.RIGHT][0].OnNewValueActions.Add(
-                (cc) => HandleDiamondNameChange(RingName.RIGHT, 0, cc));
-        _selectedItemsDynamicData.RingDiamondNamesMap[RingName.RIGHT][1].OnNewValueActions.Add(
-                (cc) => HandleDiamondNameChange(RingName.RIGHT, 1, cc));
-        _selectedItemsDynamicData.RingDiamondNamesMap[RingName.RIGHT][2].OnNewValueActions.Add(
-                (cc) => HandleDiamondNameChange(RingName.RIGHT, 2, cc));
-        _selectedItemsDynamicData.RingDiamondNamesMap[RingName.RIGHT][3].OnNewValueActions.Add(
-                (cc) => HandleDiamondNameChange(RingName.RIGHT, 3, cc));
-
-        _selectedItemsDynamicData.MenuDiamondName[RingName.DECK].OnNewValueActions.Add(HandleMenuDeckDiamondNameChange);
-        _selectedItemsDynamicData.MenuDiamondName[RingName.TOOLS].OnNewValueActions.Add(HandleMenuToolsDiamondNameChange);
-
-        //for (int i = 0; i < _selectedItemsDynamicData.DeckItemDiamondNames.Count; i++)
-        //{
-        //    Debug.Log($"GetSelectedItemsDynamicData {i}");
-        //    _selectedItemsDynamicData.DeckItemDiamondNames[i].OnNewValueActions.Add(
-        //        (cc) => HandleDeckItemDiamondNameChange(i, cc));
-        //}
-        //_selectedItemsDynamicData.DeckItemDiamondNames[0].OnNewValueActions[0](null);
+        _selectedItemsDynamicData.MenuDiamondName[RingName.DECK].Attach(this);
+        _selectedItemsDynamicData.MenuDiamondName[RingName.TOOLS].Attach(this);
         return _selectedItemsDynamicData;
     }
 
-    private void HandleDemonLevelChange(NumberChangeCommand changeCommand)
+    private void HandleDemonLevelChange()
     {
-        DemonLevel = _selectedItemsDynamicData.DemonLevel.IntValue;
+        DemonLevel = _selectedItemsDynamicData.DemonLevel.Value;
         PlayerDynamicDataTO.Instance.Save();
     }
 
-    private void HandleDiamondNameChange(RingName ringName, int index, StringChangeCommand changeCommand)
+    private void HandleDiamondNameChange(RingName ringName, int index)
     {
         var newDiamondName = _selectedItemsDynamicData.RingDiamondNamesMap[ringName][index].Value;
         switch (ringName)
         {
             case RingName.TOOLS:
-                ToolsRingDiamondNames[index] = newDiamondName;
+                ToolsRingDiamondNames[index] = newDiamondName.ToString();
                 break;
             case RingName.LEFT:
-                LeftRingDiamondNames[index] = newDiamondName;
+                LeftRingDiamondNames[index] = newDiamondName.ToString();
                 break;
             case RingName.RIGHT:
-                RightRingDiamondNames[index] = newDiamondName;
+                RightRingDiamondNames[index] = newDiamondName.ToString();
                 break;
         }
         PlayerDynamicDataTO.Instance.Save();
     }
 
-    private void HandleMenuDeckDiamondNameChange(StringChangeCommand changeCommand)
+    private void HandleMenuDeckDiamondNameChange()
     {
-        MenuDeckDiamondName = _selectedItemsDynamicData.MenuDiamondName[RingName.DECK].Value;
+        MenuDeckDiamondName = _selectedItemsDynamicData.MenuDiamondName[RingName.DECK].Value.ToString();
         PlayerDynamicDataTO.Instance.Save();
     }
 
-    private void HandleMenuToolsDiamondNameChange(StringChangeCommand changeCommand)
+    private void HandleMenuToolsDiamondNameChange()
     {
-        MenuToolsDiamondName = _selectedItemsDynamicData.MenuDiamondName[RingName.TOOLS].Value;
+        MenuToolsDiamondName = _selectedItemsDynamicData.MenuDiamondName[RingName.TOOLS].Value.ToString();
         PlayerDynamicDataTO.Instance.Save();
+    }
+
+    public void OnNotify(ISubject subject)
+    {
+        if (subject == _selectedItemsDynamicData.DemonLevel)
+        {
+            HandleDemonLevelChange();
+        }
+        else if (subject is Observable<DiamondName>)
+        {
+            if (subject == _selectedItemsDynamicData.MenuDiamondName[RingName.DECK])
+                HandleMenuDeckDiamondNameChange();
+            else if (subject == _selectedItemsDynamicData.MenuDiamondName[RingName.TOOLS])
+                HandleMenuToolsDiamondNameChange();
+            else
+            {
+                foreach (var currentRingName in new List<RingName> { RingName.TOOLS, RingName.LEFT, RingName.RIGHT })
+                {
+                    for (int i = 0; i < _selectedItemsDynamicData.RingDiamondNamesMap[currentRingName].Count; i++)
+                    {
+                        if (subject == _selectedItemsDynamicData.RingDiamondNamesMap[currentRingName][i])
+                        {
+                            HandleDiamondNameChange(currentRingName, i);
+                            return;
+                        }
+                    }
+                }
+            }
+        }
     }
 }

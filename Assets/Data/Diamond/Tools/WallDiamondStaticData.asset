@@ -12,115 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a760a92d57a9f247a9d34367d6f11bb, type: 3}
   m_Name: WallDiamondStaticData
   m_EditorClassIdentifier: 
-  _diamondStaticData:
-    _name: 3
-    _isPermanent: 1
-    _startActiveTime: 99
-    _startCooldownTime: 0
-    _icon: {fileID: 21300000, guid: af79738d10aef3346ab334fbf5cb3937, type: 3}
-    _description: 
-    _upgradeResourceBoxes:
-    - _resourceBunches:
-      - _type: 2
-        _amount: 20
-    - _resourceBunches:
-      - _type: 0
-        _amount: 1000
-      - _type: 1
-        _amount: 10
-    - _resourceBunches:
-      - _type: 0
-        _amount: 2000
-      - _type: 1
-        _amount: 20
-    - _resourceBunches:
-      - _type: 0
-        _amount: 4000
-      - _type: 1
-        _amount: 40
-    - _resourceBunches:
-      - _type: 0
-        _amount: 8000
-      - _type: 1
-        _amount: 80
-    - _resourceBunches:
-      - _type: 0
-        _amount: 16000
-      - _type: 1
-        _amount: 160
-    - _resourceBunches:
-      - _type: 0
-        _amount: 32000
-      - _type: 1
-        _amount: 320
-    - _resourceBunches:
-      - _type: 0
-        _amount: 64000
-      - _type: 1
-        _amount: 640
-    - _resourceBunches:
-      - _type: 0
-        _amount: 128000
-      - _type: 1
-        _amount: 1280
-    - _resourceBunches:
-      - _type: 0
-        _amount: 256000
-      - _type: 1
-        _amount: 2560
-    - _resourceBunches:
-      - _type: 2
-        _amount: 20
-    - _resourceBunches:
-      - _type: 0
-        _amount: 1000
-      - _type: 1
-        _amount: 10
-    - _resourceBunches:
-      - _type: 0
-        _amount: 2000
-      - _type: 1
-        _amount: 20
-    - _resourceBunches:
-      - _type: 0
-        _amount: 4000
-      - _type: 1
-        _amount: 40
-    - _resourceBunches:
-      - _type: 0
-        _amount: 8000
-      - _type: 1
-        _amount: 80
-    - _resourceBunches:
-      - _type: 0
-        _amount: 16000
-      - _type: 1
-        _amount: 160
-    - _resourceBunches:
-      - _type: 0
-        _amount: 32000
-      - _type: 1
-        _amount: 320
-    - _resourceBunches:
-      - _type: 0
-        _amount: 64000
-      - _type: 1
-        _amount: 640
-    - _resourceBunches:
-      - _type: 0
-        _amount: 128000
-      - _type: 1
-        _amount: 1280
-    - _resourceBunches:
-      - _type: 0
-        _amount: 256000
-      - _type: 1
-        _amount: 2560
-    - _resourceBunches:
-      - _type: 2
-        _amount: 20
-  _wallBehaviorPrefab: {fileID: 8658195326953022501, guid: da4ecf01df46c904f93c2e50589b3587,
+  Name: 3
+  IsPermanent: 0
+  ActiveTime: 0
+  ActiveTimeLevelPercentage: 0
+  CooldownTime: 0
+  CooldownTimeLevelPercentage: 0
+  Icon: {fileID: 21300000, guid: 099f14b5443409b469d54c57749c3fa7, type: 3}
+  WallBehaviorPrefab: {fileID: 5132022466833776688, guid: da4ecf01df46c904f93c2e50589b3587,
     type: 3}
-  _locationInBattleField: {x: 0, y: 0}
-  _healthBasePerLevel: 100
-  _physicalResistanceBasePerLevel: 1

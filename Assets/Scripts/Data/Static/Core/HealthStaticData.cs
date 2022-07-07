@@ -1,16 +1,17 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
 public class HealthStaticData
 {
-    [SerializeField] private float _startHealth = default;
-    [SerializeField] private GameObject _deathVfxPrefab = default;
-    [SerializeField] private ResistanceStaticData _resistanceStaticData = default;
+    public float Health = default;
+    public float HealthLevelPercentage = default;
 
-    public float StartHealth => _startHealth;
-    public GameObject DeathVfxPrefab => _deathVfxPrefab;
-    public ResistanceStaticData ResistanceStaticData => _resistanceStaticData;
+    public float PhysicalResistance = default;
+    public float PhysicalResistanceLevelPercentage = default;
+
+    public float MagicResistance = default;
+    public float MagicResistanceLevelPercentage = default;
+
+    public GameObject DeathVfxPrefab = default;
 }

@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class InteractionLayerBehavior : MonoBehaviour
 {
     [SerializeField] private List<InteractionLayerPageBehavior> _pages = default;
 
-    [Space(Constants.DebugSectionSpace, order = -1001)]
-    [Header(Constants.DebugSectionHeader, order = -1000)]
+    [Space(Constants.SpaceSection)]
+    [Header(Constants.DebugSectionHeader)]
     [SerializeField] private Vector3 _originalPosition = default;
 
     public Vector3 OriginalPosition => _originalPosition;

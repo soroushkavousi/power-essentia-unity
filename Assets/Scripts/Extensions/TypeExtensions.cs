@@ -1,6 +1,4 @@
-﻿using Assets.Scripts.Enums;
-using System;
-using UnityEngine;
+﻿using System;
 
 public static class TypeExtensions
 {

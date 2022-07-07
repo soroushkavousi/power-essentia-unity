@@ -1,49 +1,44 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections;
 using UnityEngine;
 
-public class SpellBehavior : MonoBehaviour
+public abstract class SpellBehavior : MonoBehaviour
 {
-    [SerializeField] private string _name = default;
-    [SerializeField] private float _cooldown = default;
+    [Header(Constants.HeaderStart + nameof(SpellBehavior) + Constants.HeaderEnd)]
 
-    [Space(Constants.DebugSectionSpace, order = -1001)]
-    [Header(Constants.DebugSectionHeader, order = -1000)]
-    [SerializeField] private SpellState _state = default;
+    [Space(Constants.SpaceSection)]
+    [Header(Constants.DebugSectionHeader)]
+    [SerializeField] protected SpellState _state = default;
+    [SerializeField] private Number _cooldown = default;
+    [SerializeField] protected Observable<int> _level = default;
+    private SpellStaticData _staticData = default;
 
-    private Action _castAction = default;
-
-    public string Name => _name;
-    public float Cooldown => _cooldown;
+    public string Name => _staticData.Name;
+    public Number Cooldown => _cooldown;
     public SpellState State => _state;
 
-    public void FeedData(Action castAction)
+    protected void Initialize(SpellStaticData staticData, Observable<int> level)
     {
+        _staticData = staticData;
+        _level = level;
         _state = SpellState.UNDER_COOLDOWN;
-        _castAction = castAction;
-        StartCoroutine(GoOnCooldown());
+        _cooldown = new(_staticData.Cooldown, _level, _staticData.CooldownLevelPercentage);
     }
 
-    private void Update()
-    {
-
-    }
+    protected abstract void CastAction();
 
     public void Cast()
     {
         if (_state != SpellState.READY)
             return;
         _state = SpellState.CASTING;
-        _castAction();
+        CastAction();
         StartCoroutine(GoOnCooldown());
     }
 
-    private IEnumerator GoOnCooldown()
+    protected IEnumerator GoOnCooldown()
     {
         _state = SpellState.UNDER_COOLDOWN;
-        yield return new WaitForSeconds(_cooldown);
+        yield return new WaitForSeconds(_cooldown.Value);
         _state = SpellState.READY;
     }
 }

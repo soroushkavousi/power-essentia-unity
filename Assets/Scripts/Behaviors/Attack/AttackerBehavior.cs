@@ -1,94 +1,77 @@
 ﻿using Assets.Scripts.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(AudioSource))]
-public class AttackerBehavior : MonoBehaviour
+public abstract class AttackerBehavior : MonoBehaviour, IObserver, ISubject,
+    ISubject<HitParameters>, IObserver<HitParameters>
 {
-    [Space(Constants.DebugSectionSpace, order = -1001)]
-    [Header(Constants.DebugSectionHeader, order = -1000)]
+    [Header(Constants.HeaderStart + nameof(AttackerBehavior) + Constants.HeaderEnd)]
+    [SerializeField] protected Transform _weaponLocation = default;
 
-    [SerializeField] private bool _isAttacking = default;
-    [SerializeField] private ThreePartAdvancedNumber _attackDamage = new ThreePartAdvancedNumber(currentDummyMin: 0f);
-    [SerializeField] private ThreePartAdvancedNumber _attackSpeed = new ThreePartAdvancedNumber(currentDummyMin: 0f);
-    [SerializeField] private ThreePartAdvancedNumber _criticalChance = new ThreePartAdvancedNumber();
-    [SerializeField] private ThreePartAdvancedNumber _criticalDamage = new ThreePartAdvancedNumber();
-    [SerializeField] private GameObject _currentEnemy = default;
+    [Space(Constants.SpaceSection)]
+    [Header(Constants.DebugSectionHeader)]
+    [SerializeField] protected AttackerState _attackerState = default;
+    [SerializeField] protected WeaponBehavior _weaponBehavior = default;
+    [SerializeField] protected GameObject _currentEnemy = default;
     private AttackerStaticData _staticData = default;
-    private readonly string _attackSpeedName = "AttackSpeed";
-    private Animator _animator = default;
-    private MovementBehavior _movementBehavior = default;
-    private AudioSource _audioSource = default;
+    protected readonly string _attackSpeedName = "AttackSpeed";
+    protected Animator _animator = default;
+    protected MovementBehavior _movementBehavior = default;
+    protected AudioSource _audioSource = default;
+    protected readonly ObserverCollection _observers = new();
+    protected readonly ObserverCollection<HitParameters> _hitObservers = new();
 
-    public bool IsAttacking => _isAttacking;
-    public ThreePartAdvancedNumber AttackDamage => _attackDamage;
-    public ThreePartAdvancedNumber AttackSpeed => _attackSpeed;
-    public ThreePartAdvancedNumber CriticalChance => _criticalChance;
-    public ThreePartAdvancedNumber CriticalDamage => _criticalDamage;
-    public AudioClip AttackSound => _staticData.AttackSound;
+    public Transform WeaponLocation => _weaponLocation;
+    public abstract AttackerState AttackerState { get; }
     public Func<GameObject, GameObject> IsTargetEnemyFunction { get; set; }
-    public OrderedList<Action<GameObject>> OnStartAttackingActions { get; } = new OrderedList<Action<GameObject>>();
-    public OrderedList<Action> OnAttackingActions { get; } = new OrderedList<Action>();
-    public OrderedList<Action> OnStopAttackingActions { get; } = new OrderedList<Action>();
-    public OrderedList<Action<HitParameters>> OnHitActions { get; } = new OrderedList<Action<HitParameters>>();
     public GameObject CurrentEnemy { get => _currentEnemy; set => _currentEnemy = value; }
 
-    public void FeedData(AttackerStaticData staticData,
+    protected void FeedData(AttackerStaticData staticData, WeaponBehavior weaponBehavior,
         Func<GameObject, GameObject> isTargetEnemyFunction)
     {
+        _staticData = staticData;
         _animator = GetComponent<Animator>();
         _movementBehavior = GetComponent<MovementBehavior>();
         _audioSource = GetComponent<AudioSource>();
-
-        _staticData = staticData;
-        _attackDamage.FeedData(_staticData.StartDamage);
-        _attackSpeed.FeedData(_staticData.StartSpeed);
-        _attackSpeed.Current.OnNewValueActions.Add(SubmitAttackSpeedChange);
-        _criticalChance.FeedData(_staticData.StartCriticalChance);
-        _criticalDamage.FeedData(_staticData.StartCriticalDamage);
-        _animator.SetFloat(_attackSpeedName, _attackSpeed.Value);
         IsTargetEnemyFunction = isTargetEnemyFunction;
+        _weaponBehavior = weaponBehavior;
+        _weaponBehavior.Attach(this);
+        _weaponBehavior.AttackSpeed.Attach(this);
+        _animator.SetFloat(_attackSpeedName, _weaponBehavior.AttackSpeed.Value);
     }
 
-    public void StartAttacking()
+    public abstract void StartAttacking();
+    protected abstract void Attack();
+    public abstract void StopAttacking();
+
+    private void SubmitAttackSpeedChange()
     {
-        if (_isAttacking == true)
-            return;
-        _isAttacking = true;
-        if (_movementBehavior != null)
-            _movementBehavior.StopMoving();
-        OnStartAttackingActions.CallActionsSafely(_currentEnemy);
+        _animator.SetFloat(_attackSpeedName, _weaponBehavior.AttackSpeed.Value);
     }
 
-    private void Attack()
+    public void OnNotify(ISubject subject)
     {
-        //if(_staticData.AttackSound != null)
-        //    _audioSource.PlayOneShot(_staticData.AttackSound, 0.5f);
-        //_audioSource.Play();
-            
-        OnAttackingActions.CallActionsSafely();
+        if (subject == _weaponBehavior.AttackSpeed)
+        {
+            SubmitAttackSpeedChange();
+        }
     }
 
-    public void StopAttacking()
+    public void OnNotify(ISubject<HitParameters> subject, HitParameters hitParameters)
     {
-        if (_isAttacking == false)
-            return;
-        _isAttacking = false;
-        OnStopAttackingActions.CallActionsSafely();
+        if (ReferenceEquals(subject, _weaponBehavior))
+        {
+            Notify(hitParameters);
+        }
     }
 
-    public void HandleHitEvent(HitParameters hitParameters)
-    {
-        OnHitActions.CallActionsSafely(hitParameters);
-    }
+    public void Attach(IObserver observer) => _observers.Add(observer);
+    public void Detach(IObserver observer) => _observers.Remove(observer);
+    public void Notify() => _observers.Notify(this);
 
-    private void SubmitAttackSpeedChange(NumberChangeCommand changeCommand)
-    {
-        _animator.SetFloat(_attackSpeedName, _attackSpeed.Value);
-    }
+    public void Attach(IObserver<HitParameters> observer) => _hitObservers.Add(observer);
+    public void Detach(IObserver<HitParameters> observer) => _hitObservers.Remove(observer);
+    public void Notify(HitParameters hitParameters) => _hitObservers.Notify(this, hitParameters);
 }

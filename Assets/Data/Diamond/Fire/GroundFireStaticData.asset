@@ -9,12 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f59900460e444a746883e0583181f7e4, type: 3}
+  m_Script: {fileID: 11500000, guid: 5c916e68e31afb945b400334d6e2d75e, type: 3}
   m_Name: GroundFireStaticData
   m_EditorClassIdentifier: 
-  _startDuration: 8
-  _startDamage: 250
-  _startCriticalChance: 10
-  _startCriticalDamage: 100
-  _startSlow: 40
-  _spawnOffset: {x: -100, y: 0}
+  Duration: 3
+  DurationLevelPercentage: 10
+  Damage: 100
+  DamageLevePercentage: 10
+  CriticalChance: 10
+  CriticalChanceLevelPercentage: 10
+  CriticalDamage: 100
+  CriticalDamageLevelPercentage: 10
+  Slow: 20
+  SlowLevelPercentage: 5
+  SpawnOffset: {x: -100, y: 0}

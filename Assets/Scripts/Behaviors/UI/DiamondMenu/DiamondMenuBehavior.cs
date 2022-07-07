@@ -1,9 +1,4 @@
-﻿using Assets.Scripts.Enums;
-using Assets.Scripts.Models;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(InteractionLayerPageBehavior))]
 [RequireComponent(typeof(MenuHeaderBehavior))]
@@ -11,8 +6,8 @@ public class DiamondMenuBehavior : MonoBehaviour
 {
     private static DiamondMenuBehavior _instance = default;
 
-    //[Space(Constants.DebugSectionSpace, order = -1001)]
-    //[Header(Constants.DebugSectionHeader, order = -1000)]
+    //[Space(Constants.DebugSectionSpace)]
+    //[Header(Constants.DebugSectionHeader)]
 
     private InteractionLayerPageBehavior _interactionLayerPageBehavior = default;
 

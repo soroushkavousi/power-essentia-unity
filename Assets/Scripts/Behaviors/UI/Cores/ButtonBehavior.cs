@@ -15,13 +15,13 @@ public class ButtonBehavior : MonoBehaviour
     [SerializeField] private UnityEvent _clickEvent;
     private Color _normalColor = default;
 
-    [Space(Constants.DebugSectionSpace, order = -1001)]
-    [Header(Constants.DebugSectionHeader, order = -1000)]
+    [Space(Constants.SpaceSection)]
+    [Header(Constants.DebugSectionHeader)]
     [SerializeField] private bool _isColliderDisabled = default;
     [SerializeField] private Collider2D _collider2D = default;
 
-    //[Space(Constants.DebugSectionSpace, order = -1001)]
-    //[Header(Constants.DebugSectionHeader, order = -1000)]
+    //[Space(Constants.DebugSectionSpace)]
+    //[Header(Constants.DebugSectionHeader)]
 
     public GameObject Owner => _owner;
     public TextMeshProUGUI Text => _text;

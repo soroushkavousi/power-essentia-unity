@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class OptionsCanvasManagerBehavior : MonoBehaviour
@@ -26,7 +24,7 @@ public class OptionsCanvasManagerBehavior : MonoBehaviour
 
     public void Back()
     {
-        if(_isModified)
+        if (_isModified)
             Options.Instance.WriteToStorage();
         _isModified = false;
         SceneManagerBehavior.Instance.LoadStart();

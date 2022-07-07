@@ -1,7 +1,4 @@
 ﻿using Assets.Scripts.Enums;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,8 +12,8 @@ public class DiamondGameDeckItemBehavior : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _diamondNameText = default;
     [SerializeField] private Image _shadowImage = default;
 
-    //[Space(Constants.DebugSectionSpace, order = -1001)]
-    //[Header(Constants.DebugSectionHeader, order = -1000)]
+    //[Space(Constants.DebugSectionSpace)]
+    //[Header(Constants.DebugSectionHeader)]
 
     private DiamondBehavior _diamondBehavior = default;
 
@@ -43,8 +40,8 @@ public class DiamondGameDeckItemBehavior : MonoBehaviour
     {
         if (_diamondBehavior == null)
         {
-            _diamondImage.sprite = DefaultContainerBehavior.Instance.DiamondImage;
-            _diamondNameText.text = DefaultContainerBehavior.Instance.DiamondName;
+            _diamondImage.sprite = GameManagerBehavior.Instance.StaticData.Defaults.DiamondImage;
+            _diamondNameText.text = GameManagerBehavior.Instance.StaticData.Defaults.DiamondName;
             return;
         }
         _diamondImage.sprite = _diamondBehavior.Icon;
@@ -53,13 +50,13 @@ public class DiamondGameDeckItemBehavior : MonoBehaviour
 
     public void HandleClickEvent()
     {
-        if(_diamondBehavior.IsReady)
+        if (_diamondBehavior.IsReady)
             _diamondBehavior.Activate();
     }
 
     private void Update()
     {
-        if(!_diamondBehavior.IsReady)
+        if (!_diamondBehavior.IsReady)
             UpdateShadowState();
 
         HandleKeyboardEvent();
@@ -67,7 +64,7 @@ public class DiamondGameDeckItemBehavior : MonoBehaviour
 
     private void HandleKeyboardEvent()
     {
-        if(Input.GetKeyDown(_keyCode))
+        if (Input.GetKeyDown(_keyCode))
             HandleClickEvent();
     }
 

@@ -1,23 +1,23 @@
 ﻿using Assets.Scripts.Enums;
 using Assets.Scripts.Models;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using TMPro;
 using UnityEngine;
 
-public class DiamondOwnerBehavior : MonoBehaviour
+public abstract class DiamondOwnerBehavior : PlayerBehavior
 {
-    [SerializeField] private Transform _toolsRing = default;
-    [SerializeField] private Transform _leftRing = default;
-    [SerializeField] private Transform _rightRing = default;
-    [SerializeField] private Transform _box = default;
+    [Space(Constants.SpaceSection)]
+    [Header(Constants.HeaderStart + nameof(DiamondOwnerBehavior) + Constants.HeaderEnd)]
+    [SerializeField] private Transform _toolsRingSlot = default;
+    [SerializeField] private Transform _leftRingSlot = default;
+    [SerializeField] private Transform _rightRingSlot = default;
+    [SerializeField] private Transform _boxSlot = default;
 
-    [Space(Constants.DebugSectionSpace, order = -1001)]
-    [Header(Constants.DebugSectionHeader, order = -1000)]
-    private Dictionary<RingName, Transform> _ringMap = default;
+    //[Space(Constants.DebugSectionSpace)]
+    //[Header(Constants.DebugSectionHeader)]
+    private DiamondOwnerStaticData _staticData = default;
+    private Dictionary<RingName, Transform> _ringTransformMap = default;
     private Dictionary<DiamondName, DiamondDynamicData> _diamondDynamicDataMap = default;
-    private Dictionary<RingName, List<AdvancedString>> _ringDiamondNamesMap = default;
+    private Dictionary<RingName, List<Observable<DiamondName>>> _chosenRings = default;
 
     public Dictionary<DiamondName, DiamondBehavior> AllDiamondBehaviors { get; set; } = new Dictionary<DiamondName, DiamondBehavior>();
     public Dictionary<RingName, List<DiamondBehavior>> RingDiamondBehaviorsMap { get; set; } = new Dictionary<RingName, List<DiamondBehavior>>()
@@ -28,18 +28,19 @@ public class DiamondOwnerBehavior : MonoBehaviour
         [RingName.NONE] = new List<DiamondBehavior>(),
     };
 
-    public void FeedData(Dictionary<DiamondName, DiamondDynamicData> diamondDynamicDataList,
-        Dictionary<RingName, List<AdvancedString>> ringDiamondNamesMap)
+    protected void Initialize(DiamondOwnerStaticData staticData)
     {
-        _diamondDynamicDataMap = diamondDynamicDataList;
-        _ringDiamondNamesMap = ringDiamondNamesMap;
+        _staticData = staticData;
+        base.Initialize(_staticData);
+        _diamondDynamicDataMap = _dynamicData.Diamonds;
+        _chosenRings = _dynamicData.SelectedItems.RingDiamondNamesMap;
 
-        _ringMap = new Dictionary<RingName, Transform>
+        _ringTransformMap = new Dictionary<RingName, Transform>
         {
-            [RingName.TOOLS] = _toolsRing,
-            [RingName.LEFT] = _leftRing,
-            [RingName.RIGHT] = _rightRing,
-            [RingName.NONE] = _box,
+            [RingName.TOOLS] = _toolsRingSlot,
+            [RingName.LEFT] = _leftRingSlot,
+            [RingName.RIGHT] = _rightRingSlot,
+            [RingName.NONE] = _boxSlot,
         };
         InitializeDiamondBehaviors();
     }
@@ -47,14 +48,12 @@ public class DiamondOwnerBehavior : MonoBehaviour
     private void InitializeDiamondBehaviors()
     {
         RingName ringName;
-        DiamondName diamondName;
-        foreach (var ringDiamondNames in _ringDiamondNamesMap)
+        foreach (var ringDiamondNames in _chosenRings)
         {
             ringName = ringDiamondNames.Key;
-            foreach (var diamondNameString in ringDiamondNames.Value)
+            foreach (var diamondName in ringDiamondNames.Value)
             {
-                diamondName = diamondNameString.EnumValue.To<DiamondName>();
-                CreateDiamond(ringName, diamondName);
+                CreateDiamond(ringName, diamondName.Value);
             }
         }
 
@@ -76,13 +75,14 @@ public class DiamondOwnerBehavior : MonoBehaviour
             RingDiamondBehaviorsMap[ringName].Add(default);
             return;
         }
-        if (!PrefabContainerBehavior.Instance.DiamondPrefabs.ContainsKey(diamondName))
+
+        if (!GameManagerBehavior.Instance.StaticData.Prefabs.DiamondPrefabs
+                .TryGetValue(diamondName, out DiamondBehavior diamondBehaviorPrefab))
             return;
-        DiamondBehavior diamondBehaviorPrefab = PrefabContainerBehavior.Instance.DiamondPrefabs[diamondName];
+        DiamondBehavior diamondBehavior = Instantiate(diamondBehaviorPrefab, _ringTransformMap[ringName]);
+
         var diamondDynamicData = _diamondDynamicDataMap[diamondName];
-        DiamondBehavior diamondBehavior = Instantiate(diamondBehaviorPrefab, _ringMap[ringName]);
-        diamondBehavior.Initialize(diamondDynamicData.IsDiscovered,
-            diamondDynamicData.IsOwned, diamondDynamicData.Level, this);
+        diamondBehavior.Initialize(diamondDynamicData.KnowledgeState, diamondDynamicData.Level, this);
         RingDiamondBehaviorsMap[ringName].Add(diamondBehavior);
         AllDiamondBehaviors.Add(diamondName, diamondBehavior);
         if (ringName == RingName.TOOLS)

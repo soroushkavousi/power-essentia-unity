@@ -12,114 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16dfa9bc8ef25cf41971ea5da09fe93a, type: 3}
   m_Name: BowDiamondStaticData
   m_EditorClassIdentifier: 
-  _diamondStaticData:
-    _name: 2
-    _isPermanent: 1
-    _startActiveTime: 99
-    _startCooldownTime: 0
-    _icon: {fileID: 21300000, guid: af79738d10aef3346ab334fbf5cb3937, type: 3}
-    _description: 
-    _upgradeResourceBoxes:
-    - _resourceBunches:
-      - _type: 2
-        _amount: 20
-    - _resourceBunches:
-      - _type: 0
-        _amount: 1000
-      - _type: 1
-        _amount: 10
-    - _resourceBunches:
-      - _type: 0
-        _amount: 2000
-      - _type: 1
-        _amount: 20
-    - _resourceBunches:
-      - _type: 0
-        _amount: 4000
-      - _type: 1
-        _amount: 40
-    - _resourceBunches:
-      - _type: 0
-        _amount: 8000
-      - _type: 1
-        _amount: 80
-    - _resourceBunches:
-      - _type: 0
-        _amount: 16000
-      - _type: 1
-        _amount: 160
-    - _resourceBunches:
-      - _type: 0
-        _amount: 32000
-      - _type: 1
-        _amount: 320
-    - _resourceBunches:
-      - _type: 0
-        _amount: 64000
-      - _type: 1
-        _amount: 640
-    - _resourceBunches:
-      - _type: 0
-        _amount: 128000
-      - _type: 1
-        _amount: 1280
-    - _resourceBunches:
-      - _type: 0
-        _amount: 256000
-      - _type: 1
-        _amount: 2560
-    - _resourceBunches:
-      - _type: 2
-        _amount: 20
-    - _resourceBunches:
-      - _type: 0
-        _amount: 1000
-      - _type: 1
-        _amount: 10
-    - _resourceBunches:
-      - _type: 0
-        _amount: 2000
-      - _type: 1
-        _amount: 20
-    - _resourceBunches:
-      - _type: 0
-        _amount: 4000
-      - _type: 1
-        _amount: 40
-    - _resourceBunches:
-      - _type: 0
-        _amount: 8000
-      - _type: 1
-        _amount: 80
-    - _resourceBunches:
-      - _type: 0
-        _amount: 16000
-      - _type: 1
-        _amount: 160
-    - _resourceBunches:
-      - _type: 0
-        _amount: 32000
-      - _type: 1
-        _amount: 320
-    - _resourceBunches:
-      - _type: 0
-        _amount: 64000
-      - _type: 1
-        _amount: 640
-    - _resourceBunches:
-      - _type: 0
-        _amount: 128000
-      - _type: 1
-        _amount: 1280
-    - _resourceBunches:
-      - _type: 0
-        _amount: 256000
-      - _type: 1
-        _amount: 2560
-    - _resourceBunches:
-      - _type: 2
-        _amount: 20
-  _damageBasePerLevel: 25
-  _fireRateBasePerLevel: 0.4
-  _criticalChanceBasePerLevel: 5
-  _criticalDamageBasePerLevel: 10
+  Name: 2
+  IsPermanent: 1
+  ActiveTime: 0
+  ActiveTimeLevelPercentage: 0
+  CooldownTime: 0
+  CooldownTimeLevelPercentage: 0
+  Icon: {fileID: 21300000, guid: 3c000b6498c232a40bc708d78d2e1e0f, type: 3}
+  BowWeaponPrefab: {fileID: 2887776832867771812, guid: 85a0809252c8dc640b99ed42f199ee5f,
+    type: 3}
