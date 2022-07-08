@@ -59,56 +59,66 @@ public class StoneDiamondBehavior : DiamondBehavior, IObserver<HitParameters>
 
     protected override string GetDescription()
     {
-        var upgradeColor = "#55540E";
         //------------------------------------------------
 
         var currentChacne = _chance.Value;
         var nextChance = _chance.NextLevelValue;
 
-        var currentChanceShow = NoteUtils.MakeBold(NoteUtils.AddColor(currentChacne + "%", "black"));
-        var nextChanceShow = NoteUtils.AddColor(nextChance + "%", upgradeColor);
+        var currentChanceShow = NoteUtils.AddColor(currentChacne + "%", "black");
+        currentChanceShow = NoteUtils.ChangeSize($"Chance: {currentChanceShow}", NoteUtils.NumberSizeRatio);
+        var nextChanceShow = NoteUtils.AddColor(nextChance + "%", NoteUtils.UpgradeColor);
+        nextChanceShow = NoteUtils.ChangeSize($"({nextChanceShow})", NoteUtils.NextNumberSizeRatio);
 
         //------------------------------------------------
 
         var currentImpactDamage = _sampleFallingStoneBehavior.ImpactDamage.Value.ToLong();
         var nextImpactDamage = _sampleFallingStoneBehavior.ImpactDamage.NextLevelValue.ToLong();
 
-        var currentImpactDamageShow = NoteUtils.MakeBold(NoteUtils.AddColor(currentImpactDamage + "dps", "black"));
-        var nextImpactDamageShow = NoteUtils.AddColor(nextImpactDamage + "dps", upgradeColor);
+        var currentImpactDamageShow = NoteUtils.AddColor(currentImpactDamage + "dps", "black");
+        currentImpactDamageShow = NoteUtils.ChangeSize($"Impact Damage: {currentImpactDamageShow}", NoteUtils.NumberSizeRatio);
+        var nextImpactDamageShow = NoteUtils.AddColor(nextImpactDamage + "dps", NoteUtils.UpgradeColor);
+        nextImpactDamageShow = NoteUtils.ChangeSize($"({nextImpactDamageShow})", NoteUtils.NextNumberSizeRatio);
 
         //------------------------------------------------
 
         var currentStunDuration = _sampleFallingStoneBehavior.StunDuration.Value.ToLong();
         var nextStunDuration = _sampleFallingStoneBehavior.StunDuration.Value.ToLong();
 
-        var currentStunDurationShow = NoteUtils.MakeBold(NoteUtils.AddColor(currentStunDuration + "s", "black"));
-        var nextStunDurationShow = NoteUtils.AddColor(nextStunDuration + "s", upgradeColor);
+        var currentStunDurationShow = NoteUtils.AddColor(currentStunDuration + "s", "black");
+        currentStunDurationShow = NoteUtils.ChangeSize($"Stun Duration: {currentStunDurationShow}", NoteUtils.NumberSizeRatio);
+        var nextStunDurationShow = NoteUtils.AddColor(nextStunDuration + "s", NoteUtils.UpgradeColor);
+        nextStunDurationShow = NoteUtils.ChangeSize($"({nextStunDurationShow})", NoteUtils.NextNumberSizeRatio);
 
         //------------------------------------------------
 
         var currentCriticalChance = _sampleFallingStoneBehavior.CriticalChance.Value.ToLong();
         var nextCriticalChance = _sampleFallingStoneBehavior.CriticalChance.Value.ToLong();
 
-        var currentCriticalChanceShow = NoteUtils.MakeBold(NoteUtils.AddColor(currentCriticalChance + "%", "black"));
-        var nextCriticalChanceShow = NoteUtils.AddColor(nextCriticalChance + "%", upgradeColor);
+        var currentCriticalChanceShow = NoteUtils.AddColor(currentCriticalChance + "%", "black");
+        currentCriticalChanceShow = NoteUtils.ChangeSize($"Critical Chance: {currentCriticalChanceShow}", NoteUtils.NumberSizeRatio);
+        var nextCriticalChanceShow = NoteUtils.AddColor(nextCriticalChance + "%", NoteUtils.UpgradeColor);
+        nextCriticalChanceShow = NoteUtils.ChangeSize($"({nextCriticalChanceShow})", NoteUtils.NextNumberSizeRatio);
 
         //------------------------------------------------
 
         var currentCriticalDamage = _sampleFallingStoneBehavior.CriticalDamage.Value.ToLong();
         var nextCriticalDamage = _sampleFallingStoneBehavior.CriticalDamage.Value.ToLong();
 
-        var currentCriticalDamageShow = NoteUtils.MakeBold(NoteUtils.AddColor(currentCriticalDamage + "%", "black"));
-        var nextCriticalDamageShow = NoteUtils.AddColor(nextCriticalDamage + "%", upgradeColor);
+        var currentCriticalDamageShow = NoteUtils.AddColor(currentCriticalDamage + "%", "black");
+        currentCriticalDamageShow = NoteUtils.ChangeSize($"Critical Damage: {currentCriticalDamageShow}", NoteUtils.NumberSizeRatio);
+        var nextCriticalDamageShow = NoteUtils.AddColor(nextCriticalDamage + "%", NoteUtils.UpgradeColor);
+        nextCriticalDamageShow = NoteUtils.ChangeSize($"({nextCriticalDamageShow})", NoteUtils.NextNumberSizeRatio);
 
         //------------------------------------------------
 
         var description = $"" +
-            $"It has a chance to fall a stone on the enemy target.\n\n" +
-            $" Chance: {currentChanceShow} (next: {nextChanceShow})\n" +
-            $" Impact Damage: {currentImpactDamageShow} (next: {nextImpactDamageShow})\n" +
-            $" Duration: {currentStunDurationShow} (next: {nextStunDurationShow})\n" +
-            $" Critical chance: {currentCriticalChanceShow} (next: {nextCriticalChanceShow})\n" +
-            $" Critical damage: {currentCriticalDamageShow} (next: {nextCriticalDamageShow})";
+            $"It has a chance to fall a stone on the enemy target.\n" +
+            $"\nStats:\n" +
+            $"   - {currentChanceShow}    {nextChanceShow}\n" +
+            $"   - {currentImpactDamageShow}    {nextImpactDamageShow}\n" +
+            $"   - {currentStunDurationShow}    {nextStunDurationShow}\n" +
+            $"   - {currentCriticalChanceShow}    {nextCriticalChanceShow}\n" +
+            $"   - {currentCriticalDamageShow}    {nextCriticalDamageShow}";
         return description;
     }
 }

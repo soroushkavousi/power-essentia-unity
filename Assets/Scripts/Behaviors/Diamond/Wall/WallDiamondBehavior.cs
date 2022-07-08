@@ -22,10 +22,13 @@ public class WallDiamondBehavior : DiamondBehavior
 
     protected override void DoActivationWork()
     {
-        if (SceneManagerBehavior.Instance.CurrentSceneName != SceneName.MISSION)
-            return;
+        Transform wallLocation;
+        if (SceneManagerBehavior.Instance.CurrentSceneName == SceneName.MISSION)
+            wallLocation = MissionManagerBehavior.Instance.WallLocation;
+        else
+            wallLocation = OutBoxBehavior.Instance.Location3;
 
-        _wallBehavior = Instantiate(_staticData.WallBehaviorPrefab, MissionManagerBehavior.Instance.WallLocation);
+        _wallBehavior = Instantiate(_staticData.WallBehaviorPrefab, wallLocation);
         _wallBehavior.name = "Wall";
         _wallBehavior.Initialize(_level);
     }
@@ -37,40 +40,45 @@ public class WallDiamondBehavior : DiamondBehavior
 
     protected override string GetDescription()
     {
-        var upgradeColor = "#55540E";
         //------------------------------------------------
 
         var currentHealth = _wallBehavior.HealthBehavior.Health.Value.ToLong();
         var nextHealth = _wallBehavior.HealthBehavior.Health.NextLevelValue.ToLong();
 
-        var currentHealthShow = NoteUtils.MakeBold(NoteUtils.AddColor(currentHealth, "black"));
-        var nextHealthShow = NoteUtils.AddColor(nextHealth, upgradeColor);
+        var currentHealthShow = NoteUtils.AddColor(currentHealth, "black");
+        currentHealthShow = NoteUtils.ChangeSize($"Health: {currentHealthShow}", NoteUtils.NumberSizeRatio);
+        var nextHealthShow = NoteUtils.AddColor(nextHealth, NoteUtils.UpgradeColor);
+        nextHealthShow = NoteUtils.ChangeSize($"({nextHealthShow})", NoteUtils.NextNumberSizeRatio);
 
         //------------------------------------------------
 
         var currentPhysicalResistance = _wallBehavior.HealthBehavior.Health.PhysicalResistance.Value;
         var nextPhysicalResistance = _wallBehavior.HealthBehavior.Health.PhysicalResistance.NextLevelValue;
 
-        var currentPhysicalResistanceShow = NoteUtils.MakeBold(NoteUtils.AddColor(currentPhysicalResistance + "%", "black"));
-        var nextPhysicalResistanceShow = NoteUtils.AddColor(nextPhysicalResistance + "%", upgradeColor);
+        var currentPhysicalResistanceShow = NoteUtils.AddColor(currentPhysicalResistance + "%", "black");
+        currentPhysicalResistanceShow = NoteUtils.ChangeSize($"Physical Resistance: {currentPhysicalResistanceShow}", NoteUtils.NumberSizeRatio);
+        var nextPhysicalResistanceShow = NoteUtils.AddColor(nextPhysicalResistance + "%", NoteUtils.UpgradeColor);
+        nextPhysicalResistanceShow = NoteUtils.ChangeSize($"({nextPhysicalResistanceShow})", NoteUtils.NextNumberSizeRatio);
 
         //------------------------------------------------
 
         var currentMagicResistance = _wallBehavior.HealthBehavior.Health.MagicResistance.Value;
         var nextMagicResistance = _wallBehavior.HealthBehavior.Health.MagicResistance.NextLevelValue;
 
-        var currentMagicResistanceShow = NoteUtils.MakeBold(NoteUtils.AddColor(currentMagicResistance + "%", "black"));
-        var nextMagicResistanceShow = NoteUtils.AddColor(nextMagicResistance + "%", upgradeColor);
+        var currentMagicResistanceShow = NoteUtils.AddColor(currentMagicResistance + "%", "black");
+        currentMagicResistanceShow = NoteUtils.ChangeSize($"Magic Resistance: {currentMagicResistanceShow}", NoteUtils.NumberSizeRatio);
+        var nextMagicResistanceShow = NoteUtils.AddColor(nextMagicResistance + "%", NoteUtils.UpgradeColor);
+        nextMagicResistanceShow = NoteUtils.ChangeSize($"({nextMagicResistanceShow})", NoteUtils.NextNumberSizeRatio);
 
         //------------------------------------------------
 
         var description = $"" +
-            $"Wall Diamond can be in activation mode permanently.\n\n" +
-            $" + On Activation it creates a magical wall\n" +
-            $" + Magical wall has the following stats:\n" +
-            $"   + Health: {currentHealthShow} (next: {nextHealthShow})\n" +
-            $"   + Physical Resistance: {currentPhysicalResistanceShow} (next: {nextPhysicalResistanceShow})" +
-            $"   + Magic Resistance: {currentMagicResistanceShow} (next: {nextMagicResistanceShow})";
+            $"On Activation it creates a magical wall.\n" +
+            $"\nStats:\n" +
+            $"   - {currentHealthShow}    {nextHealthShow}\n" +
+            $"   - {currentPhysicalResistanceShow}    {nextPhysicalResistanceShow}\n" +
+            $"   - {currentMagicResistanceShow}    {nextMagicResistanceShow}\n" +
+            $"\nBlood diamond is a base diamond that is active permanently.";
         return description;
     }
 }
