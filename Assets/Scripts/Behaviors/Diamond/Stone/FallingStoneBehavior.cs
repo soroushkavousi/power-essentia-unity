@@ -87,6 +87,13 @@ public class FallingStoneBehavior : MonoBehaviour, IObserver<MovementChangeData>
             return;
         }
 
+        var healthBehavior = _enemy.GetComponent<HealthBehavior>();
+        if (healthBehavior == null || healthBehavior.IsDead)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         MusicPlayerBehavior.Instance.AudioSource.PlayOneShot(_staticData.HitSound, 0.5f);
 
         statusOwner.StunStatusBehavior.AddNewInstance(gameObject,
