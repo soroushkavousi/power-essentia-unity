@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 public class ObserverCollection
 {
@@ -7,25 +6,21 @@ public class ObserverCollection
 
     public void Add(IObserver observer)
     {
-        if (observer != null)
+        if (observer != null && !_observers.Contains(observer))
             _observers.Add(observer);
     }
     public void Remove(IObserver observer) => _observers.Remove(observer);
     public void Notify(ISubject subject)
     {
-        GameManagerBehavior.Instance.StartCoroutine(NotifyWithCoroutine(subject));
-    }
-    private IEnumerator NotifyWithCoroutine(ISubject subject)
-    {
-        foreach (var observer in _observers)
+        for (int i = _observers.Count - 1; i >= 0; i--)
         {
-            if (observer == null)
+            var currentObserver = _observers[i];
+            if (currentObserver == null)
             {
-                Remove(observer);
+                _observers.RemoveAt(i);
                 continue;
             }
-            observer.OnNotify(subject);
-            yield return null;
+            currentObserver.OnNotify(subject);
         }
     }
 }
@@ -42,19 +37,15 @@ public class ObserverCollection<TChange>
     public void Remove(IObserver<TChange> observer) => _observers.Remove(observer);
     public void Notify(ISubject<TChange> subject, TChange change)
     {
-        GameManagerBehavior.Instance.StartCoroutine(NotifyWithCoroutine(subject, change));
-    }
-    private IEnumerator NotifyWithCoroutine(ISubject<TChange> subject, TChange change)
-    {
-        foreach (var observer in _observers)
+        for (int i = _observers.Count - 1; i >= 0; i--)
         {
-            if (observer == null)
+            var currentObserver = _observers[i];
+            if (currentObserver == null)
             {
-                Remove(observer);
+                _observers.RemoveAt(i);
                 continue;
             }
-            observer.OnNotify(subject, change);
-            yield return null;
+            currentObserver.OnNotify(subject, change);
         }
     }
 }
