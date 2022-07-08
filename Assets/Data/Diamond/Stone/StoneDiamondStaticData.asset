@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8625aafef4e39694b899abaf378d32ff, type: 3}
   m_Name: StoneDiamondStaticData
   m_EditorClassIdentifier: 
-  Name: 0
+  Name: 6
   IsPermanent: 0
   ActiveTime: 10
   ActiveTimeLevelPercentage: 10
@@ -21,5 +21,5 @@ MonoBehaviour:
   Icon: {fileID: 21300000, guid: 677068433f8a6bc4397e731a638fd5d9, type: 3}
   FallingStoneBehavior: {fileID: -5072360949165659967, guid: 15d869bd407f0bb4787b5b97bdbd0dc8,
     type: 3}
-  Chance: 10
+  Chance: 15
   ChanceLevelPercentage: 10

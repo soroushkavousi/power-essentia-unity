@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Black Mage
   HealthData:
-    Health: 500
+    Health: 1000
     HealthLevelPercentage: 20
-    PhysicalResistance: 10
+    PhysicalResistance: 15
     PhysicalResistanceLevelPercentage: 1
     MagicResistance: 30
     MagicResistanceLevelPercentage: 2
@@ -24,10 +24,10 @@ MonoBehaviour:
     DeathRewardsData:
     - Type: 0
       Amount: 1000
-      LevelPercentage: 1
+      LevelPercentage: 10
     - Type: 1
       Amount: 100
-      LevelPercentage: 1
+      LevelPercentage: 10
   AIAttackerStaticData:
     VisionStaticData:
       CenterPoint: {x: -400, y: 0}

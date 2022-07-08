@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9717091d86eccbc43b827d803f747f33, type: 3}
+  m_Name: ArcherDiamondStaticData
+  m_EditorClassIdentifier: 
+  Name: 1
+  IsPermanent: 1
+  ActiveTime: 0
+  ActiveTimeLevelPercentage: 0
+  CooldownTime: 0
+  CooldownTimeLevelPercentage: 0
+  Icon: {fileID: 21300000, guid: 7250263116f03f341bb47548a9fd373e, type: 3}
+  StartInterval: 0
+  IntervalNegativeBasePerLevel: 0
+  StartDiamondCount: 0
+  DiamondCountBasePerlevel: 0
+  StartCooldownReduction: 0
+  CooldownReductionBasePerLevel: 0

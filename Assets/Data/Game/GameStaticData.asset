@@ -30,13 +30,13 @@ MonoBehaviour:
   Settings:
     BuyDiamondResourceBunches:
     - Type: 0
-      Amount: 100000
-    - Type: 1
       Amount: 10000
+    - Type: 1
+      Amount: 1000
     DiamondUpgradeResourceBunches:
     - Type: 0
       Amount: 1000
-      LevelPercentage: 300
+      LevelPercentage: 200
     - Type: 1
-      Amount: 10
-      LevelPercentage: 300
+      Amount: 100
+      LevelPercentage: 200
