@@ -90,8 +90,6 @@ public abstract class DiamondBehavior : MonoBehaviour
         }
     }
 
-
-
     private void Update()
     {
         if (_isPermanent)

@@ -22,4 +22,4 @@ MonoBehaviour:
   GroundFireBehavior: {fileID: 1181049932790168290, guid: 0f33444dfb417de4f8ce8783c5801485,
     type: 3}
   Chance: 10
-  ChanceLevelPercentage: 10
+  ChanceLevelPercentage: 1
