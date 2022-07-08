@@ -3,7 +3,7 @@
     public enum DiamondName
     {
         NONE,
-        //Tools
+        //Base
         ARCHER,
         BOW,
         WALL,
@@ -22,7 +22,7 @@
     public enum RingName
     {
         NONE = 0,
-        TOOLS = 1,
+        BASE = 1,
         LEFT = 2,
         DECK = 2,
         RIGHT = 3,

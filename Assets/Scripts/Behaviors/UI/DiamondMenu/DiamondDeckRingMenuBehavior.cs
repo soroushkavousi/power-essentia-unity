@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DiamondMenuDeckBehavior : MonoBehaviour
+public class DiamondDeckRingMenuBehavior : MonoBehaviour
 {
-    private static DiamondMenuDeckBehavior _instance = default;
+    private static DiamondDeckRingMenuBehavior _instance = default;
     [SerializeField] private DiamondUpgradeMenuBehavior _diamondUpgradeMenuBehavior = default;
     [SerializeField] private ButtonBehavior _useInDeckButton = default;
     [SerializeField] private List<DiamondMenuDeckItemBehavior> _deckItemBehaviors = default;
@@ -12,7 +12,7 @@ public class DiamondMenuDeckBehavior : MonoBehaviour
     //[Space(Constants.DebugSectionSpace)]
     //[Header(Constants.DebugSectionHeader)]
 
-    public static DiamondMenuDeckBehavior Instance => Utils.GetInstance(ref _instance);
+    public static DiamondDeckRingMenuBehavior Instance => Utils.GetInstance(ref _instance);
     public DiamondUpgradeMenuBehavior DiamondUpgradeMenuBehavior => _diamondUpgradeMenuBehavior;
 
     private void Awake()

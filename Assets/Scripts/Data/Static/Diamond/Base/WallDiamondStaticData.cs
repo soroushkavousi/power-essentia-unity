@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "WallDiamondStaticData",
-    menuName = "StaticData/Diamonds/Tools/WallDiamondStaticData", order = 1)]
+    menuName = "StaticData/Diamonds/Base/WallDiamondStaticData", order = 1)]
 public class WallDiamondStaticData : DiamondStaticData
 {
     [Space(Constants.DataSectionSpace)]

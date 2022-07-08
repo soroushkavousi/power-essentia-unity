@@ -7,7 +7,7 @@ public abstract class DiamondOwnerBehavior : PlayerBehavior
 {
     [Space(Constants.SpaceSection)]
     [Header(Constants.HeaderStart + nameof(DiamondOwnerBehavior) + Constants.HeaderEnd)]
-    [SerializeField] private Transform _toolsRingSlot = default;
+    [SerializeField] private Transform _baseRingSlot = default;
     [SerializeField] private Transform _leftRingSlot = default;
     [SerializeField] private Transform _rightRingSlot = default;
     [SerializeField] private Transform _boxSlot = default;
@@ -23,7 +23,7 @@ public abstract class DiamondOwnerBehavior : PlayerBehavior
     public Dictionary<DiamondName, DiamondBehavior> AllDiamondBehaviors { get; set; } = new Dictionary<DiamondName, DiamondBehavior>();
     public Dictionary<RingName, List<DiamondBehavior>> RingDiamondBehaviorsMap { get; set; } = new Dictionary<RingName, List<DiamondBehavior>>()
     {
-        [RingName.TOOLS] = new List<DiamondBehavior>(),
+        [RingName.BASE] = new List<DiamondBehavior>(),
         [RingName.LEFT] = new List<DiamondBehavior>(),
         [RingName.RIGHT] = new List<DiamondBehavior>(),
         [RingName.NONE] = new List<DiamondBehavior>(),
@@ -38,7 +38,7 @@ public abstract class DiamondOwnerBehavior : PlayerBehavior
 
         _ringTransformMap = new Dictionary<RingName, Transform>
         {
-            [RingName.TOOLS] = _toolsRingSlot,
+            [RingName.BASE] = _baseRingSlot,
             [RingName.LEFT] = _leftRingSlot,
             [RingName.RIGHT] = _rightRingSlot,
             [RingName.NONE] = _boxSlot,
@@ -86,7 +86,7 @@ public abstract class DiamondOwnerBehavior : PlayerBehavior
         diamondBehavior.Initialize(diamondDynamicData.KnowledgeState, diamondDynamicData.Level, this);
         RingDiamondBehaviorsMap[ringName].Add(diamondBehavior);
         AllDiamondBehaviors.Add(diamondName, diamondBehavior);
-        if (ringName == RingName.TOOLS)
+        if (ringName == RingName.BASE)
             diamondBehavior.Activate();
     }
 }

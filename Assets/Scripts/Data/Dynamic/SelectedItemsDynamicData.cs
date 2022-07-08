@@ -11,7 +11,7 @@ namespace Assets.Scripts.Models
 
         public Dictionary<RingName, List<Observable<DiamondName>>> RingDiamondNamesMap { get; set; } = new Dictionary<RingName, List<Observable<DiamondName>>>
         {
-            [RingName.TOOLS] = new List<Observable<DiamondName>>
+            [RingName.BASE] = new List<Observable<DiamondName>>
             {
                 new(),
                 new(),
@@ -35,21 +35,21 @@ namespace Assets.Scripts.Models
         public Dictionary<RingName, Observable<DiamondName>> MenuDiamondName { get; set; } = new Dictionary<RingName, Observable<DiamondName>>()
         {
             [RingName.DECK] = new Observable<DiamondName>(),
-            [RingName.TOOLS] = new Observable<DiamondName>(),
+            [RingName.BASE] = new Observable<DiamondName>(),
         };
 
         private SelectedItemsDynamicData() { }
 
-        public SelectedItemsDynamicData(int demonLevel, List<DiamondName> toolsRingDiamondNames,
+        public SelectedItemsDynamicData(int demonLevel, List<DiamondName> baseRingDiamondNames,
             List<DiamondName> leftRingDiamondNames, List<DiamondName> righRingDiamondNames,
-            DiamondName menuDeckDiamondName, DiamondName menuToolsDiamondName)
+            DiamondName menuDeckDiamondName, DiamondName menuBaseDiamondName)
         {
             DemonLevel.Value = demonLevel;
             MenuDiamondName[RingName.LEFT] = MenuDiamondName[RingName.RIGHT] = MenuDiamondName[RingName.DECK];
 
-            for (int i = 0; i < RingDiamondNamesMap[RingName.TOOLS].Count; i++)
+            for (int i = 0; i < RingDiamondNamesMap[RingName.BASE].Count; i++)
             {
-                RingDiamondNamesMap[RingName.TOOLS][i].Value = toolsRingDiamondNames[i];
+                RingDiamondNamesMap[RingName.BASE][i].Value = baseRingDiamondNames[i];
             }
 
             for (int i = 0; i < RingDiamondNamesMap[RingName.LEFT].Count; i++)
@@ -65,7 +65,7 @@ namespace Assets.Scripts.Models
             }
 
             MenuDiamondName[RingName.DECK].Value = menuDeckDiamondName;
-            MenuDiamondName[RingName.TOOLS].Value = menuToolsDiamondName;
+            MenuDiamondName[RingName.BASE].Value = menuBaseDiamondName;
         }
 
         private void RemoveSameDiamondFromDeck(RingName ringName, int index)

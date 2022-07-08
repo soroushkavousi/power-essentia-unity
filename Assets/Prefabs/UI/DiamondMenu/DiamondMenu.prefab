@@ -825,7 +825,7 @@ GameObject:
   - component: {fileID: 4338848911382309720}
   - component: {fileID: 8538596988481789475}
   m_Layer: 5
-  m_Name: ToolsMenu
+  m_Name: BaseRingMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -895,7 +895,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &4338848911382309720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1258,7 +1258,7 @@ GameObject:
   - component: {fileID: 1017317263367719821}
   - component: {fileID: 324138041448014977}
   m_Layer: 5
-  m_Name: DeckMenu
+  m_Name: DeckRingMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1329,7 +1329,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &1017317263367719821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1898,7 +1898,7 @@ PrefabInstance:
     - target: {fileID: 63802432521554611, guid: 9f62757244ae07742a8fb00aee5f03ca,
         type: 3}
       propertyPath: m_Name
-      value: Tools
+      value: BaseRingHeader
       objectReference: {fileID: 0}
     - target: {fileID: 2102426670190924783, guid: 9f62757244ae07742a8fb00aee5f03ca,
         type: 3}
@@ -1943,7 +1943,7 @@ PrefabInstance:
     - target: {fileID: 5564605098365186082, guid: 9f62757244ae07742a8fb00aee5f03ca,
         type: 3}
       propertyPath: m_text
-      value: Tools
+      value: Base
       objectReference: {fileID: 0}
     - target: {fileID: 6904615555488472272, guid: 9f62757244ae07742a8fb00aee5f03ca,
         type: 3}
@@ -3180,7 +3180,7 @@ PrefabInstance:
     - target: {fileID: 63802432521554611, guid: 9f62757244ae07742a8fb00aee5f03ca,
         type: 3}
       propertyPath: m_Name
-      value: Deck
+      value: DeckRingHeader
       objectReference: {fileID: 0}
     - target: {fileID: 2102426670190924783, guid: 9f62757244ae07742a8fb00aee5f03ca,
         type: 3}

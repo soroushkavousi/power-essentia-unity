@@ -183,7 +183,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3966086700140115986}
   m_Layer: 9
-  m_Name: Tools
+  m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -537,7 +537,7 @@ MonoBehaviour:
         _lastValue: 0
     _diamonds: []
     _resourceBunches: []
-  _toolsRingSlot: {fileID: 3966086700140115986}
+  _baseRingSlot: {fileID: 3966086700140115986}
   _leftRingSlot: {fileID: 1159773686580589818}
   _rightRingSlot: {fileID: 4743750733926761378}
   _boxSlot: {fileID: 3105269392662845338}

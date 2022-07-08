@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class DiamondMenuDeckItemBehavior : MonoBehaviour, IObserver
 {
-    [SerializeField] private DiamondMenuDeckBehavior _diamondMenuDeckBehavior = default;
+    [SerializeField] private DiamondDeckRingMenuBehavior _diamondMenuDeckBehavior = default;
     [SerializeField] private RingName _ringName = default;
     [SerializeField] private int _index = default;
     [SerializeField] private Image _diamondImage = default;

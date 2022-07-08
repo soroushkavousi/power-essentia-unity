@@ -25,14 +25,14 @@ public static class PlayerStart
                 DiamondName.NONE.ToString(),
                 DiamondName.NONE.ToString(),
             },
-            toolsRingDiamondNames: new List<string>
+            baseRingDiamondNames: new List<string>
             {
                 DiamondName.BOW.ToString(),
                 DiamondName.WALL.ToString(),
                 DiamondName.BLOOD.ToString(),
             },
             menuDeckDiamondName: DiamondName.FIRE.ToString(),
-            menuToolsDiamondName: DiamondName.BOW.ToString()
+            menuBaseDiamondName: DiamondName.BOW.ToString()
         ),
         Diamonds = new List<DiamondDynamicDataTO>
         {
@@ -49,9 +49,9 @@ public static class PlayerStart
         },
         ResourceBunches = new List<ResourceBunchDynamicDataTO>
         {
-            new ResourceBunchDynamicDataTO(ResourceType.COIN.ToString(), 8000),
-            new ResourceBunchDynamicDataTO(ResourceType.DEMON_BLOOD.ToString(), 80),
-            new ResourceBunchDynamicDataTO(ResourceType.DARK_DEMON_BLOOD.ToString(), 400),
+            new ResourceBunchDynamicDataTO(ResourceType.COIN.ToString(), 15000),
+            new ResourceBunchDynamicDataTO(ResourceType.DEMON_BLOOD.ToString(), 1500),
+            new ResourceBunchDynamicDataTO(ResourceType.DARK_DEMON_BLOOD.ToString(), 15),
         },
     };
 }

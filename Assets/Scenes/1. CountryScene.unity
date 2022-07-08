@@ -8896,6 +8896,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5962036245222818070, guid: 8fa7fa8faf39b4949bcc48c057cebf64,
+        type: 3}
+      propertyPath: m_Name
+      value: Base
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8fa7fa8faf39b4949bcc48c057cebf64, type: 3}
 --- !u!224 &1446084702 stripped
@@ -9383,6 +9388,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -255
       objectReference: {fileID: 0}
+    - target: {fileID: 1678272375396836007, guid: 6720336ce6ae39d4ab39b7fe75a52820,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1868041545819733903, guid: 6720336ce6ae39d4ab39b7fe75a52820,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -9427,6 +9437,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -67.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2357360010036057516, guid: 6720336ce6ae39d4ab39b7fe75a52820,
+        type: 3}
+      propertyPath: m_Name
+      value: BaseRingHeader
       objectReference: {fileID: 0}
     - target: {fileID: 2738792508939401863, guid: 6720336ce6ae39d4ab39b7fe75a52820,
         type: 3}
@@ -9873,6 +9888,17 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5440539267241492529, guid: 6720336ce6ae39d4ab39b7fe75a52820,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4,
+        type: 2}
+    - target: {fileID: 5440539267241492529, guid: 6720336ce6ae39d4ab39b7fe75a52820,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5561509574362178042, guid: 6720336ce6ae39d4ab39b7fe75a52820,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -9893,6 +9919,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -67.25
       objectReference: {fileID: 0}
+    - target: {fileID: 5645670252685487621, guid: 6720336ce6ae39d4ab39b7fe75a52820,
+        type: 3}
+      propertyPath: m_Name
+      value: BaseRingMenu
+      objectReference: {fileID: 0}
     - target: {fileID: 5841913422313922358, guid: 6720336ce6ae39d4ab39b7fe75a52820,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -9912,6 +9943,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -67.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6217444059992485637, guid: 6720336ce6ae39d4ab39b7fe75a52820,
+        type: 3}
+      propertyPath: m_Name
+      value: DeckRingHeader
       objectReference: {fileID: 0}
     - target: {fileID: 6681902097233227853, guid: 6720336ce6ae39d4ab39b7fe75a52820,
         type: 3}
@@ -9937,6 +9973,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -405
+      objectReference: {fileID: 0}
+    - target: {fileID: 6752933829547258955, guid: 6720336ce6ae39d4ab39b7fe75a52820,
+        type: 3}
+      propertyPath: m_Name
+      value: DeckRingMenu
       objectReference: {fileID: 0}
     - target: {fileID: 6876095304700979922, guid: 6720336ce6ae39d4ab39b7fe75a52820,
         type: 3}

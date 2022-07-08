@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "ArcherDiamondStaticData",
-    menuName = "StaticData/Diamonds/Tools/ArcherDiamondStaticData", order = 1)]
+    menuName = "StaticData/Diamonds/Base/ArcherDiamondStaticData", order = 1)]
 public class ArcherDiamondStaticData : DiamondStaticData
 {
     [Space(Constants.DataSectionSpace)]

@@ -10,39 +10,39 @@ public class SelectedItemsDynamicDataTO : IObserver
     private SelectedItemsDynamicData _selectedItemsDynamicData = default;
 
     public int DemonLevel;
-    public List<string> ToolsRingDiamondNames;
+    public List<string> BaseRingDiamondNames;
     public List<string> LeftRingDiamondNames;
     public List<string> RightRingDiamondNames;
     public string MenuDeckDiamondName;
-    public string MenuToolsDiamondName;
+    public string MenuBaseDiamondName;
 
-    public SelectedItemsDynamicDataTO(int demonLevel, List<string> toolsRingDiamondNames,
+    public SelectedItemsDynamicDataTO(int demonLevel, List<string> baseRingDiamondNames,
         List<string> leftRingDiamondNames, List<string> rightRingDiamondNames,
-        string menuDeckDiamondName, string menuToolsDiamondName)
+        string menuDeckDiamondName, string menuBaseDiamondName)
     {
         DemonLevel = demonLevel;
-        ToolsRingDiamondNames = toolsRingDiamondNames;
+        BaseRingDiamondNames = baseRingDiamondNames;
         LeftRingDiamondNames = leftRingDiamondNames;
         RightRingDiamondNames = rightRingDiamondNames;
         MenuDeckDiamondName = menuDeckDiamondName;
-        MenuToolsDiamondName = menuToolsDiamondName;
+        MenuBaseDiamondName = menuBaseDiamondName;
     }
 
     public SelectedItemsDynamicData GetSelectedItemsDynamicData()
     {
-        var toolsRingDiamondNames = ToolsRingDiamondNames.Select(diamondName => diamondName.ToEnum<DiamondName>()).ToList();
+        var baseRingDiamondNames = BaseRingDiamondNames.Select(diamondName => diamondName.ToEnum<DiamondName>()).ToList();
         var leftRingDiamondNames = LeftRingDiamondNames.Select(diamondName => diamondName.ToEnum<DiamondName>()).ToList();
         var rightRingDiamondNames = RightRingDiamondNames.Select(diamondName => diamondName.ToEnum<DiamondName>()).ToList();
         var menuDeckDiamondName = MenuDeckDiamondName.ToEnum<DiamondName>();
-        var menuToolsDiamondName = MenuToolsDiamondName.ToEnum<DiamondName>();
+        var menuBaseDiamondName = MenuBaseDiamondName.ToEnum<DiamondName>();
 
         _selectedItemsDynamicData = new SelectedItemsDynamicData(DemonLevel,
-            toolsRingDiamondNames, leftRingDiamondNames, rightRingDiamondNames,
-            menuDeckDiamondName, menuToolsDiamondName);
+            baseRingDiamondNames, leftRingDiamondNames, rightRingDiamondNames,
+            menuDeckDiamondName, menuBaseDiamondName);
 
         _selectedItemsDynamicData.DemonLevel.Attach(this);
 
-        foreach (var currentRingName in new List<RingName> { RingName.TOOLS, RingName.LEFT, RingName.RIGHT })
+        foreach (var currentRingName in new List<RingName> { RingName.BASE, RingName.LEFT, RingName.RIGHT })
         {
             for (int i = 0; i < _selectedItemsDynamicData.RingDiamondNamesMap[currentRingName].Count; i++)
             {
@@ -51,7 +51,7 @@ public class SelectedItemsDynamicDataTO : IObserver
         }
 
         _selectedItemsDynamicData.MenuDiamondName[RingName.DECK].Attach(this);
-        _selectedItemsDynamicData.MenuDiamondName[RingName.TOOLS].Attach(this);
+        _selectedItemsDynamicData.MenuDiamondName[RingName.BASE].Attach(this);
         return _selectedItemsDynamicData;
     }
 
@@ -66,8 +66,8 @@ public class SelectedItemsDynamicDataTO : IObserver
         var newDiamondName = _selectedItemsDynamicData.RingDiamondNamesMap[ringName][index].Value;
         switch (ringName)
         {
-            case RingName.TOOLS:
-                ToolsRingDiamondNames[index] = newDiamondName.ToString();
+            case RingName.BASE:
+                BaseRingDiamondNames[index] = newDiamondName.ToString();
                 break;
             case RingName.LEFT:
                 LeftRingDiamondNames[index] = newDiamondName.ToString();
@@ -85,9 +85,9 @@ public class SelectedItemsDynamicDataTO : IObserver
         PlayerDynamicDataTO.Instance.Save();
     }
 
-    private void HandleMenuToolsDiamondNameChange()
+    private void HandleMenuBaseDiamondNameChange()
     {
-        MenuToolsDiamondName = _selectedItemsDynamicData.MenuDiamondName[RingName.TOOLS].Value.ToString();
+        MenuBaseDiamondName = _selectedItemsDynamicData.MenuDiamondName[RingName.BASE].Value.ToString();
         PlayerDynamicDataTO.Instance.Save();
     }
 
@@ -101,11 +101,11 @@ public class SelectedItemsDynamicDataTO : IObserver
         {
             if (subject == _selectedItemsDynamicData.MenuDiamondName[RingName.DECK])
                 HandleMenuDeckDiamondNameChange();
-            else if (subject == _selectedItemsDynamicData.MenuDiamondName[RingName.TOOLS])
-                HandleMenuToolsDiamondNameChange();
+            else if (subject == _selectedItemsDynamicData.MenuDiamondName[RingName.BASE])
+                HandleMenuBaseDiamondNameChange();
             else
             {
-                foreach (var currentRingName in new List<RingName> { RingName.TOOLS, RingName.LEFT, RingName.RIGHT })
+                foreach (var currentRingName in new List<RingName> { RingName.BASE, RingName.LEFT, RingName.RIGHT })
                 {
                     for (int i = 0; i < _selectedItemsDynamicData.RingDiamondNamesMap[currentRingName].Count; i++)
                     {
