@@ -17,7 +17,7 @@ public class DiamondMenuDeckBehavior : MonoBehaviour
 
     private void Awake()
     {
-        _diamondUpgradeMenuBehavior.FeedData(PlayerBehavior.Main.DynamicData.SelectedItems.
+        _diamondUpgradeMenuBehavior.FeedData(PlayerBehavior.MainPlayer.DynamicData.SelectedItems.
                 MenuDiamondName[RingName.DECK]);
         _diamondUpgradeMenuBehavior.OnShowSelectedDiamondDetailsActions.Add(HandleShowSelectedDiamondDetailsAction);
         HandleShowSelectedDiamondDetailsAction();

@@ -17,13 +17,9 @@ public class LoseSystemBehavior : MonoBehaviour, IObserver
 
     public void FeedData()
     {
-        _castleHealthBehavior = FindObjectOfType<WallBehavior>(true).GetComponent<HealthBehavior>();
-        _castleHealthBehavior.Health.Attach(this);
-    }
-
-    public void Restart()
-    {
         _lose = false;
+        _castleHealthBehavior = WallBehavior.Instance.GetComponent<HealthBehavior>();
+        _castleHealthBehavior.Health.Attach(this);
     }
 
     public void CheckLoseCondition()

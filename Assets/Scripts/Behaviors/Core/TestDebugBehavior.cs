@@ -4,11 +4,6 @@ public class TestDebugBehavior : MonoBehaviour
 {
     [SerializeField] private ButtonBehavior _buttonBehaviour = default;
 
-    private void Awake()
-    {
-
-    }
-
     public void TestButtonBehavior()
     {
         Debug.Log($"[TestButtonBehavior]");

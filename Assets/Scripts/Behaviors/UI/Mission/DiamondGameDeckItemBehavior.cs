@@ -28,7 +28,7 @@ public class DiamondGameDeckItemBehavior : MonoBehaviour
 
     private void GetDiamondBehavior()
     {
-        _diamondBehavior = PlayerBehavior.Main.GetComponent<DiamondOwnerBehavior>().RingDiamondBehaviorsMap[_ringName][_index];
+        _diamondBehavior = DiamondOwnerBehavior.MainDiamondOwner.RingDiamondBehaviorsMap[_ringName][_index];
         if (_diamondBehavior == default)
         {
             gameObject.SetActive(false);

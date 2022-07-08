@@ -15,12 +15,8 @@ public class WinSystemBehavior : MonoBehaviour, IObserver
 
     public void FeedData()
     {
-        LevelManagerBehavior.Instance.Finished.Attach(this);
-    }
-
-    public void Restart()
-    {
         _win = false;
+        LevelManagerBehavior.Instance.Finished.Attach(this);
     }
 
     public void CheckWinCondition()

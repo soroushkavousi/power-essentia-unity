@@ -30,7 +30,7 @@ public class DiamondUpgradeMenuItemBehavior : MonoBehaviour, IObserver
 
         _selectedDiamondName = _diamondUpgradeMenuBehavior.SelectedDiamondName;
 
-        _diamondOwnerBehavior = PlayerBehavior.Main.GetComponent<DiamondOwnerBehavior>();
+        _diamondOwnerBehavior = PlayerBehavior.MainPlayer.To<DiamondOwnerBehavior>();
         _selectedDiamondName.Attach(this);
         HandleSelectedDiamondChange();
         _diamondBehavior = _diamondOwnerBehavior.AllDiamondBehaviors[_diamondName];

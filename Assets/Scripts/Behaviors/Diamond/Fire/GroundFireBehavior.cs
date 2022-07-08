@@ -59,19 +59,19 @@ public class GroundFireBehavior : MonoBehaviour, IObserver<CollideData>
         IsTargetEnemyFunction = isTargetEnemyFunction;
 
         transform.position = _enemy.transform.position + (Vector3)_staticData.SpawnOffset;
-
-        _isSample = enemy == OutBoxBehavior.Instance.Location1.gameObject;
+        _isSample = _enemy == OutBoxBehavior.Instance.Location1.gameObject;
         if (_isSample)
+        {
+            gameObject.SetActive(false);
             return;
-
-        StartCoroutine(DestroyAfterLifetime());
+        }
+        StartCoroutine(OnAfterInitialization());
     }
 
-    private void Start()
+    private IEnumerator OnAfterInitialization()
     {
-        if (_isSample)
-            gameObject.SetActive(false);
-
+        yield return null;
+        StartCoroutine(DestroyAfterLifetime());
         //_bodyBehavior.IsColliderDisabled = true;
         //var mainParticleSystem = _particleSystem.main;
         //mainParticleSystem.playOnAwake = false;

@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Enums;
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(BodyBehavior))]
@@ -52,10 +53,12 @@ public abstract class DemonBehavior : MonoBehaviour, ISubject,
         _statusOwnerBehavior.FeedData();
         _statusOwnerBehavior.BurnStatusBehavior.FeedData();
         _statusOwnerBehavior.StunStatusBehavior.FeedData();
+        StartCoroutine(OnAfterInitialization());
     }
 
-    private void Start()
+    private IEnumerator OnAfterInitialization()
     {
+        yield return null;
         _state = DemonState.ALIVE;
         Notify();
     }

@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Lizard
   HealthData:
     Health: 1000
-    HealthLevelPercentage: 5
+    HealthLevelPercentage: 20
     PhysicalResistance: 30
     PhysicalResistanceLevelPercentage: 1
     MagicResistance: 10

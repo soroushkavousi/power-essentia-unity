@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Black Mage
   HealthData:
     Health: 500
-    HealthLevelPercentage: 5
+    HealthLevelPercentage: 20
     PhysicalResistance: 10
     PhysicalResistanceLevelPercentage: 1
     MagicResistance: 30

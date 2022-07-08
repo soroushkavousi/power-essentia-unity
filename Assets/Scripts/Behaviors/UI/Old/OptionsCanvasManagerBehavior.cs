@@ -8,7 +8,7 @@ public class OptionsCanvasManagerBehavior : MonoBehaviour
 
     private bool _isModified = false;
 
-    private void Start()
+    private void Awake()
     {
         Options.Instance.OnMasterVolumeChangeActions.Add(OnMasterVolumeChange);
         OnMasterVolumeChange();

@@ -14,9 +14,10 @@ public class ArcherBehavior : DiamondOwnerBehavior
     [SerializeField] private BowDiamondBehavior _bowDiamondBehavior = default;
     private RangeAttackerBehavior _rangeAttackerBehavior = default;
 
-    private void Awake()
+    public override void Initialize()
     {
-        Initialize(_staticData2);
+        base.Initialize();
+        base.FeedData(_staticData2);
         _stateManagerBehavior.FeedData(typeof(ArcherState), ArcherState.IDLING,
             CheckState, StopOldState, StartNewState);
         _bowDiamondBehavior = (BowDiamondBehavior)AllDiamondBehaviors[DiamondName.BOW];

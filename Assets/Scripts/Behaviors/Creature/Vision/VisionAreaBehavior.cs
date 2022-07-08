@@ -13,17 +13,13 @@ public class VisionAreaBehavior : MonoBehaviour
 
     public VisionBehavior VisionBehavior => _visionBehavior;
 
-    private void Start()
-    {
-        //FixIllegalXSize();
-    }
-
     public void Initialize(Vector2 centerPoint, Vector2 size)
     {
         _boxCollider2D = GetComponent<BoxCollider2D>();
 
         _boxCollider2D.offset = centerPoint;
         _boxCollider2D.size = size;
+        //FixIllegalXSize();
     }
 
     //private void FixIllegalXSize()

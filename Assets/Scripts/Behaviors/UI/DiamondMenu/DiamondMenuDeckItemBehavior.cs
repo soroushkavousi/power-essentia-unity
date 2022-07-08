@@ -17,7 +17,6 @@ public class DiamondMenuDeckItemBehavior : MonoBehaviour, IObserver
 
     [SerializeField] private Observable<DiamondName> _diamondName = default;
     [SerializeField] private bool _isGlowing = default;
-    private DiamondOwnerBehavior _diamondOwnerBehavior = default;
     private DiamondBehavior _diamondBehavior = default;
     private Observable<DiamondName> _selectedDiamondName = default;
 
@@ -27,10 +26,9 @@ public class DiamondMenuDeckItemBehavior : MonoBehaviour, IObserver
 
     private void Awake()
     {
-        _diamondOwnerBehavior = PlayerBehavior.Main.GetComponent<DiamondOwnerBehavior>();
-        _diamondName = PlayerBehavior.Main.DynamicData.SelectedItems.RingDiamondNamesMap[_ringName][_index];
+        _diamondName = PlayerBehavior.MainPlayer.DynamicData.SelectedItems.RingDiamondNamesMap[_ringName][_index];
         _diamondName.Attach(this);
-        _selectedDiamondName = PlayerBehavior.Main.DynamicData.SelectedItems.
+        _selectedDiamondName = PlayerBehavior.MainPlayer.DynamicData.SelectedItems.
             MenuDiamondName[_ringName];
         ShowDiamondDetails();
     }
@@ -43,7 +41,7 @@ public class DiamondMenuDeckItemBehavior : MonoBehaviour, IObserver
             _diamondNameText.text = GameManagerBehavior.Instance.StaticData.Defaults.DiamondName;
             return;
         }
-        _diamondBehavior = _diamondOwnerBehavior.AllDiamondBehaviors[_diamondName.Value];
+        _diamondBehavior = DiamondOwnerBehavior.MainDiamondOwner.AllDiamondBehaviors[_diamondName.Value];
         _diamondImage.sprite = _diamondBehavior.Icon;
         _diamondNameText.text = _diamondBehavior.ShowName;
     }

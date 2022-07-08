@@ -14,7 +14,7 @@ public class GameResourceDisplayBehavior : MonoBehaviour, IObserver
     {
         _resourceDisplayBehavior = GetComponent<ResourceDisplayBehavior>();
         _resourceDisplayBehavior.AmountText.text = "0";
-        _resourceAmount = PlayerBehavior.Main.DynamicData.ResourceBunches
+        _resourceAmount = PlayerBehavior.MainPlayer.DynamicData.ResourceBunches
             .Find(rb => rb.Type == _resourceType).Amount;
         _resourceAmount.Attach(this);
         _resourceDisplayBehavior.AmountText.text = _resourceAmount.Value.ToString();

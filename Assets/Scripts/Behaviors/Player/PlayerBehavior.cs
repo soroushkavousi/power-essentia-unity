@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Models;
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(StateManagerBehavior))]
@@ -12,7 +13,8 @@ public abstract class PlayerBehavior : MonoBehaviour
     [Space(Constants.SpaceSection)]
     [Header(Constants.DebugSectionHeader)]
     [SerializeField] protected bool _mouseIsDown = default;
-    [SerializeField] protected PlayerDynamicData _dynamicData = default;
+    [SerializeField] protected PlayerDynamicData _dynamicData = null;
+    protected bool _isInitialized = false;
     private PlayerStaticData _staticData = default;
     protected StateManagerBehavior _stateManagerBehavior = default;
     protected BodyBehavior _bodyBehavior = default;
@@ -20,10 +22,14 @@ public abstract class PlayerBehavior : MonoBehaviour
     public PlayerDynamicData DynamicData => _dynamicData;
     public bool IsMainPlayer => _isMainPlayer;
     public bool MouseIsDown { get => _mouseIsDown; set => _mouseIsDown = value; }
-    public static PlayerBehavior Main => _main;
-    public bool IsInitialized { get; }
+    public static PlayerBehavior MainPlayer => FindMainPlayer();
 
-    protected void Initialize(PlayerStaticData staticData)
+    public virtual void Initialize()
+    {
+        _isInitialized = true;
+    }
+
+    protected void FeedData(PlayerStaticData staticData)
     {
         if (_isMainPlayer)
             _main = this;
@@ -33,10 +39,6 @@ public abstract class PlayerBehavior : MonoBehaviour
         _bodyBehavior.FeedData();
         _staticData = staticData;
         GetDynamicData();
-    }
-
-    protected virtual void Start()
-    {
         if (SceneManagerBehavior.Instance.CurrentSceneName != SceneName.MISSION)
             gameObject.SetActive(false);
     }
@@ -60,5 +62,14 @@ public abstract class PlayerBehavior : MonoBehaviour
             return target;
 
         return null;
+    }
+
+    private static PlayerBehavior FindMainPlayer()
+    {
+        if (_main == null || _main == default)
+            _main = FindObjectsOfType<PlayerBehavior>(true).FirstOrDefault(p => p.IsMainPlayer == true);
+        if (!_main._isInitialized)
+            _main.Initialize();
+        return _main;
     }
 }

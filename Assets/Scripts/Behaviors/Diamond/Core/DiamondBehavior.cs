@@ -48,6 +48,11 @@ public abstract class DiamondBehavior : MonoBehaviour
     public Transform DiamondEffectsParent => _diamondEffectsParent;
     public string Description => GetDescription();
 
+    public void FeedData(DiamondStaticData staticData)
+    {
+        _staticData = staticData;
+    }
+
     public virtual void Initialize(Observable<DiamondKnowledgeState> knowledgeState,
         Observable<int> level, DiamondOwnerBehavior diamondOwnerBehavior)
     {
@@ -55,19 +60,18 @@ public abstract class DiamondBehavior : MonoBehaviour
         _knowledgeState = knowledgeState;
         _level = level;
         _diamondOwnerBehavior = diamondOwnerBehavior;
+        if (_diamondOwnerBehavior != null)
+            _ownerAttackerBehavior = diamondOwnerBehavior.GetComponent<AttackerBehavior>();
 
         _activeTime = new(_staticData.ActiveTime, level, _staticData.ActiveTimeLevelPercentage, min: 0f);
         _cooldownTime = new(_staticData.CooldownTime, level, _staticData.CooldownTimeLevelPercentage, min: 0f);
 
-        InitializeBuyAndUpgradeResourceBunches();
-        if (diamondOwnerBehavior != null)
-            _ownerAttackerBehavior = diamondOwnerBehavior.GetComponent<AttackerBehavior>();
         IsTargetEnemyFunction = diamondOwnerBehavior.IsTargetEnemy;
+        InitializeBuyAndUpgradeResourceBunches();
         if (SceneManagerBehavior.Instance.CurrentSceneName == SceneName.MISSION)
             _diamondEffectsParent = MissionManagerBehavior.Instance.DiamondEffectsParent;
         else
             _diamondEffectsParent = OutBoxBehavior.Instance.Location1;
-
     }
 
     private void InitializeBuyAndUpgradeResourceBunches()
@@ -86,11 +90,7 @@ public abstract class DiamondBehavior : MonoBehaviour
         }
     }
 
-    public void FeedData(DiamondStaticData staticData)
-    {
-        _staticData = staticData;
 
-    }
 
     private void Update()
     {

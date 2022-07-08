@@ -16,7 +16,6 @@ public class BattleDetailsMenuBehavior : MonoBehaviour
     //[Space(Constants.DebugSectionSpace)]
     //[Header(Constants.DebugSectionHeader)]
 
-
     private void Awake()
     {
         _interactionLayerComponentBehavior = GetComponent<InteractionLayerPageBehavior>();

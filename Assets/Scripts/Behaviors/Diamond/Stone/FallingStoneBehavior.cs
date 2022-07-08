@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
@@ -53,20 +54,22 @@ public class FallingStoneBehavior : MonoBehaviour, IObserver<MovementChangeData>
             _enemy.transform.position.x + _staticData.SpawnXOffset,
             _staticData.SpawnYPosition);
 
-        _isSample = enemy == OutBoxBehavior.Instance.Location1.gameObject;
-        if (_isSample)
-            return;
-
         _movementBehavior = GetComponent<MovementBehavior>();
         _movementBehavior.FeedData(_staticData.MovementStaticData);
         _movementBehavior.Attach(this);
-        _movementBehavior.MoveToTarget(_enemy.transform);
+        _isSample = _enemy == OutBoxBehavior.Instance.Location1.gameObject;
+        if (_isSample)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+        StartCoroutine(OnAfterInitialization());
     }
 
-    private void Start()
+    private IEnumerator OnAfterInitialization()
     {
-        if (_isSample)
-            gameObject.SetActive(false);
+        yield return null;
+        _movementBehavior.MoveToTarget(_enemy.transform);
     }
 
     private void ApplyStatusEffect()

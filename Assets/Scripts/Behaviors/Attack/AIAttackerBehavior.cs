@@ -33,16 +33,31 @@ public class AIAttackerBehavior : MonoBehaviour, IObserver<CollideData>
         _visionBehavior.Attach(this);
 
         _attackerBehavior = GetComponent<AttackerBehavior>();
+        StartCoroutine(OnAfterInitialization());
     }
 
-    private void Start()
+    private IEnumerator OnAfterInitialization()
     {
+        yield return null;
         StartCoroutine(FindClosestEnemy());
     }
 
     private void Update()
     {
         RemoveDeadEnemiesFromVision();
+    }
+
+    public IEnumerator FindClosestEnemy()
+    {
+        while (true)
+        {
+            if (_enemiesInVision.Count != 0)
+            {
+                _closestEnemy = _enemiesInVision.FindCLosestGameObject(gameObject);
+                _attackerBehavior.CurrentEnemy = _closestEnemy;
+            }
+            yield return new WaitForSeconds(0.05f);
+        }
     }
 
     private void TrackIfTargetEnemyIsInVision(Collider2D otherCollider)
@@ -94,19 +109,6 @@ public class AIAttackerBehavior : MonoBehaviour, IObserver<CollideData>
                     Debug.Log($"RemoveDeadEnemiesFromVision {enemy.name} removed from list.");
                 }
             }
-        }
-    }
-
-    public IEnumerator FindClosestEnemy()
-    {
-        while (true)
-        {
-            if (_enemiesInVision.Count != 0)
-            {
-                _closestEnemy = _enemiesInVision.FindCLosestGameObject(gameObject);
-                _attackerBehavior.CurrentEnemy = _closestEnemy;
-            }
-            yield return new WaitForSeconds(0.05f);
         }
     }
 

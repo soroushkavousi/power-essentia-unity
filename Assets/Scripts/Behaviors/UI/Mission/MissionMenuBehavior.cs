@@ -16,11 +16,11 @@ public class MissionMenuBehavior : MonoBehaviour, IObserver
     private Observable<int> _deadDemonCount = default;
     private float _fixedDeltaTime;
 
-    private void Start()
+    private void Awake()
     {
         _fixedDeltaTime = Time.fixedDeltaTime;
 
-        _demonLevel = PlayerBehavior.Main.DynamicData.SelectedItems.DemonLevel;
+        _demonLevel = PlayerBehavior.MainPlayer.DynamicData.SelectedItems.DemonLevel;
         _demonLevel.Attach(this);
 
         _totalWaveCount = LevelManagerBehavior.Instance.TotalWaveCount;

@@ -25,11 +25,7 @@ public class MissionManagerBehavior : MonoBehaviour
     private void Awake()
     {
         Time.timeScale = 1;
-        _selectedDemonLevel = PlayerBehavior.Main.DynamicData.SelectedItems.DemonLevel;
-    }
-
-    private void Start()
-    {
+        _selectedDemonLevel = PlayerBehavior.MainPlayer.DynamicData.SelectedItems.DemonLevel;
         StartSelectedLevel();
     }
 

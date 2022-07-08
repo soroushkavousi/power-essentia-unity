@@ -20,14 +20,10 @@ public class RangeWeaponBehavior : WeaponBehavior, ISubject<ProjectileBehavior>,
 
     public RangeWeaponStaticData StaticData => _staticData;
 
-    private void Awake()
-    {
-        base.FeedData(_staticData);
-    }
-
     public override void Initialize(Observable<int> level,
         Func<GameObject, GameObject> isTargetEnemyFunction)
     {
+        base.FeedData(_staticData);
         base.Initialize(level, isTargetEnemyFunction);
         _projectileBehavior = _staticData.ProjectileBehavior;
         _fireSound = _staticData.FireSound;

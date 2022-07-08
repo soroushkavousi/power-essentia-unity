@@ -21,12 +21,6 @@ public class MusicPlayerBehavior : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
     }
 
-    private void Start()
-    {
-        //_audioSource.volume = Options.Instance.MasterVolume;
-        //Options.Instance.OnMasterVolumeChangeActions.Add(OnMasterVolumeChange);
-    }
-
     private void Update()
     {
         if (Instance == null)

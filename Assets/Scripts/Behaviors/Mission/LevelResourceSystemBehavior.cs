@@ -26,13 +26,9 @@ public class LevelResourceSystemBehavior : MonoBehaviour, IObserver<DemonBehavio
                 new ResourceBunch(ResourceType.DARK_DEMON_BLOOD, 0),
             };
 
-        _gameResourceBunches = PlayerBehavior.Main.DynamicData.ResourceBunches;
-    }
-
-    private void Start()
-    {
+        _gameResourceBunches = PlayerBehavior.MainPlayer.DynamicData.ResourceBunches;
         WaveManagerBehavior.Instance.Attach(this);
-        _bloodDiamondBehavior = (BloodDiamondBehavior)((DiamondOwnerBehavior)PlayerBehavior.Main).AllDiamondBehaviors[DiamondName.BLOOD];
+        _bloodDiamondBehavior = (BloodDiamondBehavior)DiamondOwnerBehavior.MainDiamondOwner.AllDiamondBehaviors[DiamondName.BLOOD];
     }
 
     private void AddResourceForDeadDemon(DemonBehavior demonBehavior)

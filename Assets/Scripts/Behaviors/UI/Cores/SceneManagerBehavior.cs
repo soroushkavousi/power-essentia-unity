@@ -21,11 +21,6 @@ public class SceneManagerBehavior : MonoBehaviour
         }
     }
 
-    private void Awake()
-    {
-
-    }
-
     private void Start()
     {
         //If run at custom scene.

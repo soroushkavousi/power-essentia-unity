@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b029f71f30890c14aba8ccdd5064c2a1, type: 3}
   m_Name: BowData
   m_EditorClassIdentifier: 
-  Damage: 500
+  Damage: 300
   DamageLevelPercentage: 10
   Speed: 3
   SpeedLevelPercentage: 10

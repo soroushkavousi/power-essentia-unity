@@ -17,7 +17,6 @@ public class LevelManagerBehavior : MonoBehaviour
     [SerializeField] private LevelDescriptionStaticData _levelDescriptionStaticData = default;
     [SerializeField] private float _timer = 0f;
     [SerializeField] private Observable<bool> _finished = new();
-    private bool _initialized = default;
     private LevelResourceSystemBehavior _levelResourceSystemBehavior = default;
     private LoseSystemBehavior _loseSystemBehavior = default;
     private WinSystemBehavior _winSystemBehavior = default;
@@ -28,33 +27,24 @@ public class LevelManagerBehavior : MonoBehaviour
 
     public void Initialize(LevelDescriptionStaticData levelDescriptionStaticData)
     {
-        if (!_initialized)
-        {
-            _levelResourceSystemBehavior = GetComponent<LevelResourceSystemBehavior>();
-            _loseSystemBehavior = GetComponent<LoseSystemBehavior>();
-            _winSystemBehavior = GetComponent<WinSystemBehavior>();
-            _initialized = true;
-        }
-        else
-        {
-
-        }
+        _levelResourceSystemBehavior ??= GetComponent<LevelResourceSystemBehavior>();
+        _loseSystemBehavior ??= GetComponent<LoseSystemBehavior>();
+        _winSystemBehavior ??= GetComponent<WinSystemBehavior>();
         _timer = 0;
         _levelDescriptionStaticData = levelDescriptionStaticData;
         _finished.Value = false;
         _levelResourceSystemBehavior.FeedData();
         _loseSystemBehavior.FeedData();
         _winSystemBehavior.FeedData();
-        StartCoroutine(StartWaves());
         Time.timeScale = 1;
+        _totalWaveCount.Value = _levelDescriptionStaticData.WaveDescriptions.Count;
+        StartCoroutine(StartWaves());
     }
 
     private IEnumerator StartWaves()
     {
-        yield return new WaitForEndOfFrame();
         WaveDescription waveDescription;
         float deadLine;
-        _totalWaveCount.Value = _levelDescriptionStaticData.WaveDescriptions.Count;
         for (int i = 0; i < _totalWaveCount.Value; i++)
         {
             waveDescription = _levelDescriptionStaticData.WaveDescriptions[i];
@@ -63,10 +53,10 @@ public class LevelManagerBehavior : MonoBehaviour
             WaveManagerBehavior.Instance.Initialize(waveDescription);
             yield return new WaitUntil(() =>
                    _timer > deadLine
-                   || WaveManagerBehavior.Instance.Finished
+                   || WaveManagerBehavior.Instance.Finished.Value
                 );
         }
-        yield return new WaitUntil(() => WaveManagerBehavior.Instance.Finished);
+        yield return new WaitUntil(() => WaveManagerBehavior.Instance.Finished.Value);
         _finished.Value = true;
     }
 

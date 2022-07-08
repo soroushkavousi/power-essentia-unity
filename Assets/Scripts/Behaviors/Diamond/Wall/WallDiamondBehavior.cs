@@ -13,16 +13,11 @@ public class WallDiamondBehavior : DiamondBehavior
 
     public WallBehavior WallBehavior => _wallBehavior;
 
-    private void Awake()
-    {
-        base.FeedData(_staticData);
-    }
-
     public override void Initialize(Observable<DiamondKnowledgeState> state, Observable<int> level,
         DiamondOwnerBehavior diamondOwnerBehavior)
     {
+        base.FeedData(_staticData);
         base.Initialize(state, level, diamondOwnerBehavior);
-
     }
 
     protected override void DoActivationWork()

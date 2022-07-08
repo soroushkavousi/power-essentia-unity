@@ -25,7 +25,7 @@ public class DesicionCanvasManager : MonoBehaviour
     {
         _interactionLayerPageBehavior = GetComponent<InteractionLayerPageBehavior>();
         _audioSource = GetComponent<AudioSource>();
-        _selectedDemonLevel = PlayerBehavior.Main.DynamicData.SelectedItems.DemonLevel;
+        _selectedDemonLevel = PlayerBehavior.MainPlayer.DynamicData.SelectedItems.DemonLevel;
     }
 
     public void GoNextLevel()
