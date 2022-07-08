@@ -30,9 +30,9 @@ public class SelectedItemsDynamicDataTO : IObserver
 
     public SelectedItemsDynamicData GetSelectedItemsDynamicData()
     {
-        var toolsRingDiamondNames = ToolsRingDiamondNames.Select(didn => didn.ToEnum<DiamondName>()).ToList();
-        var leftRingDiamondNames = LeftRingDiamondNames.Select(didn => didn.ToEnum<DiamondName>()).ToList();
-        var rightRingDiamondNames = RightRingDiamondNames.Select(didn => didn.ToEnum<DiamondName>()).ToList();
+        var toolsRingDiamondNames = ToolsRingDiamondNames.Select(diamondName => diamondName.ToEnum<DiamondName>()).ToList();
+        var leftRingDiamondNames = LeftRingDiamondNames.Select(diamondName => diamondName.ToEnum<DiamondName>()).ToList();
+        var rightRingDiamondNames = RightRingDiamondNames.Select(diamondName => diamondName.ToEnum<DiamondName>()).ToList();
         var menuDeckDiamondName = MenuDeckDiamondName.ToEnum<DiamondName>();
         var menuToolsDiamondName = MenuToolsDiamondName.ToEnum<DiamondName>();
 

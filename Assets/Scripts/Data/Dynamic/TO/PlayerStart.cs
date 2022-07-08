@@ -27,17 +27,15 @@ public static class PlayerStart
             },
             toolsRingDiamondNames: new List<string>
             {
-                DiamondName.ARCHER.ToString(),
                 DiamondName.BOW.ToString(),
                 DiamondName.WALL.ToString(),
                 DiamondName.BLOOD.ToString(),
             },
             menuDeckDiamondName: DiamondName.FIRE.ToString(),
-            menuToolsDiamondName: DiamondName.ARCHER.ToString()
+            menuToolsDiamondName: DiamondName.BOW.ToString()
         ),
         Diamonds = new List<DiamondDynamicDataTO>
         {
-            new DiamondDynamicDataTO(DiamondName.ARCHER.ToString(), DiamondKnowledgeState.OWNED.ToString(), 1),
             new DiamondDynamicDataTO(DiamondName.BOW.ToString(), DiamondKnowledgeState.OWNED.ToString(),  1),
             new DiamondDynamicDataTO(DiamondName.WALL.ToString(), DiamondKnowledgeState.OWNED.ToString(),  1),
             new DiamondDynamicDataTO(DiamondName.BLOOD.ToString(), DiamondKnowledgeState.OWNED.ToString(),  1),
