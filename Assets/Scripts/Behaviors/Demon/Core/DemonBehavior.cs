@@ -17,7 +17,7 @@ public abstract class DemonBehavior : MonoBehaviour, ISubject,
     [SerializeField] private DemonState _state = default;
     [SerializeField] protected Observable<int> _level;
     [SerializeField] protected bool _isInAttackArea = default;
-    private DemonStaticData _staticData = default;
+    private DemonStaticData _demonStaticData = default;
 
     protected BodyBehavior _bodyBehavior = default;
     protected DemonHealthBehavior _healthBehavior = default;
@@ -37,11 +37,11 @@ public abstract class DemonBehavior : MonoBehaviour, ISubject,
         _temp++;
     }
 
-    public void FeedData(DemonStaticData staticData)
+    public void FeedData(DemonStaticData demonStaticData)
     {
-        _staticData = staticData;
+        _demonStaticData = demonStaticData;
         _healthBehavior = GetComponent<DemonHealthBehavior>();
-        _healthBehavior.FeedData(_staticData.HealthData, _level);
+        _healthBehavior.FeedData(_demonStaticData.HealthData, _level);
         _healthBehavior.Attach(this);
 
         _bodyBehavior = GetComponent<BodyBehavior>();

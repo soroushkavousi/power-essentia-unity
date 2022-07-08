@@ -8,22 +8,22 @@ public class HealthBehavior : MonoBehaviour, IObserver, ISubject
     [SerializeField] private bool _destroyOnDeath = default;
     [SerializeField] private GameObject _deathVfxPrefab = default;
     [SerializeField] protected bool _isDead = default;
-    private HealthStaticData _staticData = default;
+    private HealthStaticData _healthStaticData = default;
     protected readonly ObserverCollection _observers = new();
 
     public Health Health => _health;
     public bool IsDead => _isDead;
 
-    public void FeedData(HealthStaticData staticData,
+    public void FeedData(HealthStaticData healthStaticData,
         Observable<int> level = null,
         bool destroyOnDeath = true)
     {
-        _staticData = staticData;
-        _health = new(_staticData.Health, level, staticData.HealthLevelPercentage,
-            staticData.PhysicalResistance, staticData.PhysicalResistanceLevelPercentage,
-            staticData.MagicResistance, staticData.MagicResistanceLevelPercentage);
+        _healthStaticData = healthStaticData;
+        _health = new(_healthStaticData.Health, level, _healthStaticData.HealthLevelPercentage,
+            _healthStaticData.PhysicalResistance, _healthStaticData.PhysicalResistanceLevelPercentage,
+            _healthStaticData.MagicResistance, _healthStaticData.MagicResistanceLevelPercentage);
         _health.Attach(this);
-        _deathVfxPrefab = staticData.DeathVfxPrefab;
+        _deathVfxPrefab = _healthStaticData.DeathVfxPrefab;
         _destroyOnDeath = destroyOnDeath;
         _isDead = false;
     }

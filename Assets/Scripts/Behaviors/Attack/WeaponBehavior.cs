@@ -12,7 +12,7 @@ public abstract class WeaponBehavior : MonoBehaviour, ISubject<HitParameters>
     [SerializeField] protected Number _attackSpeed;
     [SerializeField] protected Number _criticalChance;
     [SerializeField] protected Number _criticalDamage;
-    private WeaponStaticData _staticData = default;
+    private WeaponStaticData _weaponStaticData = default;
     protected Observable<int> _level = default;
     private readonly ObserverCollection<HitParameters> _hitObservers = new();
 
@@ -22,9 +22,9 @@ public abstract class WeaponBehavior : MonoBehaviour, ISubject<HitParameters>
     public Number CriticalDamage => _criticalDamage;
     public Func<GameObject, GameObject> IsTargetEnemyFunction { get; set; }
 
-    protected void FeedData(WeaponStaticData staticData)
+    protected void FeedData(WeaponStaticData weaponStaticData)
     {
-        _staticData = staticData;
+        _weaponStaticData = weaponStaticData;
     }
 
     public virtual void Initialize(Observable<int> level,
@@ -32,17 +32,17 @@ public abstract class WeaponBehavior : MonoBehaviour, ISubject<HitParameters>
     {
         _level = level;
 
-        _attackDamage = new(_staticData.Damage, level,
-            _staticData.DamageLevelPercentage, minPercentage: -95f);
+        _attackDamage = new(_weaponStaticData.Damage, level,
+            _weaponStaticData.DamageLevelPercentage, minPercentage: -95f);
 
-        _attackSpeed = new(_staticData.Speed, level,
-            _staticData.SpeedLevelPercentage, min: 0f, minPercentage: -95f);
+        _attackSpeed = new(_weaponStaticData.Speed, level,
+            _weaponStaticData.SpeedLevelPercentage, min: 0f, minPercentage: -95f);
 
-        _criticalChance = new(_staticData.CriticalChance, level,
-            _staticData.CriticalChanceLevelPercentage, min: 0f, max: 100f);
+        _criticalChance = new(_weaponStaticData.CriticalChance, level,
+            _weaponStaticData.CriticalChanceLevelPercentage, min: 0f, max: 100f);
 
-        _criticalDamage = new(_staticData.CriticalDamage, level,
-            _staticData.CriticalDamageLevelPercentage, min: 0f);
+        _criticalDamage = new(_weaponStaticData.CriticalDamage, level,
+            _weaponStaticData.CriticalDamageLevelPercentage, min: 0f);
 
         IsTargetEnemyFunction = isTargetEnemyFunction;
     }

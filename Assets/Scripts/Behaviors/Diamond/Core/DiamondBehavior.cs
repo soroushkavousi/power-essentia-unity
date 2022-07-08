@@ -23,14 +23,14 @@ public abstract class DiamondBehavior : MonoBehaviour
     [SerializeField] protected float _ramainingTime = default;
     [SerializeField] protected float _ramainingPercentage = default;
     [SerializeField] protected bool _isPermanent = default;
-    private DiamondStaticData _staticData = default;
+    private DiamondStaticData _diamondStaticData = default;
     protected DiamondOwnerBehavior _diamondOwnerBehavior = default;
     protected AttackerBehavior _ownerAttackerBehavior = default;
     protected Transform _diamondEffectsParent = default;
 
     public DiamondName Name => _name;
-    public string ShowName => _staticData.ShowName;
-    public Sprite Icon => _staticData.Icon;
+    public string ShowName => _diamondStaticData.ShowName;
+    public Sprite Icon => _diamondStaticData.Icon;
     public List<ResourceBunch> BuyResourceBunches => _buyResourceBunches;
     public List<ResourceBunchWithLevel> UpgradeResourceBunches => _upgradeResourceBunches;
     public Observable<DiamondKnowledgeState> KnowledgeState => _knowledgeState;
@@ -48,9 +48,9 @@ public abstract class DiamondBehavior : MonoBehaviour
     public Transform DiamondEffectsParent => _diamondEffectsParent;
     public string Description => GetDescription();
 
-    public void FeedData(DiamondStaticData staticData)
+    public void FeedData(DiamondStaticData diamondStaticData)
     {
-        _staticData = staticData;
+        _diamondStaticData = diamondStaticData;
     }
 
     public virtual void Initialize(Observable<DiamondKnowledgeState> knowledgeState,
@@ -63,8 +63,8 @@ public abstract class DiamondBehavior : MonoBehaviour
         if (_diamondOwnerBehavior != null)
             _ownerAttackerBehavior = diamondOwnerBehavior.GetComponent<AttackerBehavior>();
 
-        _activeTime = new(_staticData.ActiveTime, level, _staticData.ActiveTimeLevelPercentage, min: 0f);
-        _cooldownTime = new(_staticData.CooldownTime, level, _staticData.CooldownTimeLevelPercentage, min: 0f);
+        _activeTime = new(_diamondStaticData.ActiveTime, level, _diamondStaticData.ActiveTimeLevelPercentage, min: 0f);
+        _cooldownTime = new(_diamondStaticData.CooldownTime, level, _diamondStaticData.CooldownTimeLevelPercentage, min: 0f);
 
         IsTargetEnemyFunction = diamondOwnerBehavior.IsTargetEnemy;
         InitializeBuyAndUpgradeResourceBunches();

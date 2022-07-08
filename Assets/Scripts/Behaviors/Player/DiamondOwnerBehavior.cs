@@ -14,7 +14,7 @@ public abstract class DiamondOwnerBehavior : PlayerBehavior
 
     //[Space(Constants.DebugSectionSpace)]
     //[Header(Constants.DebugSectionHeader)]
-    private DiamondOwnerStaticData _staticData = default;
+    private DiamondOwnerStaticData _diamondOwnerStaticData = default;
     private Dictionary<RingName, Transform> _ringTransformMap = default;
     private Dictionary<DiamondName, DiamondDynamicData> _diamondDynamicDataMap = default;
     private Dictionary<RingName, List<Observable<DiamondName>>> _chosenRings = default;
@@ -29,10 +29,10 @@ public abstract class DiamondOwnerBehavior : PlayerBehavior
         [RingName.NONE] = new List<DiamondBehavior>(),
     };
 
-    protected void FeedData(DiamondOwnerStaticData staticData)
+    protected void FeedData(DiamondOwnerStaticData diamondOwnerStaticData)
     {
-        _staticData = staticData;
-        base.FeedData(_staticData);
+        _diamondOwnerStaticData = diamondOwnerStaticData;
+        base.FeedData(_diamondOwnerStaticData);
         _diamondDynamicDataMap = _dynamicData.Diamonds;
         _chosenRings = _dynamicData.SelectedItems.RingDiamondNamesMap;
 

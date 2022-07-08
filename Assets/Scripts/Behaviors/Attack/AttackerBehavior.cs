@@ -15,7 +15,7 @@ public abstract class AttackerBehavior : MonoBehaviour, IObserver, ISubject,
     [SerializeField] protected AttackerState _attackerState = default;
     [SerializeField] protected WeaponBehavior _weaponBehavior = default;
     [SerializeField] protected GameObject _currentEnemy = default;
-    private AttackerStaticData _staticData = default;
+    private AttackerStaticData _attackerStaticData = default;
     protected readonly string _attackSpeedName = "AttackSpeed";
     protected Animator _animator = default;
     protected MovementBehavior _movementBehavior = default;
@@ -28,10 +28,10 @@ public abstract class AttackerBehavior : MonoBehaviour, IObserver, ISubject,
     public Func<GameObject, GameObject> IsTargetEnemyFunction { get; set; }
     public GameObject CurrentEnemy { get => _currentEnemy; set => _currentEnemy = value; }
 
-    protected void FeedData(AttackerStaticData staticData, WeaponBehavior weaponBehavior,
+    protected void FeedData(AttackerStaticData attackerStaticData, WeaponBehavior weaponBehavior,
         Func<GameObject, GameObject> isTargetEnemyFunction)
     {
-        _staticData = staticData;
+        _attackerStaticData = attackerStaticData;
         _animator = GetComponent<Animator>();
         _movementBehavior = GetComponent<MovementBehavior>();
         _audioSource = GetComponent<AudioSource>();

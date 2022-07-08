@@ -15,7 +15,7 @@ public abstract class PlayerBehavior : MonoBehaviour
     [SerializeField] protected bool _mouseIsDown = default;
     [SerializeField] protected PlayerDynamicData _dynamicData = null;
     protected bool _isInitialized = false;
-    private PlayerStaticData _staticData = default;
+    private PlayerStaticData _playerStaticData = default;
     protected StateManagerBehavior _stateManagerBehavior = default;
     protected BodyBehavior _bodyBehavior = default;
 
@@ -29,7 +29,7 @@ public abstract class PlayerBehavior : MonoBehaviour
         _isInitialized = true;
     }
 
-    protected void FeedData(PlayerStaticData staticData)
+    protected void FeedData(PlayerStaticData playerStaticData)
     {
         if (_isMainPlayer)
             _main = this;
@@ -37,7 +37,7 @@ public abstract class PlayerBehavior : MonoBehaviour
         _stateManagerBehavior = GetComponent<StateManagerBehavior>();
         _bodyBehavior = GetComponent<BodyBehavior>();
         _bodyBehavior.FeedData();
-        _staticData = staticData;
+        _playerStaticData = playerStaticData;
         GetDynamicData();
         if (SceneManagerBehavior.Instance.CurrentSceneName != SceneName.MISSION)
             gameObject.SetActive(false);

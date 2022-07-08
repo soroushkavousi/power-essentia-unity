@@ -10,18 +10,18 @@ public abstract class SpellBehavior : MonoBehaviour
     [SerializeField] protected SpellState _state = default;
     [SerializeField] private Number _cooldown = default;
     [SerializeField] protected Observable<int> _level = default;
-    private SpellStaticData _staticData = default;
+    private SpellStaticData _spellStaticData = default;
 
-    public string Name => _staticData.Name;
+    public string Name => _spellStaticData.Name;
     public Number Cooldown => _cooldown;
     public SpellState State => _state;
 
-    protected void Initialize(SpellStaticData staticData, Observable<int> level)
+    protected void Initialize(SpellStaticData spellStaticData, Observable<int> level)
     {
-        _staticData = staticData;
+        _spellStaticData = spellStaticData;
         _level = level;
         _state = SpellState.UNDER_COOLDOWN;
-        _cooldown = new(_staticData.Cooldown, _level, _staticData.CooldownLevelPercentage);
+        _cooldown = new(_spellStaticData.Cooldown, _level, _spellStaticData.CooldownLevelPercentage);
     }
 
     protected abstract void CastAction();
