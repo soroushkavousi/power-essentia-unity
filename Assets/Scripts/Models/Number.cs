@@ -106,7 +106,7 @@ public class Number : ISubject, IObserver
     public void OnNotify(ISubject subject)
     {
         _levelPercentage = _level.Value * _oneLevelPercentage;
-        Notify();
+        CalculateValue();
     }
 
     public void Attach(IObserver observer) => _observers.Add(observer);

@@ -32,7 +32,7 @@ MonoBehaviour:
     - Type: 0
       Amount: 10000
     - Type: 1
-      Amount: 1000
+      Amount: 3000
     DiamondUpgradeResourceBunches:
     - Type: 0
       Amount: 1000
