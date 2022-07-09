@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -65,7 +66,7 @@ public class ButtonBehavior : MonoBehaviour
             return;
 
         Debug.Log($"Button [{name} -> {transform.parent.name} -> {transform.parent.parent.name}] clicked.");
-        SetPressedColor();
+        StartCoroutine(SetPressedColor());
         PlayClickSound();
         _clickEvent.Invoke();
         OnClickDownActions.CallActionsSafely();
@@ -79,10 +80,14 @@ public class ButtonBehavior : MonoBehaviour
         OnClickUpActions.CallActionsSafely();
     }
 
-    private void SetPressedColor()
+    private IEnumerator SetPressedColor()
     {
-        if (_pressedColor != default)
-            _targetGraphic.color = _pressedColor;
+        if (_pressedColor == default)
+            yield break;
+        var originColor = _targetGraphic.color;
+        _targetGraphic.color = _pressedColor;
+        yield return new WaitForSeconds(0.1f);
+        _targetGraphic.color = originColor;
     }
 
     private void PlayClickSound()

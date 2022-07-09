@@ -34,7 +34,6 @@ public class InteractionLayerBehavior : MonoBehaviour
     private IEnumerator Start()
     {
         yield return new WaitUntil(() => _pages.All(c => c.gameObject.activeSelf));
-        yield return new WaitForFixedUpdate();
         _pages.ForEach(c =>
         {
             c.gameObject.SetActive(false);

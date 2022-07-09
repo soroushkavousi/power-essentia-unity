@@ -6578,6 +6578,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -30
       objectReference: {fileID: 0}
+    - target: {fileID: 4927812421752310533, guid: ffc4ef63319615142aa03c868e532908,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4927812421752310535, guid: ffc4ef63319615142aa03c868e532908,
         type: 3}
       propertyPath: m_Pivot.x
@@ -8466,7 +8471,9 @@ MonoBehaviour:
   _waveNumber:
     _value: 0
     _lastValue: 0
-  _finished: 0
+  _finished:
+    _value: 0
+    _lastValue: 0
   _description:
     _columnCount: 0
     _demonBunches: []

@@ -1,12 +1,9 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class MissionCanvasBehavior : MonoBehaviour
+public class MissionSceneBehavior : MonoBehaviour
 {
     [SerializeField] private AudioClip _startSound = default;
-
-    //[Space(Constants.DebugSectionSpace)]
-    //[Header(Constants.DebugSectionHeader)]
 
     private IEnumerator Start()
     {
