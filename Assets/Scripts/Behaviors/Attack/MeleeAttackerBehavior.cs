@@ -15,10 +15,11 @@ public class MeleeAttackerBehavior : AttackerBehavior
     public override AttackerState AttackerState => (AttackerState)_state;
     public MeleeAttackerState State => _state;
 
-    public void FeedData(MeleeAttackerStaticData staticData, MeleeWeaponBehavior _meleeWeaponBehavior,
+    public void FeedData(MeleeAttackerStaticData staticData, MeleeWeaponBehavior meleeWeaponBehavior,
         Func<GameObject, GameObject> isTargetEnemyFunction)
     {
         _staticData = staticData;
+        _meleeWeaponBehavior = meleeWeaponBehavior;
         base.FeedData(staticData, _meleeWeaponBehavior, isTargetEnemyFunction);
     }
 

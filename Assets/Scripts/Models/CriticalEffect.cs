@@ -2,34 +2,35 @@
 {
     public class CriticalEffect
     {
-        private readonly float _number = default;
-        private readonly float _chance = default;
-        private readonly float _multiplier = default;
+        private readonly float _inputDamage = default;
+        private readonly float _criticalChance = default;
+        private readonly float _criticalDamage = default;
         private bool _isApplied = default;
-        private float _result = default;
+        private float _resultDamage = default;
 
         public bool IsApplied => _isApplied;
-        public float Result => _result;
+        public float Result => _resultDamage;
 
-        public CriticalEffect(float number, float chance, float multiplier)
+        public CriticalEffect(float inputDamage, float criticalChance, float criticalDamage)
         {
-            _number = number;
-            _chance = chance;
-            _multiplier = multiplier;
+            _inputDamage = inputDamage;
+            _criticalChance = criticalChance;
+            _criticalDamage = criticalDamage;
             Apply();
         }
 
         private void Apply()
         {
-            _result = _number;
-            if (_chance == 0)
+            _resultDamage = _inputDamage;
+            if (_criticalChance == 0)
                 return;
-            if (_multiplier == 0)
+            if (_criticalDamage == 0)
                 return;
-            if (UnityEngine.Random.value * 100 > _chance)
+            var randomValue = UnityEngine.Random.value * 100;
+            if (randomValue > _criticalChance)
                 return;
             _isApplied = true;
-            _result *= _multiplier / 100;
+            _resultDamage = _resultDamage.AddPercentage(_criticalDamage);
         }
     }
 }

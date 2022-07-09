@@ -20,10 +20,10 @@ public class Health : NumberWithMax, ISubject<Damage>, ISubject<Heal>
         : base(startValue, level, oneLevelPercentage)
     {
         _physicalResistance = new(startPhysicalResistance, level,
-            physicalResistanceOneLevelPercentage);
+            physicalResistanceOneLevelPercentage, max: 90);
 
         _magicResistance = new(startMagicResistance, level,
-            magicResistanceOneLevelPercentage);
+            magicResistanceOneLevelPercentage, max: 90);
     }
 
     protected virtual Damage ModifyDamage(Damage damage)

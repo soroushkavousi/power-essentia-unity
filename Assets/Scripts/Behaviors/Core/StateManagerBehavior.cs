@@ -42,7 +42,7 @@ public class StateManagerBehavior : MonoBehaviour
     }
 
     //This function will be called in the animations
-    private void StartNewState(string state)
+    private void OnNewState(string state)
     {
         if (_state.Value == state)
             return;
