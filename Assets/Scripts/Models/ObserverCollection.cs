@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class ObserverCollection
 {
@@ -20,6 +21,15 @@ public class ObserverCollection
                 _observers.RemoveAt(i);
                 continue;
             }
+            if (currentObserver is MonoBehaviour monoBehavior)
+            {
+                if (monoBehavior == null)
+                {
+                    _observers.RemoveAt(i);
+                    continue;
+                }
+            }
+
             currentObserver.OnNotify(subject);
         }
     }
