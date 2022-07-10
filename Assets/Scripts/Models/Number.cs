@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
+//Todo Number should apply level-1
 [Serializable]
 public class Number : ISubject, IObserver
 {

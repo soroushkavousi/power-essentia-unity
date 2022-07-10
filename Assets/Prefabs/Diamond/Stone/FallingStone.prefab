@@ -31,6 +31,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 911, y: 1185, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1743808450375943442}
   m_Father: {fileID: 0}
@@ -38,7 +39,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &300661329636760201
 Animator:
-  serializedVersion: 3
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -51,6 +52,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -88,7 +90,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: a2086ad4d7c2dce4dba105c4a9959a1e, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.521
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -184,47 +186,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b05d600b0d0214e4cb51561a4b9e0fad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _staticData:
-    _speed: 0
-    _startDirection: {x: 0, y: 0}
-    _startDelay: 0
-    _animationSpeed: 0
-    _dontStopWhenReach: 0
   _speed:
-    _base:
-      _changeAmountFromSub: 0
-      _rawValue: 0
-      _lastValue: 0
+    _value: 0
+    _basePercentage: 0
+    _baseValue: 0
+    _levelPercentage: 0
+    _startValue: 0
+    _lastValue: 0
+    _nextLevelValue: 0
+    _min: 0
+    _max: 0
+    _minPercentage: 0
+    _maxPercentage: 0
+    _fixValue: 0
+    _isFixed: 0
+    _oneLevelPercentage: 0
+    _level:
       _value: 0
-      _compressOnCount: 100
-      _changeCommands: []
-      _startValue: 0
-    _peak:
-      _changeAmountFromSub: 0
-      _rawValue: 0
       _lastValue: 0
-      _value: 0
-      _compressOnCount: 100
-      _changeCommands: []
-    _current:
-      _changeAmountFromSub: 0
-      _rawValue: 0
-      _lastValue: 0
-      _value: 0
-      _compressOnCount: 10
-      _changeCommands: []
-      _dummyMaxBaseOnValue: 0
-      _removeMinExceed: 0
-      _removeMaxExceed: 0
-      _keepRatio: 0
-      _isFix: 0
-      _fixCurrentValue: 0
   _moveType: 0
   _direction: {x: 0, y: 0}
   _normalizedDirection: {x: 0, y: 0}
+  _animationSpeed: 0
   _startDelay: 0
   _dontStopWhenReach: 0
-  _acceptedTargetDistance: 0
+  _acceptedCollisionDistance: 0
   _targetPosition: {x: 0, y: 0}
   _targetTransform: {fileID: 0}
 --- !u!114 &-5072360949165659967
@@ -240,124 +226,80 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _staticData: {fileID: 11400000, guid: 8de0d8da2a348eb4a9ead61794feac65, type: 2}
-  _isSample: 0
   _impactDamage:
-    _base:
-      _changeAmountFromSub: 0
-      _rawValue: 0
-      _lastValue: 0
+    _value: 0
+    _basePercentage: 0
+    _baseValue: 0
+    _levelPercentage: 0
+    _startValue: 0
+    _lastValue: 0
+    _nextLevelValue: 0
+    _min: 0
+    _max: 0
+    _minPercentage: 0
+    _maxPercentage: 0
+    _fixValue: 0
+    _isFixed: 0
+    _oneLevelPercentage: 0
+    _level:
       _value: 0
-      _compressOnCount: 100
-      _changeCommands: []
-      _startValue: 0
-    _peak:
-      _changeAmountFromSub: 0
-      _rawValue: 0
       _lastValue: 0
-      _value: 0
-      _compressOnCount: 100
-      _changeCommands: []
-    _current:
-      _changeAmountFromSub: 0
-      _rawValue: 0
-      _lastValue: 0
-      _value: 0
-      _compressOnCount: 10
-      _changeCommands: []
-      _dummyMaxBaseOnValue: 0
-      _removeMinExceed: 0
-      _removeMaxExceed: 0
-      _keepRatio: 0
-      _isFix: 0
-      _fixCurrentValue: 0
   _stunDuration:
-    _base:
-      _changeAmountFromSub: 0
-      _rawValue: 0
-      _lastValue: 0
+    _value: 0
+    _basePercentage: 0
+    _baseValue: 0
+    _levelPercentage: 0
+    _startValue: 0
+    _lastValue: 0
+    _nextLevelValue: 0
+    _min: 0
+    _max: 0
+    _minPercentage: 0
+    _maxPercentage: 0
+    _fixValue: 0
+    _isFixed: 0
+    _oneLevelPercentage: 0
+    _level:
       _value: 0
-      _compressOnCount: 100
-      _changeCommands: []
-      _startValue: 0
-    _peak:
-      _changeAmountFromSub: 0
-      _rawValue: 0
       _lastValue: 0
-      _value: 0
-      _compressOnCount: 100
-      _changeCommands: []
-    _current:
-      _changeAmountFromSub: 0
-      _rawValue: 0
-      _lastValue: 0
-      _value: 0
-      _compressOnCount: 10
-      _changeCommands: []
-      _dummyMaxBaseOnValue: 0
-      _removeMinExceed: 0
-      _removeMaxExceed: 0
-      _keepRatio: 0
-      _isFix: 0
-      _fixCurrentValue: 0
   _criticalChance:
-    _base:
-      _changeAmountFromSub: 0
-      _rawValue: 0
-      _lastValue: 0
+    _value: 0
+    _basePercentage: 0
+    _baseValue: 0
+    _levelPercentage: 0
+    _startValue: 0
+    _lastValue: 0
+    _nextLevelValue: 0
+    _min: 0
+    _max: 0
+    _minPercentage: 0
+    _maxPercentage: 0
+    _fixValue: 0
+    _isFixed: 0
+    _oneLevelPercentage: 0
+    _level:
       _value: 0
-      _compressOnCount: 100
-      _changeCommands: []
-      _startValue: 0
-    _peak:
-      _changeAmountFromSub: 0
-      _rawValue: 0
       _lastValue: 0
-      _value: 0
-      _compressOnCount: 100
-      _changeCommands: []
-    _current:
-      _changeAmountFromSub: 0
-      _rawValue: 0
-      _lastValue: 0
-      _value: 0
-      _compressOnCount: 10
-      _changeCommands: []
-      _dummyMaxBaseOnValue: 0
-      _removeMinExceed: 0
-      _removeMaxExceed: 0
-      _keepRatio: 0
-      _isFix: 0
-      _fixCurrentValue: 0
   _criticalDamage:
-    _base:
-      _changeAmountFromSub: 0
-      _rawValue: 0
-      _lastValue: 0
+    _value: 0
+    _basePercentage: 0
+    _baseValue: 0
+    _levelPercentage: 0
+    _startValue: 0
+    _lastValue: 0
+    _nextLevelValue: 0
+    _min: 0
+    _max: 0
+    _minPercentage: 0
+    _maxPercentage: 0
+    _fixValue: 0
+    _isFixed: 0
+    _oneLevelPercentage: 0
+    _level:
       _value: 0
-      _compressOnCount: 100
-      _changeCommands: []
-      _startValue: 0
-    _peak:
-      _changeAmountFromSub: 0
-      _rawValue: 0
       _lastValue: 0
-      _value: 0
-      _compressOnCount: 100
-      _changeCommands: []
-    _current:
-      _changeAmountFromSub: 0
-      _rawValue: 0
-      _lastValue: 0
-      _value: 0
-      _compressOnCount: 10
-      _changeCommands: []
-      _dummyMaxBaseOnValue: 0
-      _removeMinExceed: 0
-      _removeMaxExceed: 0
-      _keepRatio: 0
-      _isFix: 0
-      _fixCurrentValue: 0
   _enemy: {fileID: 0}
+  _isSample: 0
 --- !u!1 &1743808450375943443
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,6 +327,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1743808449516577103}
   m_RootOrder: 0

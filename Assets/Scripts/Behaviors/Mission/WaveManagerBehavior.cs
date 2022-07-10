@@ -19,6 +19,7 @@ public class WaveManagerBehavior : MonoBehaviour, ISubject<DemonBehavior>, IObse
     [SerializeField] private List<int> _pickedRandomNumbers = default;
     [SerializeField] private Observable<int> _totalDemonCount = new();
     [SerializeField] private Observable<int> _deadDemonCount = new();
+    [SerializeField] private List<DemonBehavior> _aliveEnemies = new();
     private Dictionary<RowNumber, Transform> _rowSpawnLocations = default;
     private Observable<int> _selectedDemonLevel = default;
     protected readonly ObserverCollection<DemonBehavior> _observers = new();
@@ -29,6 +30,7 @@ public class WaveManagerBehavior : MonoBehaviour, ISubject<DemonBehavior>, IObse
     public Observable<int> WaveNumber => _waveNumber;
     public Observable<int> TotalDemonCount => _totalDemonCount;
     public Observable<int> DeadDemonCount => _deadDemonCount;
+    public List<DemonBehavior> AliveEnemies => _aliveEnemies;
 
     public void Initialize(WaveDescription waveDescription)
     {
@@ -70,6 +72,7 @@ public class WaveManagerBehavior : MonoBehaviour, ISubject<DemonBehavior>, IObse
         demonBehavior.Attach(this);
         demonBehavior.Initialize(level);
         _totalDemonCount.Value += 1;
+        _aliveEnemies.Add(demonBehavior);
         Notify(demonBehavior);
         yield return null;
     }
@@ -119,6 +122,7 @@ public class WaveManagerBehavior : MonoBehaviour, ISubject<DemonBehavior>, IObse
             if (demonBehavior.State == DemonState.DEAD)
             {
                 _deadDemonCount.Value += 1;
+                _aliveEnemies.Remove(demonBehavior);
                 CheckWaveStatus();
             }
         }

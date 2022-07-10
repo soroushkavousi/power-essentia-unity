@@ -15,7 +15,7 @@ MonoBehaviour:
   Damage: 400
   DamageLevelPercentage: 25
   Speed: 2.5
-  SpeedLevelPercentage: 20
+  SpeedLevelPercentage: 10
   CriticalChance: 15
   CriticalChanceLevelPercentage: 20
   CriticalDamage: 100

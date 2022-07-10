@@ -1,4 +1,7 @@
 ﻿using Assets.Scripts.Models;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class StoneDiamondBehavior : DiamondBehavior, IObserver<HitParameters>
@@ -33,11 +36,16 @@ public class StoneDiamondBehavior : DiamondBehavior, IObserver<HitParameters>
         OwnerAttackerBehavior.Detach(this);
     }
 
-    private void HandleHitEvent(HitParameters hitParameters)
+    private IEnumerator HandleHitEvent(HitParameters hitParameters)
     {
-        if (Random.value * 100 > _chance.Value)
-            return;
-        CreateFallingStone(hitParameters.Destination);
+        if (Random.Range(0f, 100f) > _chance.Value)
+            yield break;
+        var targetEnemy = hitParameters.Destination;
+        CreateFallingStone(targetEnemy);
+        yield return new WaitForSeconds(0.1f);
+        var closestEnemy = FindClosestEnemyToWall(targetEnemy);
+        if(closestEnemy != null && closestEnemy.activeSelf == true)
+            CreateFallingStone(closestEnemy);
     }
 
     private FallingStoneBehavior CreateFallingStone(GameObject targetEnemy)
@@ -49,11 +57,29 @@ public class StoneDiamondBehavior : DiamondBehavior, IObserver<HitParameters>
         return fallingStoneBehavior;
     }
 
+    private GameObject FindClosestEnemyToWall(GameObject targetEnemy)
+    {
+        var targetDemon = targetEnemy.GetComponent<DemonBehavior>();
+        var aliveDemons = new List<DemonBehavior>(WaveManagerBehavior.Instance.AliveEnemies);
+        if (aliveDemons.Count == 1)
+            return targetEnemy;
+        aliveDemons.Remove(targetDemon);
+        while (aliveDemons.Count != 0)
+        {
+            var indexOfClosestDemon = aliveDemons.Select(e => e.transform.position.x).ToList().IndexOfMin();
+            var closestDemon = aliveDemons[indexOfClosestDemon];
+            if(closestDemon != null && !closestDemon.GetComponent<HealthBehavior>().IsDead)
+                return closestDemon.gameObject;
+            aliveDemons.Remove(closestDemon);
+        }
+        return targetEnemy;
+    }
+
     public void OnNotify(ISubject<HitParameters> subject, HitParameters hitParameters)
     {
         if (ReferenceEquals(subject, OwnerAttackerBehavior))
         {
-            HandleHitEvent(hitParameters);
+            StartCoroutine(HandleHitEvent(hitParameters));
         }
     }
 

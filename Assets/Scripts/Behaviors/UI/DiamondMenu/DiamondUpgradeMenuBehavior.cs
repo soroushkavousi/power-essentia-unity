@@ -118,6 +118,11 @@ public class DiamondUpgradeMenuBehavior : MonoBehaviour, IObserver
         }
     }
 
+    private void OnEnable()
+    {
+        UpdateUpgradeDetails();
+    }
+
     public void OnNotify(ISubject subject)
     {
         if (subject == _selectedDiamondName)

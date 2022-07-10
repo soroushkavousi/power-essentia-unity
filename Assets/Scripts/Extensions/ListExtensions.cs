@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 
@@ -7,21 +8,31 @@ public static class ListExtensions
 {
     public static GameObject FindCLosestGameObject(this List<GameObject> targets, GameObject source)
     {
-        float dist;
-        GameObject currentGameObject;
-        var minDist = Mathf.Infinity;
-        var nearestGameObject = targets[0];
-        for (int i = 0; i < targets.Count; i++)
+        var distances = targets.Select(t => Vector3.Distance(source.transform.position, t.transform.position)).ToList();
+        var minimumDistanceIndex = distances.IndexOfMin();
+        return targets[minimumDistanceIndex];
+    }
+
+    public static int IndexOfMin(this IList<float> numbers)
+    {
+        if (numbers == null || numbers.Count == 0)
         {
-            currentGameObject = targets[i];
-            dist = Vector3.Distance(source.transform.position, currentGameObject.transform.position);
-            if (dist < minDist)
+            throw new ArgumentNullException(nameof(numbers));
+        }
+
+        var min = numbers[0];
+        var minIndex = 0;
+
+        for (int i = 1; i < numbers.Count; ++i)
+        {
+            if (numbers[i] < min)
             {
-                nearestGameObject = currentGameObject;
-                minDist = dist;
+                min = numbers[i];
+                minIndex = i;
             }
         }
-        return nearestGameObject;
+
+        return minIndex;
     }
 
     public static void CallActionsSafely(this OrderedList<Action> actionList)

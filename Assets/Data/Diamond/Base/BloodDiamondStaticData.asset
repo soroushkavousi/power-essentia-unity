@@ -19,5 +19,5 @@ MonoBehaviour:
   CooldownTime: 0
   CooldownTimeLevelPercentage: 0
   Icon: {fileID: 21300000, guid: 2f464015a87d69b459d83adcfc9386a5, type: 3}
-  BloodRatio: 20
-  BloodRatioLevelPercentage: 25
+  BloodRatio: 50
+  BloodRatioLevelPercentage: 5

@@ -67,6 +67,9 @@ public class HealSpellBehavior : SpellBehavior, IObserver<CollideData>
         if (invaderBehavior == null)
             return;
 
+        if (!isActiveAndEnabled)
+            return;
+
         StartCoroutine(HealDemon(invaderBehavior));
     }
 

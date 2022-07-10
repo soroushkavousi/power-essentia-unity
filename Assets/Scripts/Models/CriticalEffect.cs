@@ -26,7 +26,7 @@
                 return;
             if (_criticalDamage == 0)
                 return;
-            var randomValue = UnityEngine.Random.value * 100;
+            var randomValue = UnityEngine.Random.Range(0f, 100f);
             if (randomValue > _criticalChance)
                 return;
             _isApplied = true;
