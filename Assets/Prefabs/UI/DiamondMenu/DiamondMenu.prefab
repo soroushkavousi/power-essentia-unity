@@ -2322,31 +2322,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2281245603918149572, guid: 7e93d1a36bd8ad642bde834abc15fc14,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2445902570148872965, guid: 7e93d1a36bd8ad642bde834abc15fc14,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2445902570148872965, guid: 7e93d1a36bd8ad642bde834abc15fc14,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2445902570148872965, guid: 7e93d1a36bd8ad642bde834abc15fc14,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2445902570148872965, guid: 7e93d1a36bd8ad642bde834abc15fc14,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3102080016070339850, guid: 7e93d1a36bd8ad642bde834abc15fc14,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -2385,11 +2360,6 @@ PrefabInstance:
     - target: {fileID: 3102080016608622210, guid: 7e93d1a36bd8ad642bde834abc15fc14,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3120217890995534290, guid: 7e93d1a36bd8ad642bde834abc15fc14,
-        type: 3}
-      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3891728104549265682, guid: 7e93d1a36bd8ad642bde834abc15fc14,
@@ -2441,11 +2411,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4707280836575721537, guid: 7e93d1a36bd8ad642bde834abc15fc14,
-        type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4785921531683884675, guid: 7e93d1a36bd8ad642bde834abc15fc14,
         type: 3}
@@ -2652,26 +2617,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7253020815446756551, guid: 7e93d1a36bd8ad642bde834abc15fc14,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7253020815446756551, guid: 7e93d1a36bd8ad642bde834abc15fc14,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7253020815446756551, guid: 7e93d1a36bd8ad642bde834abc15fc14,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7253020815446756551, guid: 7e93d1a36bd8ad642bde834abc15fc14,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7456505946607831721, guid: 7e93d1a36bd8ad642bde834abc15fc14,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -2696,36 +2641,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DiamondUpgradeMenu
-      objectReference: {fileID: 0}
-    - target: {fileID: 7767749221266889515, guid: 7e93d1a36bd8ad642bde834abc15fc14,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7767749221266889515, guid: 7e93d1a36bd8ad642bde834abc15fc14,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7767749221266889515, guid: 7e93d1a36bd8ad642bde834abc15fc14,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7767749221266889515, guid: 7e93d1a36bd8ad642bde834abc15fc14,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7861204257687151235, guid: 7e93d1a36bd8ad642bde834abc15fc14,
-        type: 3}
-      propertyPath: m_Size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7861204257687151235, guid: 7e93d1a36bd8ad642bde834abc15fc14,
-        type: 3}
-      propertyPath: m_Value
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8107152003827892167, guid: 7e93d1a36bd8ad642bde834abc15fc14,
         type: 3}

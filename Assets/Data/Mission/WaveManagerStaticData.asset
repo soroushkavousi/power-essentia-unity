@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff2240692e0d7da4f95e125d298fdd3f, type: 3}
   m_Name: WaveManagerStaticData
   m_EditorClassIdentifier: 
-  ColumnDistance: 75
+  ColumnDistance: 70

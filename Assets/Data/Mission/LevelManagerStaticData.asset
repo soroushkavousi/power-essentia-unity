@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 069c236bc9b8e564280313711e544871, type: 3}
   m_Name: LevelManagerStaticData
   m_EditorClassIdentifier: 
-  WaveTime: 20
+  WaveTime: 15

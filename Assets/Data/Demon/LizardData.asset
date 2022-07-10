@@ -14,20 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Lizard
   HealthData:
-    Health: 2000
-    HealthLevelPercentage: 20
+    Health: 1000
+    HealthLevelPercentage: 50
     PhysicalResistance: 30
-    PhysicalResistanceLevelPercentage: 1
+    PhysicalResistanceLevelPercentage: 2
     MagicResistance: 15
-    MagicResistanceLevelPercentage: 1
+    MagicResistanceLevelPercentage: 2
     DeathVfxPrefab: {fileID: 0}
     DeathRewardsData:
     - Type: 0
       Amount: 300
-      LevelPercentage: 10
+      LevelPercentage: 20
     - Type: 1
       Amount: 30
-      LevelPercentage: 10
+      LevelPercentage: 20
   AIAttackerStaticData:
     VisionStaticData:
       CenterPoint: {x: -50, y: 0}

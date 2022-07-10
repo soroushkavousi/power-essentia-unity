@@ -4929,11 +4929,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3749348643343717150, guid: 6720336ce6ae39d4ab39b7fe75a52820,
-        type: 3}
-      propertyPath: _diamondName
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 3851412630401994937, guid: 6720336ce6ae39d4ab39b7fe75a52820,
         type: 3}
       propertyPath: m_AnchorMax.y

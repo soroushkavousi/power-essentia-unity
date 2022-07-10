@@ -12,12 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94f15d6d032a9d3468f94647e1df27b5, type: 3}
   m_Name: Level1DescriptionStaticData
   m_EditorClassIdentifier: 
-  _number: 1
-  _waveDescriptions:
-  - _columnCount: 2
+  WaveDescriptions:
+  - _columnCount: 1
     _demonBunches:
     - _demonName: 0
-      _count: 4
+      _count: 3
   - _columnCount: 3
     _demonBunches:
     - _demonName: 0

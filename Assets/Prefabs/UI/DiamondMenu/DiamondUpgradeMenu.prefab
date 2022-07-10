@@ -375,7 +375,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &1324729316751485738
@@ -3130,6 +3130,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2748906695813469751, guid: 170aba0cdd9f1bc4ca56bd4d715fb942,
         type: 3}
+      propertyPath: _diamondName
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2748906695813469751, guid: 170aba0cdd9f1bc4ca56bd4d715fb942,
+        type: 3}
       propertyPath: _diamondUpgradeMenuBehavior
       value: 
       objectReference: {fileID: 4945043091216820662}
@@ -3271,7 +3276,7 @@ PrefabInstance:
     - target: {fileID: 9138171708380743312, guid: 170aba0cdd9f1bc4ca56bd4d715fb942,
         type: 3}
       propertyPath: _diamondName
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 9138171708380743312, guid: 170aba0cdd9f1bc4ca56bd4d715fb942,
         type: 3}

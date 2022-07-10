@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b029f71f30890c14aba8ccdd5064c2a1, type: 3}
   m_Name: BowData
   m_EditorClassIdentifier: 
-  Damage: 250
-  DamageLevelPercentage: 15
+  Damage: 400
+  DamageLevelPercentage: 25
   Speed: 2.5
-  SpeedLevelPercentage: 15
+  SpeedLevelPercentage: 20
   CriticalChance: 15
-  CriticalChanceLevelPercentage: 15
+  CriticalChanceLevelPercentage: 20
   CriticalDamage: 100
-  CriticalDamageLevelPercentage: 15
+  CriticalDamageLevelPercentage: 10
   FireSound: {fileID: 8300000, guid: 6df3ae1686621ba4aaa7970674754d0a, type: 3}
   ProjectileBehavior: {fileID: 4537281238113661694, guid: 09dbe972c9a3d58478b5bcd3e96812f2,
     type: 3}

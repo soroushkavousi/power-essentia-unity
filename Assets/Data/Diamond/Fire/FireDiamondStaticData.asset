@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: 5
   IsPermanent: 0
-  ActiveTime: 10
-  ActiveTimeLevelPercentage: 5
-  CooldownTime: 10
-  CooldownTimeLevelPercentage: -1
+  ActiveTime: 15
+  ActiveTimeLevelPercentage: 20
+  CooldownTime: 4
+  CooldownTimeLevelPercentage: -2.5
   Icon: {fileID: 21300000, guid: 2f464015a87d69b459d83adcfc9386a5, type: 3}
   GroundFireBehavior: {fileID: 1181049932790168290, guid: 0f33444dfb417de4f8ce8783c5801485,
     type: 3}

@@ -20,7 +20,7 @@ public static class PlayerStart
             },
             rightRingDiamondNames: new List<string>
             {
-                DiamondName.FIRE.ToString(),
+                DiamondName.STONE.ToString(),
                 DiamondName.NONE.ToString(),
                 DiamondName.NONE.ToString(),
                 DiamondName.NONE.ToString(),
@@ -31,7 +31,7 @@ public static class PlayerStart
                 DiamondName.WALL.ToString(),
                 DiamondName.BLOOD.ToString(),
             },
-            menuDeckDiamondName: DiamondName.FIRE.ToString(),
+            menuDeckDiamondName: DiamondName.STONE.ToString(),
             menuBaseDiamondName: DiamondName.BOW.ToString()
         ),
         Diamonds = new List<DiamondDynamicDataTO>
@@ -39,8 +39,8 @@ public static class PlayerStart
             new DiamondDynamicDataTO(DiamondName.BOW.ToString(), DiamondKnowledgeState.OWNED.ToString(),  1),
             new DiamondDynamicDataTO(DiamondName.WALL.ToString(), DiamondKnowledgeState.OWNED.ToString(),  1),
             new DiamondDynamicDataTO(DiamondName.BLOOD.ToString(), DiamondKnowledgeState.OWNED.ToString(),  1),
-            new DiamondDynamicDataTO(DiamondName.FIRE.ToString(), DiamondKnowledgeState.OWNED.ToString(),  1),
-            new DiamondDynamicDataTO(DiamondName.STONE.ToString(), DiamondKnowledgeState.DISCOVERED.ToString(),  1),
+            new DiamondDynamicDataTO(DiamondName.STONE.ToString(), DiamondKnowledgeState.OWNED.ToString(),  1),
+            new DiamondDynamicDataTO(DiamondName.FIRE.ToString(), DiamondKnowledgeState.DISCOVERED.ToString(),  1),
             //new DiamondDynamicDataTO(DiamondName.POISON.ToString(), true, false,  1),
             //new DiamondDynamicDataTO(DiamondName.ELECTRICITY.ToString(), true, false,  1),
             //new DiamondDynamicDataTO(DiamondName.ICE.ToString(), true, false,  1),
@@ -49,9 +49,9 @@ public static class PlayerStart
         },
         ResourceBunches = new List<ResourceBunchDynamicDataTO>
         {
-            new ResourceBunchDynamicDataTO(ResourceType.COIN.ToString(), 15000),
-            new ResourceBunchDynamicDataTO(ResourceType.DEMON_BLOOD.ToString(), 1500),
-            new ResourceBunchDynamicDataTO(ResourceType.DARK_DEMON_BLOOD.ToString(), 15),
+            new ResourceBunchDynamicDataTO(ResourceType.COIN.ToString(), 5000),
+            new ResourceBunchDynamicDataTO(ResourceType.DEMON_BLOOD.ToString(), 500),
+            new ResourceBunchDynamicDataTO(ResourceType.DARK_DEMON_BLOOD.ToString(), 5),
         },
     };
 }

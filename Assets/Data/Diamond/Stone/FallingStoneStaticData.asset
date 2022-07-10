@@ -12,19 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 037d9a44a949a034fbfdd07ea038dc1a, type: 3}
   m_Name: FallingStoneStaticData
   m_EditorClassIdentifier: 
-  ImpactDamage: 1000
-  ImpactDamageLevelPercentage: 20
-  StunDuration: 2
-  StunDurationLevelPercentage: 10
+  ImpactDamage: 500
+  ImpactDamageLevelPercentage: 50
+  StunDuration: 1.5
+  StunDurationLevelPercentage: 20
   CriticalChance: 20
-  CriticalChanceLevelPercentage: 10
+  CriticalChanceLevelPercentage: 20
   CriticalDamage: 100
   CriticalDamageLevelPercentage: 10
-  SpawnXOffset: -400
+  SpawnXOffset: -600
   SpawnYPosition: 2000
   HitSound: {fileID: 8300000, guid: a5b9aab7ead5c0f43a238ec0c20f81ae, type: 3}
   MovementStaticData:
-    Speed: 800
+    Speed: 1100
     StartDelay: 0
-    AnimationSpeed: 800
+    AnimationSpeed: 1100
     DontStopWhenReach: 0
