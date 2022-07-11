@@ -1,11 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
-//Todo Number should apply level-1
 [Serializable]
 public class Number : ISubject, IObserver
 {
     [SerializeField] protected float _value;
+    [SerializeField] protected float _limitedBasePercentage;
     [SerializeField] protected float _basePercentage;
     [SerializeField] protected float _baseValue;
     [SerializeField] protected float _levelPercentage;
@@ -35,8 +35,8 @@ public class Number : ISubject, IObserver
     public bool IsFixed => _isFixed;
     public float NextLevelValue => _nextLevelValue;
 
-    public Number(float startValue, Observable<int> level = null,
-        float oneLevelPercentage = 0f, float min = float.MinValue,
+    public Number(float startValue, Observable<int> level,
+        float oneLevelPercentage, float min = float.MinValue,
         float max = float.MaxValue, float minPercentage = float.MinValue,
         float maxPercentage = float.MaxValue)
     {
@@ -45,42 +45,61 @@ public class Number : ISubject, IObserver
         _max = max;
         _minPercentage = minPercentage;
         _maxPercentage = maxPercentage;
+
         _level = level;
-        _oneLevelPercentage = oneLevelPercentage;
-        if (level == null)
-        {
-            _levelPercentage = 0f;
-        }
-        else
-        {
+        if(_level != null)
             _level.Attach(this);
-            _levelPercentage = _level.Value * _oneLevelPercentage;
-        }
+        _oneLevelPercentage = oneLevelPercentage;
+
         CalculateValue();
+    }
+
+    public Number(float startValue, float min = float.MinValue,
+        float max = float.MaxValue, float minPercentage = float.MinValue,
+        float maxPercentage = float.MaxValue) 
+        : this(startValue, null, 0f, min, max, minPercentage, maxPercentage)
+    {
+
     }
 
     protected void CalculateValue()
     {
-        _baseValue = _startValue.AddPercentage(_levelPercentage);
-        var nextLevelBaseValue = _startValue.AddPercentage(_levelPercentage + _oneLevelPercentage);
-
         if (_isFixed)
         {
             _value = _fixValue;
             return;
         }
 
+        CalculateBaseValue();
         var lastValue = _value;
-        var limitedBasePercentage = Mathf.Clamp(_basePercentage, _minPercentage, _maxPercentage);
-        var newValue = _baseValue.AddPercentage(limitedBasePercentage);
-        var newNextLevelValue = nextLevelBaseValue.AddPercentage(limitedBasePercentage);
+        _limitedBasePercentage = Mathf.Clamp(_basePercentage, _minPercentage, _maxPercentage);
+        var newValue = _baseValue.AddPercentage(_limitedBasePercentage);
         _value = Mathf.Clamp(newValue, _min, _max);
-        _nextLevelValue = Mathf.Clamp(newNextLevelValue, _min, _max);
+
+        CalculateNextLevelValue();
+
         if (lastValue != _value)
         {
             _lastValue = lastValue;
             Notify();
         }
+    }
+
+    protected void CalculateBaseValue()
+    {
+        if (_level == null)
+            return;
+        _levelPercentage = (_level.Value - 1) * _oneLevelPercentage;
+        _baseValue = _startValue.AddPercentage(_levelPercentage);
+    }
+
+    protected void CalculateNextLevelValue()
+    {
+        if (_level == null)
+            return;
+        var nextLevelBaseValue = _startValue.AddPercentage(_levelPercentage + _oneLevelPercentage);
+        var newNextLevelValue = nextLevelBaseValue.AddPercentage(_limitedBasePercentage);
+        _nextLevelValue = Mathf.Clamp(newNextLevelValue, _min, _max);
     }
 
     public void Increase(float percentage)
@@ -106,7 +125,6 @@ public class Number : ISubject, IObserver
 
     public void OnNotify(ISubject subject)
     {
-        _levelPercentage = _level.Value * _oneLevelPercentage;
         CalculateValue();
     }
 

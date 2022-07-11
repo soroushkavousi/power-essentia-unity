@@ -36,7 +36,7 @@ MonoBehaviour:
     DiamondUpgradeResourceBunches:
     - Type: 0
       Amount: 500
-      LevelPercentage: 300
+      LevelPercentage: 500
     - Type: 1
       Amount: 25
-      LevelPercentage: 300
+      LevelPercentage: 500
