@@ -15,7 +15,6 @@ public class RangeAttackerBehavior : AttackerBehavior
     [SerializeField] protected Vector2 _attackTargetPosition = default;
     [SerializeField] protected Vector2 _aimTargetPosition = default;
     [SerializeField] protected bool _aimingIsFinished = default;
-    [SerializeField] protected AudioClip _fireSound;
     private RangeAttackerStaticData _staticData = default;
     protected RotationUtils _rotationUtils = default;
 

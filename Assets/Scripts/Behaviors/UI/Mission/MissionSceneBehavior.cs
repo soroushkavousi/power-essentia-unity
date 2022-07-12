@@ -8,6 +8,7 @@ public class MissionSceneBehavior : MonoBehaviour
     private IEnumerator Start()
     {
         yield return new WaitForSeconds(2f);
-        MusicPlayerBehavior.Instance.AudioSource.PlayOneShot(_startSound, 0.15f);
+        if (_startSound != null)
+            MusicPlayerBehavior.Instance.AudioSource.PlayOneShot(_startSound, 0.15f);
     }
 }
