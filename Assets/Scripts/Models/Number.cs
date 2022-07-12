@@ -20,6 +20,7 @@ public class Number : ISubject, IObserver
     [SerializeField] protected float _max;
     [SerializeField] protected float _minPercentage;
     [SerializeField] protected float _maxPercentage;
+    [SerializeField] protected float _randomnessPercentage;
 
     [Space(Constants.SpaceSection)]
     [SerializeField] protected float _fixValue;
@@ -38,13 +39,14 @@ public class Number : ISubject, IObserver
     public Number(float startValue, Observable<int> level,
         float oneLevelPercentage, float min = float.MinValue,
         float max = float.MaxValue, float minPercentage = float.MinValue,
-        float maxPercentage = float.MaxValue)
+        float maxPercentage = float.MaxValue, float randomnessPercentage = 0f)
     {
         _value = _baseValue = _startValue = startValue;
         _min = min;
         _max = max;
         _minPercentage = minPercentage;
         _maxPercentage = maxPercentage;
+        _randomnessPercentage = randomnessPercentage;
 
         _level = level;
         if (_level != null)
@@ -74,7 +76,8 @@ public class Number : ISubject, IObserver
         var lastValue = _value;
         _limitedBasePercentage = Mathf.Clamp(_basePercentage, _minPercentage, _maxPercentage);
         var newValue = _baseValue.AddPercentage(_limitedBasePercentage);
-        _value = Mathf.Clamp(newValue, _min, _max);
+        newValue = Mathf.Clamp(newValue, _min, _max);
+        _value = newValue.Randomize(_randomnessPercentage);
 
         CalculateNextLevelValue();
 
