@@ -21,7 +21,7 @@ public abstract class SpellBehavior : MonoBehaviour
         _spellStaticData = spellStaticData;
         _level = level;
         _state = SpellState.UNDER_COOLDOWN;
-        _cooldown = new(_spellStaticData.Cooldown, _level, _spellStaticData.CooldownLevelPercentage);
+        _cooldown = new(_spellStaticData.Cooldown.Randomize(), _level, _spellStaticData.CooldownLevelPercentage);
     }
 
     protected abstract void CastAction();

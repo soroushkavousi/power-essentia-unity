@@ -1,9 +1,15 @@
 ﻿using System;
 using UnityEngine;
 
-
 public static class NumberExtensions
 {
+    public static float Randomize(this float value, float percentage = 20f)
+    {
+        var min = value.RemovePercentage(percentage);
+        var max = value.AddPercentage(percentage);
+        return UnityEngine.Random.Range(min, max);
+    }
+
     public static float WithMin(this float value, float min)
     {
         if (value < min)

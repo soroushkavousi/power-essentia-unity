@@ -17,8 +17,8 @@ public class VisionAreaBehavior : MonoBehaviour
     {
         _boxCollider2D = GetComponent<BoxCollider2D>();
 
-        _boxCollider2D.offset = centerPoint;
-        _boxCollider2D.size = size;
+        _boxCollider2D.offset = centerPoint.Randomize();
+        _boxCollider2D.size = size.Randomize();
         //FixIllegalXSize();
     }
 

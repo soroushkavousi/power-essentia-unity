@@ -2,6 +2,21 @@
 
 public static class UnityExtensions
 {
+    public static Vector2 Randomize(this Vector2 value, float percentage = 20f)
+    {
+        var randomizeX = value.x.Randomize(percentage);
+        var randomizeY = value.y.Randomize(percentage);
+        return new Vector2(randomizeX, randomizeY);
+    }
+
+    public static Vector3 Randomize(this Vector3 value, float percentage = 20f)
+    {
+        var randomizeX = value.x.Randomize(percentage);
+        var randomizeY = value.y.Randomize(percentage);
+        var randomizeZ = value.z.Randomize(percentage);
+        return new Vector3(randomizeX, randomizeY, randomizeZ);
+    }
+
     public static T GetSubComponent<T>(this ScriptableObject data)
     {
         var iComponent = (IComponent)data;

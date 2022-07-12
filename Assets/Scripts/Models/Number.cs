@@ -47,7 +47,7 @@ public class Number : ISubject, IObserver
         _maxPercentage = maxPercentage;
 
         _level = level;
-        if(_level != null)
+        if (_level != null)
             _level.Attach(this);
         _oneLevelPercentage = oneLevelPercentage;
 
@@ -56,7 +56,7 @@ public class Number : ISubject, IObserver
 
     public Number(float startValue, float min = float.MinValue,
         float max = float.MaxValue, float minPercentage = float.MinValue,
-        float maxPercentage = float.MaxValue) 
+        float maxPercentage = float.MaxValue)
         : this(startValue, null, 0f, min, max, minPercentage, maxPercentage)
     {
 

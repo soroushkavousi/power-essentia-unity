@@ -45,16 +45,13 @@ public class HealSpellBehavior : SpellBehavior, IObserver<CollideData>
         var growDelayRatio = 0.05f;
         var stepsCount = _healSpellStaticData.HealAreaGrowTime / growDelayRatio;
         var growRaito = _healSpellStaticData.MaxHealAreaRadius / stepsCount;
-        //var growRatio = new Vector3(0.05f, 0.05f, 0.05f);
         while (_healAreaCircle.radius < _healSpellStaticData.MaxHealAreaRadius)
         {
             _healAreaCircle.radius += growRaito;
-            //transform.localScale += growRatio;
             yield return new WaitForSeconds(growDelayRatio);
         }
         yield return new WaitForSeconds(growDelayRatio);
         _healAreaCircle.radius = 0;
-        //transform.localScale = Vector3.zero;
     }
 
     private void HealIfDemon(Collider2D otherCollider)
