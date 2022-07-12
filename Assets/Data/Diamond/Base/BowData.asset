@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 200
   DamageLevelPercentage: 25
-  Speed: 2.5
+  Speed: 3
   SpeedLevelPercentage: 10
   CriticalChance: 15
   CriticalChanceLevelPercentage: 20

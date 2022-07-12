@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Duration: 5
   DurationLevelPercentage: 10
-  Damage: 400
-  DamageLevePercentage: 100
+  Damage: 200
+  DamageLevePercentage: 50
   CriticalChance: 10
   CriticalChanceLevelPercentage: 20
   CriticalDamage: 100

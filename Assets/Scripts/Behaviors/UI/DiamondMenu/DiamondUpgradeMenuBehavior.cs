@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DiamondUpgradeMenuBehavior : MonoBehaviour, IObserver
 {
@@ -16,6 +17,7 @@ public class DiamondUpgradeMenuBehavior : MonoBehaviour, IObserver
     [SerializeField] private ResourceDisplayBehavior _upgradeDarkDemonBloodDisplay = default;
     [SerializeField] private ButtonBehavior _upgradeButtonBehavior = default;
     [SerializeField] private ButtonBehavior _buyButtonBehavior = default;
+    [SerializeField] private Image _masteredImage = default;
     [SerializeField] private List<DiamondUpgradeMenuItemBehavior> _items = default;
 
     [Space(Constants.SpaceSection)]
@@ -57,6 +59,8 @@ public class DiamondUpgradeMenuBehavior : MonoBehaviour, IObserver
         var resouceBunches = _selectedDiamondBehavior.UpgradeResourceBunches.Select(urb => urb.ToResourceBunch()).ToList();
         ConsumeResourceBunches(resouceBunches);
         _selectedDiamondBehavior.Level.Value += 1;
+        if (_selectedDiamondBehavior.Level.Value == GameManagerBehavior.Instance.StaticData.Settings.DiamondMaxLevel)
+            _selectedDiamondBehavior.KnowledgeState.Value = DiamondKnowledgeState.MASTERED;
         ShowSelectedDiamondDetails();
     }
 
@@ -76,6 +80,7 @@ public class DiamondUpgradeMenuBehavior : MonoBehaviour, IObserver
         _diamondDescription.text = _selectedDiamondBehavior.Description;
         _diamondStatsDescription.text = _selectedDiamondBehavior.StatsDescription;
         UpdateUpgradeDetails();
+        _masteredImage.gameObject.SetActive(_selectedDiamondBehavior.KnowledgeState.Value == DiamondKnowledgeState.MASTERED);
         _upgradeButtonBehavior.Owner.SetActive(_selectedDiamondBehavior.KnowledgeState.Value == DiamondKnowledgeState.OWNED);
         _buyButtonBehavior.Owner.SetActive(_selectedDiamondBehavior.KnowledgeState.Value == DiamondKnowledgeState.DISCOVERED);
         OnShowSelectedDiamondDetailsActions.CallActionsSafely();
@@ -86,10 +91,22 @@ public class DiamondUpgradeMenuBehavior : MonoBehaviour, IObserver
         if (_selectedDiamondBehavior == null)
             return;
         List<ResourceBunch> resourceBunches;
-        if (_selectedDiamondBehavior.KnowledgeState.Value == DiamondKnowledgeState.DISCOVERED)
-            resourceBunches = _selectedDiamondBehavior.BuyResourceBunches;
-        else
-            resourceBunches = _selectedDiamondBehavior.UpgradeResourceBunches.Select(urb => urb.ToResourceBunch()).ToList();
+        switch (_selectedDiamondBehavior.KnowledgeState.Value)
+        {
+            case DiamondKnowledgeState.DISCOVERED:
+                resourceBunches = _selectedDiamondBehavior.BuyResourceBunches;
+                break;
+            case DiamondKnowledgeState.OWNED:
+                resourceBunches = _selectedDiamondBehavior.UpgradeResourceBunches.Select(urb => urb.ToResourceBunch()).ToList();
+                break;
+            case DiamondKnowledgeState.MASTERED:
+                _upgradeCoinDisplay.gameObject.SetActive(false);
+                _upgradeDemonBloodDisplay.gameObject.SetActive(false);
+                _upgradeDarkDemonBloodDisplay.gameObject.SetActive(false);
+                return;
+            default:
+                return;
+        }
 
         var upgradeCoinAmount = resourceBunches.Find(rb => rb.Type == ResourceType.COIN)?.Amount?.Value ?? 0;
         _upgradeCoinDisplay.AmountText.text = upgradeCoinAmount.ToString();

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HealSpellData
   m_EditorClassIdentifier: 
   Name: Heal Spell
-  Cooldown: 8
+  Cooldown: 15
   CooldownLevelPercentage: -2
   HealAmount: 500
   HealAmountLevelPercentage: 10

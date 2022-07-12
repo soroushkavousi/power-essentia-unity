@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9007348b52e54eba4fde49d288f20, type: 3}
   m_Name: LizardFistData
   m_EditorClassIdentifier: 
-  Damage: 100
+  Damage: 50
   DamageLevelPercentage: 25
-  Speed: 1
+  Speed: 0.8
   SpeedLevelPercentage: 2
   CriticalChance: 20
   CriticalChanceLevelPercentage: 2

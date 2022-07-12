@@ -30,8 +30,8 @@ MonoBehaviour:
       LevelPercentage: 20
   AIAttackerStaticData:
     VisionStaticData:
-      CenterPoint: {x: -50, y: 0}
-      Size: {x: 100, y: 100}
+      CenterPoint: {x: -25, y: 0}
+      Size: {x: 50, y: 50}
   MovementStaticData:
     Speed: 60
     StartDelay: 0

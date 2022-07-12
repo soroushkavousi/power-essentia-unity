@@ -25,10 +25,16 @@ public class DiamondDeckRingMenuBehavior : MonoBehaviour
 
     private void HandleShowSelectedDiamondDetailsAction()
     {
-        if (_diamondUpgradeMenuBehavior.SelectedDiamondBehavior.KnowledgeState.Value == DiamondKnowledgeState.OWNED)
-            _useInDeckButton.Unlock();
-        else
-            _useInDeckButton.Lock();
+        switch (_diamondUpgradeMenuBehavior.SelectedDiamondBehavior.KnowledgeState.Value)
+        {
+            case DiamondKnowledgeState.OWNED:
+            case DiamondKnowledgeState.MASTERED:
+                _useInDeckButton.Unlock();
+                break;
+            default:
+                _useInDeckButton.Lock();
+                break;
+        }
     }
 
     public void StartUseInDeckOperation()

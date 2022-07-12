@@ -31,7 +31,11 @@ public static class NumberExtensions
 
     public static long ToLong(this float value)
     {
-        return Convert.ToInt64(value);
+        var fractionalPart = value % 1;
+        if (fractionalPart >= 0.5)
+            return Convert.ToInt64(Mathf.Ceil(value));
+        else
+            return Convert.ToInt64(Mathf.Floor(value));
     }
 
     public static int RemoveNegative(this int number)
