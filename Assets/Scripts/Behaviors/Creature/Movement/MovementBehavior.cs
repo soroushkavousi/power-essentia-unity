@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 
@@ -48,10 +49,14 @@ public class MovementBehavior : MonoBehaviour, IObserver, ISubject<MovementChang
         _speed = new(_staticData.Speed, _level, _staticData.SpeedLevelPercentage,
             min: _staticData.Speed / 4, max: _staticData.Speed * 2);
         _speed.Attach(this);
-        SetAnimationSpeed();
 
         _isStopped = false;
         StopMoving();
+    }
+
+    private void Start()
+    {
+        SetAnimationSpeed();
     }
 
     public void MoveWithDirection(Vector2 direction)
@@ -200,10 +205,17 @@ public class MovementBehavior : MonoBehaviour, IObserver, ISubject<MovementChang
 
     private void SetAnimationSpeed()
     {
-        if (_animator == null || !_animator.parameters.Any(p => p.name == _animationRatioName))
-            return;
-        var movementSpeedRatio = _speed.Value / _animationSpeed;
-        _animator.SetFloat(_animationRatioName, movementSpeedRatio);
+        try
+        {
+            if (_animator == null || !_animator.parameters.Any(p => p.name == _animationRatioName))
+                return;
+            var movementSpeedRatio = _speed.Value / _animationSpeed;
+            _animator.SetFloat(_animationRatioName, movementSpeedRatio);
+        }
+        catch (Exception ex)
+        {
+            Debug.LogException(ex);
+        }
     }
 
     public void Attach(IObserver<MovementChangeData> observer) => _observers.Add(observer);
