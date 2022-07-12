@@ -15,11 +15,11 @@ MonoBehaviour:
   Name: 5
   IsPermanent: 0
   ActiveTime: 15
-  ActiveTimeLevelPercentage: 22.22
+  ActiveTimeLevelPercentage: 22.222
   CooldownTime: 4
-  CooldownTimeLevelPercentage: -5.55
+  CooldownTimeLevelPercentage: -5.555
   Icon: {fileID: 21300000, guid: 2f464015a87d69b459d83adcfc9386a5, type: 3}
   GroundFireBehavior: {fileID: 1181049932790168290, guid: 0f33444dfb417de4f8ce8783c5801485,
     type: 3}
   Chance: 10
-  ChanceLevelPercentage: 5.55
+  ChanceLevelPercentage: 5.555

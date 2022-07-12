@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Heal Spell
   Cooldown: 15
-  CooldownLevelPercentage: -4.44
+  CooldownLevelPercentage: -4.444
   HealAmount: 500
   HealAmountLevelPercentage: 30
   MaxHealAreaRadius: 400

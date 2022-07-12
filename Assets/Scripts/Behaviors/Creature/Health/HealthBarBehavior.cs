@@ -26,6 +26,7 @@ public class HealthBarBehavior : MonoBehaviour, IObserver<Damage>, IObserver
     {
         _healthBehavior.Health.Attach((IObserver)this);
         _healthBehavior.Health.Attach((IObserver<Damage>)this);
+        ShowHealthChange();
     }
 
     private void ShowCriticalDamage(Damage damage)
@@ -42,16 +43,9 @@ public class HealthBarBehavior : MonoBehaviour, IObserver<Damage>, IObserver
 
     private void ShowHealthChange()
     {
-        try
-        {
-            _slider.maxValue = _healthBehavior.Health.Max.Value.ToLong();
-            _slider.value = _healthBehavior.Health.Value.ToLong();
-            _fill.color = _gradient.Evaluate(_slider.normalizedValue);
-        }
-        catch (Exception ex)
-        {
-            Debug.LogError(ex.Message);
-        }
+        _slider.maxValue = _healthBehavior.Health.Max.Value;
+        _slider.value = _healthBehavior.Health.Value;
+        _fill.color = _gradient.Evaluate(_slider.normalizedValue);
     }
 
     public void OnNotify(ISubject<Damage> subject, Damage damage)

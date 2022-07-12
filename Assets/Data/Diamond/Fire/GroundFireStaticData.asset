@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c916e68e31afb945b400334d6e2d75e, type: 3}
   m_Name: GroundFireStaticData
   m_EditorClassIdentifier: 
-  Duration: 5
-  DurationLevelPercentage: 11.11
+  Duration: 3
+  DurationLevelPercentage: 11.111
   Damage: 200
-  DamageLevePercentage: 55.55
+  DamageLevePercentage: 55.555
   CriticalChance: 10
-  CriticalChanceLevelPercentage: 22.22
+  CriticalChanceLevelPercentage: 22.222
   CriticalDamage: 100
-  CriticalDamageLevelPercentage: 11.11
+  CriticalDamageLevelPercentage: 11.111
   Slow: 5
-  SlowLevelPercentage: 33.33
+  SlowLevelPercentage: 33.333
   SpawnOffset: {x: -100, y: 0}

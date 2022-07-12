@@ -34,7 +34,7 @@ MonoBehaviour:
       Size: {x: 800, y: 100}
   MovementStaticData:
     Speed: 75
-    SpeedLevelPercentage: 11.11
+    SpeedLevelPercentage: 11.111
     StartDelay: 0
     AnimationSpeed: 100
     DontStopWhenReach: 0

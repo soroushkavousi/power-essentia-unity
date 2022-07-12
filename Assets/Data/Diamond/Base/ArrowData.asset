@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MovementStaticData:
     Speed: 1000
-    SpeedLevelPercentage: 5.55
+    SpeedLevelPercentage: 5.555
     StartDelay: 0
     AnimationSpeed: 1000
     DontStopWhenReach: 1

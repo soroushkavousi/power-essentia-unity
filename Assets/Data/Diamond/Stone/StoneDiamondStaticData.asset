@@ -15,11 +15,11 @@ MonoBehaviour:
   Name: 6
   IsPermanent: 0
   ActiveTime: 15
-  ActiveTimeLevelPercentage: 22.22
+  ActiveTimeLevelPercentage: 22.222
   CooldownTime: 4
-  CooldownTimeLevelPercentage: -5.55
+  CooldownTimeLevelPercentage: -5.555
   Icon: {fileID: 21300000, guid: 677068433f8a6bc4397e731a638fd5d9, type: 3}
   FallingStoneBehavior: {fileID: -5072360949165659967, guid: 15d869bd407f0bb4787b5b97bdbd0dc8,
     type: 3}
   Chance: 10
-  ChanceLevelPercentage: 5.55
+  ChanceLevelPercentage: 5.555

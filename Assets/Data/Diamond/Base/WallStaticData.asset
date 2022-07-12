@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HealthData:
     Health: 3000
-    HealthLevelPercentage: 55.55
+    HealthLevelPercentage: 55.555
     PhysicalResistance: 20
-    PhysicalResistanceLevelPercentage: 22.22
+    PhysicalResistanceLevelPercentage: 22.222
     MagicResistance: 20
-    MagicResistanceLevelPercentage: 22.22
+    MagicResistanceLevelPercentage: 22.222
     DeathVfxPrefab: {fileID: 0}
