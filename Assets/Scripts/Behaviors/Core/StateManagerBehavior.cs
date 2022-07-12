@@ -41,11 +41,14 @@ public class StateManagerBehavior : MonoBehaviour
             _checkStateAction?.Invoke();
     }
 
-    //This function will be called in the animations
+    //This function will be called at start of every animation.
     private void OnNewState(string state)
     {
         if (_state.Value == state)
+        {
+            _startNewStateAction?.Invoke();
             return;
+        }
 
         _isGoingToNextState = true;
         _state.Value = state;
