@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Black Mage
   HealthData:
-    Health: 500
+    Health: 1000
     HealthLevelPercentage: 50
     PhysicalResistance: 15
     PhysicalResistanceLevelPercentage: 2
@@ -23,17 +23,17 @@ MonoBehaviour:
     DeathVfxPrefab: {fileID: 0}
     DeathRewardsData:
     - Type: 0
-      Amount: 1000
+      Amount: 1200
       LevelPercentage: 20
     - Type: 1
-      Amount: 100
+      Amount: 90
       LevelPercentage: 20
   AIAttackerStaticData:
     VisionStaticData:
       CenterPoint: {x: -400, y: 0}
       Size: {x: 800, y: 100}
   MovementStaticData:
-    Speed: 75
+    Speed: 70
     SpeedLevelPercentage: 11.111
     StartDelay: 0
     AnimationSpeed: 100

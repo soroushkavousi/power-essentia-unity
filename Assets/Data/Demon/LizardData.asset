@@ -23,17 +23,17 @@ MonoBehaviour:
     DeathVfxPrefab: {fileID: 0}
     DeathRewardsData:
     - Type: 0
-      Amount: 300
+      Amount: 400
       LevelPercentage: 20
     - Type: 1
-      Amount: 30
+      Amount: 25
       LevelPercentage: 20
   AIAttackerStaticData:
     VisionStaticData:
       CenterPoint: {x: -25, y: 0}
       Size: {x: 50, y: 50}
   MovementStaticData:
-    Speed: 60
+    Speed: 70
     SpeedLevelPercentage: 11.111
     StartDelay: 0
     AnimationSpeed: 80

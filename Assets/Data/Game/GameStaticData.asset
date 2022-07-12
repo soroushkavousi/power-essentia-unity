@@ -29,11 +29,15 @@ MonoBehaviour:
       type: 3}
   Settings:
     DiamondMaxLevel: 10
+    AcceptedCollisionDistance: 30
+    MaxAttackSpeed: 30
     BuyDiamondResourceBunches:
     - Type: 0
       Amount: 10000
     - Type: 1
       Amount: 500
+    - Type: 2
+      Amount: 1
     DiamondUpgradeResourceBunches:
     - Type: 0
       Amount: 500

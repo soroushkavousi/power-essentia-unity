@@ -49,8 +49,8 @@ public static class PlayerStart
         },
         ResourceBunches = new List<ResourceBunchDynamicDataTO>
         {
-            new ResourceBunchDynamicDataTO(ResourceType.COIN.ToString(), 10000),
-            new ResourceBunchDynamicDataTO(ResourceType.DEMON_BLOOD.ToString(), 500),
+            new ResourceBunchDynamicDataTO(ResourceType.COIN.ToString(), 2000),
+            new ResourceBunchDynamicDataTO(ResourceType.DEMON_BLOOD.ToString(), 100),
             new ResourceBunchDynamicDataTO(ResourceType.DARK_DEMON_BLOOD.ToString(), 5),
         },
     };

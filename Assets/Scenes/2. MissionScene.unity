@@ -7047,7 +7047,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1918912331
 Transform:
   m_ObjectHideFlags: 0
@@ -7129,6 +7129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed:
     _value: 0
+    _limitedBasePercentage: 0
     _basePercentage: 0
     _baseValue: 0
     _levelPercentage: 0
@@ -7139,6 +7140,7 @@ MonoBehaviour:
     _max: 0
     _minPercentage: 0
     _maxPercentage: 0
+    _randomnessPercentage: 0
     _fixValue: 0
     _isFixed: 0
     _oneLevelPercentage: 0
@@ -8484,6 +8486,7 @@ MonoBehaviour:
   _deadDemonCount:
     _value: 0
     _lastValue: 0
+  _aliveEnemies: []
 --- !u!82 &7787075908342856239
 AudioSource:
   m_ObjectHideFlags: 0
