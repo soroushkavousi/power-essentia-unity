@@ -33,6 +33,15 @@ public class BloodDiamondBehavior : DiamondBehavior
 
     protected override string GetDescription()
     {
+        var description = $"" +
+            $"It will take the blood of dead demons in the battlefield." +
+            $" Stored blood can be used to upgrade other diamonds.\n" +
+            $"Blood diamond is a base diamond that is active permanently.";
+        return description;
+    }
+
+    protected override string GetStatsDescription()
+    {
         //------------------------------------------------
 
         var currentBloodPerDemonLevel = _bloodRatio.Value;
@@ -45,12 +54,8 @@ public class BloodDiamondBehavior : DiamondBehavior
 
         //-----------------------------------------------
 
-        var description = $"" +
-            $"It will take the blood of dead demons in the battlefield." +
-            $"Stored blood can be used to upgrade other diamonds.\n" +
-            $"\nStats:\n" +
-            $"   - {currentBloodPerDemonLevelShow}    {nextBloodPerDemonLevelShow}\n" +
-            $"\nBlood diamond is a base diamond that is active permanently.";
-        return description;
+        var statsDescription = $"" +
+            $"{currentBloodPerDemonLevelShow}    {nextBloodPerDemonLevelShow}\n";
+        return statsDescription;
     }
 }

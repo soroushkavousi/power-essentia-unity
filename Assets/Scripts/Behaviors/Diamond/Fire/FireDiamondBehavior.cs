@@ -59,6 +59,14 @@ public class FireDiamondBehavior : DiamondBehavior, IObserver<HitParameters>
 
     protected override string GetDescription()
     {
+        var description = $"" +
+            $"It has a chance to spawn a ground fire when an enemy is hit." +
+            $" The ground fire will burn any enemies who walk on it.";
+        return description;
+    }
+
+    protected override string GetStatsDescription()
+    {
         //------------------------------------------------
 
         var currentChacne = _chance.Value;
@@ -121,15 +129,13 @@ public class FireDiamondBehavior : DiamondBehavior, IObserver<HitParameters>
 
         //------------------------------------------------
 
-        var description = $"" +
-            $"It has a chance to spawn a ground fire on bow hit.\n" +
-            $"\nStats:\n" +
-            $"   - {currentChanceShow}    {nextChanceShow}\n" +
-            $"   - {currentDurationShow}    {nextDurationShow}\n" +
-            $"   - {currentDamageShow}    {nextDamageShow}\n" +
-            $"   - {currentSlowShow}    {nextSlowShow}\n" +
-            $"   - {currentCriticalChanceShow}    {nextCriticalChanceShow}\n" +
-            $"   - {currentCriticalDamageShow}    {nextCriticalDamageShow}";
-        return description;
+        var statsDescription = $"" +
+            $"{currentChanceShow}    {nextChanceShow}\n" +
+            $"{currentDurationShow}    {nextDurationShow}\n" +
+            $"{currentDamageShow}    {nextDamageShow}\n" +
+            $"{currentSlowShow}    {nextSlowShow}\n" +
+            $"{currentCriticalChanceShow}    {nextCriticalChanceShow}\n" +
+            $"{currentCriticalDamageShow}    {nextCriticalDamageShow}";
+        return statsDescription;
     }
 }

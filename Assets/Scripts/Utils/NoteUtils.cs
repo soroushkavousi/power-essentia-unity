@@ -1,8 +1,8 @@
 ﻿public static class NoteUtils
 {
     public const string UpgradeColor = "#542402";
-    public const int NextNumberSizeRatio = 88;
-    public const int NumberSizeRatio = 105;
+    public const int NextNumberSizeRatio = 80;
+    public const int NumberSizeRatio = 95;
 
     public static string ChangeSize(string content, int size) => $"<size={size}%>{content}</size>";
     public static string MakeBold(string content) => $"<b>{content}</b>";

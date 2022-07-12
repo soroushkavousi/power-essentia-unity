@@ -44,7 +44,7 @@ public class StoneDiamondBehavior : DiamondBehavior, IObserver<HitParameters>
         CreateFallingStone(targetEnemy);
         yield return new WaitForSeconds(0.1f);
         var closestEnemy = FindClosestEnemyToWall(targetEnemy);
-        if(closestEnemy != null && closestEnemy.activeSelf == true)
+        if (closestEnemy != null && closestEnemy.activeSelf == true)
             CreateFallingStone(closestEnemy);
     }
 
@@ -68,7 +68,7 @@ public class StoneDiamondBehavior : DiamondBehavior, IObserver<HitParameters>
         {
             var indexOfClosestDemon = aliveDemons.Select(e => e.transform.position.x).ToList().IndexOfMin();
             var closestDemon = aliveDemons[indexOfClosestDemon];
-            if(closestDemon != null && !closestDemon.GetComponent<HealthBehavior>().IsDead)
+            if (closestDemon != null && !closestDemon.GetComponent<HealthBehavior>().IsDead)
                 return closestDemon.gameObject;
             aliveDemons.Remove(closestDemon);
         }
@@ -84,6 +84,14 @@ public class StoneDiamondBehavior : DiamondBehavior, IObserver<HitParameters>
     }
 
     protected override string GetDescription()
+    {
+        var description = $"" +
+            $"It has a chance to summon two stones that fall into enemies and stun them.\n" +
+            $"The first stone will hit the target enemy, and the second stone will hit the closest enemy to the wall.";
+        return description;
+    }
+
+    protected override string GetStatsDescription()
     {
         //------------------------------------------------
 
@@ -137,14 +145,12 @@ public class StoneDiamondBehavior : DiamondBehavior, IObserver<HitParameters>
 
         //------------------------------------------------
 
-        var description = $"" +
-            $"It has a chance to fall a stone on the enemy target.\n" +
-            $"\nStats:\n" +
-            $"   - {currentChanceShow}    {nextChanceShow}\n" +
-            $"   - {currentImpactDamageShow}    {nextImpactDamageShow}\n" +
-            $"   - {currentStunDurationShow}    {nextStunDurationShow}\n" +
-            $"   - {currentCriticalChanceShow}    {nextCriticalChanceShow}\n" +
-            $"   - {currentCriticalDamageShow}    {nextCriticalDamageShow}";
-        return description;
+        var statsDescription = $"" +
+            $"{currentChanceShow}    {nextChanceShow}\n" +
+            $"{currentImpactDamageShow}    {nextImpactDamageShow}\n" +
+            $"{currentStunDurationShow}    {nextStunDurationShow}\n" +
+            $"{currentCriticalChanceShow}    {nextCriticalChanceShow}\n" +
+            $"{currentCriticalDamageShow}    {nextCriticalDamageShow}";
+        return statsDescription;
     }
 }

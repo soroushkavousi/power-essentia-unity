@@ -40,6 +40,14 @@ public class WallDiamondBehavior : DiamondBehavior
 
     protected override string GetDescription()
     {
+        var description = $"" +
+            $"On Activation it creates a magical wall.\n" +
+            $"Wall diamond is a base diamond that is active permanently.";
+        return description;
+    }
+
+    protected override string GetStatsDescription()
+    {
         //------------------------------------------------
 
         var currentHealth = _wallBehavior.HealthBehavior.Health.Value.ToLong();
@@ -72,13 +80,10 @@ public class WallDiamondBehavior : DiamondBehavior
 
         //------------------------------------------------
 
-        var description = $"" +
-            $"On Activation it creates a magical wall.\n" +
-            $"\nStats:\n" +
-            $"   - {currentHealthShow}    {nextHealthShow}\n" +
-            $"   - {currentPhysicalResistanceShow}    {nextPhysicalResistanceShow}\n" +
-            $"   - {currentMagicResistanceShow}    {nextMagicResistanceShow}\n" +
-            $"\nBlood diamond is a base diamond that is active permanently.";
-        return description;
+        var statsDescription = $"" +
+            $"{currentHealthShow}    {nextHealthShow}\n" +
+            $"{currentPhysicalResistanceShow}    {nextPhysicalResistanceShow}\n" +
+            $"{currentMagicResistanceShow}    {nextMagicResistanceShow}\n";
+        return statsDescription;
     }
 }

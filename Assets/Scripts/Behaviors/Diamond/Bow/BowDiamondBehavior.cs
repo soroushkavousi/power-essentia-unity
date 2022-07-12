@@ -37,6 +37,15 @@ public class BowDiamondBehavior : DiamondBehavior
 
     protected override string GetDescription()
     {
+        var description = $"" +
+            $"It creates a magical bow." +
+            $" The arrows of magical bos can carry other diamond effects.\n" +
+            $"Bow diamond is a base diamond that is active permanently.";
+        return description;
+    }
+
+    protected override string GetStatsDescription()
+    {
         //------------------------------------------------
 
         var currentDamage = _bowWeaponBehavior.AttackDamage.Value.ToLong();
@@ -80,14 +89,10 @@ public class BowDiamondBehavior : DiamondBehavior
         //------------------------------------------------
 
         var description = $"" +
-            $"It creates a magical bow." +
-            $"Its arrows can carry other diamond effects.\n" +
-            $"\nStats:\n" +
-            $"   - {currentDamageShow}    {nextDamageShow}\n" +
-            $"   - {currentFireRateShow}    {nextFireRateShow}\n" +
-            $"   - {currentCriticalChanceShow}    {nextCriticalChanceShow}\n" +
-            $"   - {currentCriticalDamageShow}    {nextCriticalDamageShow}\n" +
-            $"\nBow diamond is a base diamond that is active permanently. It do a lot of things for the archer";
+            $"{currentDamageShow}    {nextDamageShow}\n" +
+            $"{currentFireRateShow}    {nextFireRateShow}\n" +
+            $"{currentCriticalChanceShow}    {nextCriticalChanceShow}\n" +
+            $"{currentCriticalDamageShow}    {nextCriticalDamageShow}\n";
         return description;
     }
 }

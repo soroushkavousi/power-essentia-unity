@@ -47,6 +47,7 @@ public abstract class DiamondBehavior : MonoBehaviour
     public Func<GameObject, GameObject> IsTargetEnemyFunction { get; private set; }
     public Transform DiamondEffectsParent => _diamondEffectsParent;
     public string Description => GetDescription();
+    public string StatsDescription => GetStatsDescription();
 
     public void FeedData(DiamondStaticData diamondStaticData)
     {
@@ -138,4 +139,5 @@ public abstract class DiamondBehavior : MonoBehaviour
     }
 
     protected abstract string GetDescription();
+    protected abstract string GetStatsDescription();
 }

@@ -9,7 +9,8 @@ using UnityEngine;
 public class DiamondUpgradeMenuBehavior : MonoBehaviour, IObserver
 {
     [SerializeField] private TextMeshProUGUI _diamondTitle = default;
-    [SerializeField] private TextMeshProUGUI _diamondDetails = default;
+    [SerializeField] private TextMeshProUGUI _diamondDescription = default;
+    [SerializeField] private TextMeshProUGUI _diamondStatsDescription = default;
     [SerializeField] private ResourceDisplayBehavior _upgradeCoinDisplay = default;
     [SerializeField] private ResourceDisplayBehavior _upgradeDemonBloodDisplay = default;
     [SerializeField] private ResourceDisplayBehavior _upgradeDarkDemonBloodDisplay = default;
@@ -72,7 +73,8 @@ public class DiamondUpgradeMenuBehavior : MonoBehaviour, IObserver
         var title = $"{_selectedDiamondBehavior.ShowName} Diamond (Level {level})";
         _diamondTitle.text = title;
 
-        _diamondDetails.text = _selectedDiamondBehavior.Description;
+        _diamondDescription.text = _selectedDiamondBehavior.Description;
+        _diamondStatsDescription.text = _selectedDiamondBehavior.StatsDescription;
         UpdateUpgradeDetails();
         _upgradeButtonBehavior.Owner.SetActive(_selectedDiamondBehavior.KnowledgeState.Value == DiamondKnowledgeState.OWNED);
         _buyButtonBehavior.Owner.SetActive(_selectedDiamondBehavior.KnowledgeState.Value == DiamondKnowledgeState.DISCOVERED);
@@ -81,6 +83,8 @@ public class DiamondUpgradeMenuBehavior : MonoBehaviour, IObserver
 
     private void UpdateUpgradeDetails()
     {
+        if (_selectedDiamondBehavior == null)
+            return;
         List<ResourceBunch> resourceBunches;
         if (_selectedDiamondBehavior.KnowledgeState.Value == DiamondKnowledgeState.DISCOVERED)
             resourceBunches = _selectedDiamondBehavior.BuyResourceBunches;
