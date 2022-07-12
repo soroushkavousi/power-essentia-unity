@@ -22,6 +22,7 @@ public class MovementBehavior : MonoBehaviour, IObserver, ISubject<MovementChang
     [SerializeField] private Transform _targetTransform = default;
     [SerializeField] private static string _animationRatioName = "MovementSpeedRatio";
     private MovementStaticData _staticData = default;
+    protected Observable<int> _level = default;
     private float _saveSpeedCurrentValue = default;
     private Rigidbody2D _rigidbody2d = default;
     private Animator _animator = default;
@@ -31,17 +32,21 @@ public class MovementBehavior : MonoBehaviour, IObserver, ISubject<MovementChang
     public Number Speed => _speed;
     public bool DontStopWhenReach { get => _dontStopWhenReach; set => _dontStopWhenReach = value; }
 
-    public void FeedData(MovementStaticData staticData, float? acceptedCollisionDistance = null)
+    public void FeedData(MovementStaticData staticData, Observable<int> level = null,
+        float? acceptedCollisionDistance = null)
     {
         _staticData = staticData;
+        _level = level;
         _rigidbody2d = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
-        _acceptedCollisionDistance = acceptedCollisionDistance ?? 30f; //Todo Global Constants
+        _acceptedCollisionDistance = acceptedCollisionDistance ??
+            GameManagerBehavior.Instance.StaticData.Settings.AcceptedCollisionDistance;
         _animationSpeed = _staticData.AnimationSpeed;
         _startDelay = _staticData.StartDelay;
         _dontStopWhenReach = _staticData.DontStopWhenReach;
 
-        _speed = new(_staticData.Speed);
+        _speed = new(_staticData.Speed, _level, _staticData.SpeedLevelPercentage,
+            min: _staticData.Speed / 4, max: _staticData.Speed * 2);
         _speed.Attach(this);
         SetAnimationSpeed();
 

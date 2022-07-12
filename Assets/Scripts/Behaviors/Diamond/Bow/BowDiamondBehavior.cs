@@ -58,8 +58,8 @@ public class BowDiamondBehavior : DiamondBehavior
 
         //------------------------------------------------
 
-        var currentAttackSpeed = _bowWeaponBehavior.AttackSpeed.Value;
-        var nextAttackSpeed = _bowWeaponBehavior.AttackSpeed.NextLevelValue;
+        var currentAttackSpeed = _bowWeaponBehavior.AttackSpeed.Value.Round();
+        var nextAttackSpeed = _bowWeaponBehavior.AttackSpeed.NextLevelValue.Round();
 
         var currentFireRateShow = NoteUtils.AddColor(currentAttackSpeed + "fps", "black");
         currentFireRateShow = NoteUtils.ChangeSize($"Fire Rate: {currentFireRateShow}", NoteUtils.NumberSizeRatio);
@@ -68,8 +68,8 @@ public class BowDiamondBehavior : DiamondBehavior
 
         //------------------------------------------------
 
-        var currentCriticalChance = _bowWeaponBehavior.CriticalChance.Value;
-        var nextCriticalChance = _bowWeaponBehavior.CriticalChance.NextLevelValue;
+        var currentCriticalChance = _bowWeaponBehavior.CriticalChance.Value.ToLong();
+        var nextCriticalChance = _bowWeaponBehavior.CriticalChance.NextLevelValue.ToLong();
 
         var currentCriticalChanceShow = NoteUtils.AddColor(currentCriticalChance + "%", "black");
         currentCriticalChanceShow = NoteUtils.ChangeSize($"Critical Chance: {currentCriticalChanceShow}", NoteUtils.NumberSizeRatio);
@@ -78,8 +78,8 @@ public class BowDiamondBehavior : DiamondBehavior
 
         //------------------------------------------------
 
-        var currentCriticalDamage = _bowWeaponBehavior.CriticalDamage.Value;
-        var nextCriticalDamage = _bowWeaponBehavior.CriticalDamage.NextLevelValue;
+        var currentCriticalDamage = _bowWeaponBehavior.CriticalDamage.Value.ToLong();
+        var nextCriticalDamage = _bowWeaponBehavior.CriticalDamage.NextLevelValue.ToLong();
 
         var currentCriticalDamageShow = NoteUtils.AddColor(currentCriticalDamage + "%", "black");
         currentCriticalDamageShow = NoteUtils.ChangeSize($"Critical Damage: {currentCriticalDamageShow}", NoteUtils.NumberSizeRatio);

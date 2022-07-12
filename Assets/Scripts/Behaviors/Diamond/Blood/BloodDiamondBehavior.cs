@@ -44,18 +44,18 @@ public class BloodDiamondBehavior : DiamondBehavior
     {
         //------------------------------------------------
 
-        var currentBloodPerDemonLevel = _bloodRatio.Value;
-        var nextBloodPerDemonLevel = _bloodRatio.NextLevelValue;
+        var currentBloodRatio = _bloodRatio.Value.ToLong();
+        var nextBloodPerDemonLevel = _bloodRatio.NextLevelValue.ToLong();
 
-        var currentBloodPerDemonLevelShow = NoteUtils.AddColor(currentBloodPerDemonLevel + "%", "black");
-        currentBloodPerDemonLevelShow = NoteUtils.ChangeSize($"Blood Taken Ratio: {currentBloodPerDemonLevelShow}", NoteUtils.NumberSizeRatio);
-        var nextBloodPerDemonLevelShow = NoteUtils.AddColor(nextBloodPerDemonLevel + "%", NoteUtils.UpgradeColor);
-        nextBloodPerDemonLevelShow = NoteUtils.ChangeSize($"({nextBloodPerDemonLevelShow})", NoteUtils.NextNumberSizeRatio);
+        var currentBloodRatioShow = NoteUtils.AddColor(currentBloodRatio + "%", "black");
+        currentBloodRatioShow = NoteUtils.ChangeSize($"Blood Taken Ratio: {currentBloodRatioShow}", NoteUtils.NumberSizeRatio);
+        var nextBloodRatioShow = NoteUtils.AddColor(nextBloodPerDemonLevel + "%", NoteUtils.UpgradeColor);
+        nextBloodRatioShow = NoteUtils.ChangeSize($"({nextBloodRatioShow})", NoteUtils.NextNumberSizeRatio);
 
         //-----------------------------------------------
 
         var statsDescription = $"" +
-            $"{currentBloodPerDemonLevelShow}    {nextBloodPerDemonLevelShow}\n";
+            $"{currentBloodRatioShow}    {nextBloodRatioShow}\n";
         return statsDescription;
     }
 }

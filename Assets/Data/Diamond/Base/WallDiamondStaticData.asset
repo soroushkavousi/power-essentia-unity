@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WallDiamondStaticData
   m_EditorClassIdentifier: 
   Name: 3
-  IsPermanent: 0
+  IsPermanent: 1
   ActiveTime: 0
   ActiveTimeLevelPercentage: 0
   CooldownTime: 0

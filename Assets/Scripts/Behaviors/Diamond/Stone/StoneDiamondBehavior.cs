@@ -95,8 +95,8 @@ public class StoneDiamondBehavior : DiamondBehavior, IObserver<HitParameters>
     {
         //------------------------------------------------
 
-        var currentChacne = _chance.Value;
-        var nextChance = _chance.NextLevelValue;
+        var currentChacne = _chance.Value.ToLong();
+        var nextChance = _chance.NextLevelValue.ToLong();
 
         var currentChanceShow = NoteUtils.AddColor(currentChacne + "%", "black");
         currentChanceShow = NoteUtils.ChangeSize($"Chance: {currentChanceShow}", NoteUtils.NumberSizeRatio);
@@ -116,7 +116,7 @@ public class StoneDiamondBehavior : DiamondBehavior, IObserver<HitParameters>
         //------------------------------------------------
 
         var currentStunDuration = _sampleFallingStoneBehavior.StunDuration.Value.ToLong();
-        var nextStunDuration = _sampleFallingStoneBehavior.StunDuration.Value.ToLong();
+        var nextStunDuration = _sampleFallingStoneBehavior.StunDuration.NextLevelValue.ToLong();
 
         var currentStunDurationShow = NoteUtils.AddColor(currentStunDuration + "s", "black");
         currentStunDurationShow = NoteUtils.ChangeSize($"Stun Duration: {currentStunDurationShow}", NoteUtils.NumberSizeRatio);
@@ -126,7 +126,7 @@ public class StoneDiamondBehavior : DiamondBehavior, IObserver<HitParameters>
         //------------------------------------------------
 
         var currentCriticalChance = _sampleFallingStoneBehavior.CriticalChance.Value.ToLong();
-        var nextCriticalChance = _sampleFallingStoneBehavior.CriticalChance.Value.ToLong();
+        var nextCriticalChance = _sampleFallingStoneBehavior.CriticalChance.NextLevelValue.ToLong();
 
         var currentCriticalChanceShow = NoteUtils.AddColor(currentCriticalChance + "%", "black");
         currentCriticalChanceShow = NoteUtils.ChangeSize($"Critical Chance: {currentCriticalChanceShow}", NoteUtils.NumberSizeRatio);
@@ -136,7 +136,7 @@ public class StoneDiamondBehavior : DiamondBehavior, IObserver<HitParameters>
         //------------------------------------------------
 
         var currentCriticalDamage = _sampleFallingStoneBehavior.CriticalDamage.Value.ToLong();
-        var nextCriticalDamage = _sampleFallingStoneBehavior.CriticalDamage.Value.ToLong();
+        var nextCriticalDamage = _sampleFallingStoneBehavior.CriticalDamage.NextLevelValue.ToLong();
 
         var currentCriticalDamageShow = NoteUtils.AddColor(currentCriticalDamage + "%", "black");
         currentCriticalDamageShow = NoteUtils.ChangeSize($"Critical Damage: {currentCriticalDamageShow}", NoteUtils.NumberSizeRatio);

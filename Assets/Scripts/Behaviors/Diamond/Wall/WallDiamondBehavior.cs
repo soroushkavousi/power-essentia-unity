@@ -60,8 +60,8 @@ public class WallDiamondBehavior : DiamondBehavior
 
         //------------------------------------------------
 
-        var currentPhysicalResistance = _wallBehavior.HealthBehavior.Health.PhysicalResistance.Value;
-        var nextPhysicalResistance = _wallBehavior.HealthBehavior.Health.PhysicalResistance.NextLevelValue;
+        var currentPhysicalResistance = _wallBehavior.HealthBehavior.Health.PhysicalResistance.Value.ToLong();
+        var nextPhysicalResistance = _wallBehavior.HealthBehavior.Health.PhysicalResistance.NextLevelValue.ToLong();
 
         var currentPhysicalResistanceShow = NoteUtils.AddColor(currentPhysicalResistance + "%", "black");
         currentPhysicalResistanceShow = NoteUtils.ChangeSize($"Physical Resistance: {currentPhysicalResistanceShow}", NoteUtils.NumberSizeRatio);
@@ -70,8 +70,8 @@ public class WallDiamondBehavior : DiamondBehavior
 
         //------------------------------------------------
 
-        var currentMagicResistance = _wallBehavior.HealthBehavior.Health.MagicResistance.Value;
-        var nextMagicResistance = _wallBehavior.HealthBehavior.Health.MagicResistance.NextLevelValue;
+        var currentMagicResistance = _wallBehavior.HealthBehavior.Health.MagicResistance.Value.ToLong();
+        var nextMagicResistance = _wallBehavior.HealthBehavior.Health.MagicResistance.NextLevelValue.ToLong();
 
         var currentMagicResistanceShow = NoteUtils.AddColor(currentMagicResistance + "%", "black");
         currentMagicResistanceShow = NoteUtils.ChangeSize($"Magic Resistance: {currentMagicResistanceShow}", NoteUtils.NumberSizeRatio);

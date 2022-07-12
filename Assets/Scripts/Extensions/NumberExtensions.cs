@@ -53,7 +53,7 @@ public static class NumberExtensions
     public static float Round(this float number, int decimalCount = 2)
     {
         var decimalWeight = Mathf.Pow(10, decimalCount);
-        number = Mathf.Round(number * decimalWeight) / decimalWeight;
+        number = (number * decimalWeight).ToLong() / decimalWeight;
         return number;
     }
 

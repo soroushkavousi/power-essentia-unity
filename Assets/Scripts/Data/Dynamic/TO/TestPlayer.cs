@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-public static class TestPlayer
+﻿public static class TestPlayer
 {
     public static void ApplyData(PlayerDynamicDataTO data)
     {

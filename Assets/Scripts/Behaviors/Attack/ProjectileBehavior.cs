@@ -6,7 +6,6 @@ using UnityEngine;
 [RequireComponent(typeof(MovementBehavior))]
 public class ProjectileBehavior : MonoBehaviour, IObserver<CollideData>, ISubject<HitParameters>
 {
-    //[SerializeField] private UnityEvent _InitializeEvent;
     [SerializeField] private ProjectileStaticData _staticData = default;
 
     [Space(Constants.SpaceSection)]
@@ -29,11 +28,12 @@ public class ProjectileBehavior : MonoBehaviour, IObserver<CollideData>, ISubjec
     public Func<GameObject, GameObject> IsTargetEnemyFunction { get; set; }
 
     public void Initialize(float damage, float criticalChance,
-        float criticalDamage, Func<GameObject, GameObject> isTargetEnemyFunction)
+        float criticalDamage, Func<GameObject, GameObject> isTargetEnemyFunction,
+        Observable<int> level = null)
     {
         _bodyBehavior = GetComponent<BodyBehavior>();
         _movementBehavior = GetComponent<MovementBehavior>();
-        _movementBehavior.FeedData(_staticData.MovementStaticData);
+        _movementBehavior.FeedData(_staticData.MovementStaticData, level);
         _bodyBehavior.FeedData();
         _bodyBehavior.Attach(this);
 

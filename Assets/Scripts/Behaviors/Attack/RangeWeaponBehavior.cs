@@ -57,7 +57,8 @@ public class RangeWeaponBehavior : WeaponBehavior, ISubject<ProjectileBehavior>,
             _attackDamage.Value,
             _criticalChance.Value,
             _criticalDamage.Value,
-            IsTargetEnemyFunction);
+            IsTargetEnemyFunction,
+            _level);
 
         projectileBehavior.Attach(this);
     }

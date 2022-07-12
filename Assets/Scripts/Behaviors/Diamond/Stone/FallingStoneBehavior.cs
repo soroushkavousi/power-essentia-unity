@@ -55,7 +55,7 @@ public class FallingStoneBehavior : MonoBehaviour, IObserver<MovementChangeData>
             _staticData.SpawnYPosition);
 
         _movementBehavior = GetComponent<MovementBehavior>();
-        _movementBehavior.FeedData(_staticData.MovementStaticData);
+        _movementBehavior.FeedData(_staticData.MovementStaticData, _level);
         _movementBehavior.Attach(this);
         _isSample = _enemy == OutBoxBehavior.Instance.Location1.gameObject;
         if (_isSample)

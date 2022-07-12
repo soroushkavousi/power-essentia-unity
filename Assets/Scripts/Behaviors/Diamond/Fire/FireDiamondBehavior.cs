@@ -69,8 +69,8 @@ public class FireDiamondBehavior : DiamondBehavior, IObserver<HitParameters>
     {
         //------------------------------------------------
 
-        var currentChacne = _chance.Value;
-        var nextChance = _chance.NextLevelValue;
+        var currentChacne = _chance.Value.ToLong();
+        var nextChance = _chance.NextLevelValue.ToLong();
 
         var currentChanceShow = NoteUtils.AddColor(currentChacne + "%", "black");
         currentChanceShow = NoteUtils.ChangeSize($"Chance: {currentChanceShow}", NoteUtils.NumberSizeRatio);
@@ -79,8 +79,8 @@ public class FireDiamondBehavior : DiamondBehavior, IObserver<HitParameters>
 
         //------------------------------------------------
 
-        var currentDuration = _sampleGroundFireBehavior.Duration.Value;
-        var nextDuration = _sampleGroundFireBehavior.Duration.NextLevelValue;
+        var currentDuration = _sampleGroundFireBehavior.Duration.Value.ToLong();
+        var nextDuration = _sampleGroundFireBehavior.Duration.NextLevelValue.ToLong();
 
         var currentDurationShow = NoteUtils.AddColor(currentDuration + "s", "black");
         currentDurationShow = NoteUtils.ChangeSize($"Duration: {currentDurationShow}", NoteUtils.NumberSizeRatio);
@@ -89,8 +89,8 @@ public class FireDiamondBehavior : DiamondBehavior, IObserver<HitParameters>
 
         //------------------------------------------------
 
-        var currentDamage = _sampleGroundFireBehavior.Damage.Value;
-        var nextDamage = _sampleGroundFireBehavior.Damage.NextLevelValue;
+        var currentDamage = _sampleGroundFireBehavior.Damage.Value.ToLong();
+        var nextDamage = _sampleGroundFireBehavior.Damage.NextLevelValue.ToLong();
 
         var currentDamageShow = NoteUtils.AddColor(currentDamage + "dps", "black");
         currentDamageShow = NoteUtils.ChangeSize($"Damage: {currentDamageShow}", NoteUtils.NumberSizeRatio);
@@ -99,8 +99,8 @@ public class FireDiamondBehavior : DiamondBehavior, IObserver<HitParameters>
 
         //------------------------------------------------
 
-        var currentSlow = _sampleGroundFireBehavior.Slow.Value;
-        var nextSlow = _sampleGroundFireBehavior.Slow.NextLevelValue;
+        var currentSlow = _sampleGroundFireBehavior.Slow.Value.ToLong();
+        var nextSlow = _sampleGroundFireBehavior.Slow.NextLevelValue.ToLong();
 
         var currentSlowShow = NoteUtils.AddColor(currentSlow + "%", "black");
         currentSlowShow = NoteUtils.ChangeSize($"Slow: {currentSlowShow}", NoteUtils.NumberSizeRatio);
@@ -109,8 +109,8 @@ public class FireDiamondBehavior : DiamondBehavior, IObserver<HitParameters>
 
         //------------------------------------------------
 
-        var currentCriticalChance = _sampleGroundFireBehavior.CriticalChance.Value;
-        var nextCriticalChance = _sampleGroundFireBehavior.CriticalChance.NextLevelValue;
+        var currentCriticalChance = _sampleGroundFireBehavior.CriticalChance.Value.ToLong();
+        var nextCriticalChance = _sampleGroundFireBehavior.CriticalChance.NextLevelValue.ToLong();
 
         var currentCriticalChanceShow = NoteUtils.AddColor(currentCriticalChance + "%", "black");
         currentCriticalChanceShow = NoteUtils.ChangeSize($"Critical Chance: {currentCriticalChanceShow}", NoteUtils.NumberSizeRatio);
@@ -119,8 +119,8 @@ public class FireDiamondBehavior : DiamondBehavior, IObserver<HitParameters>
 
         //------------------------------------------------
 
-        var currentCriticalDamage = _sampleGroundFireBehavior.CriticalDamage.Value;
-        var nextCriticalDamage = _sampleGroundFireBehavior.CriticalDamage.NextLevelValue;
+        var currentCriticalDamage = _sampleGroundFireBehavior.CriticalDamage.Value.ToLong();
+        var nextCriticalDamage = _sampleGroundFireBehavior.CriticalDamage.NextLevelValue.ToLong();
 
         var currentCriticalDamageShow = NoteUtils.AddColor(currentCriticalDamage + "%", "black");
         currentCriticalDamageShow = NoteUtils.ChangeSize($"Critical Damage: {currentCriticalDamageShow}", NoteUtils.NumberSizeRatio);

@@ -37,7 +37,7 @@ public class LizardBehavior : DemonBehavior
         _aiAttackerBehavior.FeedData(_staticData.AIAttackerStaticData);
 
         _movementBehavior = GetComponent<MovementBehavior>();
-        _movementBehavior.FeedData(_staticData.MovementStaticData);
+        _movementBehavior.FeedData(_staticData.MovementStaticData, _level);
         _movementBehavior.MoveWithDirection(Vector2.left);
     }
 

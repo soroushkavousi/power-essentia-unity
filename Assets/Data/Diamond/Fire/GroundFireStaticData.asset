@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: GroundFireStaticData
   m_EditorClassIdentifier: 
   Duration: 5
-  DurationLevelPercentage: 10
+  DurationLevelPercentage: 11.11
   Damage: 200
-  DamageLevePercentage: 50
+  DamageLevePercentage: 55.55
   CriticalChance: 10
-  CriticalChanceLevelPercentage: 20
+  CriticalChanceLevelPercentage: 22.22
   CriticalDamage: 100
-  CriticalDamageLevelPercentage: 10
-  Slow: 10
-  SlowLevelPercentage: 20
+  CriticalDamageLevelPercentage: 11.11
+  Slow: 5
+  SlowLevelPercentage: 33.33
   SpawnOffset: {x: -100, y: 0}

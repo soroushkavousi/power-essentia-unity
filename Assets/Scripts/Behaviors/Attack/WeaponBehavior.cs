@@ -35,9 +35,9 @@ public abstract class WeaponBehavior : MonoBehaviour, ISubject<HitParameters>
         _attackDamage = new(_weaponStaticData.Damage, level,
             _weaponStaticData.DamageLevelPercentage, minPercentage: -95f);
 
-        //Todo max attack speed
+        var maxAttackSpeed = GameManagerBehavior.Instance.StaticData.Settings.MaxAttackSpeed;
         _attackSpeed = new(_weaponStaticData.Speed, level,
-            _weaponStaticData.SpeedLevelPercentage, min: 0f, max: 30f, minPercentage: -95f);
+            _weaponStaticData.SpeedLevelPercentage, min: 0f, max: maxAttackSpeed, minPercentage: -95f);
 
         _criticalChance = new(_weaponStaticData.CriticalChance, level,
             _weaponStaticData.CriticalChanceLevelPercentage, min: 0f, max: 100f);
