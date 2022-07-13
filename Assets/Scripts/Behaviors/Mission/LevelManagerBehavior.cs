@@ -20,6 +20,8 @@ public class LevelManagerBehavior : MonoBehaviour
     private LevelResourceSystemBehavior _levelResourceSystemBehavior = default;
     private LoseSystemBehavior _loseSystemBehavior = default;
     private WinSystemBehavior _winSystemBehavior = default;
+    private Observable<int> _achievedDemonLevel = default;
+    private Observable<int> _selectedDemonLevel = default;
 
     public static LevelManagerBehavior Instance => Utils.GetInstance(ref _instance);
     public Observable<int> TotalWaveCount => _totalWaveCount;
@@ -38,6 +40,8 @@ public class LevelManagerBehavior : MonoBehaviour
         _winSystemBehavior.FeedData();
         Time.timeScale = 1;
         _totalWaveCount.Value = _levelDescriptionStaticData.WaveDescriptions.Count;
+        _achievedDemonLevel = PlayerBehavior.MainPlayer.DynamicData.Achievements.DemonLevel;
+        _selectedDemonLevel = PlayerBehavior.MainPlayer.DynamicData.SelectedItems.DemonLevel;
         StartCoroutine(StartWaves());
     }
 
@@ -57,6 +61,8 @@ public class LevelManagerBehavior : MonoBehaviour
                 );
         }
         yield return new WaitUntil(() => WaveManagerBehavior.Instance.Finished.Value);
+        if (_achievedDemonLevel.Value < _selectedDemonLevel.Value)
+            _achievedDemonLevel.Value = _selectedDemonLevel.Value;
         _finished.Value = true;
     }
 

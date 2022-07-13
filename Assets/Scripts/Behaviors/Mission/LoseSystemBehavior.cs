@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class LoseSystemBehavior : MonoBehaviour, IObserver
+public class LoseSystemBehavior : MonoBehaviour, ISubject, IObserver
 {
     private static LoseSystemBehavior _instance = default;
 
@@ -10,9 +9,9 @@ public class LoseSystemBehavior : MonoBehaviour, IObserver
 
     [SerializeField] private bool _lose = default;
     private HealthBehavior _castleHealthBehavior = default;
+    private readonly ObserverCollection _observers = new();
 
     public static LoseSystemBehavior Instance => Utils.GetInstance(ref _instance);
-    public OrderedList<Action> OnLoseActions { get; } = new OrderedList<Action>();
     public bool Lose => _lose;
 
     public void FeedData()
@@ -31,7 +30,7 @@ public class LoseSystemBehavior : MonoBehaviour, IObserver
             return;
 
         _lose = true;
-        OnLoseActions.CallActionsSafely();
+        Notify();
         DesicionCanvasManager.Instance.Show();
     }
 
@@ -42,4 +41,8 @@ public class LoseSystemBehavior : MonoBehaviour, IObserver
             CheckLoseCondition();
         }
     }
+
+    public void Attach(IObserver observer) => _observers.Add(observer);
+    public void Detach(IObserver observer) => _observers.Remove(observer);
+    public void Notify() => _observers.Notify(this);
 }

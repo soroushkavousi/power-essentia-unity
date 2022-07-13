@@ -1,16 +1,15 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class WinSystemBehavior : MonoBehaviour, IObserver
+public class WinSystemBehavior : MonoBehaviour, ISubject, IObserver
 {
     private static WinSystemBehavior _instance = default;
     [Space(Constants.SpaceSection)]
     [Header(Constants.DebugSectionHeader)]
 
     [SerializeField] private bool _win = default;
+    private readonly ObserverCollection _observers = new();
 
     public static WinSystemBehavior Instance => Utils.GetInstance(ref _instance);
-    public OrderedList<Action> OnWinActions { get; } = new OrderedList<Action>();
     public bool Win => _win;
 
     public void FeedData()
@@ -28,7 +27,7 @@ public class WinSystemBehavior : MonoBehaviour, IObserver
             return;
 
         _win = true;
-        OnWinActions.CallActionsSafely();
+        Notify();
         DesicionCanvasManager.Instance.Show();
     }
 
@@ -39,4 +38,8 @@ public class WinSystemBehavior : MonoBehaviour, IObserver
             CheckWinCondition();
         }
     }
+
+    public void Attach(IObserver observer) => _observers.Add(observer);
+    public void Detach(IObserver observer) => _observers.Remove(observer);
+    public void Notify() => _observers.Notify(this);
 }

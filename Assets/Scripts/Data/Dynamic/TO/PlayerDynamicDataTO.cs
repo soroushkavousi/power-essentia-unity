@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 
 [Serializable]
-public class PlayerDynamicDataTO : IObserver
+public class PlayerDynamicDataTO
 {
     private static readonly string _relativeDataPath = @"player.json";
     private static readonly int _automaticSavePeriod = 500;
@@ -15,8 +15,7 @@ public class PlayerDynamicDataTO : IObserver
     public static PlayerDynamicDataTO Instance { get; private set; }
 
     public long PatchNumber;
-    public string PlayerSetName;
-    public int DemonLevel;
+    public AchievementsDynamicDataTO Achievements;
     public SelectedItemsDynamicDataTO SelectedItems;
     public List<DiamondDynamicDataTO> Diamonds;
     public List<ResourceBunchDynamicDataTO> ResourceBunches;
@@ -78,34 +77,12 @@ public class PlayerDynamicDataTO : IObserver
     private PlayerDynamicData GetPlayerDynamicData()
     {
         _playerDynamicData = new PlayerDynamicData(
-            PatchNumber, PlayerSetName.ToEnum<PlayerSetName>(), DemonLevel,
+            PatchNumber, Achievements.GetAchievementsDynamicData(),
             SelectedItems.GetSelectedItemsDynamicData(),
             Diamonds.Select(cd => cd.GetDiamondDynamicData()).ToList(),
             ResourceBunches.Select(rb => rb.GetResourceBunch()).ToList()
             );
 
-        _playerDynamicData.PlayerSetName.Attach(this);
-        _playerDynamicData.DemonLevel.Attach(this);
         return _playerDynamicData;
-    }
-
-    private void OnPlayerSetNameChanged()
-    {
-        PlayerSetName = _playerDynamicData.PlayerSetName.Value.ToString();
-        Save();
-    }
-
-    private void OnDemonLevelChanged()
-    {
-        DemonLevel = _playerDynamicData.DemonLevel.Value;
-        Save();
-    }
-
-    public void OnNotify(ISubject subject)
-    {
-        if (subject == _playerDynamicData.PlayerSetName)
-            OnPlayerSetNameChanged();
-        else if (subject == _playerDynamicData.DemonLevel)
-            OnDemonLevelChanged();
     }
 }

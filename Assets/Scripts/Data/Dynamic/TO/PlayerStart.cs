@@ -6,8 +6,10 @@ public static class PlayerStart
     public static PlayerDynamicDataTO Data { get; set; } = new PlayerDynamicDataTO
     {
         PatchNumber = 31,
-        PlayerSetName = PlayerSetName.ARCHER.ToString(),
-        DemonLevel = 1,
+        Achievements = new AchievementsDynamicDataTO
+        (
+            demonLevel: 0
+        ),
         SelectedItems = new SelectedItemsDynamicDataTO
         (
             demonLevel: 1,
