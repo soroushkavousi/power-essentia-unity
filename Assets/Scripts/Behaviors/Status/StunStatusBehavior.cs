@@ -28,6 +28,8 @@ public class StunStatusBehavior : MonoBehaviour, ISubject, ISubject<StunStatusIn
         _particleSystem = GetComponent<ParticleSystem>();
         _healthBehavior = _statusOwnerBehavior.GetComponent<HealthBehavior>();
         _movementBehavior = _statusOwnerBehavior.GetComponent<MovementBehavior>();
+
+        _state = StunStatusState.CLEAR;
     }
 
     public void AddNewInstance(GameObject refGameObject,
@@ -70,9 +72,9 @@ public class StunStatusBehavior : MonoBehaviour, ISubject, ISubject<StunStatusIn
 
     public void StartPreStunning()
     {
-        if (_state == StunStatusState.PRE_STUN || _state == StunStatusState.STUN)
+        if (_state == StunStatusState.PRE_STUNNING || _state == StunStatusState.STUNNING)
             return;
-        _state = StunStatusState.PRE_STUN;
+        _state = StunStatusState.PRE_STUNNING;
         _particleSystem.Play();
         _movementBehavior.StopMoving();
         Notify();
@@ -85,7 +87,7 @@ public class StunStatusBehavior : MonoBehaviour, ISubject, ISubject<StunStatusIn
 
     public void StartStunning()
     {
-        _state = StunStatusState.STUN;
+        _state = StunStatusState.STUNNING;
     }
 
     public void StopStunning()
@@ -95,7 +97,7 @@ public class StunStatusBehavior : MonoBehaviour, ISubject, ISubject<StunStatusIn
 
     public void StartPostStunning()
     {
-        _state = StunStatusState.POST_STUN;
+        _state = StunStatusState.POST_STUNNING;
     }
 
     public void StopPostStunning()

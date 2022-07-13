@@ -17,14 +17,14 @@ namespace Assets.Scripts.Models
                 new(),
                 new(),
             },
-            [RingName.LEFT] = new List<Observable<DiamondName>>
+            [RingName.RIGHT] = new List<Observable<DiamondName>>
             {
                 new(),
                 new(),
                 new(),
                 new(),
             },
-            [RingName.RIGHT] = new List<Observable<DiamondName>>
+            [RingName.LEFT] = new List<Observable<DiamondName>>
             {
                 new(),
                 new(),

@@ -16,7 +16,7 @@ MonoBehaviour:
   DurationLevelPercentage: 11.111
   Damage: 200
   DamageLevePercentage: 55.555
-  CriticalChance: 10
+  CriticalChance: 20
   CriticalChanceLevelPercentage: 22.222
   CriticalDamage: 100
   CriticalDamageLevelPercentage: 11.111

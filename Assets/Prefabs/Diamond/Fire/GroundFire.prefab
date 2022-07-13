@@ -1331,8 +1331,8 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 15337
-        atime2: 50663
+        atime1: 30069
+        atime2: 45489
         atime3: 65535
         atime4: 0
         atime5: 0
@@ -9773,6 +9773,7 @@ MonoBehaviour:
   _staticData: {fileID: 11400000, guid: 806f43135add725428a3c7d4bfb547a3, type: 2}
   _duration:
     _value: 0
+    _limitedBasePercentage: 0
     _basePercentage: 0
     _baseValue: 0
     _levelPercentage: 0
@@ -9783,6 +9784,7 @@ MonoBehaviour:
     _max: 0
     _minPercentage: 0
     _maxPercentage: 0
+    _randomnessPercentage: 0
     _fixValue: 0
     _isFixed: 0
     _oneLevelPercentage: 0
@@ -9791,6 +9793,7 @@ MonoBehaviour:
       _lastValue: 0
   _damage:
     _value: 0
+    _limitedBasePercentage: 0
     _basePercentage: 0
     _baseValue: 0
     _levelPercentage: 0
@@ -9801,6 +9804,7 @@ MonoBehaviour:
     _max: 0
     _minPercentage: 0
     _maxPercentage: 0
+    _randomnessPercentage: 0
     _fixValue: 0
     _isFixed: 0
     _oneLevelPercentage: 0
@@ -9809,6 +9813,7 @@ MonoBehaviour:
       _lastValue: 0
   _slow:
     _value: 0
+    _limitedBasePercentage: 0
     _basePercentage: 0
     _baseValue: 0
     _levelPercentage: 0
@@ -9819,6 +9824,7 @@ MonoBehaviour:
     _max: 0
     _minPercentage: 0
     _maxPercentage: 0
+    _randomnessPercentage: 0
     _fixValue: 0
     _isFixed: 0
     _oneLevelPercentage: 0
@@ -9827,6 +9833,7 @@ MonoBehaviour:
       _lastValue: 0
   _criticalChance:
     _value: 0
+    _limitedBasePercentage: 0
     _basePercentage: 0
     _baseValue: 0
     _levelPercentage: 0
@@ -9837,6 +9844,7 @@ MonoBehaviour:
     _max: 0
     _minPercentage: 0
     _maxPercentage: 0
+    _randomnessPercentage: 0
     _fixValue: 0
     _isFixed: 0
     _oneLevelPercentage: 0
@@ -9845,6 +9853,7 @@ MonoBehaviour:
       _lastValue: 0
   _criticalDamage:
     _value: 0
+    _limitedBasePercentage: 0
     _basePercentage: 0
     _baseValue: 0
     _levelPercentage: 0
@@ -9855,6 +9864,7 @@ MonoBehaviour:
     _max: 0
     _minPercentage: 0
     _maxPercentage: 0
+    _randomnessPercentage: 0
     _fixValue: 0
     _isFixed: 0
     _oneLevelPercentage: 0

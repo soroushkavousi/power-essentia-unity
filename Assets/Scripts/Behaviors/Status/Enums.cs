@@ -3,8 +3,14 @@
     public enum StunStatusState
     {
         CLEAR,
-        PRE_STUN,
-        STUN,
-        POST_STUN,
+        PRE_STUNNING,
+        STUNNING,
+        POST_STUNNING,
+    }
+
+    public enum BurnStatusState
+    {
+        CLEAR,
+        BURNING,
     }
 }

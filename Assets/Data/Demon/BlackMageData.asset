@@ -33,8 +33,8 @@ MonoBehaviour:
       CenterPoint: {x: -400, y: 0}
       Size: {x: 800, y: 100}
   MovementStaticData:
-    Speed: 70
-    SpeedLevelPercentage: 11.111
+    Speed: 65
+    SpeedLevelPercentage: 5.555
     StartDelay: 0
     AnimationSpeed: 100
     DontStopWhenReach: 0

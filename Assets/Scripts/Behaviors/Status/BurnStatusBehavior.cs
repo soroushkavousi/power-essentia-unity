@@ -1,32 +1,34 @@
-﻿using System;
+﻿using Assets.Scripts.Enums;
+using Assets.Scripts.Models;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(ParticleSystem))]
-public class BurnStatusBehavior : MonoBehaviour
+public class BurnStatusBehavior : MonoBehaviour, ISubject, ISubject<BurnStatusInstance>
 {
     [SerializeField] private StatusOwnerBehavior _statusOwnerBehavior = default;
 
     [Space(Constants.SpaceSection)]
     [Header(Constants.DebugSectionHeader)]
-
+    [SerializeField] private BurnStatusState _state;
     [SerializeField] private List<BurnStatusInstance> _instances = new List<BurnStatusInstance>();
     private ParticleSystem _particleSystem = default;
     private HealthBehavior _healthBehavior = default;
     private MovementBehavior _movementBehavior = default;
+    private readonly ObserverCollection _observers = new();
+    private readonly ObserverCollection<BurnStatusInstance> _newStatusObservers = new();
 
     public bool IsAffected => _instances.Count != 0;
-    public OrderedList<Action<BurnStatusInstance>> OnPreApplyInstanceActions { get; } = new OrderedList<Action<BurnStatusInstance>>();
-    public OrderedList<Action> OnStatusStarted { get; } = new OrderedList<Action>();
-    public OrderedList<Action> OnStatusFinished { get; } = new OrderedList<Action>();
 
     public void FeedData()
     {
         _particleSystem = GetComponent<ParticleSystem>();
         _healthBehavior = _statusOwnerBehavior.GetComponent<HealthBehavior>();
         _movementBehavior = _statusOwnerBehavior.GetComponent<MovementBehavior>();
+
+        _state = BurnStatusState.CLEAR;
     }
 
     public void AddNewInstance(GameObject refGameObject, float dps,
@@ -34,7 +36,7 @@ public class BurnStatusBehavior : MonoBehaviour
     {
         var instance = new BurnStatusInstance(refGameObject, dps,
             criticalChance, criticalDamage, movementSlow);
-        OnPreApplyInstanceActions.CallActionsSafely(instance);
+        Notify(instance);
         if (instance.Dps == 0 || instance.MovementSlow == 0)
             return;
         StartCoroutine(ApplyInstance(instance));
@@ -70,25 +72,31 @@ public class BurnStatusBehavior : MonoBehaviour
 
     public void StartStatus()
     {
+        if (_state == BurnStatusState.BURNING)
+            return;
         _particleSystem.Play();
-        OnStatusStarted.CallActionsSafely();
+        _state = BurnStatusState.BURNING;
+        Notify();
     }
 
     public void FinishStatus()
     {
         _particleSystem.Stop();
-        OnStatusFinished.CallActionsSafely();
+        _state = BurnStatusState.CLEAR;
+        Notify();
     }
 
     private IEnumerator Damage(BurnStatusInstance instance)
     {
         var dps = instance.Dps;
-        //enemy.GetComponentInChildren<SpriteRenderer>().color = Color.red;
         yield return new WaitForSeconds(1);
         while (_instances.Contains(instance) && instance != null && instance.RefGameObject != null)
         {
-            _healthBehavior.Health.Damage(
-                new Damage(DamageType.MAGIC, dps));
+            var criticalEffect = new CriticalEffect(instance.Dps,
+            instance.CriticalChance, instance.CriticalDamage);
+            var damage = new Damage(DamageType.MAGIC, criticalEffect.Result,
+                criticalEffect.IsApplied);
+            _healthBehavior.Health.Damage(damage);
             yield return new WaitForSeconds(1);
         }
         _healthBehavior.Health.Damage(
@@ -107,4 +115,12 @@ public class BurnStatusBehavior : MonoBehaviour
 
         _movementBehavior.Speed.Increase(instance.MovementSlow);
     }
+
+    public void Attach(IObserver observer) => _observers.Add(observer);
+    public void Detach(IObserver observer) => _observers.Remove(observer);
+    public void Notify() => _observers.Notify(this);
+
+    public void Attach(IObserver<BurnStatusInstance> observer) => _newStatusObservers.Add(observer);
+    public void Detach(IObserver<BurnStatusInstance> observer) => _newStatusObservers.Remove(observer);
+    public void Notify(BurnStatusInstance hitParameters) => _newStatusObservers.Notify(this, hitParameters);
 }
