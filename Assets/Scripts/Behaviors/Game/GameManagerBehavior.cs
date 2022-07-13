@@ -21,5 +21,7 @@ public class GameManagerBehavior : MonoBehaviour
     private void Awake()
     {
         Application.targetFrameRate = 60;
+        if (_isTest)
+            TestPlayer.ApplyData(PlayerBehavior.MainPlayer.DynamicData);
     }
 }

@@ -1,11 +1,17 @@
-﻿public static class TestPlayer
-{
-    public static void ApplyData(PlayerDynamicDataTO data)
-    {
-        //var coinResourceData = data.ResourceBunches.Single(r => r.Type == ResourceType.COIN.ToString());
-        //coinResourceData.Amount = 10000000;
+﻿using Assets.Scripts.Models;
+using System.Linq;
 
-        //var demonBloodResourceData = data.ResourceBunches.Single(r => r.Type == ResourceType.DEMON_BLOOD.ToString());
-        //demonBloodResourceData.Amount = 1000000;
+public static class TestPlayer
+{
+    public static void ApplyData(PlayerDynamicData data)
+    {
+        data.Achievements.DemonLevel.Value = 9;
+        data.SelectedItems.DemonLevel.Value = 10;
+
+        var coinResourceData = data.ResourceBunches.Single(r => r.Type == ResourceType.COIN);
+        coinResourceData.Amount.Value = 10000000;
+
+        var demonBloodResourceData = data.ResourceBunches.Single(r => r.Type == ResourceType.DEMON_BLOOD);
+        demonBloodResourceData.Amount.Value = 1000000;
     }
 }

@@ -18,4 +18,4 @@ MonoBehaviour:
     StartDelay: 0
     AnimationSpeed: 1000
     DontStopWhenReach: 1
-  HitSound: {fileID: 8300000, guid: c99918ee0103d934eb0c84409b22653d, type: 3}
+  HitSound: {fileID: 0}

@@ -20,6 +20,6 @@ MonoBehaviour:
   CriticalChanceLevelPercentage: 22.222
   CriticalDamage: 100
   CriticalDamageLevelPercentage: 11.111
-  FireSound: {fileID: 8300000, guid: 30bfee2bd928b424fa9a56cb2db973b0, type: 3}
+  FireSound: {fileID: 8300000, guid: 56e2094c50029654897014adea250690, type: 3}
   ProjectileBehavior: {fileID: 4537281238113661694, guid: 09dbe972c9a3d58478b5bcd3e96812f2,
     type: 3}

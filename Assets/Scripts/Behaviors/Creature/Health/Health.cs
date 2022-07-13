@@ -49,15 +49,15 @@ public class Health : NumberWithMax, ISubject<Damage>, ISubject<Heal>
     public void Damage(Damage damage)
     {
         var modifiedDamage = ModifyDamage(damage);
-        Decrease(modifiedDamage.Value);
         Notify(damage);
+        Decrease(modifiedDamage.Value);
     }
 
     public void Heal(float healAmount)
     {
         var heal = new Heal(healAmount);
-        Increase(healAmount);
         Notify(heal);
+        Increase(healAmount);
     }
 
     public void Attach(IObserver<Damage> observer) => _damageObservers.Add(observer);

@@ -24,8 +24,6 @@ public class PlayerDynamicDataTO
     static PlayerDynamicDataTO()
     {
         Load();
-        //#For_Test
-        TestPlayer.ApplyData(Instance);
         Instance.Save();
         Task.Run(() => Instance.StartAutomaticSaving());
         Instance._playerDynamicData = Instance.GetPlayerDynamicData();

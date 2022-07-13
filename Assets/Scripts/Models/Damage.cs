@@ -1,8 +1,12 @@
-﻿public class Damage
+﻿using System;
+using UnityEngine;
+
+[Serializable]
+public class Damage
 {
-    private readonly DamageType _type;
-    private float _value;
-    private readonly bool _isCritical;
+    [SerializeField] private DamageType _type;
+    [SerializeField] private float _value;
+    [SerializeField] private bool _isCritical;
 
     public DamageType Type => _type;
     public float Value { get => _value; set => _value = value; }

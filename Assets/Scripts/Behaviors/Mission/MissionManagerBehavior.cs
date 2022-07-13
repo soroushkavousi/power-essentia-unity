@@ -8,6 +8,7 @@ public class MissionManagerBehavior : MonoBehaviour
     [SerializeField] private Transform _diamondEffectsParent = default;
     [SerializeField] private Transform _wallLocation = default;
     [SerializeField] private Transform _projectileBox = default;
+    [SerializeField] private Transform _tempBox = default;
 
     [Space(Constants.SpaceSection)]
     [Header(Constants.DebugSectionHeader)]
@@ -20,6 +21,7 @@ public class MissionManagerBehavior : MonoBehaviour
     public Transform DiamondEffectsParent => _diamondEffectsParent;
     public Transform WallLocation => _wallLocation;
     public Transform ProjectileBox => _projectileBox;
+    public Transform TempBox => _tempBox;
     public int StartDemonLevel => _startDemonLevel;
 
     private void Awake()

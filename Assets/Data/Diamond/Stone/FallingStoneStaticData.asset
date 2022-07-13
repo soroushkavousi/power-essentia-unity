@@ -16,8 +16,8 @@ MonoBehaviour:
   ImpactDamageLevelPercentage: 55.555
   StunDuration: 2
   StunDurationLevelPercentage: 11.111
-  CriticalChance: 20
-  CriticalChanceLevelPercentage: 22.222
+  CriticalChance: 50
+  CriticalChanceLevelPercentage: 11.111
   CriticalDamage: 100
   CriticalDamageLevelPercentage: 11.111
   SpawnXOffset: -600

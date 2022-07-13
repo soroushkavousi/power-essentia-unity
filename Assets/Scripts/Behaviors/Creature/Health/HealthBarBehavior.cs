@@ -35,7 +35,7 @@ public class HealthBarBehavior : MonoBehaviour, IObserver<Damage>, IObserver
             var position = transform.position + new Vector3(0, 20, 0);
             var criticalShowBehavior = Instantiate(
                 GameManagerBehavior.Instance.StaticData.Prefabs.CriticalShowBehavior,
-                position, Quaternion.identity, transform);
+                position, Quaternion.identity, MissionManagerBehavior.Instance.TempBox);
             criticalShowBehavior.FeedData(damage.Value.ToLong());
         }
     }

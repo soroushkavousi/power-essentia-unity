@@ -97,7 +97,8 @@ public class FallingStoneBehavior : MonoBehaviour, IObserver<MovementChangeData>
         MusicPlayerBehavior.Instance.AudioSource.PlayOneShot(_staticData.HitSound, 0.5f);
 
         statusOwner.StunStatusBehavior.AddNewInstance(gameObject,
-            _impactDamage.Value, _stunDuration.Value);
+            _impactDamage.Value, _stunDuration.Value,
+            _criticalChance.Value, _criticalDamage.Value);
 
         Destroy(gameObject);
     }

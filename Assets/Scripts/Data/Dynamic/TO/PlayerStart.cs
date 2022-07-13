@@ -5,7 +5,7 @@ public static class PlayerStart
 {
     public static PlayerDynamicDataTO Data { get; set; } = new PlayerDynamicDataTO
     {
-        PatchNumber = 31,
+        PatchNumber = 32,
         Achievements = new AchievementsDynamicDataTO
         (
             demonLevel: 0
