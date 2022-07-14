@@ -12,7 +12,7 @@ public class MeleeWeaponBehavior : WeaponBehavior
     //[Space(Constants.DebugSectionSpace)]
     //[Header(Constants.DebugSectionHeader)]
 
-    public override void Initialize(Observable<int> level,
+    public override void Initialize(Level level,
         Func<GameObject, GameObject> isTargetEnemyFunction)
     {
         base.FeedData(_staticData);

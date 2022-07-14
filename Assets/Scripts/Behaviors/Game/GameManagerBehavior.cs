@@ -13,7 +13,9 @@ public class GameManagerBehavior : MonoBehaviour
     //[Header(Constants.DebugSectionHeader)]
 
     public static GameManagerBehavior Instance => Utils.GetInstance(ref _instance);
-    public GameStaticData StaticData => _staticData;
+    public SettingsStaticData Settings => _staticData.Settings;
+    public DefaultStaticData Defaults => _staticData.Defaults;
+    public PrefabStaticData Prefabs => _staticData.Prefabs;
     public bool IsTest => _isTest;
     public GameObject TempCircle => _tempCircle;
     public List<PlayerSet> PlayerSets => _playerSets;
@@ -22,6 +24,6 @@ public class GameManagerBehavior : MonoBehaviour
     {
         Application.targetFrameRate = 60;
         if (_isTest)
-            TestPlayer.ApplyData(PlayerBehavior.MainPlayer.DynamicData);
+            TestPlayer.ApplyData(PlayerDynamicDataTO.Instance.PlayerDynamicData);
     }
 }

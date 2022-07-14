@@ -17,7 +17,7 @@ public class GroundFireBehavior : MonoBehaviour, IObserver<CollideData>
     [SerializeField] private Number _criticalDamage;
     [SerializeField] private GameObject _enemy = default;
     [SerializeField] private bool _isSample = default;
-    protected Observable<int> _level = default;
+    protected Level _level = default;
     private BodyBehavior _bodyBehavior = default;
     private ParticleSystem _particleSystem = default;
     private AudioSource _audioSource = default;
@@ -29,7 +29,7 @@ public class GroundFireBehavior : MonoBehaviour, IObserver<CollideData>
     public Number CriticalDamage => _criticalDamage;
     public Func<GameObject, GameObject> IsTargetEnemyFunction { get; private set; }
 
-    public void Initialize(Observable<int> level, GameObject enemy,
+    public void Initialize(Level level, GameObject enemy,
         Func<GameObject, GameObject> isTargetEnemyFunction)
     {
         _particleSystem = GetComponent<ParticleSystem>();
@@ -39,21 +39,11 @@ public class GroundFireBehavior : MonoBehaviour, IObserver<CollideData>
         _bodyBehavior.Attach(this);
 
         _level = level;
-
-        _duration = new(_staticData.Duration, level,
-            _staticData.DurationLevelPercentage);
-
-        _damage = new(_staticData.Damage, level,
-            _staticData.DamageLevePercentage, min: 0f);
-
-        _slow = new(_staticData.Slow, level,
-            _staticData.SlowLevelPercentage, min: 0f);
-
-        _criticalChance = new(_staticData.CriticalChance, level,
-            _staticData.CriticalChanceLevelPercentage, min: 0f, max: 100f);
-
-        _criticalDamage = new(_staticData.CriticalDamage, level,
-            _staticData.CriticalDamageLevelPercentage, min: 0f);
+        _duration = new(_level, _staticData.DurationLevelInfo);
+        _damage = new(_level, _staticData.DamageLevelInfo, min: 0f);
+        _slow = new(_level, _staticData.SlowLevelInfo, min: 0f);
+        _criticalChance = new(_level, _staticData.CriticalChanceLevelInfo, min: 0f, max: 100f);
+        _criticalDamage = new(_level, _staticData.CriticalDamageLevelInfo, min: 0f);
 
         _enemy = enemy;
         IsTargetEnemyFunction = isTargetEnemyFunction;

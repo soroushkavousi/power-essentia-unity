@@ -37,8 +37,8 @@ public class DiamondMenuDeckItemBehavior : MonoBehaviour, IObserver
     {
         if (_diamondName.Value == DiamondName.NONE)
         {
-            _diamondImage.sprite = GameManagerBehavior.Instance.StaticData.Defaults.DiamondImage;
-            _diamondNameText.text = GameManagerBehavior.Instance.StaticData.Defaults.DiamondName;
+            _diamondImage.sprite = GameManagerBehavior.Instance.Defaults.DiamondImage;
+            _diamondNameText.text = GameManagerBehavior.Instance.Defaults.DiamondName;
             return;
         }
         _diamondBehavior = DiamondOwnerBehavior.MainDiamondOwner.AllDiamondBehaviors[_diamondName.Value];

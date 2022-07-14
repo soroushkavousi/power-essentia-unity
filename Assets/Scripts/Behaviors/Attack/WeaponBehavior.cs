@@ -13,7 +13,7 @@ public abstract class WeaponBehavior : MonoBehaviour, ISubject<HitParameters>
     [SerializeField] protected Number _criticalChance;
     [SerializeField] protected Number _criticalDamage;
     private WeaponStaticData _weaponStaticData = default;
-    protected Observable<int> _level = default;
+    protected Level _level = default;
     private readonly ObserverCollection<HitParameters> _hitObservers = new();
 
     public Number AttackDamage => _attackDamage;
@@ -27,23 +27,23 @@ public abstract class WeaponBehavior : MonoBehaviour, ISubject<HitParameters>
         _weaponStaticData = weaponStaticData;
     }
 
-    public virtual void Initialize(Observable<int> level,
+    public virtual void Initialize(Level level,
         Func<GameObject, GameObject> isTargetEnemyFunction)
     {
         _level = level;
 
-        _attackDamage = new(_weaponStaticData.Damage, level,
-            _weaponStaticData.DamageLevelPercentage, minPercentage: -95f);
+        _attackDamage = new(_level, _weaponStaticData.DamageLevelInfo,
+            minPercentage: -95f);
 
-        var maxAttackSpeed = GameManagerBehavior.Instance.StaticData.Settings.MaxAttackSpeed;
-        _attackSpeed = new(_weaponStaticData.Speed, level,
-            _weaponStaticData.SpeedLevelPercentage, min: 0f, max: maxAttackSpeed, minPercentage: -95f);
+        var maxAttackSpeed = GameManagerBehavior.Instance.Settings.MaxAttackSpeed;
+        _attackSpeed = new(_level, _weaponStaticData.SpeedLevelInfo,
+            min: 0f, max: maxAttackSpeed, minPercentage: -95f);
 
-        _criticalChance = new(_weaponStaticData.CriticalChance, level,
-            _weaponStaticData.CriticalChanceLevelPercentage, min: 0f, max: 100f);
+        _criticalChance = new(_level, _weaponStaticData.CriticalChanceLevelInfo,
+            min: 0f, max: 100f);
 
-        _criticalDamage = new(_weaponStaticData.CriticalDamage, level,
-            _weaponStaticData.CriticalDamageLevelPercentage, min: 0f);
+        _criticalDamage = new(_level, _weaponStaticData.CriticalDamageLevelInfo,
+            min: 0f);
 
         IsTargetEnemyFunction = isTargetEnemyFunction;
     }

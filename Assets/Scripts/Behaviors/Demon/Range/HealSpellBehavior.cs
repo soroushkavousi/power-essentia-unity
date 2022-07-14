@@ -17,7 +17,7 @@ public class HealSpellBehavior : SpellBehavior, IObserver<CollideData>
     private BodyBehavior _bodyBehavior = default;
     private ParticleSystem _particleSystem = default;
 
-    public void Initialize(Observable<int> level)
+    public void Initialize(Level level)
     {
         base.Initialize(_healSpellStaticData, level);
         _bodyBehavior = GetComponent<BodyBehavior>();
@@ -25,7 +25,7 @@ public class HealSpellBehavior : SpellBehavior, IObserver<CollideData>
         _healAreaCircle.radius = 0;
         _bodyBehavior.FeedData();
         _bodyBehavior.Attach(this);
-        _healAmount = new(_healSpellStaticData.HealAmount, _level, _healSpellStaticData.HealAmountLevelPercentage);
+        _healAmount = new(_level, _healSpellStaticData.HealAmountLevelInfo);
         StartCoroutine(GoOnCooldown());
     }
 

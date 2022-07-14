@@ -7185,6 +7185,7 @@ MonoBehaviour:
     _level:
       _value: 0
       _lastValue: 0
+      _max: 0
   _moveType: 0
   _direction: {x: 0, y: 0}
   _normalizedDirection: {x: 0, y: 0}
@@ -8331,7 +8332,7 @@ PrefabInstance:
     - target: {fileID: 6248469587186366566, guid: 244bbedb57746334aa7e584d6a4a3324,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6248469587186366566, guid: 244bbedb57746334aa7e584d6a4a3324,
         type: 3}

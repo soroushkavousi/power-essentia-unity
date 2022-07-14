@@ -77,7 +77,7 @@ public abstract class DiamondOwnerBehavior : PlayerBehavior
             return;
         }
 
-        if (!GameManagerBehavior.Instance.StaticData.Prefabs.DiamondPrefabs
+        if (!GameManagerBehavior.Instance.Prefabs.DiamondPrefabs
                 .TryGetValue(diamondName, out DiamondBehavior diamondBehaviorPrefab))
             return;
         DiamondBehavior diamondBehavior = Instantiate(diamondBehaviorPrefab, _ringTransformMap[ringName]);

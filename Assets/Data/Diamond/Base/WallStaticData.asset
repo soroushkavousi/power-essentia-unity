@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: WallStaticData
   m_EditorClassIdentifier: 
   HealthData:
-    Health: 3000
-    HealthLevelPercentage: 55.555
-    PhysicalResistance: 20
-    PhysicalResistanceLevelPercentage: 22.222
-    MagicResistance: 20
-    MagicResistanceLevelPercentage: 22.222
+    HealthLevelInfo:
+      StartValue: 3000
+      OneLevelPercentage: 50
+    PhysicalResistanceLevelInfo:
+      StartValue: 25
+      OneLevelPercentage: 20
+    MagicResistanceLevelInfo:
+      StartValue: 25
+      OneLevelPercentage: 20
     DeathVfxPrefab: {fileID: 0}

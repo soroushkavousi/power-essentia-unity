@@ -10,8 +10,9 @@ namespace Assets.Scripts.Data
     }
 
     [Serializable]
-    public class ResourceBunchWithLevelStaticData : ResourceBunchStaticData
+    public class ResourceBunchWithLevelStaticData
     {
-        public long LevelPercentage = default;
+        public ResourceType Type = default;
+        public LevelInfo AmountLevelInfo = default;
     }
 }

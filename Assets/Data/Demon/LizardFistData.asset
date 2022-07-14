@@ -12,12 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9007348b52e54eba4fde49d288f20, type: 3}
   m_Name: LizardFistData
   m_EditorClassIdentifier: 
-  Damage: 50
-  DamageLevelPercentage: 25
-  Speed: 0.8
-  SpeedLevelPercentage: 2
-  CriticalChance: 20
-  CriticalChanceLevelPercentage: 2
-  CriticalDamage: 100
-  CriticalDamageLevelPercentage: 2
+  DamageLevelInfo:
+    StartValue: 50
+    OneLevelPercentage: 25
+  SpeedLevelInfo:
+    StartValue: 0.8
+    OneLevelPercentage: 2
+  CriticalChanceLevelInfo:
+    StartValue: 20
+    OneLevelPercentage: 2.5
+  CriticalDamageLevelInfo:
+    StartValue: 100
+    OneLevelPercentage: 2
   HitSound: {fileID: 8300000, guid: ff25f791452616940910438dc88f1a42, type: 3}

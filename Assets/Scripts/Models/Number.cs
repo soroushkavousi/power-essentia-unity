@@ -28,7 +28,7 @@ public class Number : ISubject, IObserver
 
     [Space(Constants.SpaceSection)]
     [SerializeField] protected float _oneLevelPercentage;
-    [SerializeField] protected Observable<int> _level;
+    [SerializeField] protected Level _level;
     private readonly ObserverCollection _observers = new();
 
     public float Value => _value;
@@ -36,12 +36,11 @@ public class Number : ISubject, IObserver
     public bool IsFixed => _isFixed;
     public float NextLevelValue => _nextLevelValue;
 
-    public Number(float startValue, Observable<int> level,
-        float oneLevelPercentage, float min = float.MinValue,
+    public Number(Level level, LevelInfo levelInfo, float min = float.MinValue,
         float max = float.MaxValue, float minPercentage = float.MinValue,
         float maxPercentage = float.MaxValue, float randomnessPercentage = 0f)
     {
-        _value = _baseValue = _startValue = startValue;
+        _value = _baseValue = _startValue = levelInfo.StartValue;
         _min = min;
         _max = max;
         _minPercentage = minPercentage;
@@ -51,7 +50,7 @@ public class Number : ISubject, IObserver
         _level = level;
         if (_level != null)
             _level.Attach(this);
-        _oneLevelPercentage = oneLevelPercentage;
+        _oneLevelPercentage = levelInfo.OneLevelPercentage;
 
         CalculateValue();
     }
@@ -59,7 +58,7 @@ public class Number : ISubject, IObserver
     public Number(float startValue, float min = float.MinValue,
         float max = float.MaxValue, float minPercentage = float.MinValue,
         float maxPercentage = float.MaxValue)
-        : this(startValue, null, 0f, min, max, minPercentage, maxPercentage)
+        : this(null, new(startValue, 0f), min, max, minPercentage, maxPercentage)
     {
 
     }
@@ -92,7 +91,15 @@ public class Number : ISubject, IObserver
     {
         if (_level == null)
             return;
-        _levelPercentage = (_level.Value - 1) * _oneLevelPercentage;
+
+        var levelFactor = _level.Value - 1;
+        if (_level.IsMax)
+        {
+            var levelValueUnits = _level.Value % 10;
+            if (levelValueUnits == 0 || levelValueUnits == 5)
+                levelFactor += 1;
+        }
+        _levelPercentage = levelFactor * _oneLevelPercentage;
         _baseValue = _startValue.AddPercentage(_levelPercentage);
     }
 

@@ -6,7 +6,7 @@ public class ArcherBehavior : DiamondOwnerBehavior
 {
     [Space(Constants.SpaceSection)]
     [Header(Constants.HeaderStart + nameof(ArcherBehavior) + Constants.HeaderEnd)]
-    [SerializeField] private ArcherStaticData _staticData2 = default;
+    [SerializeField] private ArcherStaticData _archerStaticData = default;
     [SerializeField] private Transform _arrowLocation = default;
 
     [Space(Constants.SpaceSection)]
@@ -17,7 +17,7 @@ public class ArcherBehavior : DiamondOwnerBehavior
     public override void Initialize()
     {
         base.Initialize();
-        base.FeedData(_staticData2);
+        base.FeedData(_archerStaticData);
         _stateManagerBehavior.FeedData(typeof(ArcherState), ArcherState.IDLING,
             CheckState, StopOldState, StartNewState);
         _bowDiamondBehavior = (BowDiamondBehavior)AllDiamondBehaviors[DiamondName.BOW];
@@ -27,7 +27,7 @@ public class ArcherBehavior : DiamondOwnerBehavior
     private void InitializeRangeAttackerBehavior()
     {
         _rangeAttackerBehavior = GetComponent<RangeAttackerBehavior>();
-        _rangeAttackerBehavior.FeedData(_staticData2.RangeAttackerData,
+        _rangeAttackerBehavior.FeedData(_archerStaticData.RangeAttackerData,
             _bowDiamondBehavior.BowWeaponBehavior, IsTargetEnemy);
     }
 

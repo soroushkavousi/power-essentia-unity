@@ -492,7 +492,6 @@ MonoBehaviour:
   _attackTargetPosition: {x: 0, y: 0}
   _aimTargetPosition: {x: 0, y: 0}
   _aimingIsFinished: 0
-  _fireSound: {fileID: 0}
 --- !u!114 &3019375572509128528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -525,12 +524,10 @@ MonoBehaviour:
   _mouseIsDown: 0
   _dynamicData:
     _patchNumber: 0
-    _demonLevel:
-      _value: 0
-      _lastValue: 0
-    _playerSetName:
-      _value: 0
-      _lastValue: 0
+    _achievements:
+      DemonLevel:
+        _value: 0
+        _lastValue: 0
     _selectedItems:
       DemonLevel:
         _value: 0
@@ -541,7 +538,7 @@ MonoBehaviour:
   _leftRingSlot: {fileID: 1159773686580589818}
   _rightRingSlot: {fileID: 4743750733926761378}
   _boxSlot: {fileID: 3105269392662845338}
-  _staticData2: {fileID: 11400000, guid: 364887ca338779e45a3972a6312afdaa, type: 2}
+  _archerStaticData: {fileID: 11400000, guid: 364887ca338779e45a3972a6312afdaa, type: 2}
   _arrowLocation: {fileID: 7799267862486691820}
   _bowDiamondBehavior: {fileID: 0}
 --- !u!1 &8505862507239304240

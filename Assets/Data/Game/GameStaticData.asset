@@ -29,6 +29,7 @@ MonoBehaviour:
       type: 3}
   Settings:
     DiamondMaxLevel: 10
+    DemonMaxLevel: 50
     AcceptedCollisionDistance: 30
     MaxAttackSpeed: 30
     BuyDiamondResourceBunches:
@@ -42,6 +43,14 @@ MonoBehaviour:
     - Type: 0
       Amount: 500
       LevelPercentage: 500
+      AmountLevelInfo:
+        StartValue: 500
+        OneLevelPercentage: 500
+        MaxLevelValue: 0
     - Type: 1
       Amount: 25
       LevelPercentage: 500
+      AmountLevelInfo:
+        StartValue: 25
+        OneLevelPercentage: 500
+        MaxLevelValue: 0

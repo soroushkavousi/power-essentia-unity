@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: BlackMageFireData
   m_EditorClassIdentifier: 
   MovementStaticData:
-    Speed: 600
-    SpeedLevelPercentage: 2.222
+    SpeedLevelInfo:
+      StartValue: 600
+      OneLevelPercentage: 1
     StartDelay: 0
     AnimationSpeed: 600
     DontStopWhenReach: 0

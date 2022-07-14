@@ -55,7 +55,7 @@ public class WaveManagerBehavior : MonoBehaviour, ISubject<DemonBehavior>, IObse
         var level = _selectedDemonLevel.Value;
         foreach (var demonBunch in waveDescription.DemonBunches)
         {
-            var prefab = GameManagerBehavior.Instance.StaticData.Prefabs.DemonPrefabs[demonBunch.DemonName];
+            var prefab = GameManagerBehavior.Instance.Prefabs.DemonPrefabs[demonBunch.DemonName];
             for (int i = 0; i < demonBunch.Count; i++)
             {
                 StartCoroutine(SpawnDemon(prefab, level, waveDescription.ColumnCount));

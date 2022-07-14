@@ -5,8 +5,8 @@ using UnityEngine;
 public class Health : NumberWithMax, ISubject<Damage>, ISubject<Heal>
 {
     [SerializeField] protected bool _isDead = default;
-    [SerializeField] protected Number _physicalResistance;
-    [SerializeField] protected Number _magicResistance;
+    protected Number _physicalResistance;
+    protected Number _magicResistance;
     private readonly ObserverCollection<Damage> _damageObservers = new();
     private readonly ObserverCollection<Heal> _healObservers = new();
 
@@ -14,16 +14,12 @@ public class Health : NumberWithMax, ISubject<Damage>, ISubject<Heal>
     public Number PhysicalResistance => _physicalResistance;
     public Number MagicResistance => _magicResistance;
 
-    public Health(float startValue, Observable<int> level, float oneLevelPercentage,
-        float startPhysicalResistance, float physicalResistanceOneLevelPercentage,
-        float startMagicResistance, float magicResistanceOneLevelPercentage)
-        : base(startValue, level, oneLevelPercentage)
+    public Health(Level level, LevelInfo levelInfo,
+        Number physicalResistance, Number magicResistance)
+        : base(level, levelInfo)
     {
-        _physicalResistance = new(startPhysicalResistance, level,
-            physicalResistanceOneLevelPercentage, max: 90);
-
-        _magicResistance = new(startMagicResistance, level,
-            magicResistanceOneLevelPercentage, max: 90);
+        _physicalResistance = physicalResistance;
+        _magicResistance = magicResistance;
     }
 
     protected virtual Damage ModifyDamage(Damage damage)

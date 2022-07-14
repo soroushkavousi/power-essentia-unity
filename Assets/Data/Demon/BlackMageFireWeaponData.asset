@@ -12,14 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b029f71f30890c14aba8ccdd5064c2a1, type: 3}
   m_Name: BlackMageFireWeaponData
   m_EditorClassIdentifier: 
-  Damage: 50
-  DamageLevelPercentage: 25
-  Speed: 0.8
-  SpeedLevelPercentage: 2
-  CriticalChance: 20
-  CriticalChanceLevelPercentage: 2
-  CriticalDamage: 100
-  CriticalDamageLevelPercentage: 2
+  DamageLevelInfo:
+    StartValue: 50
+    OneLevelPercentage: 25
+  SpeedLevelInfo:
+    StartValue: 0.8
+    OneLevelPercentage: 2
+  CriticalChanceLevelInfo:
+    StartValue: 20
+    OneLevelPercentage: 2.5
+  CriticalDamageLevelInfo:
+    StartValue: 100
+    OneLevelPercentage: 2
   FireSound: {fileID: 0}
   ProjectileBehavior: {fileID: 4537281238113661694, guid: 92813e99f09edaa4ca30a3f721551bc3,
     type: 3}

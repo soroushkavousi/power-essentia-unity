@@ -8,11 +8,11 @@ public class DemonHealthBehavior : HealthBehavior
     [Header(Constants.DebugSectionHeader)]
     [SerializeField] private List<ResourceBunchWithLevel> _deathRewards = default;
     private DemonHealthStaticData _staticData = default;
-    private Observable<int> _level = default;
+    private Level _level = default;
 
     public List<ResourceBunchWithLevel> DeathRewards => _deathRewards;
 
-    public void FeedData(DemonHealthStaticData staticData, Observable<int> level)
+    public void FeedData(DemonHealthStaticData staticData, Level level)
     {
         _staticData = staticData;
         _level = level;
@@ -21,10 +21,8 @@ public class DemonHealthBehavior : HealthBehavior
         _deathRewards = new List<ResourceBunchWithLevel>();
         foreach (var deathRewardData in _staticData.DeathRewardsData)
         {
-            _deathRewards.Add(new ResourceBunchWithLevel(
-                deathRewardData.Type,
-                new Number(deathRewardData.Amount, _level, deathRewardData.LevelPercentage)
-                ));
+            var resourceAmount = new Number(_level, deathRewardData.AmountLevelInfo);
+            _deathRewards.Add(new ResourceBunchWithLevel(deathRewardData.Type, resourceAmount));
         }
     }
 }

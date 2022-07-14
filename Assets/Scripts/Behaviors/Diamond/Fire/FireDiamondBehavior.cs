@@ -1,7 +1,7 @@
 ﻿using Assets.Scripts.Models;
 using UnityEngine;
 
-public class FireDiamondBehavior : DiamondBehavior, IObserver<HitParameters>
+public class FireDiamondBehavior : PeriodicDiamondBehavior, IObserver<HitParameters>
 {
     [Space(Constants.SpaceSection)]
     [Header(Constants.HeaderStart + nameof(FireDiamondBehavior) + Constants.HeaderEnd)]
@@ -14,11 +14,11 @@ public class FireDiamondBehavior : DiamondBehavior, IObserver<HitParameters>
     [SerializeField] private Number _chance;
 
     public override void Initialize(Observable<DiamondKnowledgeState> state,
-        Observable<int> level, DiamondOwnerBehavior diamondOwnerBehavior)
+        Level level, DiamondOwnerBehavior diamondOwnerBehavior)
     {
         base.FeedData(_staticData);
         base.Initialize(state, level, diamondOwnerBehavior);
-        _chance = new(_staticData.Chance, _level, _staticData.ChanceLevelPercentage,
+        _chance = new(_level, _staticData.ChanceLevelInfo,
             min: 0f, max: 100f);
         _sampleGroundFireBehavior = CreateGroundFire(OutBoxBehavior.Instance.Location1.gameObject);
     }

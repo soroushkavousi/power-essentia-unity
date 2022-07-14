@@ -2,9 +2,8 @@
 
 [CreateAssetMenu(fileName = "BloodDiamondStaticData",
     menuName = "StaticData/Diamonds/Base/BloodDiamondStaticData", order = 1)]
-public class BloodDiamondStaticData : DiamondStaticData
+public class BloodDiamondStaticData : PermanentDiamondStaticData
 {
     [Space(Constants.DataSectionSpace)]
-    public float BloodRatio = default;
-    public float BloodRatioLevelPercentage = default;
+    public LevelInfo BloodRatioLevelInfo = default;
 }

@@ -20,7 +20,7 @@ public class RangeWeaponBehavior : WeaponBehavior, ISubject<ProjectileBehavior>,
 
     public RangeWeaponStaticData StaticData => _staticData;
 
-    public override void Initialize(Observable<int> level,
+    public override void Initialize(Level level,
         Func<GameObject, GameObject> isTargetEnemyFunction)
     {
         base.FeedData(_staticData);

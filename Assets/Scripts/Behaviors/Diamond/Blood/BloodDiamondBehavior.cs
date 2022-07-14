@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class BloodDiamondBehavior : DiamondBehavior
+public class BloodDiamondBehavior : PermanentDiamondBehavior
 {
     [Space(Constants.SpaceSection)]
     [Header(Constants.HeaderStart + nameof(BloodDiamondBehavior) + Constants.HeaderEnd)]
@@ -14,12 +14,12 @@ public class BloodDiamondBehavior : DiamondBehavior
     public Number BloodRatio => _bloodRatio;
 
     public override void Initialize(Observable<DiamondKnowledgeState> knowledgeState,
-        Observable<int> level, DiamondOwnerBehavior diamondOwnerBehavior)
+        Level level, DiamondOwnerBehavior diamondOwnerBehavior)
     {
         base.FeedData(_staticData);
         base.Initialize(knowledgeState, level, diamondOwnerBehavior);
 
-        _bloodRatio = new Number(_staticData.BloodRatio, level, _staticData.BloodRatioLevelPercentage);
+        _bloodRatio = new Number(_level, _staticData.BloodRatioLevelInfo);
     }
 
     protected override void DoActivationWork()

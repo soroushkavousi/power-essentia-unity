@@ -9,20 +9,20 @@ public abstract class SpellBehavior : MonoBehaviour
     [Header(Constants.DebugSectionHeader)]
     [SerializeField] protected SpellState _state = default;
     [SerializeField] private Number _cooldown = default;
-    [SerializeField] protected Observable<int> _level = default;
+    [SerializeField] protected Level _level = default;
     private SpellStaticData _spellStaticData = default;
 
     public string Name => _spellStaticData.Name;
     public Number Cooldown => _cooldown;
     public SpellState State => _state;
 
-    protected void Initialize(SpellStaticData spellStaticData, Observable<int> level)
+    protected void Initialize(SpellStaticData spellStaticData, Level level)
     {
         _spellStaticData = spellStaticData;
         _level = level;
         _state = SpellState.UNDER_COOLDOWN;
-        _cooldown = new(_spellStaticData.Cooldown, _level, _spellStaticData.CooldownLevelPercentage,
-            min: _spellStaticData.Cooldown / 4, randomnessPercentage: 20f);
+        _cooldown = new(_level, _spellStaticData.CooldownLevelInfo,
+            min: _spellStaticData.CooldownLevelInfo.StartValue / 4, randomnessPercentage: 20f);
     }
 
     protected abstract void CastAction();

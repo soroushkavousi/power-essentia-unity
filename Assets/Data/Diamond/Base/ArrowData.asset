@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: ArrowData
   m_EditorClassIdentifier: 
   MovementStaticData:
-    Speed: 1000
-    SpeedLevelPercentage: 5.555
+    SpeedLevelInfo:
+      StartValue: 1000
+      OneLevelPercentage: 5
     StartDelay: 0
     AnimationSpeed: 1000
     DontStopWhenReach: 1

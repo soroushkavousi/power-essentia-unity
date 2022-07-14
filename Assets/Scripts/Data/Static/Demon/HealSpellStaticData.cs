@@ -4,8 +4,7 @@
     menuName = "StaticData/Demons/HealSpellData", order = 1)]
 public class HealSpellStaticData : SpellStaticData
 {
-    public float HealAmount = default;
-    public float HealAmountLevelPercentage = default;
+    public LevelInfo HealAmountLevelInfo = default;
     public float MaxHealAreaRadius = default;
     public float HealAreaGrowTime = default;
 }

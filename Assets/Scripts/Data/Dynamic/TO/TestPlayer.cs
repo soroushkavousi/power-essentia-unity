@@ -6,24 +6,43 @@ public static class TestPlayer
 {
     public static void ApplyData(PlayerDynamicData data)
     {
-        data.Achievements.DemonLevel.Value = 6;
-        data.SelectedItems.DemonLevel.Value = 7;
+        SetResources(data);
+        //SetDemonLevels(data);
+        //SetDiamondLevels(data);
+    }
+
+    private static void SetResources(PlayerDynamicData data)
+    {
+        var coinResourceData = data.ResourceBunches.Single(r => r.Type == ResourceType.COIN);
+        coinResourceData.Amount.Value = 999999;
+
+        var demonBloodResourceData = data.ResourceBunches.Single(r => r.Type == ResourceType.DEMON_BLOOD);
+        demonBloodResourceData.Amount.Value = 99999;
+    }
+
+    private static void SetDemonLevels(PlayerDynamicData data)
+    {
+        var demonLevel = 40;
+        data.Achievements.DemonLevel.Value = demonLevel - 1;
+        data.SelectedItems.DemonLevel.Value = demonLevel;
+    }
+
+    private static void SetDiamondLevels(PlayerDynamicData data)
+    {
+        var diamondLevel = 10;
 
         var fireDiamond = data.Diamonds[DiamondName.FIRE];
         fireDiamond.KnowledgeState.Value = DiamondKnowledgeState.OWNED;
         data.SelectedItems.RingDiamondNamesMap[RingName.RIGHT][1].Value = DiamondName.FIRE;
-        fireDiamond.Level.Value = 7;
+        fireDiamond.Level.Value = diamondLevel;
 
         var stoneDiamond = data.Diamonds[DiamondName.STONE];
-        stoneDiamond.Level.Value = 7;
+        stoneDiamond.Level.Value = diamondLevel;
 
         var bowDiamond = data.Diamonds[DiamondName.BOW];
-        bowDiamond.Level.Value = 7;
+        bowDiamond.Level.Value = diamondLevel;
 
-        var coinResourceData = data.ResourceBunches.Single(r => r.Type == ResourceType.COIN);
-        coinResourceData.Amount.Value = 10000000;
-
-        var demonBloodResourceData = data.ResourceBunches.Single(r => r.Type == ResourceType.DEMON_BLOOD);
-        demonBloodResourceData.Amount.Value = 1000000;
+        var wallDiamond = data.Diamonds[DiamondName.WALL];
+        wallDiamond.Level.Value = diamondLevel;
     }
 }

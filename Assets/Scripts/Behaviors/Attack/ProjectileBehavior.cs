@@ -29,7 +29,7 @@ public class ProjectileBehavior : MonoBehaviour, IObserver<CollideData>, ISubjec
 
     public void Initialize(float damage, float criticalChance,
         float criticalDamage, Func<GameObject, GameObject> isTargetEnemyFunction,
-        Observable<int> level = null)
+        Level level = null)
     {
         _bodyBehavior = GetComponent<BodyBehavior>();
         _movementBehavior = GetComponent<MovementBehavior>();

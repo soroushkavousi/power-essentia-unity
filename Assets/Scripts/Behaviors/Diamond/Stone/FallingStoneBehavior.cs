@@ -17,7 +17,7 @@ public class FallingStoneBehavior : MonoBehaviour, IObserver<MovementChangeData>
     [SerializeField] private Number _criticalDamage;
     [SerializeField] private GameObject _enemy = default;
     [SerializeField] private bool _isSample = default;
-    protected Observable<int> _level = default;
+    protected Level _level = default;
     private MovementBehavior _movementBehavior = default;
     private AudioSource _audioSource = default;
 
@@ -27,7 +27,7 @@ public class FallingStoneBehavior : MonoBehaviour, IObserver<MovementChangeData>
     public Number CriticalDamage => _criticalDamage;
     public Func<GameObject, GameObject> IsTargetEnemyFunction { get; private set; }
 
-    public void Initialize(Observable<int> level,
+    public void Initialize(Level level,
         GameObject enemy, Func<GameObject, GameObject> isTargetEnemyFunction)
     {
         _movementBehavior = GetComponent<MovementBehavior>();
@@ -35,17 +35,13 @@ public class FallingStoneBehavior : MonoBehaviour, IObserver<MovementChangeData>
 
         _level = level;
 
-        _stunDuration = new(_staticData.StunDuration, level,
-            _staticData.StunDurationLevelPercentage);
-
-        _impactDamage = new(_staticData.ImpactDamage, level,
-            _staticData.ImpactDamageLevelPercentage, min: 0f);
-
-        _criticalChance = new(_staticData.CriticalChance, level,
-            _staticData.CriticalChanceLevelPercentage, min: 0f, max: 100f);
-
-        _criticalDamage = new(_staticData.CriticalDamage, level,
-            _staticData.CriticalDamageLevelPercentage, min: 0f);
+        _stunDuration = new(_level, _staticData.StunDurationLevelInfo);
+        _impactDamage = new(_level, _staticData.ImpactDamageLevelInfo,
+            min: 0f);
+        _criticalChance = new(_level, _staticData.CriticalChanceLevelInfo,
+            min: 0f, max: 100f);
+        _criticalDamage = new(_level, _staticData.CriticalDamageLevelInfo,
+            min: 0f);
 
         _enemy = enemy;
         IsTargetEnemyFunction = isTargetEnemyFunction;

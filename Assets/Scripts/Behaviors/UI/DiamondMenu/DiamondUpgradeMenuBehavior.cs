@@ -59,7 +59,7 @@ public class DiamondUpgradeMenuBehavior : MonoBehaviour, IObserver
         var resouceBunches = _selectedDiamondBehavior.UpgradeResourceBunches.Select(urb => urb.ToResourceBunch()).ToList();
         ConsumeResourceBunches(resouceBunches);
         _selectedDiamondBehavior.Level.Value += 1;
-        if (_selectedDiamondBehavior.Level.Value == GameManagerBehavior.Instance.StaticData.Settings.DiamondMaxLevel)
+        if (_selectedDiamondBehavior.Level.Value == GameManagerBehavior.Instance.Settings.DiamondMaxLevel)
             _selectedDiamondBehavior.KnowledgeState.Value = DiamondKnowledgeState.MASTERED;
         ShowSelectedDiamondDetails();
     }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class StoneDiamondBehavior : DiamondBehavior, IObserver<HitParameters>
+public class StoneDiamondBehavior : PeriodicDiamondBehavior, IObserver<HitParameters>
 {
     [Space(Constants.SpaceSection)]
     [Header(Constants.HeaderStart + nameof(StoneDiamondBehavior) + Constants.HeaderEnd)]
@@ -16,12 +16,12 @@ public class StoneDiamondBehavior : DiamondBehavior, IObserver<HitParameters>
     [SerializeField] private FallingStoneBehavior _sampleFallingStoneBehavior = default;
     [SerializeField] private Number _chance;
 
-    public override void Initialize(Observable<DiamondKnowledgeState> state, Observable<int> level,
+    public override void Initialize(Observable<DiamondKnowledgeState> state, Level level,
         DiamondOwnerBehavior diamondOwnerBehavior)
     {
         base.FeedData(_staticData);
         base.Initialize(state, level, diamondOwnerBehavior);
-        _chance = new(_staticData.Chance, _level, _staticData.ChanceLevelPercentage,
+        _chance = new(_level, _staticData.ChanceLevelInfo,
             min: 0f, max: 100f);
         _sampleFallingStoneBehavior = CreateFallingStone(OutBoxBehavior.Instance.Location1.gameObject);
     }

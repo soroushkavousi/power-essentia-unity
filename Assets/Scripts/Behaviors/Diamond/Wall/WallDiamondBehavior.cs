@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class WallDiamondBehavior : DiamondBehavior
+public class WallDiamondBehavior : PermanentDiamondBehavior
 {
     [Space(Constants.SpaceSection)]
     [Header(Constants.HeaderStart + nameof(WallDiamondBehavior) + Constants.HeaderEnd)]
@@ -13,7 +13,7 @@ public class WallDiamondBehavior : DiamondBehavior
 
     public WallBehavior WallBehavior => _wallBehavior;
 
-    public override void Initialize(Observable<DiamondKnowledgeState> state, Observable<int> level,
+    public override void Initialize(Observable<DiamondKnowledgeState> state, Level level,
         DiamondOwnerBehavior diamondOwnerBehavior)
     {
         base.FeedData(_staticData);

@@ -1,5 +1,5 @@
 ﻿
-//public class ArcherDiamondBehavior : DiamondBehavior
+//public class ArcherDiamondBehavior : PermanentDiamondBehavior
 //{
 //    [SerializeField] private ArcherDiamondStaticData _staticData = default;
 

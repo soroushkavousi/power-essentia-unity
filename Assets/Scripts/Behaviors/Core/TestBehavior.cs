@@ -11,7 +11,7 @@ public class TestBehavior : MonoBehaviour
     {
         _movementBehavior = GetComponent<MovementBehavior>();
 
-        var movementStaticData = new MovementStaticData { Speed = 10f, AnimationSpeed = 10f };
+        var movementStaticData = new MovementStaticData { SpeedLevelInfo = new(10f, 10f), AnimationSpeed = 10f };
         _movementBehavior.FeedData(movementStaticData);
         RotationUtils = new RotationUtils(this);
     }

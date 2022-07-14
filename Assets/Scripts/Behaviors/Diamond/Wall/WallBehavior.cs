@@ -6,7 +6,7 @@ public class WallBehavior : MonoBehaviour
 {
     private static WallBehavior _instance = default;
     [SerializeField] private WallStaticData _staticData = default;
-    protected Observable<int> _level = default;
+    protected Level _level = default;
 
     //[Space(Constants.DebugSectionSpace)]
     //[Header(Constants.DebugSectionHeader)]
@@ -17,7 +17,7 @@ public class WallBehavior : MonoBehaviour
     public static WallBehavior Instance => Utils.GetInstance(ref _instance);
     public HealthBehavior HealthBehavior => _healthBehavior;
 
-    public void Initialize(Observable<int> level)
+    public void Initialize(Level level)
     {
         _healthBehavior = GetComponent<HealthBehavior>();
         _bodyBehavior = GetComponent<BodyBehavior>();

@@ -15,7 +15,7 @@ public abstract class DemonBehavior : MonoBehaviour, ISubject,
     [Space(Constants.SpaceSection)]
     [Header(Constants.DebugSectionHeader)]
     [SerializeField] private DemonState _state = default;
-    [SerializeField] protected Observable<int> _level;
+    [SerializeField] protected Level _level;
     [SerializeField] protected bool _isInAttackArea = default;
     private DemonStaticData _demonStaticData = default;
 
@@ -28,12 +28,12 @@ public abstract class DemonBehavior : MonoBehaviour, ISubject,
     public DemonName Name => _name;
     public DemonState State => _state;
     public bool IsInAttackArea => _isInAttackArea;
-    public Observable<int> Level => _level;
+    public Level Level => _level;
     public DemonHealthBehavior HealthBehavior => _healthBehavior;
 
     public virtual void Initialize(int level)
     {
-        _level = new(level);
+        _level = new(level, GameManagerBehavior.Instance.Settings.DemonMaxLevel);
         _temp++;
     }
 

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class BowDiamondBehavior : DiamondBehavior
+public class BowDiamondBehavior : PermanentDiamondBehavior
 {
     [Space(Constants.SpaceSection)]
     [Header(Constants.HeaderStart + nameof(BowDiamondBehavior) + Constants.HeaderEnd)]
@@ -17,7 +17,7 @@ public class BowDiamondBehavior : DiamondBehavior
     public RangeWeaponBehavior BowWeaponBehavior => _bowWeaponBehavior;
 
     public override void Initialize(Observable<DiamondKnowledgeState> state,
-        Observable<int> level, DiamondOwnerBehavior diamondOwnerBehavior)
+        Level level, DiamondOwnerBehavior diamondOwnerBehavior)
     {
         base.FeedData(_staticData);
         base.Initialize(state, level, diamondOwnerBehavior);

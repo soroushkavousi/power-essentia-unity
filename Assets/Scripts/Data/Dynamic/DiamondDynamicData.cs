@@ -9,11 +9,11 @@ namespace Assets.Scripts.Models
     {
         [SerializeField] private DiamondName _name = default;
         [SerializeField] private Observable<DiamondKnowledgeState> _knowledgeState;
-        [SerializeField] private Observable<int> _level;
+        [SerializeField] private Level _level;
 
         public DiamondName Name => _name;
         public Observable<DiamondKnowledgeState> KnowledgeState => _knowledgeState;
-        public Observable<int> Level => _level;
+        public Level Level => _level;
 
         private DiamondDynamicData() { }
 
@@ -22,7 +22,7 @@ namespace Assets.Scripts.Models
         {
             _name = name;
             _knowledgeState = new(knowledgeState);
-            _level = new(level);
+            _level = new(level, GameManagerBehavior.Instance.Settings.DiamondMaxLevel);
         }
     }
 }

@@ -5,11 +5,11 @@ using UnityEngine;
 [Serializable]
 public class Observable<T> : ISubject
 {
-    [SerializeField] private T _value;
-    [SerializeField] private T _lastValue;
+    [SerializeField] protected T _value;
+    [SerializeField] protected T _lastValue;
     private readonly ObserverCollection _observers = new();
 
-    public T Value
+    public virtual T Value
     {
         get => _value;
         set

@@ -15,9 +15,9 @@ public class DiamondGameDeckItemBehavior : MonoBehaviour
     //[Space(Constants.DebugSectionSpace)]
     //[Header(Constants.DebugSectionHeader)]
 
-    private DiamondBehavior _diamondBehavior = default;
+    private PeriodicDiamondBehavior _periodicDiamondBehavior = default;
 
-    public DiamondBehavior DiamondBehavior => _diamondBehavior;
+    public PeriodicDiamondBehavior PeriodicDiamondBehavior => _periodicDiamondBehavior;
 
     private void Awake()
     {
@@ -28,8 +28,9 @@ public class DiamondGameDeckItemBehavior : MonoBehaviour
 
     private void GetDiamondBehavior()
     {
-        _diamondBehavior = DiamondOwnerBehavior.MainDiamondOwner.RingDiamondBehaviorsMap[_ringName][_index];
-        if (_diamondBehavior == default)
+        _periodicDiamondBehavior = DiamondOwnerBehavior.MainDiamondOwner
+            .RingDiamondBehaviorsMap[_ringName][_index].To<PeriodicDiamondBehavior>();
+        if (_periodicDiamondBehavior == default)
         {
             gameObject.SetActive(false);
             return;
@@ -38,25 +39,25 @@ public class DiamondGameDeckItemBehavior : MonoBehaviour
 
     private void ShowDiamondDetails()
     {
-        if (_diamondBehavior == null)
+        if (_periodicDiamondBehavior == null)
         {
-            _diamondImage.sprite = GameManagerBehavior.Instance.StaticData.Defaults.DiamondImage;
-            _diamondNameText.text = GameManagerBehavior.Instance.StaticData.Defaults.DiamondName;
+            _diamondImage.sprite = GameManagerBehavior.Instance.Defaults.DiamondImage;
+            _diamondNameText.text = GameManagerBehavior.Instance.Defaults.DiamondName;
             return;
         }
-        _diamondImage.sprite = _diamondBehavior.Icon;
-        _diamondNameText.text = _diamondBehavior.ShowName;
+        _diamondImage.sprite = _periodicDiamondBehavior.Icon;
+        _diamondNameText.text = _periodicDiamondBehavior.ShowName;
     }
 
     public void HandleClickEvent()
     {
-        if (_diamondBehavior.IsReady)
-            _diamondBehavior.Activate();
+        if (_periodicDiamondBehavior.IsReady)
+            _periodicDiamondBehavior.Activate();
     }
 
     private void Update()
     {
-        if (!_diamondBehavior.IsReady)
+        if (!_periodicDiamondBehavior.IsReady)
             UpdateShadowState();
 
         HandleKeyboardEvent();
@@ -71,10 +72,10 @@ public class DiamondGameDeckItemBehavior : MonoBehaviour
     private void UpdateShadowState()
     {
         float shadowYScale;
-        if (_diamondBehavior.OnUsing)
-            shadowYScale = (100 - _diamondBehavior.RamainingPercentage) / 100;
-        else if (_diamondBehavior.OnCooldown)
-            shadowYScale = _diamondBehavior.RamainingPercentage / 100;
+        if (_periodicDiamondBehavior.IsOnUsing)
+            shadowYScale = (100 - _periodicDiamondBehavior.RamainingPercentage) / 100;
+        else if (_periodicDiamondBehavior.OnCooldown)
+            shadowYScale = _periodicDiamondBehavior.RamainingPercentage / 100;
         else
             shadowYScale = 0;
 

@@ -12,10 +12,9 @@ public class NumberWithMax : ISubject, IObserver
     public float NextLevelValue => _nextLevelValue;
     public Number Max => _max;
 
-    public NumberWithMax(float startValue, Observable<int> level,
-        float oneLevelPercentage)
+    public NumberWithMax(Level level, LevelInfo levelInfo)
     {
-        _max = new Number(startValue, level, oneLevelPercentage);
+        _max = new Number(level, levelInfo);
         _max.Attach(this);
         CalculateValue();
     }

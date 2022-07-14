@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: 4
   IsPermanent: 1
-  ActiveTime: 0
-  ActiveTimeLevelPercentage: 0
-  CooldownTime: 0
-  CooldownTimeLevelPercentage: 0
+  ActiveTimeLevelInfo:
+    StartValue: 0
+    OneLevelPercentage: 0
+  CooldownLevelInfo:
+    StartValue: 0
+    OneLevelPercentage: 0
   Icon: {fileID: 21300000, guid: 2f464015a87d69b459d83adcfc9386a5, type: 3}
-  BloodRatio: 50
-  BloodRatioLevelPercentage: 11.111
+  BloodRatioLevelInfo:
+    StartValue: 50
+    OneLevelPercentage: 10
