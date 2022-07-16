@@ -12,7 +12,7 @@ public class NumberWithMax : ISubject, IObserver
     public float NextLevelValue => _nextLevelValue;
     public Number Max => _max;
 
-    public NumberWithMax(Level level, LevelInfo levelInfo)
+    public NumberWithMax(Level level, NumberLevelInfo levelInfo)
     {
         _max = new Number(level, levelInfo);
         _max.Attach(this);

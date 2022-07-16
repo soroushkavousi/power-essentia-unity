@@ -6,7 +6,7 @@ public class ArcherDiamondStaticData : PermanentDiamondStaticData
 {
     [Space(Constants.DataSectionSpace)]
     [Header("Archer Diamon Data")]
-    public LevelInfo IntervalLevelInfo = default;
-    public LevelInfo DiamondCountLevelInfo = default;
-    public LevelInfo CooldownLevelInfo = default;
+    public NumberLevelInfo IntervalLevelInfo = default;
+    public NumberLevelInfo DiamondCountLevelInfo = default;
+    public NumberLevelInfo CooldownLevelInfo = default;
 }

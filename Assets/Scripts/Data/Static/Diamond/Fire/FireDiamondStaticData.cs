@@ -7,5 +7,5 @@ public class FireDiamondStaticData : PeriodicDiamondStaticData
     [Space(Constants.DataSectionSpace)]
     [Header("Fire Diamon Data")]
     public GroundFireBehavior GroundFireBehavior = default;
-    public LevelInfo ChanceLevelInfo = default;
+    public NumberLevelInfo ChanceLevelInfo = default;
 }

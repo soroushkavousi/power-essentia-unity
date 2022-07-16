@@ -14,7 +14,7 @@ public class Health : NumberWithMax, ISubject<Damage>, ISubject<Heal>
     public Number PhysicalResistance => _physicalResistance;
     public Number MagicResistance => _magicResistance;
 
-    public Health(Level level, LevelInfo levelInfo,
+    public Health(Level level, NumberLevelInfo levelInfo,
         Number physicalResistance, Number magicResistance)
         : base(level, levelInfo)
     {

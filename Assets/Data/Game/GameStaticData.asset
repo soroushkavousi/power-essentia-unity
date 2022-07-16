@@ -12,6 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc3313f92a3d1d247af93ac5a9b28d92, type: 3}
   m_Name: GameStaticData
   m_EditorClassIdentifier: 
+  Settings:
+    DiamondMaxLevel: 10
+    DemonMaxLevel: 50
+    AcceptedCollisionDistance: 30
+    MaxAttackSpeed: 30
+    MaxResistance: 90
+    BuyDiamondResourceBunches:
+    - Type: 0
+      Amount: 10000
+    - Type: 1
+      Amount: 500
+    - Type: 2
+      Amount: 1
+    DiamondUpgradeResourceBunches:
+    - Type: 0
+      AmountLevelInfo:
+        StartValue: 500
+        OneLevelPercentage: 1100
+    - Type: 1
+      AmountLevelInfo:
+        StartValue: 50
+        OneLevelPercentage: 900
   Defaults:
     DiamondImage: {fileID: 21300000, guid: 7250263116f03f341bb47548a9fd373e, type: 3}
     DiamondName: Undefined
@@ -27,30 +49,3 @@ MonoBehaviour:
     - {fileID: -1456258274700935215, guid: 83a01e9ee589f274d84083f5b7796165, type: 3}
     CriticalShowBehavior: {fileID: 4203942547089975566, guid: 6522732b07195f948a3bcf635d01c605,
       type: 3}
-  Settings:
-    DiamondMaxLevel: 10
-    DemonMaxLevel: 50
-    AcceptedCollisionDistance: 30
-    MaxAttackSpeed: 30
-    BuyDiamondResourceBunches:
-    - Type: 0
-      Amount: 10000
-    - Type: 1
-      Amount: 500
-    - Type: 2
-      Amount: 1
-    DiamondUpgradeResourceBunches:
-    - Type: 0
-      Amount: 500
-      LevelPercentage: 500
-      AmountLevelInfo:
-        StartValue: 500
-        OneLevelPercentage: 500
-        MaxLevelValue: 0
-    - Type: 1
-      Amount: 25
-      LevelPercentage: 500
-      AmountLevelInfo:
-        StartValue: 25
-        OneLevelPercentage: 500
-        MaxLevelValue: 0

@@ -7,5 +7,5 @@ public class StoneDiamondStaticData : PeriodicDiamondStaticData
     [Space(Constants.DataSectionSpace)]
     [Header("Stone Diamon Data")]
     public FallingStoneBehavior FallingStoneBehavior = default;
-    public LevelInfo ChanceLevelInfo = default;
+    public NumberLevelInfo ChanceLevelInfo = default;
 }

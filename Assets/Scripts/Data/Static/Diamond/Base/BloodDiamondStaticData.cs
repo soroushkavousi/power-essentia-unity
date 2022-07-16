@@ -5,5 +5,5 @@
 public class BloodDiamondStaticData : PermanentDiamondStaticData
 {
     [Space(Constants.DataSectionSpace)]
-    public LevelInfo BloodRatioLevelInfo = default;
+    public NumberLevelInfo BloodRatioLevelInfo = default;
 }

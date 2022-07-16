@@ -5,5 +5,5 @@ using UnityEngine;
 public class SpellStaticData : ScriptableObject
 {
     public string Name = default;
-    public LevelInfo CooldownLevelInfo = default;
+    public NumberLevelInfo CooldownLevelInfo = default;
 }

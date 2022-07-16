@@ -1,12 +1,12 @@
 ﻿using System;
 
 [Serializable]
-public class LevelInfo
+public class NumberLevelInfo
 {
     public float StartValue = default;
     public float OneLevelPercentage = 0f;
 
-    public LevelInfo(float startValue, float oneLevelPercentage)
+    public NumberLevelInfo(float startValue, float oneLevelPercentage)
     {
         StartValue = startValue;
         OneLevelPercentage = oneLevelPercentage;

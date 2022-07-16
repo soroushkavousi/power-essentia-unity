@@ -6,8 +6,8 @@ public class WeaponStaticData : ScriptableObject
 {
     [Space(Constants.DataSectionSpace)]
     [Header("Weapon Data")]
-    public LevelInfo DamageLevelInfo = default;
-    public LevelInfo SpeedLevelInfo = default;
-    public LevelInfo CriticalChanceLevelInfo = default;
-    public LevelInfo CriticalDamageLevelInfo = default;
+    public NumberLevelInfo DamageLevelInfo = default;
+    public NumberLevelInfo SpeedLevelInfo = default;
+    public NumberLevelInfo CriticalChanceLevelInfo = default;
+    public NumberLevelInfo CriticalDamageLevelInfo = default;
 }

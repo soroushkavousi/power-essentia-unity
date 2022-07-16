@@ -36,7 +36,7 @@ public class Number : ISubject, IObserver
     public bool IsFixed => _isFixed;
     public float NextLevelValue => _nextLevelValue;
 
-    public Number(Level level, LevelInfo levelInfo, float min = float.MinValue,
+    public Number(Level level, NumberLevelInfo levelInfo, float min = float.MinValue,
         float max = float.MaxValue, float minPercentage = float.MinValue,
         float maxPercentage = float.MaxValue, float randomnessPercentage = 0f)
     {

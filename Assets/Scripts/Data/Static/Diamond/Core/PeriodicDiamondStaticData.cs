@@ -7,6 +7,6 @@ public abstract class PeriodicDiamondStaticData : DiamondStaticData
     [Space(Constants.DataSectionSpace)]
     [Header("Periodic Diamon Data")]
 
-    public LevelInfo ActiveTimeLevelInfo = default;
-    public LevelInfo CooldownLevelInfo = default;
+    public NumberLevelInfo ActiveTimeLevelInfo = default;
+    public NumberLevelInfo CooldownLevelInfo = default;
 }

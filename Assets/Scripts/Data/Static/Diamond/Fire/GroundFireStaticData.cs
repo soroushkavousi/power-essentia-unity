@@ -4,10 +4,10 @@
     menuName = "StaticData/Diamonds/Fire/GroundFireStaticData", order = 1)]
 public class GroundFireStaticData : ScriptableObject
 {
-    public LevelInfo DurationLevelInfo = default;
-    public LevelInfo DamageLevelInfo = default;
-    public LevelInfo CriticalChanceLevelInfo = default;
-    public LevelInfo CriticalDamageLevelInfo = default;
-    public LevelInfo SlowLevelInfo = default;
+    public NumberLevelInfo DurationLevelInfo = default;
+    public NumberLevelInfo DamageLevelInfo = default;
+    public NumberLevelInfo CriticalChanceLevelInfo = default;
+    public NumberLevelInfo CriticalDamageLevelInfo = default;
+    public NumberLevelInfo SlowLevelInfo = default;
     public Vector2 SpawnOffset = default;
 }

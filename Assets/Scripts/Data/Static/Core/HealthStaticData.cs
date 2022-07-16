@@ -4,8 +4,8 @@ using UnityEngine;
 [Serializable]
 public class HealthStaticData
 {
-    public LevelInfo HealthLevelInfo = default;
-    public LevelInfo PhysicalResistanceLevelInfo = default;
-    public LevelInfo MagicResistanceLevelInfo = default;
+    public NumberLevelInfo HealthLevelInfo = default;
+    public NumberLevelInfo PhysicalResistanceLevelInfo = default;
+    public NumberLevelInfo MagicResistanceLevelInfo = default;
     public GameObject DeathVfxPrefab = default;
 }

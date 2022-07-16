@@ -13,6 +13,6 @@ namespace Assets.Scripts.Data
     public class ResourceBunchWithLevelStaticData
     {
         public ResourceType Type = default;
-        public LevelInfo AmountLevelInfo = default;
+        public NumberLevelInfo AmountLevelInfo = default;
     }
 }
