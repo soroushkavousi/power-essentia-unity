@@ -16,6 +16,7 @@ namespace Assets.Scripts.Models
                 new(),
                 new(),
                 new(),
+                new(),
             },
             [RingName.RIGHT] = new List<Observable<DiamondName>>
             {

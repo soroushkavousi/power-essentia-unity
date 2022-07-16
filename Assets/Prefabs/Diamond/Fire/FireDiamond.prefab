@@ -44,61 +44,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45d8c295d0d56f045a0b6e34b3520ac2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: 5
+  _name: 6
+  _type: 0
   _knowledgeState:
     _value: 0
     _lastValue: 0
   _level:
     _value: 0
     _lastValue: 0
-  _activeTime:
-    _value: 0
-    _basePercentage: 0
-    _baseValue: 0
-    _levelPercentage: 0
-    _startValue: 0
-    _lastValue: 0
-    _nextLevelValue: 0
-    _min: 0
     _max: 0
-    _minPercentage: 0
-    _maxPercentage: 0
-    _fixValue: 0
-    _isFixed: 0
-    _oneLevelPercentage: 0
-    _level:
-      _value: 0
-      _lastValue: 0
-  _cooldownTime:
-    _value: 0
-    _basePercentage: 0
-    _baseValue: 0
-    _levelPercentage: 0
-    _startValue: 0
-    _lastValue: 0
-    _nextLevelValue: 0
-    _min: 0
-    _max: 0
-    _minPercentage: 0
-    _maxPercentage: 0
-    _fixValue: 0
-    _isFixed: 0
-    _oneLevelPercentage: 0
-    _level:
-      _value: 0
-      _lastValue: 0
   _buyResourceBunches: []
   _upgradeResourceBunches: []
   _isReady: 0
   _onUsing: 0
-  _onCooldown: 0
-  _ramainingTime: 0
-  _ramainingPercentage: 0
-  _isPermanent: 0
-  _staticData: {fileID: 11400000, guid: d2b0f5312c28d0346b2b8a0a68f5355f, type: 2}
-  _sampleGroundFireBehavior: {fileID: 0}
-  _chance:
+  _activeTime:
     _value: 0
+    _limitedBasePercentage: 0
     _basePercentage: 0
     _baseValue: 0
     _levelPercentage: 0
@@ -109,9 +70,58 @@ MonoBehaviour:
     _max: 0
     _minPercentage: 0
     _maxPercentage: 0
+    _randomnessPercentage: 0
     _fixValue: 0
     _isFixed: 0
     _oneLevelPercentage: 0
     _level:
       _value: 0
       _lastValue: 0
+      _max: 0
+  _cooldownTime:
+    _value: 0
+    _limitedBasePercentage: 0
+    _basePercentage: 0
+    _baseValue: 0
+    _levelPercentage: 0
+    _startValue: 0
+    _lastValue: 0
+    _nextLevelValue: 0
+    _min: 0
+    _max: 0
+    _minPercentage: 0
+    _maxPercentage: 0
+    _randomnessPercentage: 0
+    _fixValue: 0
+    _isFixed: 0
+    _oneLevelPercentage: 0
+    _level:
+      _value: 0
+      _lastValue: 0
+      _max: 0
+  _onCooldown: 0
+  _ramainingTime: 0
+  _ramainingPercentage: 0
+  _staticData: {fileID: 11400000, guid: d2b0f5312c28d0346b2b8a0a68f5355f, type: 2}
+  _sampleGroundFireBehavior: {fileID: 0}
+  _chance:
+    _value: 0
+    _limitedBasePercentage: 0
+    _basePercentage: 0
+    _baseValue: 0
+    _levelPercentage: 0
+    _startValue: 0
+    _lastValue: 0
+    _nextLevelValue: 0
+    _min: 0
+    _max: 0
+    _minPercentage: 0
+    _maxPercentage: 0
+    _randomnessPercentage: 0
+    _fixValue: 0
+    _isFixed: 0
+    _oneLevelPercentage: 0
+    _level:
+      _value: 0
+      _lastValue: 0
+      _max: 0

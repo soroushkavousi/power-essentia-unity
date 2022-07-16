@@ -27,12 +27,12 @@ MonoBehaviour:
     DeathRewardsData:
     - Type: 0
       AmountLevelInfo:
-        StartValue: 1000
-        OneLevelPercentage: 20
+        StartValue: 600
+        OneLevelPercentage: 35
     - Type: 1
       AmountLevelInfo:
         StartValue: 100
-        OneLevelPercentage: 20
+        OneLevelPercentage: 40
   AIAttackerStaticData:
     VisionStaticData:
       CenterPoint: {x: -400, y: 0}

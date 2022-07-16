@@ -20,6 +20,8 @@ public class BloodDiamondBehavior : PermanentDiamondBehavior
         base.Initialize(knowledgeState, level, diamondOwnerBehavior);
 
         _bloodRatio = new Number(_level, _staticData.BloodRatioLevelInfo);
+        foreach (var upgradeResource in _upgradeResourceBunches)
+            upgradeResource.Amount.Decrease(80);
     }
 
     protected override void DoActivationWork()
@@ -45,11 +47,11 @@ public class BloodDiamondBehavior : PermanentDiamondBehavior
         //------------------------------------------------
 
         var currentBloodRatio = _bloodRatio.Value.ToLong();
-        var nextBloodPerDemonLevel = _bloodRatio.NextLevelValue.ToLong();
+        var nextBloodRatio = _bloodRatio.NextLevelValue.ToLong();
 
         var currentBloodRatioShow = NoteUtils.AddColor(currentBloodRatio + "%", "black");
         currentBloodRatioShow = NoteUtils.ChangeSize($"Blood Taken Ratio: {currentBloodRatioShow}", NoteUtils.NumberSizeRatio);
-        var nextBloodRatioShow = NoteUtils.AddColor(nextBloodPerDemonLevel + "%", NoteUtils.UpgradeColor);
+        var nextBloodRatioShow = NoteUtils.AddColor(nextBloodRatio + "%", NoteUtils.UpgradeColor);
         nextBloodRatioShow = NoteUtils.ChangeSize($"({nextBloodRatioShow})", NoteUtils.NextNumberSizeRatio);
 
         //-----------------------------------------------

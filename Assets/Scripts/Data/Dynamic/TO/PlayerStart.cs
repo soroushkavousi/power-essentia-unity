@@ -31,6 +31,7 @@ public static class PlayerStart
             {
                 DiamondName.BOW.ToString(),
                 DiamondName.WALL.ToString(),
+                DiamondName.KING.ToString(),
                 DiamondName.BLOOD.ToString(),
             },
             menuDeckDiamondName: DiamondName.STONE.ToString(),
@@ -40,6 +41,7 @@ public static class PlayerStart
         {
             new DiamondDynamicDataTO(DiamondName.BOW.ToString(), DiamondKnowledgeState.OWNED.ToString(),  1),
             new DiamondDynamicDataTO(DiamondName.WALL.ToString(), DiamondKnowledgeState.OWNED.ToString(),  1),
+            new DiamondDynamicDataTO(DiamondName.KING.ToString(), DiamondKnowledgeState.OWNED.ToString(),  1),
             new DiamondDynamicDataTO(DiamondName.BLOOD.ToString(), DiamondKnowledgeState.OWNED.ToString(),  1),
             new DiamondDynamicDataTO(DiamondName.STONE.ToString(), DiamondKnowledgeState.OWNED.ToString(),  1),
             new DiamondDynamicDataTO(DiamondName.FIRE.ToString(), DiamondKnowledgeState.DISCOVERED.ToString(),  1),
@@ -52,8 +54,8 @@ public static class PlayerStart
         ResourceBunches = new List<ResourceBunchDynamicDataTO>
         {
             new ResourceBunchDynamicDataTO(ResourceType.COIN.ToString(), 2000),
-            new ResourceBunchDynamicDataTO(ResourceType.DEMON_BLOOD.ToString(), 100),
-            new ResourceBunchDynamicDataTO(ResourceType.DARK_DEMON_BLOOD.ToString(), 5),
+            new ResourceBunchDynamicDataTO(ResourceType.DEMON_BLOOD.ToString(), 200),
+            new ResourceBunchDynamicDataTO(ResourceType.DARK_DEMON_BLOOD.ToString(), 0),
         },
     };
 }

@@ -30,7 +30,6 @@ public class DesicionCanvasManager : MonoBehaviour
 
     public void GoNextLevel()
     {
-        _selectedDemonLevel.Value += 1;
         SceneManagerBehavior.Instance.RestartCurrentScene();
     }
 
@@ -42,6 +41,8 @@ public class DesicionCanvasManager : MonoBehaviour
 
     public void RepeatOrTryAgainLevel()
     {
+        if (WinSystemBehavior.Instance.Win)
+            _selectedDemonLevel.Value -= 1;
         SceneManagerBehavior.Instance.RestartCurrentScene();
     }
 
@@ -54,6 +55,7 @@ public class DesicionCanvasManager : MonoBehaviour
     {
         if (WinSystemBehavior.Instance.Win)
         {
+            _selectedDemonLevel.Value += 1;
             _winCanvas.SetActive(true);
             _loseCanvas.SetActive(false);
             _winTitle.text = $"Congragulations! You have completed level {_selectedDemonLevel.Value}.";

@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6093237794534717114}
-  - component: {fileID: 8536669583931556881}
+  - component: {fileID: 7762158850602252690}
   m_Layer: 5
-  m_Name: BloodDiamond
+  m_Name: KingDiamond
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8536669583931556881
+--- !u!114 &7762158850602252690
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,10 +41,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1864141629742943969}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6f9570210e6c4940a90b6da14419553, type: 3}
+  m_Script: {fileID: 11500000, guid: 34d880f29c0127a4d90d347128e3d96b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: 5
+  _name: 4
   _type: 0
   _knowledgeState:
     _value: 0
@@ -57,8 +57,8 @@ MonoBehaviour:
   _upgradeResourceBunches: []
   _isReady: 0
   _onUsing: 0
-  _staticData: {fileID: 11400000, guid: 3ec44ca8762f11645b6b70f9ccb228a2, type: 2}
-  _bloodRatio:
+  _staticData: {fileID: 11400000, guid: b07f7dd80d221e948a283c2a08c2292a, type: 2}
+  _goldBoost:
     _value: 0
     _limitedBasePercentage: 0
     _basePercentage: 0

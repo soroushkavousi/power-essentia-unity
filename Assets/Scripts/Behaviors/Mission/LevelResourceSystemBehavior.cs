@@ -11,6 +11,7 @@ public class LevelResourceSystemBehavior : MonoBehaviour, IObserver<DemonBehavio
     [Header(Constants.DebugSectionHeader)]
 
     [SerializeField] private List<ResourceBunch> _resourceBunches = default;
+    [SerializeField] private KingDiamondBehavior _kingDiamondBehavior = default;
     [SerializeField] private BloodDiamondBehavior _bloodDiamondBehavior = default;
     private List<ResourceBunch> _gameResourceBunches = default;
 
@@ -28,7 +29,12 @@ public class LevelResourceSystemBehavior : MonoBehaviour, IObserver<DemonBehavio
 
         _gameResourceBunches = PlayerBehavior.MainPlayer.DynamicData.ResourceBunches;
         WaveManagerBehavior.Instance.Attach(this);
-        _bloodDiamondBehavior = (BloodDiamondBehavior)DiamondOwnerBehavior.MainDiamondOwner.AllDiamondBehaviors[DiamondName.BLOOD];
+
+        var allDiamondBehaviors = DiamondOwnerBehavior.MainDiamondOwner.AllDiamondBehaviors;
+        _kingDiamondBehavior = (KingDiamondBehavior)allDiamondBehaviors[DiamondName.KING];
+        _bloodDiamondBehavior = (BloodDiamondBehavior)allDiamondBehaviors[DiamondName.BLOOD];
+
+        LevelManagerBehavior.Instance.Finished.Attach(this);
     }
 
     private void AddResourceForDeadDemon(DemonBehavior demonBehavior)
@@ -37,12 +43,25 @@ public class LevelResourceSystemBehavior : MonoBehaviour, IObserver<DemonBehavio
         {
             var resourceType = deathReward.Type;
             var resourceAmount = deathReward.Amount.Value;
-            if (deathReward.Type == ResourceType.DEMON_BLOOD)
-                resourceAmount = resourceAmount.MeasurePercentage(_bloodDiamondBehavior.BloodRatio.Value);
+            switch (resourceType)
+            {
+                case ResourceType.COIN:
+                    resourceAmount = resourceAmount.AddPercentage(_kingDiamondBehavior.GoldBoost.Value);
+                    break;
+                case ResourceType.DEMON_BLOOD:
+                    resourceAmount = resourceAmount.MeasurePercentage(_bloodDiamondBehavior.BloodRatio.Value);
+                    break;
+            }
             var resourceAmountAsLong = resourceAmount.ToLong();
             _gameResourceBunches.Find(rb => rb.Type == resourceType).Amount.Value += resourceAmountAsLong;
             _resourceBunches.Find(rb => rb.Type == resourceType).Amount.Value += resourceAmountAsLong;
         }
+    }
+
+    private void AddDarkDemonBloodForWinning()
+    {
+        _gameResourceBunches.Find(rb => rb.Type == ResourceType.DARK_DEMON_BLOOD).Amount.Value += 1;
+        _resourceBunches.Find(rb => rb.Type == ResourceType.DARK_DEMON_BLOOD).Amount.Value += 1;
     }
 
     public void OnNotify(ISubject<DemonBehavior> subject, DemonBehavior demonBehavior)
@@ -60,6 +79,13 @@ public class LevelResourceSystemBehavior : MonoBehaviour, IObserver<DemonBehavio
             if (demonBehavior.State == DemonState.DEAD)
             {
                 AddResourceForDeadDemon(demonBehavior);
+            }
+        }
+        else if (subject == LevelManagerBehavior.Instance.Finished)
+        {
+            if (LevelManagerBehavior.Instance.Finished.Value == true)
+            {
+                AddDarkDemonBloodForWinning();
             }
         }
     }

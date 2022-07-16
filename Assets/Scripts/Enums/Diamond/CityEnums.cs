@@ -7,6 +7,7 @@
         ARCHER,
         BOW,
         WALL,
+        KING,
         BLOOD,
 
         //Deck

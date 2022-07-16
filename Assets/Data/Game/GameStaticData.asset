@@ -24,16 +24,16 @@ MonoBehaviour:
     - Type: 1
       Amount: 500
     - Type: 2
-      Amount: 1
+      Amount: 3
     DiamondUpgradeResourceBunches:
     - Type: 0
       AmountLevelInfo:
         StartValue: 500
-        OneLevelPercentage: 1100
+        OneLevelPercentage: 900
     - Type: 1
       AmountLevelInfo:
         StartValue: 50
-        OneLevelPercentage: 900
+        OneLevelPercentage: 700
   Defaults:
     DiamondImage: {fileID: 21300000, guid: 7250263116f03f341bb47548a9fd373e, type: 3}
     DiamondName: Undefined
@@ -41,6 +41,7 @@ MonoBehaviour:
     _diamondPrefabs:
     - {fileID: 4790560946532602642, guid: e0b2a9708b40e5d4ab5931ec6092fa39, type: 3}
     - {fileID: -7251427964666986556, guid: d569530904d49de40a0126aeb8e2d67c, type: 3}
+    - {fileID: 7762158850602252690, guid: 44f731a5c94ccce4bb77ecb775d808c7, type: 3}
     - {fileID: 8536669583931556881, guid: d91e679fe720ebe42aaf7d598fafb73c, type: 3}
     - {fileID: 6135909527425668001, guid: 9db5e5ccf1b193743aac03df9e447033, type: 3}
     - {fileID: 2974640598178895384, guid: 15d99f6628be7e14ebaf715fdc461c6e, type: 3}

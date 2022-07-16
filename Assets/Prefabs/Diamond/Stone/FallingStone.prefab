@@ -90,7 +90,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: a2086ad4d7c2dce4dba105c4a9959a1e, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.521
+  m_Volume: 0.388
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -188,6 +188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed:
     _value: 0
+    _limitedBasePercentage: 0
     _basePercentage: 0
     _baseValue: 0
     _levelPercentage: 0
@@ -198,12 +199,14 @@ MonoBehaviour:
     _max: 0
     _minPercentage: 0
     _maxPercentage: 0
+    _randomnessPercentage: 0
     _fixValue: 0
     _isFixed: 0
     _oneLevelPercentage: 0
     _level:
       _value: 0
       _lastValue: 0
+      _max: 0
   _moveType: 0
   _direction: {x: 0, y: 0}
   _normalizedDirection: {x: 0, y: 0}
@@ -228,6 +231,7 @@ MonoBehaviour:
   _staticData: {fileID: 11400000, guid: 8de0d8da2a348eb4a9ead61794feac65, type: 2}
   _impactDamage:
     _value: 0
+    _limitedBasePercentage: 0
     _basePercentage: 0
     _baseValue: 0
     _levelPercentage: 0
@@ -238,14 +242,17 @@ MonoBehaviour:
     _max: 0
     _minPercentage: 0
     _maxPercentage: 0
+    _randomnessPercentage: 0
     _fixValue: 0
     _isFixed: 0
     _oneLevelPercentage: 0
     _level:
       _value: 0
       _lastValue: 0
+      _max: 0
   _stunDuration:
     _value: 0
+    _limitedBasePercentage: 0
     _basePercentage: 0
     _baseValue: 0
     _levelPercentage: 0
@@ -256,14 +263,17 @@ MonoBehaviour:
     _max: 0
     _minPercentage: 0
     _maxPercentage: 0
+    _randomnessPercentage: 0
     _fixValue: 0
     _isFixed: 0
     _oneLevelPercentage: 0
     _level:
       _value: 0
       _lastValue: 0
+      _max: 0
   _criticalChance:
     _value: 0
+    _limitedBasePercentage: 0
     _basePercentage: 0
     _baseValue: 0
     _levelPercentage: 0
@@ -274,14 +284,17 @@ MonoBehaviour:
     _max: 0
     _minPercentage: 0
     _maxPercentage: 0
+    _randomnessPercentage: 0
     _fixValue: 0
     _isFixed: 0
     _oneLevelPercentage: 0
     _level:
       _value: 0
       _lastValue: 0
+      _max: 0
   _criticalDamage:
     _value: 0
+    _limitedBasePercentage: 0
     _basePercentage: 0
     _baseValue: 0
     _levelPercentage: 0
@@ -292,12 +305,14 @@ MonoBehaviour:
     _max: 0
     _minPercentage: 0
     _maxPercentage: 0
+    _randomnessPercentage: 0
     _fixValue: 0
     _isFixed: 0
     _oneLevelPercentage: 0
     _level:
       _value: 0
       _lastValue: 0
+      _max: 0
   _enemy: {fileID: 0}
   _isSample: 0
 --- !u!1 &1743808450375943443
