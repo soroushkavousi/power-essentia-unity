@@ -64,7 +64,7 @@ public class StunStatusBehavior : MonoBehaviour, ISubject, ISubject<StunStatusIn
     {
         var criticalEffect = new CriticalEffect(instance.Damage,
             instance.CriticalChance, instance.CriticalDamage);
-        var damage = new Damage(DamageType.MAGIC, criticalEffect.Result,
+        var damage = new Damage(DamageType.PHYSICAL, criticalEffect.Result,
             criticalEffect.IsApplied);
         _healthBehavior.Health.Damage(damage);
         yield break;
