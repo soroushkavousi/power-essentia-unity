@@ -16,13 +16,13 @@ MonoBehaviour:
   HealthData:
     HealthLevelInfo:
       StartValue: 1000
-      OneLevelPercentage: 50
+      OneLevelPercentage: 75
     PhysicalResistanceLevelInfo:
-      StartValue: 10
-      OneLevelPercentage: 8
+      StartValue: 20
+      OneLevelPercentage: 10
     MagicResistanceLevelInfo:
-      StartValue: 30
-      OneLevelPercentage: 5
+      StartValue: 40
+      OneLevelPercentage: 10
     DeathVfxPrefab: {fileID: 0}
     DeathRewardsData:
     - Type: 0
@@ -40,7 +40,7 @@ MonoBehaviour:
   MovementStaticData:
     SpeedLevelInfo:
       StartValue: 65
-      OneLevelPercentage: 5
+      OneLevelPercentage: 10
     StartDelay: 0
     AnimationSpeed: 100
     DontStopWhenReach: 0

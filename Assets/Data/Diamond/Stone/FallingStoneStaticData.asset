@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: FallingStoneStaticData
   m_EditorClassIdentifier: 
   ImpactDamageLevelInfo:
-    StartValue: 300
+    StartValue: 250
     OneLevelPercentage: 50
   StunDurationLevelInfo:
-    StartValue: 2
-    OneLevelPercentage: 10
+    StartValue: 1
+    OneLevelPercentage: 20
   CriticalChanceLevelInfo:
     StartValue: 50
     OneLevelPercentage: 10

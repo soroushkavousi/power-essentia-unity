@@ -16,7 +16,7 @@ MonoBehaviour:
     StartValue: 3
     OneLevelPercentage: 10
   DamageLevelInfo:
-    StartValue: 400
+    StartValue: 350
     OneLevelPercentage: 40
   CriticalChanceLevelInfo:
     StartValue: 20
