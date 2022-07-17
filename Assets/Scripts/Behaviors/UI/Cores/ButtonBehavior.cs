@@ -65,7 +65,7 @@ public class ButtonBehavior : MonoBehaviour
         if (_isColliderDisabled)
             return;
 
-        Debug.Log($"Button [{name} -> {transform.parent.name} -> {transform.parent.parent.name}] clicked.");
+        //Debug.Log($"Button [{name} -> {transform.parent.name} -> {transform.parent.parent.name}] clicked.");
         StartCoroutine(SetPressedColor());
         PlayClickSound();
         _clickEvent.Invoke();

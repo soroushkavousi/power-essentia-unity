@@ -124,9 +124,7 @@ public class CarouselViewBehavior : MonoBehaviour
         //        _closestItem = item;
         //    }
         //}
-        //Debug.Log($"[Closest Item 1] _closestItem.position.x: {_closestItem.position.x}, _centerPoint.position.x: {_centerPoint.position.x}");
         //currentItemDistance = _closestItem.position.x - _centerPoint.position.x;
-        //Debug.Log($"[Closest Item 2] currentItemDistance: {currentItemDistance}, _contentPanel.localPosition.x: {_contentPanel.localPosition.x}");
         //_targetContentPanelXOffset = _contentPanel.localPosition.x - currentItemDistance;
     }
 }
