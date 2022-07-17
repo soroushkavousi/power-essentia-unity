@@ -28,7 +28,7 @@ public class WinSystemBehavior : MonoBehaviour, ISubject, IObserver
 
         _win = true;
         Notify();
-        DesicionCanvasManager.Instance.Show();
+        DecisionCanvasManager.Instance.Show();
     }
 
     public void OnNotify(ISubject subject)

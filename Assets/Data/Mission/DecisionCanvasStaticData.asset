@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WinAudioClip: {fileID: 8300000, guid: b905d5c9c2914c646827e97a6325c0fb, type: 3}
   LoseAudioClip: {fileID: 8300000, guid: 66d2035e89341604fb3e88c22ad775fc, type: 3}
+  VictorySoundClip: {fileID: 8300000, guid: ec3561383e0e2e048b5b3276dae402b6, type: 3}

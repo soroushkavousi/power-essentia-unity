@@ -1237,6 +1237,7 @@ MonoBehaviour:
   _winTitle: {fileID: 4927812421170349814}
   _loseCanvas: {fileID: 8955083116581311379}
   _loseTitle: {fileID: 7962637313746834364}
+  _goNextLevelButton: {fileID: 4359153352431490405}
 --- !u!1 &5214284981230657635
 GameObject:
   m_ObjectHideFlags: 0
@@ -4085,6 +4086,21 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 6216418610778378129, guid: ebab4768f56ff894bb3c27e8d3f40f6d,
         type: 3}
+      propertyPath: _lockColor.b
+      value: 0.115566045
+      objectReference: {fileID: 0}
+    - target: {fileID: 6216418610778378129, guid: ebab4768f56ff894bb3c27e8d3f40f6d,
+        type: 3}
+      propertyPath: _lockColor.g
+      value: 0.4225679
+      objectReference: {fileID: 0}
+    - target: {fileID: 6216418610778378129, guid: ebab4768f56ff894bb3c27e8d3f40f6d,
+        type: 3}
+      propertyPath: _lockColor.r
+      value: 0.46226418
+      objectReference: {fileID: 0}
+    - target: {fileID: 6216418610778378129, guid: ebab4768f56ff894bb3c27e8d3f40f6d,
+        type: 3}
       propertyPath: _clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 7545189606910490643}
@@ -4317,6 +4333,18 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &4359153352431490405 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6216418610778378129, guid: ebab4768f56ff894bb3c27e8d3f40f6d,
+    type: 3}
+  m_PrefabInstance: {fileID: 7654981554727508724}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ddf1c6ee17e1d74d97a6933a7c31709, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7781730910373459423
 PrefabInstance:
   m_ObjectHideFlags: 0

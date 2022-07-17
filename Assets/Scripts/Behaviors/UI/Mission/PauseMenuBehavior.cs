@@ -19,6 +19,7 @@ public class PauseMenuBehavior : MonoBehaviour
     public void Show()
     {
         _interactionLayerComponentBehavior.Enable();
+        StartCoroutine(MusicPlayerBehavior.Instance.StopAllSounds(0f));
     }
 
     public void ExitFromMission()
@@ -34,6 +35,7 @@ public class PauseMenuBehavior : MonoBehaviour
     public void ResumeMission()
     {
         _interactionLayerComponentBehavior.Disable();
+        MusicPlayerBehavior.Instance.StartAllSounds();
         Time.timeScale = 1f;
     }
 }

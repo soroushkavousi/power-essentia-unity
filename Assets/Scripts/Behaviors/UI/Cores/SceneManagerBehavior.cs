@@ -101,9 +101,10 @@ public class SceneManagerBehavior : MonoBehaviour
 
     public void LoadScene(SceneName sceneName)
     {
-        Time.timeScale = 1;
         _currentSceneName = sceneName;
         SceneManager.LoadScene(sceneName.To<int>());
+        MusicPlayerBehavior.Instance.StartAllSounds();
+        Time.timeScale = 1;
     }
 
     public void QuitGame()

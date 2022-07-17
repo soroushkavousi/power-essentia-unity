@@ -22,8 +22,9 @@ public class Level : Observable<int>
     public int Max => _max;
     public bool IsMax => _value == _max;
 
-    public Level(int value, int max) : base(value)
+    public Level(int value, int max)
     {
         _max = max;
+        Value = value;
     }
 }

@@ -87,7 +87,7 @@ public class StoneDiamondBehavior : PeriodicDiamondBehavior, IObserver<HitParame
     {
         var description = $"" +
             $"It has a chance to summon two stones that fall into enemies and stun them." +
-            $"\n\nThe first stone will hit the target enemy, and the second stone will hit the closest enemy to the wall." + 
+            $"\n\nThe first stone will hit the target enemy, and the second stone will hit the closest enemy to the wall." +
             $"\n\nYou can activate this diamond by clicking on its icon in your deck when fighting.";
         return description;
     }

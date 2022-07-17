@@ -17,11 +17,3 @@ MonoBehaviour:
     _demonBunches:
     - _demonName: 0
       _count: 2
-  - _columnCount: 1
-    _demonBunches:
-    - _demonName: 0
-      _count: 2
-  - _columnCount: 1
-    _demonBunches:
-    - _demonName: 0
-      _count: 2

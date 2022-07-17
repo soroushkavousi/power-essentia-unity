@@ -31,7 +31,7 @@ public class LoseSystemBehavior : MonoBehaviour, ISubject, IObserver
 
         _lose = true;
         Notify();
-        DesicionCanvasManager.Instance.Show();
+        DecisionCanvasManager.Instance.Show();
     }
 
     public void OnNotify(ISubject subject)

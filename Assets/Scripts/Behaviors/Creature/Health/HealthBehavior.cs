@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class HealthBehavior : MonoBehaviour, IObserver, ISubject
 {
@@ -10,7 +11,7 @@ public class HealthBehavior : MonoBehaviour, IObserver, ISubject
     [SerializeField] private bool _destroyOnDeath = default;
     [SerializeField] private GameObject _deathVfxPrefab = default;
     [SerializeField] protected bool _isDead = default;
-    private Level _level = default;
+    [NonSerialized] private Level _level = default;
     private HealthStaticData _healthStaticData = default;
     protected readonly ObserverCollection _observers = new();
 

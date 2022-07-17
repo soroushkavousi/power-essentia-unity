@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Models;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ public class DemonHealthBehavior : HealthBehavior
     [Header(Constants.DebugSectionHeader)]
     [SerializeField] private List<ResourceBunchWithLevel> _deathRewards = default;
     private DemonHealthStaticData _staticData = default;
-    private Level _level = default;
+    [NonSerialized] private Level _level = default;
 
     public List<ResourceBunchWithLevel> DeathRewards => _deathRewards;
 

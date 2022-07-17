@@ -7,7 +7,7 @@ namespace Assets.Scripts.Models
     [Serializable]
     public class SelectedItemsDynamicData : IObserver
     {
-        public Observable<int> DemonLevel = new();
+        public Level DemonLevel;
 
         public Dictionary<RingName, List<Observable<DiamondName>>> RingDiamondNamesMap { get; set; } = new Dictionary<RingName, List<Observable<DiamondName>>>
         {
@@ -45,7 +45,7 @@ namespace Assets.Scripts.Models
             List<DiamondName> leftRingDiamondNames, List<DiamondName> righRingDiamondNames,
             DiamondName menuDeckDiamondName, DiamondName menuBaseDiamondName)
         {
-            DemonLevel.Value = demonLevel;
+            DemonLevel = new(demonLevel, GameManagerBehavior.Instance.Settings.DemonMaxLevel);
             MenuDiamondName[RingName.LEFT] = MenuDiamondName[RingName.RIGHT] = MenuDiamondName[RingName.DECK];
 
             for (int i = 0; i < RingDiamondNamesMap[RingName.BASE].Count; i++)

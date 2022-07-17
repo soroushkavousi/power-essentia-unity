@@ -61,7 +61,7 @@ public class FireDiamondBehavior : PeriodicDiamondBehavior, IObserver<HitParamet
     {
         var description = $"" +
             $"It has a chance to spawn a ground fire when an enemy is hit." +
-            $"\n\nThe ground fire will burn any enemies who walk on it." + 
+            $"\n\nThe ground fire will burn any enemies who walk on it." +
             $"\n\nYou can activate this diamond by clicking on its icon in your deck when fighting.";
         return description;
     }
