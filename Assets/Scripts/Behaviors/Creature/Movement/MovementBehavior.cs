@@ -11,7 +11,6 @@ public class MovementBehavior : MonoBehaviour, IObserver, ISubject<MovementChang
     [Header(Constants.DebugSectionHeader)]
 
     [SerializeField] private Number _speed;
-    //[SerializeField] private ThreePartAdvancedNumber _speed = new ThreePartAdvancedNumber(currentDummyMin: 0f);
     [SerializeField] private MoveType _moveType = default;
     [SerializeField] private Vector2 _direction = default;
     [SerializeField] private Vector2 _normalizedDirection = default;
@@ -167,10 +166,9 @@ public class MovementBehavior : MonoBehaviour, IObserver, ISubject<MovementChang
         if (_isStopped == false)
             return;
         _isStopped = false;
-        //if (_speed.CurrentValue.Result != 0)
-        //    return;
         _speed.Unfix();
-        StartCoroutine(StartMovingSmouthly());
+        if (gameObject.activeInHierarchy)
+            StartCoroutine(StartMovingSmouthly());
         Notify(new MovementChangeData(MovementChangeState.STARTED));
     }
 
@@ -221,35 +219,4 @@ public class MovementBehavior : MonoBehaviour, IObserver, ISubject<MovementChang
     public void Attach(IObserver<MovementChangeData> observer) => _observers.Add(observer);
     public void Detach(IObserver<MovementChangeData> observer) => _observers.Remove(observer);
     public void Notify(MovementChangeData changeData) => _observers.Notify(this, changeData);
-
-
-    //private void FixedUpdate()
-    //{
-    //    var speedValue = _speed.CurrentValue;
-    //    if (speedValue != 0 && _direction != Vector2.zero)
-    //    {
-    //        var movement = transform.rotation * (_normalizedDirection * speedValue * Time.fixedDeltaTime);
-    //        _rigidbody2d.MovePosition(transform.position + movement);
-    //    }
-    //}
-
-    //private void Update()
-    //{
-    //    var speedValue = _speed.CurrentValue;
-    //    if (speedValue != 0 && _direction != Vector2.zero)
-    //    {
-    //        var movement = transform.rotation * (_normalizedDirection * speedValue);
-    //        _rigidbody2d.velocity = movement;
-    //        //_rigidbody2d.velocity = _normalizedDirection * speedValue * Time.deltaTime;
-    //    }
-    //}
-
-    //private void Update()
-    //{
-    //    var speedValue = _speed.CurrentValue;
-    //    if (speedValue != 0 && _direction != Vector2.zero)
-    //    {
-    //        transform.Translate(_normalizedDirection * speedValue * Time.deltaTime, Space.Self);
-    //    }
-    //}
 }
