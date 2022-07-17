@@ -7,22 +7,24 @@ public class BodyBehavior : MonoBehaviour, ISubject<CollideData>
 
     [Space(Constants.SpaceSection)]
     [Header(Constants.DebugSectionHeader)]
+    [SerializeField] private string _id;
     [SerializeField] private bool _isCollidingDisabled = default;
     [SerializeField] private bool _isStarted = false;
     private readonly ObserverCollection<CollideData> _observers = new();
     private readonly ObserverCollection<CollideData> _superObservers = new();
 
+    public string ID => _id;
     public bool IsCollidingDisabled { get => _isCollidingDisabled || !_isStarted; set => _isCollidingDisabled = value; }
 
     public void FeedData()
     {
+        _id = Utils.GenerateRandomString(10);
         _bodyAreaBehaviors.ForEach(bodyAreaBehavior
             => bodyAreaBehavior.FeedData(OnEnter, OnExit));
     }
 
     private void Start()
     {
-        //Debug.Log($"BodyBehavior Start 1 _bodyBehavior.IsColliderDisabled: {IsColliderDisabled}");
         _isStarted = true;
     }
 

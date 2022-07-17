@@ -3041,6 +3041,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _resourceBunches: []
+  _kingDiamondBehavior: {fileID: 0}
   _bloodDiamondBehavior: {fileID: 0}
 --- !u!1 &759772348
 GameObject:
@@ -6145,6 +6146,7 @@ MonoBehaviour:
   - {fileID: 503435007}
   - {fileID: 1750089107}
   - {fileID: 292573861}
+  _id: 
   _isCollidingDisabled: 0
   _isStarted: 0
 --- !u!1 &1818231345
@@ -7543,7 +7545,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2069440876}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 660, y: 1314, z: -282}
+  m_LocalPosition: {x: 660, y: 1290, z: -282}
   m_LocalScale: {x: 400, y: 400, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
