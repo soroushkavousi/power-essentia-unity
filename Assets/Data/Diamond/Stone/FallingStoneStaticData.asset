@@ -25,7 +25,7 @@ MonoBehaviour:
     StartValue: 100
     OneLevelPercentage: 10
   SpawnXOffset: -600
-  SpawnYPosition: 2000
+  SpawnYPosition: 1300
   HitSound: {fileID: 8300000, guid: a5b9aab7ead5c0f43a238ec0c20f81ae, type: 3}
   MovementStaticData:
     SpeedLevelInfo:
