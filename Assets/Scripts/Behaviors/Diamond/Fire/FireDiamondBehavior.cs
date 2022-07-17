@@ -67,6 +67,9 @@ public class FireDiamondBehavior : PeriodicDiamondBehavior, IObserver<HitParamet
 
     protected override string GetStatsDescription()
     {
+        var damageType = NoteUtils.AddColor(DamageType.MAGIC.ToString(), "#9f00e3");
+        var damageTypeShow = NoteUtils.ChangeSize($"Damage Type: {damageType}", NoteUtils.NumberSizeRatio);
+
         //------------------------------------------------
 
         var currentChacne = _chance.Value.ToLong();
@@ -130,6 +133,7 @@ public class FireDiamondBehavior : PeriodicDiamondBehavior, IObserver<HitParamet
         //------------------------------------------------
 
         var statsDescription = $"" +
+            $"{damageTypeShow}\n" +
             $"{currentChanceShow}    {nextChanceShow}\n" +
             $"{currentDurationShow}    {nextDurationShow}\n" +
             $"{currentDamageShow}    {nextDamageShow}\n" +

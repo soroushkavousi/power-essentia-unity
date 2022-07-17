@@ -93,6 +93,9 @@ public class StoneDiamondBehavior : PeriodicDiamondBehavior, IObserver<HitParame
 
     protected override string GetStatsDescription()
     {
+        var damageType = NoteUtils.AddColor(DamageType.PHYSICAL.ToString(), "red");
+        var damageTypeShow = NoteUtils.ChangeSize($"Damage Type: {damageType}", NoteUtils.NumberSizeRatio);
+
         //------------------------------------------------
 
         var currentChacne = _chance.Value.ToLong();
@@ -108,7 +111,7 @@ public class StoneDiamondBehavior : PeriodicDiamondBehavior, IObserver<HitParame
         var currentImpactDamage = _sampleFallingStoneBehavior.ImpactDamage.Value.ToLong();
         var nextImpactDamage = _sampleFallingStoneBehavior.ImpactDamage.NextLevelValue.ToLong();
 
-        var currentImpactDamageShow = NoteUtils.AddColor(currentImpactDamage + "dps", "black");
+        var currentImpactDamageShow = NoteUtils.AddColor(currentImpactDamage, "black");
         currentImpactDamageShow = NoteUtils.ChangeSize($"Impact Damage: {currentImpactDamageShow}", NoteUtils.NumberSizeRatio);
         var nextImpactDamageShow = NoteUtils.AddColor(nextImpactDamage + "dps", NoteUtils.UpgradeColor);
         nextImpactDamageShow = NoteUtils.ChangeSize($"({nextImpactDamageShow})", NoteUtils.NextNumberSizeRatio);
@@ -146,6 +149,7 @@ public class StoneDiamondBehavior : PeriodicDiamondBehavior, IObserver<HitParame
         //------------------------------------------------
 
         var statsDescription = $"" +
+            $"{damageTypeShow}\n" +
             $"{currentChanceShow}    {nextChanceShow}\n" +
             $"{currentImpactDamageShow}    {nextImpactDamageShow}\n" +
             $"{currentStunDurationShow}    {nextStunDurationShow}\n" +

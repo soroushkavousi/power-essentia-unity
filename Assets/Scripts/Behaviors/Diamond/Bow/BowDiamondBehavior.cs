@@ -46,6 +46,9 @@ public class BowDiamondBehavior : PermanentDiamondBehavior
 
     protected override string GetStatsDescription()
     {
+        var damageType = NoteUtils.AddColor(DamageType.PHYSICAL.ToString(), "red");
+        var damageTypeShow = NoteUtils.ChangeSize($"Damage Type: {damageType}", NoteUtils.NumberSizeRatio);
+
         //------------------------------------------------
 
         var currentDamage = _bowWeaponBehavior.AttackDamage.Value.ToLong();
@@ -89,6 +92,7 @@ public class BowDiamondBehavior : PermanentDiamondBehavior
         //------------------------------------------------
 
         var description = $"" +
+            $"{damageTypeShow}\n" +
             $"{currentDamageShow}    {nextDamageShow}\n" +
             $"{currentFireRateShow}    {nextFireRateShow}\n" +
             $"{currentCriticalChanceShow}    {nextCriticalChanceShow}\n" +
