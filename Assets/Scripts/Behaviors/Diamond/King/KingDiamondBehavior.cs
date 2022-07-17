@@ -36,9 +36,8 @@ public class KingDiamondBehavior : PermanentDiamondBehavior
     protected override string GetDescription()
     {
         var description = $"" +
-            $"Owner of king diamonds can get much more money for killing monsters." +
-            $" Gold can be used to upgrade other diamonds.\n" +
-            $"King diamond is a base diamond that is active permanently.";
+            $"The owner of king diamond can get more money for killing monsters." +
+            $"\n\nGold can be used to upgrade other diamonds.";
         return description;
     }
 

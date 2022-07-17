@@ -37,8 +37,7 @@ public class BloodDiamondBehavior : PermanentDiamondBehavior
     {
         var description = $"" +
             $"It will take the blood of dead demons in the battlefield." +
-            $" Stored blood can be used to upgrade other diamonds.\n" +
-            $"Blood diamond is a base diamond that is active permanently.";
+            $"\n\nStored blood can be used to upgrade other diamonds.";
         return description;
     }
 

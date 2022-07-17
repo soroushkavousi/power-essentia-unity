@@ -39,8 +39,7 @@ public class BowDiamondBehavior : PermanentDiamondBehavior
     {
         var description = $"" +
             $"It creates a magical bow." +
-            $" The arrows of magical bos can carry other diamond effects.\n" +
-            $"Bow diamond is a base diamond that is active permanently.";
+            $"\n\nThe arrows can carry other diamond effects.";
         return description;
     }
 

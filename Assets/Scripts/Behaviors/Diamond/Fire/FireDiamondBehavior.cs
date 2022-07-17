@@ -61,7 +61,8 @@ public class FireDiamondBehavior : PeriodicDiamondBehavior, IObserver<HitParamet
     {
         var description = $"" +
             $"It has a chance to spawn a ground fire when an enemy is hit." +
-            $" The ground fire will burn any enemies who walk on it.";
+            $"\n\nThe ground fire will burn any enemies who walk on it." + 
+            $"\n\nYou can activate this diamond by clicking on its icon in your deck when fighting.";
         return description;
     }
 
@@ -72,18 +73,38 @@ public class FireDiamondBehavior : PeriodicDiamondBehavior, IObserver<HitParamet
 
         //------------------------------------------------
 
-        var currentChacne = _chance.Value.ToLong();
-        var nextChance = _chance.NextLevelValue.ToLong();
+        var currentActiveTime = _activeTime.Value.ToLong();
+        var nextActiveTime = _activeTime.NextLevelValue.ToLong();
 
-        var currentChanceShow = NoteUtils.AddColor(currentChacne + "%", "black");
+        var currentActiveTimeShow = NoteUtils.AddColor(currentActiveTime + "s", "black");
+        currentActiveTimeShow = NoteUtils.ChangeSize($"Active Time: {currentActiveTimeShow}", NoteUtils.NumberSizeRatio);
+        var nextActiveTimeShow = NoteUtils.AddColor(nextActiveTime + "s", NoteUtils.UpgradeColor);
+        nextActiveTimeShow = NoteUtils.ChangeSize($"({nextActiveTimeShow})", NoteUtils.NextNumberSizeRatio);
+
+        //------------------------------------------------
+
+        var currentCooldownTime = _cooldownTime.Value.Round();
+        var nextCooldownTime = _cooldownTime.NextLevelValue.Round();
+
+        var currentCooldownTimeShow = NoteUtils.AddColor(currentCooldownTime + "s", "black");
+        currentCooldownTimeShow = NoteUtils.ChangeSize($"Cooldown: {currentCooldownTimeShow}", NoteUtils.NumberSizeRatio);
+        var nextCooldownTimeShow = NoteUtils.AddColor(nextCooldownTime + "s", NoteUtils.UpgradeColor);
+        nextCooldownTimeShow = NoteUtils.ChangeSize($"({nextCooldownTimeShow})", NoteUtils.NextNumberSizeRatio);
+
+        //------------------------------------------------
+
+        var currentChance = _chance.Value.Round();
+        var nextChance = _chance.NextLevelValue.Round();
+
+        var currentChanceShow = NoteUtils.AddColor(currentChance + "%", "black");
         currentChanceShow = NoteUtils.ChangeSize($"Chance: {currentChanceShow}", NoteUtils.NumberSizeRatio);
         var nextChanceShow = NoteUtils.AddColor(nextChance + "%", NoteUtils.UpgradeColor);
         nextChanceShow = NoteUtils.ChangeSize($"({nextChanceShow})", NoteUtils.NextNumberSizeRatio);
 
         //------------------------------------------------
 
-        var currentDuration = _sampleGroundFireBehavior.Duration.Value.ToLong();
-        var nextDuration = _sampleGroundFireBehavior.Duration.NextLevelValue.ToLong();
+        var currentDuration = _sampleGroundFireBehavior.Duration.Value.Round();
+        var nextDuration = _sampleGroundFireBehavior.Duration.NextLevelValue.Round();
 
         var currentDurationShow = NoteUtils.AddColor(currentDuration + "s", "black");
         currentDurationShow = NoteUtils.ChangeSize($"Duration: {currentDurationShow}", NoteUtils.NumberSizeRatio);
@@ -134,6 +155,8 @@ public class FireDiamondBehavior : PeriodicDiamondBehavior, IObserver<HitParamet
 
         var statsDescription = $"" +
             $"{damageTypeShow}\n" +
+            $"{currentActiveTimeShow}    {nextActiveTimeShow}\n" +
+            $"{currentCooldownTimeShow}    {nextCooldownTimeShow}\n" +
             $"{currentChanceShow}    {nextChanceShow}\n" +
             $"{currentDurationShow}    {nextDurationShow}\n" +
             $"{currentDamageShow}    {nextDamageShow}\n" +

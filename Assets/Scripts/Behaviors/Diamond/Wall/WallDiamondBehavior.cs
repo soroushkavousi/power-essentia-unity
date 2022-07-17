@@ -41,8 +41,7 @@ public class WallDiamondBehavior : PermanentDiamondBehavior
     protected override string GetDescription()
     {
         var description = $"" +
-            $"On Activation it creates a magical wall.\n" +
-            $"Wall diamond is a base diamond that is active permanently.";
+            $"On Activation it creates a magical wall.";
         return description;
     }
 

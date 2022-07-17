@@ -86,8 +86,9 @@ public class StoneDiamondBehavior : PeriodicDiamondBehavior, IObserver<HitParame
     protected override string GetDescription()
     {
         var description = $"" +
-            $"It has a chance to summon two stones that fall into enemies and stun them.\n" +
-            $"The first stone will hit the target enemy, and the second stone will hit the closest enemy to the wall.";
+            $"It has a chance to summon two stones that fall into enemies and stun them." +
+            $"\n\nThe first stone will hit the target enemy, and the second stone will hit the closest enemy to the wall." + 
+            $"\n\nYou can activate this diamond by clicking on its icon in your deck when fighting.";
         return description;
     }
 
@@ -98,10 +99,30 @@ public class StoneDiamondBehavior : PeriodicDiamondBehavior, IObserver<HitParame
 
         //------------------------------------------------
 
-        var currentChacne = _chance.Value.ToLong();
-        var nextChance = _chance.NextLevelValue.ToLong();
+        var currentActiveTime = _activeTime.Value.ToLong();
+        var nextActiveTime = _activeTime.NextLevelValue.ToLong();
 
-        var currentChanceShow = NoteUtils.AddColor(currentChacne + "%", "black");
+        var currentActiveTimeShow = NoteUtils.AddColor(currentActiveTime + "s", "black");
+        currentActiveTimeShow = NoteUtils.ChangeSize($"Active Time: {currentActiveTimeShow}", NoteUtils.NumberSizeRatio);
+        var nextActiveTimeShow = NoteUtils.AddColor(nextActiveTime + "s", NoteUtils.UpgradeColor);
+        nextActiveTimeShow = NoteUtils.ChangeSize($"({nextActiveTimeShow})", NoteUtils.NextNumberSizeRatio);
+
+        //------------------------------------------------
+
+        var currentCooldownTime = _cooldownTime.Value.Round();
+        var nextCooldownTime = _cooldownTime.NextLevelValue.Round();
+
+        var currentCooldownTimeShow = NoteUtils.AddColor(currentCooldownTime + "s", "black");
+        currentCooldownTimeShow = NoteUtils.ChangeSize($"Cooldown: {currentCooldownTimeShow}", NoteUtils.NumberSizeRatio);
+        var nextCooldownTimeShow = NoteUtils.AddColor(nextCooldownTime + "s", NoteUtils.UpgradeColor);
+        nextCooldownTimeShow = NoteUtils.ChangeSize($"({nextCooldownTimeShow})", NoteUtils.NextNumberSizeRatio);
+
+        //------------------------------------------------
+
+        var currentChance = _chance.Value.Round();
+        var nextChance = _chance.NextLevelValue.Round();
+
+        var currentChanceShow = NoteUtils.AddColor(currentChance + "%", "black");
         currentChanceShow = NoteUtils.ChangeSize($"Chance: {currentChanceShow}", NoteUtils.NumberSizeRatio);
         var nextChanceShow = NoteUtils.AddColor(nextChance + "%", NoteUtils.UpgradeColor);
         nextChanceShow = NoteUtils.ChangeSize($"({nextChanceShow})", NoteUtils.NextNumberSizeRatio);
@@ -118,8 +139,8 @@ public class StoneDiamondBehavior : PeriodicDiamondBehavior, IObserver<HitParame
 
         //------------------------------------------------
 
-        var currentStunDuration = _sampleFallingStoneBehavior.StunDuration.Value.ToLong();
-        var nextStunDuration = _sampleFallingStoneBehavior.StunDuration.NextLevelValue.ToLong();
+        var currentStunDuration = _sampleFallingStoneBehavior.StunDuration.Value.Round();
+        var nextStunDuration = _sampleFallingStoneBehavior.StunDuration.NextLevelValue.Round();
 
         var currentStunDurationShow = NoteUtils.AddColor(currentStunDuration + "s", "black");
         currentStunDurationShow = NoteUtils.ChangeSize($"Stun Duration: {currentStunDurationShow}", NoteUtils.NumberSizeRatio);
@@ -150,6 +171,8 @@ public class StoneDiamondBehavior : PeriodicDiamondBehavior, IObserver<HitParame
 
         var statsDescription = $"" +
             $"{damageTypeShow}\n" +
+            $"{currentActiveTimeShow}    {nextActiveTimeShow}\n" +
+            $"{currentCooldownTimeShow}    {nextCooldownTimeShow}\n" +
             $"{currentChanceShow}    {nextChanceShow}\n" +
             $"{currentImpactDamageShow}    {nextImpactDamageShow}\n" +
             $"{currentStunDurationShow}    {nextStunDurationShow}\n" +
