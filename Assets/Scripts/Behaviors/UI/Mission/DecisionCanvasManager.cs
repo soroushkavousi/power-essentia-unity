@@ -95,7 +95,7 @@ public class DecisionCanvasManager : MonoBehaviour
             else
             {
                 _selectedDemonLevel.Value += 1;
-                _audioSource.PlayOneShot(_staticData.WinAudioClip, 0.3f);
+                _audioSource.PlayOneShot(_staticData.WinAudioClip, 0.1f);
                 StartCoroutine(MusicPlayerBehavior.Instance.StopAllSounds(4.5f));
             }
         }
