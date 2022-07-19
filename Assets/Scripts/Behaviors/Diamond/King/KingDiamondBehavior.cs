@@ -46,12 +46,16 @@ public class KingDiamondBehavior : PermanentDiamondBehavior
         //------------------------------------------------
 
         var currentGoldBoost = _goldBoost.Value.ToLong();
-        var nextGoldBoost = _goldBoost.NextLevelValue.ToLong();
-
         var currentGoldBosstShow = NoteUtils.AddColor(currentGoldBoost + "%", "black");
         currentGoldBosstShow = NoteUtils.ChangeSize($"Gold Boost: {currentGoldBosstShow}", NoteUtils.NumberSizeRatio);
-        var nextGoldBoostShow = NoteUtils.AddColor(nextGoldBoost + "%", NoteUtils.UpgradeColor);
-        nextGoldBoostShow = NoteUtils.ChangeSize($"({nextGoldBoostShow})", NoteUtils.NextNumberSizeRatio);
+
+        var nextGoldBoostShow = "";
+        if (!_level.IsMax)
+        {
+            var nextGoldBoost = _goldBoost.NextLevelValue.ToLong();
+            nextGoldBoostShow = NoteUtils.AddColor(nextGoldBoost + "%", NoteUtils.UpgradeColor);
+            nextGoldBoostShow = NoteUtils.ChangeSize($"({nextGoldBoostShow})", NoteUtils.NextNumberSizeRatio);
+        }
 
         //-----------------------------------------------
 

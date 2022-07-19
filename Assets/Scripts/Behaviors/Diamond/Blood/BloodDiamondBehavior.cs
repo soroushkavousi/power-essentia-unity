@@ -46,12 +46,16 @@ public class BloodDiamondBehavior : PermanentDiamondBehavior
         //------------------------------------------------
 
         var currentBloodRatio = _bloodRatio.Value.ToLong();
-        var nextBloodRatio = _bloodRatio.NextLevelValue.ToLong();
-
         var currentBloodRatioShow = NoteUtils.AddColor(currentBloodRatio + "%", "black");
         currentBloodRatioShow = NoteUtils.ChangeSize($"Blood Taken Ratio: {currentBloodRatioShow}", NoteUtils.NumberSizeRatio);
-        var nextBloodRatioShow = NoteUtils.AddColor(nextBloodRatio + "%", NoteUtils.UpgradeColor);
-        nextBloodRatioShow = NoteUtils.ChangeSize($"({nextBloodRatioShow})", NoteUtils.NextNumberSizeRatio);
+
+        var nextBloodRatioShow = "";
+        if (!_level.IsMax)
+        {
+            var nextBloodRatio = _bloodRatio.NextLevelValue.ToLong();
+            nextBloodRatioShow = NoteUtils.AddColor(nextBloodRatio + "%", NoteUtils.UpgradeColor);
+            nextBloodRatioShow = NoteUtils.ChangeSize($"({nextBloodRatioShow})", NoteUtils.NextNumberSizeRatio);
+        }
 
         //-----------------------------------------------
 

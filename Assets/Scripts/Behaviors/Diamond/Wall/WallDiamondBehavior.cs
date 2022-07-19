@@ -50,32 +50,44 @@ public class WallDiamondBehavior : PermanentDiamondBehavior
         //------------------------------------------------
 
         var currentHealth = _wallBehavior.HealthBehavior.Health.Value.ToLong();
-        var nextHealth = _wallBehavior.HealthBehavior.Health.NextLevelValue.ToLong();
-
         var currentHealthShow = NoteUtils.AddColor(currentHealth, "black");
         currentHealthShow = NoteUtils.ChangeSize($"Health: {currentHealthShow}", NoteUtils.NumberSizeRatio);
-        var nextHealthShow = NoteUtils.AddColor(nextHealth, NoteUtils.UpgradeColor);
-        nextHealthShow = NoteUtils.ChangeSize($"({nextHealthShow})", NoteUtils.NextNumberSizeRatio);
+
+        var nextHealthShow = "";
+        if (!_level.IsMax)
+        {
+            var nextHealth = _wallBehavior.HealthBehavior.Health.NextLevelValue.ToLong();
+            nextHealthShow = NoteUtils.AddColor(nextHealth, NoteUtils.UpgradeColor);
+            nextHealthShow = NoteUtils.ChangeSize($"({nextHealthShow})", NoteUtils.NextNumberSizeRatio);
+        }
 
         //------------------------------------------------
 
         var currentPhysicalResistance = _wallBehavior.HealthBehavior.Health.PhysicalResistance.Value.ToLong();
-        var nextPhysicalResistance = _wallBehavior.HealthBehavior.Health.PhysicalResistance.NextLevelValue.ToLong();
-
         var currentPhysicalResistanceShow = NoteUtils.AddColor(currentPhysicalResistance + "%", "black");
         currentPhysicalResistanceShow = NoteUtils.ChangeSize($"Physical Resistance: {currentPhysicalResistanceShow}", NoteUtils.NumberSizeRatio);
-        var nextPhysicalResistanceShow = NoteUtils.AddColor(nextPhysicalResistance + "%", NoteUtils.UpgradeColor);
-        nextPhysicalResistanceShow = NoteUtils.ChangeSize($"({nextPhysicalResistanceShow})", NoteUtils.NextNumberSizeRatio);
+
+        var nextPhysicalResistanceShow = "";
+        if (!_level.IsMax)
+        {
+            var nextPhysicalResistance = _wallBehavior.HealthBehavior.Health.PhysicalResistance.NextLevelValue.ToLong();
+            nextPhysicalResistanceShow = NoteUtils.AddColor(nextPhysicalResistance + "%", NoteUtils.UpgradeColor);
+            nextPhysicalResistanceShow = NoteUtils.ChangeSize($"({nextPhysicalResistanceShow})", NoteUtils.NextNumberSizeRatio);
+        }
 
         //------------------------------------------------
 
         var currentMagicResistance = _wallBehavior.HealthBehavior.Health.MagicResistance.Value.ToLong();
-        var nextMagicResistance = _wallBehavior.HealthBehavior.Health.MagicResistance.NextLevelValue.ToLong();
-
         var currentMagicResistanceShow = NoteUtils.AddColor(currentMagicResistance + "%", "black");
         currentMagicResistanceShow = NoteUtils.ChangeSize($"Magic Resistance: {currentMagicResistanceShow}", NoteUtils.NumberSizeRatio);
-        var nextMagicResistanceShow = NoteUtils.AddColor(nextMagicResistance + "%", NoteUtils.UpgradeColor);
-        nextMagicResistanceShow = NoteUtils.ChangeSize($"({nextMagicResistanceShow})", NoteUtils.NextNumberSizeRatio);
+
+        var nextMagicResistanceShow = "";
+        if (!_level.IsMax)
+        {
+            var nextMagicResistance = _wallBehavior.HealthBehavior.Health.MagicResistance.NextLevelValue.ToLong();
+            nextMagicResistanceShow = NoteUtils.AddColor(nextMagicResistance + "%", NoteUtils.UpgradeColor);
+            nextMagicResistanceShow = NoteUtils.ChangeSize($"({nextMagicResistanceShow})", NoteUtils.NextNumberSizeRatio);
+        }
 
         //------------------------------------------------
 

@@ -100,72 +100,100 @@ public class StoneDiamondBehavior : PeriodicDiamondBehavior, IObserver<HitParame
         //------------------------------------------------
 
         var currentActiveTime = _activeTime.Value.ToLong();
-        var nextActiveTime = _activeTime.NextLevelValue.ToLong();
-
         var currentActiveTimeShow = NoteUtils.AddColor(currentActiveTime + "s", "black");
         currentActiveTimeShow = NoteUtils.ChangeSize($"Active Time: {currentActiveTimeShow}", NoteUtils.NumberSizeRatio);
-        var nextActiveTimeShow = NoteUtils.AddColor(nextActiveTime + "s", NoteUtils.UpgradeColor);
-        nextActiveTimeShow = NoteUtils.ChangeSize($"({nextActiveTimeShow})", NoteUtils.NextNumberSizeRatio);
+
+        var nextActiveTimeShow = "";
+        if (!_level.IsMax)
+        {
+            var nextActiveTime = _activeTime.NextLevelValue.ToLong();
+            nextActiveTimeShow = NoteUtils.AddColor(nextActiveTime + "s", NoteUtils.UpgradeColor);
+            nextActiveTimeShow = NoteUtils.ChangeSize($"({nextActiveTimeShow})", NoteUtils.NextNumberSizeRatio);
+        }
 
         //------------------------------------------------
 
         var currentCooldownTime = _cooldownTime.Value.Round();
-        var nextCooldownTime = _cooldownTime.NextLevelValue.Round();
-
         var currentCooldownTimeShow = NoteUtils.AddColor(currentCooldownTime + "s", "black");
         currentCooldownTimeShow = NoteUtils.ChangeSize($"Cooldown: {currentCooldownTimeShow}", NoteUtils.NumberSizeRatio);
-        var nextCooldownTimeShow = NoteUtils.AddColor(nextCooldownTime + "s", NoteUtils.UpgradeColor);
-        nextCooldownTimeShow = NoteUtils.ChangeSize($"({nextCooldownTimeShow})", NoteUtils.NextNumberSizeRatio);
+
+        var nextCooldownTimeShow = "";
+        if (!_level.IsMax)
+        {
+            var nextCooldownTime = _cooldownTime.NextLevelValue.Round();
+            nextCooldownTimeShow = NoteUtils.AddColor(nextCooldownTime + "s", NoteUtils.UpgradeColor);
+            nextCooldownTimeShow = NoteUtils.ChangeSize($"({nextCooldownTimeShow})", NoteUtils.NextNumberSizeRatio);
+        }
 
         //------------------------------------------------
 
         var currentChance = _chance.Value.Round();
-        var nextChance = _chance.NextLevelValue.Round();
-
         var currentChanceShow = NoteUtils.AddColor(currentChance + "%", "black");
         currentChanceShow = NoteUtils.ChangeSize($"Chance: {currentChanceShow}", NoteUtils.NumberSizeRatio);
-        var nextChanceShow = NoteUtils.AddColor(nextChance + "%", NoteUtils.UpgradeColor);
-        nextChanceShow = NoteUtils.ChangeSize($"({nextChanceShow})", NoteUtils.NextNumberSizeRatio);
+
+        var nextChanceShow = "";
+        if (!_level.IsMax)
+        {
+            var nextChance = _chance.NextLevelValue.Round();
+            nextChanceShow = NoteUtils.AddColor(nextChance + "%", NoteUtils.UpgradeColor);
+            nextChanceShow = NoteUtils.ChangeSize($"({nextChanceShow})", NoteUtils.NextNumberSizeRatio);
+        }
 
         //------------------------------------------------
 
         var currentImpactDamage = _sampleFallingStoneBehavior.ImpactDamage.Value.ToLong();
-        var nextImpactDamage = _sampleFallingStoneBehavior.ImpactDamage.NextLevelValue.ToLong();
-
         var currentImpactDamageShow = NoteUtils.AddColor(currentImpactDamage, "black");
         currentImpactDamageShow = NoteUtils.ChangeSize($"Impact Damage: {currentImpactDamageShow}", NoteUtils.NumberSizeRatio);
-        var nextImpactDamageShow = NoteUtils.AddColor(nextImpactDamage + "dps", NoteUtils.UpgradeColor);
-        nextImpactDamageShow = NoteUtils.ChangeSize($"({nextImpactDamageShow})", NoteUtils.NextNumberSizeRatio);
+
+        var nextImpactDamageShow = "";
+        if (!_level.IsMax)
+        {
+            var nextImpactDamage = _sampleFallingStoneBehavior.ImpactDamage.NextLevelValue.ToLong();
+            nextImpactDamageShow = NoteUtils.AddColor(nextImpactDamage + "dps", NoteUtils.UpgradeColor);
+            nextImpactDamageShow = NoteUtils.ChangeSize($"({nextImpactDamageShow})", NoteUtils.NextNumberSizeRatio);
+        }
 
         //------------------------------------------------
 
         var currentStunDuration = _sampleFallingStoneBehavior.StunDuration.Value.Round();
-        var nextStunDuration = _sampleFallingStoneBehavior.StunDuration.NextLevelValue.Round();
-
         var currentStunDurationShow = NoteUtils.AddColor(currentStunDuration + "s", "black");
         currentStunDurationShow = NoteUtils.ChangeSize($"Stun Duration: {currentStunDurationShow}", NoteUtils.NumberSizeRatio);
-        var nextStunDurationShow = NoteUtils.AddColor(nextStunDuration + "s", NoteUtils.UpgradeColor);
-        nextStunDurationShow = NoteUtils.ChangeSize($"({nextStunDurationShow})", NoteUtils.NextNumberSizeRatio);
+
+        var nextStunDurationShow = "";
+        if (!_level.IsMax)
+        {
+            var nextStunDuration = _sampleFallingStoneBehavior.StunDuration.NextLevelValue.Round();
+            nextStunDurationShow = NoteUtils.AddColor(nextStunDuration + "s", NoteUtils.UpgradeColor);
+            nextStunDurationShow = NoteUtils.ChangeSize($"({nextStunDurationShow})", NoteUtils.NextNumberSizeRatio);
+        }
 
         //------------------------------------------------
 
         var currentCriticalChance = _sampleFallingStoneBehavior.CriticalChance.Value.ToLong();
-        var nextCriticalChance = _sampleFallingStoneBehavior.CriticalChance.NextLevelValue.ToLong();
-
         var currentCriticalChanceShow = NoteUtils.AddColor(currentCriticalChance + "%", "black");
         currentCriticalChanceShow = NoteUtils.ChangeSize($"Critical Chance: {currentCriticalChanceShow}", NoteUtils.NumberSizeRatio);
-        var nextCriticalChanceShow = NoteUtils.AddColor(nextCriticalChance + "%", NoteUtils.UpgradeColor);
-        nextCriticalChanceShow = NoteUtils.ChangeSize($"({nextCriticalChanceShow})", NoteUtils.NextNumberSizeRatio);
+
+        var nextCriticalChanceShow = "";
+        if (!_level.IsMax)
+        {
+            var nextCriticalChance = _sampleFallingStoneBehavior.CriticalChance.NextLevelValue.ToLong();
+            nextCriticalChanceShow = NoteUtils.AddColor(nextCriticalChance + "%", NoteUtils.UpgradeColor);
+            nextCriticalChanceShow = NoteUtils.ChangeSize($"({nextCriticalChanceShow})", NoteUtils.NextNumberSizeRatio);
+        }
 
         //------------------------------------------------
 
         var currentCriticalDamage = _sampleFallingStoneBehavior.CriticalDamage.Value.ToLong();
-        var nextCriticalDamage = _sampleFallingStoneBehavior.CriticalDamage.NextLevelValue.ToLong();
-
         var currentCriticalDamageShow = NoteUtils.AddColor(currentCriticalDamage + "%", "black");
         currentCriticalDamageShow = NoteUtils.ChangeSize($"Critical Damage: {currentCriticalDamageShow}", NoteUtils.NumberSizeRatio);
-        var nextCriticalDamageShow = NoteUtils.AddColor(nextCriticalDamage + "%", NoteUtils.UpgradeColor);
-        nextCriticalDamageShow = NoteUtils.ChangeSize($"({nextCriticalDamageShow})", NoteUtils.NextNumberSizeRatio);
+
+        var nextCriticalDamageShow = "";
+        if (!_level.IsMax)
+        {
+            var nextCriticalDamage = _sampleFallingStoneBehavior.CriticalDamage.NextLevelValue.ToLong();
+            nextCriticalDamageShow = NoteUtils.AddColor(nextCriticalDamage + "%", NoteUtils.UpgradeColor);
+            nextCriticalDamageShow = NoteUtils.ChangeSize($"({nextCriticalDamageShow})", NoteUtils.NextNumberSizeRatio);
+        }
 
         //------------------------------------------------
 

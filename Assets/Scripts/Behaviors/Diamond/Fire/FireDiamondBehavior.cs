@@ -74,82 +74,114 @@ public class FireDiamondBehavior : PeriodicDiamondBehavior, IObserver<HitParamet
         //------------------------------------------------
 
         var currentActiveTime = _activeTime.Value.ToLong();
-        var nextActiveTime = _activeTime.NextLevelValue.ToLong();
-
         var currentActiveTimeShow = NoteUtils.AddColor(currentActiveTime + "s", "black");
         currentActiveTimeShow = NoteUtils.ChangeSize($"Active Time: {currentActiveTimeShow}", NoteUtils.NumberSizeRatio);
-        var nextActiveTimeShow = NoteUtils.AddColor(nextActiveTime + "s", NoteUtils.UpgradeColor);
-        nextActiveTimeShow = NoteUtils.ChangeSize($"({nextActiveTimeShow})", NoteUtils.NextNumberSizeRatio);
+
+        var nextActiveTimeShow = "";
+        if (!_level.IsMax)
+        {
+            var nextActiveTime = _activeTime.NextLevelValue.ToLong();
+            nextActiveTimeShow = NoteUtils.AddColor(nextActiveTime + "s", NoteUtils.UpgradeColor);
+            nextActiveTimeShow = NoteUtils.ChangeSize($"({nextActiveTimeShow})", NoteUtils.NextNumberSizeRatio);
+        }
 
         //------------------------------------------------
 
         var currentCooldownTime = _cooldownTime.Value.Round();
-        var nextCooldownTime = _cooldownTime.NextLevelValue.Round();
-
         var currentCooldownTimeShow = NoteUtils.AddColor(currentCooldownTime + "s", "black");
         currentCooldownTimeShow = NoteUtils.ChangeSize($"Cooldown: {currentCooldownTimeShow}", NoteUtils.NumberSizeRatio);
-        var nextCooldownTimeShow = NoteUtils.AddColor(nextCooldownTime + "s", NoteUtils.UpgradeColor);
-        nextCooldownTimeShow = NoteUtils.ChangeSize($"({nextCooldownTimeShow})", NoteUtils.NextNumberSizeRatio);
+
+        var nextCooldownTimeShow = "";
+        if (!_level.IsMax)
+        {
+            var nextCooldownTime = _cooldownTime.NextLevelValue.Round();
+            nextCooldownTimeShow = NoteUtils.AddColor(nextCooldownTime + "s", NoteUtils.UpgradeColor);
+            nextCooldownTimeShow = NoteUtils.ChangeSize($"({nextCooldownTimeShow})", NoteUtils.NextNumberSizeRatio);
+        }
 
         //------------------------------------------------
 
         var currentChance = _chance.Value.Round();
-        var nextChance = _chance.NextLevelValue.Round();
-
         var currentChanceShow = NoteUtils.AddColor(currentChance + "%", "black");
         currentChanceShow = NoteUtils.ChangeSize($"Chance: {currentChanceShow}", NoteUtils.NumberSizeRatio);
-        var nextChanceShow = NoteUtils.AddColor(nextChance + "%", NoteUtils.UpgradeColor);
-        nextChanceShow = NoteUtils.ChangeSize($"({nextChanceShow})", NoteUtils.NextNumberSizeRatio);
+
+        var nextChanceShow = "";
+        if (!_level.IsMax)
+        {
+            var nextChance = _chance.NextLevelValue.Round();
+            nextChanceShow = NoteUtils.AddColor(nextChance + "%", NoteUtils.UpgradeColor);
+            nextChanceShow = NoteUtils.ChangeSize($"({nextChanceShow})", NoteUtils.NextNumberSizeRatio);
+        }
 
         //------------------------------------------------
 
         var currentDuration = _sampleGroundFireBehavior.Duration.Value.Round();
-        var nextDuration = _sampleGroundFireBehavior.Duration.NextLevelValue.Round();
-
         var currentDurationShow = NoteUtils.AddColor(currentDuration + "s", "black");
         currentDurationShow = NoteUtils.ChangeSize($"Duration: {currentDurationShow}", NoteUtils.NumberSizeRatio);
-        var nextDurationShow = NoteUtils.AddColor(nextDuration + "s", NoteUtils.UpgradeColor);
-        nextDurationShow = NoteUtils.ChangeSize($"({nextDurationShow})", NoteUtils.NextNumberSizeRatio);
+
+        var nextDurationShow = "";
+        if (!_level.IsMax)
+        {
+            var nextDuration = _sampleGroundFireBehavior.Duration.NextLevelValue.Round();
+            nextDurationShow = NoteUtils.AddColor(nextDuration + "s", NoteUtils.UpgradeColor);
+            nextDurationShow = NoteUtils.ChangeSize($"({nextDurationShow})", NoteUtils.NextNumberSizeRatio);
+        }
 
         //------------------------------------------------
 
         var currentDamage = _sampleGroundFireBehavior.Damage.Value.ToLong();
-        var nextDamage = _sampleGroundFireBehavior.Damage.NextLevelValue.ToLong();
-
         var currentDamageShow = NoteUtils.AddColor(currentDamage + "dps", "black");
         currentDamageShow = NoteUtils.ChangeSize($"Damage: {currentDamageShow}", NoteUtils.NumberSizeRatio);
-        var nextDamageShow = NoteUtils.AddColor(nextDamage + "dps", NoteUtils.UpgradeColor);
-        nextDamageShow = NoteUtils.ChangeSize($"({nextDamageShow})", NoteUtils.NextNumberSizeRatio);
+
+        var nextDamageShow = "";
+        if (!_level.IsMax)
+        {
+            var nextDamage = _sampleGroundFireBehavior.Damage.NextLevelValue.ToLong();
+            nextDamageShow = NoteUtils.AddColor(nextDamage + "dps", NoteUtils.UpgradeColor);
+            nextDamageShow = NoteUtils.ChangeSize($"({nextDamageShow})", NoteUtils.NextNumberSizeRatio);
+        }
 
         //------------------------------------------------
 
         var currentSlow = _sampleGroundFireBehavior.Slow.Value.ToLong();
-        var nextSlow = _sampleGroundFireBehavior.Slow.NextLevelValue.ToLong();
-
         var currentSlowShow = NoteUtils.AddColor(currentSlow + "%", "black");
         currentSlowShow = NoteUtils.ChangeSize($"Slow: {currentSlowShow}", NoteUtils.NumberSizeRatio);
-        var nextSlowShow = NoteUtils.AddColor(nextSlow + "%", NoteUtils.UpgradeColor);
-        nextSlowShow = NoteUtils.ChangeSize($"({nextSlowShow})", NoteUtils.NextNumberSizeRatio);
+
+        var nextSlowShow = "";
+        if (!_level.IsMax)
+        {
+            var nextSlow = _sampleGroundFireBehavior.Slow.NextLevelValue.ToLong();
+            nextSlowShow = NoteUtils.AddColor(nextSlow + "%", NoteUtils.UpgradeColor);
+            nextSlowShow = NoteUtils.ChangeSize($"({nextSlowShow})", NoteUtils.NextNumberSizeRatio);
+        }
 
         //------------------------------------------------
 
         var currentCriticalChance = _sampleGroundFireBehavior.CriticalChance.Value.ToLong();
-        var nextCriticalChance = _sampleGroundFireBehavior.CriticalChance.NextLevelValue.ToLong();
-
         var currentCriticalChanceShow = NoteUtils.AddColor(currentCriticalChance + "%", "black");
         currentCriticalChanceShow = NoteUtils.ChangeSize($"Critical Chance: {currentCriticalChanceShow}", NoteUtils.NumberSizeRatio);
-        var nextCriticalChanceShow = NoteUtils.AddColor(nextCriticalChance + "%", NoteUtils.UpgradeColor);
-        nextCriticalChanceShow = NoteUtils.ChangeSize($"({nextCriticalChanceShow})", NoteUtils.NextNumberSizeRatio);
+
+        var nextCriticalChanceShow = "";
+        if (!_level.IsMax)
+        {
+            var nextCriticalChance = _sampleGroundFireBehavior.CriticalChance.NextLevelValue.ToLong();
+            nextCriticalChanceShow = NoteUtils.AddColor(nextCriticalChance + "%", NoteUtils.UpgradeColor);
+            nextCriticalChanceShow = NoteUtils.ChangeSize($"({nextCriticalChanceShow})", NoteUtils.NextNumberSizeRatio);
+        }
 
         //------------------------------------------------
 
         var currentCriticalDamage = _sampleGroundFireBehavior.CriticalDamage.Value.ToLong();
-        var nextCriticalDamage = _sampleGroundFireBehavior.CriticalDamage.NextLevelValue.ToLong();
-
         var currentCriticalDamageShow = NoteUtils.AddColor(currentCriticalDamage + "%", "black");
         currentCriticalDamageShow = NoteUtils.ChangeSize($"Critical Damage: {currentCriticalDamageShow}", NoteUtils.NumberSizeRatio);
-        var nextCriticalDamageShow = NoteUtils.AddColor(nextCriticalDamage + "%", NoteUtils.UpgradeColor);
-        nextCriticalDamageShow = NoteUtils.ChangeSize($"({nextCriticalDamageShow})", NoteUtils.NextNumberSizeRatio);
+
+        var nextCriticalDamageShow = "";
+        if (!_level.IsMax)
+        {
+            var nextCriticalDamage = _sampleGroundFireBehavior.CriticalDamage.NextLevelValue.ToLong();
+            nextCriticalDamageShow = NoteUtils.AddColor(nextCriticalDamage + "%", NoteUtils.UpgradeColor);
+            nextCriticalDamageShow = NoteUtils.ChangeSize($"({nextCriticalDamageShow})", NoteUtils.NextNumberSizeRatio);
+        }
 
         //------------------------------------------------
 

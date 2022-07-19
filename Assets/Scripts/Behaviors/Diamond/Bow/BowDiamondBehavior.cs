@@ -51,42 +51,58 @@ public class BowDiamondBehavior : PermanentDiamondBehavior
         //------------------------------------------------
 
         var currentDamage = _bowWeaponBehavior.AttackDamage.Value.ToLong();
-        var nextDamage = _bowWeaponBehavior.AttackDamage.NextLevelValue.ToLong();
-
         var currentDamageShow = NoteUtils.AddColor(currentDamage, "black");
         currentDamageShow = NoteUtils.ChangeSize($"Damage: {currentDamageShow}", NoteUtils.NumberSizeRatio);
-        var nextDamageShow = NoteUtils.AddColor(nextDamage, NoteUtils.UpgradeColor);
-        nextDamageShow = NoteUtils.ChangeSize($"({nextDamageShow})", NoteUtils.NextNumberSizeRatio);
+
+        var nextDamageShow = "";
+        if (!_level.IsMax)
+        {
+            var nextDamage = _bowWeaponBehavior.AttackDamage.NextLevelValue.ToLong();
+            nextDamageShow = NoteUtils.AddColor(nextDamage, NoteUtils.UpgradeColor);
+            nextDamageShow = NoteUtils.ChangeSize($"({nextDamageShow})", NoteUtils.NextNumberSizeRatio);
+        }
 
         //------------------------------------------------
 
         var currentAttackSpeed = _bowWeaponBehavior.AttackSpeed.Value.Round();
-        var nextAttackSpeed = _bowWeaponBehavior.AttackSpeed.NextLevelValue.Round();
-
         var currentFireRateShow = NoteUtils.AddColor(currentAttackSpeed + "fps", "black");
         currentFireRateShow = NoteUtils.ChangeSize($"Fire Rate: {currentFireRateShow}", NoteUtils.NumberSizeRatio);
-        var nextFireRateShow = NoteUtils.AddColor(nextAttackSpeed + "fps", NoteUtils.UpgradeColor);
-        nextFireRateShow = NoteUtils.ChangeSize($"({nextFireRateShow})", NoteUtils.NextNumberSizeRatio);
+
+        var nextFireRateShow = "";
+        if (!_level.IsMax)
+        {
+            var nextAttackSpeed = _bowWeaponBehavior.AttackSpeed.NextLevelValue.Round();
+            nextFireRateShow = NoteUtils.AddColor(nextAttackSpeed + "fps", NoteUtils.UpgradeColor);
+            nextFireRateShow = NoteUtils.ChangeSize($"({nextFireRateShow})", NoteUtils.NextNumberSizeRatio);
+        }
 
         //------------------------------------------------
 
         var currentCriticalChance = _bowWeaponBehavior.CriticalChance.Value.ToLong();
-        var nextCriticalChance = _bowWeaponBehavior.CriticalChance.NextLevelValue.ToLong();
-
         var currentCriticalChanceShow = NoteUtils.AddColor(currentCriticalChance + "%", "black");
         currentCriticalChanceShow = NoteUtils.ChangeSize($"Critical Chance: {currentCriticalChanceShow}", NoteUtils.NumberSizeRatio);
-        var nextCriticalChanceShow = NoteUtils.AddColor(nextCriticalChance + "%", NoteUtils.UpgradeColor);
-        nextCriticalChanceShow = NoteUtils.ChangeSize($"({nextCriticalChanceShow})", NoteUtils.NextNumberSizeRatio);
+
+        var nextCriticalChanceShow = "";
+        if (!_level.IsMax)
+        {
+            var nextCriticalChance = _bowWeaponBehavior.CriticalChance.NextLevelValue.ToLong();
+            nextCriticalChanceShow = NoteUtils.AddColor(nextCriticalChance + "%", NoteUtils.UpgradeColor);
+            nextCriticalChanceShow = NoteUtils.ChangeSize($"({nextCriticalChanceShow})", NoteUtils.NextNumberSizeRatio);
+        }
 
         //------------------------------------------------
 
         var currentCriticalDamage = _bowWeaponBehavior.CriticalDamage.Value.ToLong();
-        var nextCriticalDamage = _bowWeaponBehavior.CriticalDamage.NextLevelValue.ToLong();
-
         var currentCriticalDamageShow = NoteUtils.AddColor(currentCriticalDamage + "%", "black");
         currentCriticalDamageShow = NoteUtils.ChangeSize($"Critical Damage: {currentCriticalDamageShow}", NoteUtils.NumberSizeRatio);
-        var nextCriticalDamageShow = NoteUtils.AddColor(nextCriticalDamage + "%", NoteUtils.UpgradeColor);
-        nextCriticalDamageShow = NoteUtils.ChangeSize($"({nextCriticalDamageShow})", NoteUtils.NextNumberSizeRatio);
+
+        var nextCriticalDamageShow = "";
+        if (!_level.IsMax)
+        {
+            var nextCriticalDamage = _bowWeaponBehavior.CriticalDamage.NextLevelValue.ToLong();
+            nextCriticalDamageShow = NoteUtils.AddColor(nextCriticalDamage + "%", NoteUtils.UpgradeColor);
+            nextCriticalDamageShow = NoteUtils.ChangeSize($"({nextCriticalDamageShow})", NoteUtils.NextNumberSizeRatio);
+        }
 
         //------------------------------------------------
 
