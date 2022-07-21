@@ -14,10 +14,13 @@ public static class TestPlayer
     private static void SetResources(PlayerDynamicData data)
     {
         var coinResourceData = data.ResourceBunches.Single(r => r.Type == ResourceType.COIN);
-        coinResourceData.Amount.Value = 999999;
+        coinResourceData.Amount.Value = 1000000;
 
         var demonBloodResourceData = data.ResourceBunches.Single(r => r.Type == ResourceType.DEMON_BLOOD);
-        demonBloodResourceData.Amount.Value = 99999;
+        demonBloodResourceData.Amount.Value = 100000;
+
+        var darkDemonBloodResourceData = data.ResourceBunches.Single(r => r.Type == ResourceType.DARK_DEMON_BLOOD);
+        darkDemonBloodResourceData.Amount.Value = 20;
     }
 
     private static void SetDemonLevels(PlayerDynamicData data)

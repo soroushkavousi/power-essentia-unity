@@ -1,4 +1,5 @@
-﻿# Introduction
+﻿
+# Introduction
 
 **Power Essentia TD** is just a **fun project** that is developed via **Unity 2D**. Currently, it takes almost **30 minutes** to finish it. You can download the APK and play it. I hope you enjoy playing it.
 
@@ -21,67 +22,23 @@ Each country has a special **diamond** that gives magicians a powerful ability. 
  <br/>
  
 <div align="center">
-  <img src="http://files.bitiano.com/power-essentia/1.fight-scene.png" width="85%" />
+  <img src="http://files.bitiano.com/power-essentia/2.fight-scene.png" width="95%" />
 </div>
 
  <br/>
  
 <div align="center">
-  <img src="http://files.bitiano.com/power-essentia/2.fight-scene.png" width="85%" />
+  <img src="http://files.bitiano.com/power-essentia/5.fire-diamond-mastered.png" width="95%" />
 </div>
 
  <br/>
  
 <div align="center">
-  <img src="http://files.bitiano.com/power-essentia/3.about.png" width="85%" />
+  <img src="http://files.bitiano.com/power-essentia/7.blood-diamond.png" width="95%" />
 </div>
 
  <br/>
  
 <div align="center">
-  <img src="http://files.bitiano.com/power-essentia/4.stone-diamond.png" width="85%" />
+  <img src="http://files.bitiano.com/power-essentia/11.fight-scene.png" width="95%" />
 </div>
-
- <br/>
- 
-<div align="center">
-  <img src="http://files.bitiano.com/power-essentia/5.fire-diamond-mastered.png" width="85%" />
-</div>
-
- <br/>
- 
-<div align="center">
-  <img src="http://files.bitiano.com/power-essentia/6.king-diamond.png" width="85%" />
-</div>
-
- <br/>
- 
-<div align="center">
-  <img src="http://files.bitiano.com/power-essentia/7.blood-diamond.png" width="85%" />
-</div>
-
- <br/>
- 
-<div align="center">
-  <img src="http://files.bitiano.com/power-essentia/8.fight-scene.png" width="85%" />
-</div>
-
- <br/>
- 
-<div align="center">
-  <img src="http://files.bitiano.com/power-essentia/9.fight-scene.png" width="85%" />
-</div>
-
- <br/>
- 
-<div align="center">
-  <img src="http://files.bitiano.com/power-essentia/10.fight-scene.png" width="85%" />
-</div>
-
- <br/>
- 
-<div align="center">
-  <img src="http://files.bitiano.com/power-essentia/11.fight-scene.png" width="85%" />
-</div>
-
-
