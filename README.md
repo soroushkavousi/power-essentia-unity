@@ -1,11 +1,10 @@
-﻿
-# Introduction
+﻿# Power Essentia TD (v0.1.0)
 
-**Power Essentia TD** is just a **fun project** that is developed via **Unity 2D**. Currently, it takes almost **30 minutes** to finish it. You can download the APK and play it. I hope you enjoy playing it.
+This game is just a **fun project** that is developed via **Unity 2D**. Currently, it takes almost **30 minutes** to finish it. You can download the APK and play it. Please check out releases to download. I hope you enjoy playing it.
 
 <br/>
 
-[**Download the APK**](http://files.bitiano.com/power-essentia/power-essentia.apk)
+[**Check out releases to download the latest APK**](https://github.com/soroushkavousi/power-essentia-unity/releases)
 
 <br/>
 
