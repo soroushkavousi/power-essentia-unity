@@ -22,23 +22,23 @@ Each country has a special **diamond** that gives magicians a powerful ability. 
  <br/>
  
 <div align="center">
-  <img src="http://files.bitiano.com/power-essentia/2.fight-scene.png" width="95%" />
+  <img src="http://files.bitiano.com/power-essentia/2.fight-scene.png" width="90%" />
 </div>
 
  <br/>
  
 <div align="center">
-  <img src="http://files.bitiano.com/power-essentia/5.fire-diamond-mastered.png" width="95%" />
+  <img src="http://files.bitiano.com/power-essentia/5.fire-diamond-mastered.png" width="90%" />
 </div>
 
  <br/>
  
 <div align="center">
-  <img src="http://files.bitiano.com/power-essentia/7.blood-diamond.png" width="95%" />
+  <img src="http://files.bitiano.com/power-essentia/7.blood-diamond.png" width="90%" />
 </div>
 
  <br/>
  
 <div align="center">
-  <img src="http://files.bitiano.com/power-essentia/11.fight-scene.png" width="95%" />
+  <img src="http://files.bitiano.com/power-essentia/11.fight-scene.png" width="90%" />
 </div>
