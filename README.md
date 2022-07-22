@@ -4,7 +4,7 @@ This game is just a **fun project** that is developed via **Unity 2D**. Currentl
 
 <br/>
 
-[**Check out releases to download the latest APK**](https://github.com/soroushkavousi/power-essentia-unity/releases)
+[**Check the releases to download the latest APK**](https://github.com/soroushkavousi/power-essentia-unity/releases)
 
 <br/>
 
