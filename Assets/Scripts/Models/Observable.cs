@@ -7,6 +7,8 @@ public class Observable<T> : ISubject
 {
     [SerializeField] protected T _value;
     [SerializeField] protected T _lastValue;
+    [SerializeField] protected bool _ignoreRepetition;
+    [SerializeField] protected int _observersCount;
     private readonly ObserverCollection _observers = new();
 
     public virtual T Value
@@ -14,7 +16,8 @@ public class Observable<T> : ISubject
         get => _value;
         set
         {
-            if (EqualityComparer<T>.Default.Equals(_value, value))
+            if (_ignoreRepetition
+                && EqualityComparer<T>.Default.Equals(_value, value))
                 return;
             _lastValue = _value;
             _value = value;
@@ -23,12 +26,13 @@ public class Observable<T> : ISubject
     }
     public T LastValue => _lastValue;
 
-    public Observable(T value = default)
+    public Observable(T value = default, bool ignoreRepetition = true)
     {
         _value = value;
+        _ignoreRepetition = ignoreRepetition;
     }
 
-    public void Attach(IObserver observer) => _observers.Add(observer);
-    public void Detach(IObserver observer) => _observers.Remove(observer);
+    public void Attach(IObserver observer) { _observers.Add(observer); _observersCount = _observers.Count; }
+    public void Detach(IObserver observer) { _observers.Remove(observer); _observersCount = _observers.Count; }
     public void Notify() => _observers.Notify(this);
 }
