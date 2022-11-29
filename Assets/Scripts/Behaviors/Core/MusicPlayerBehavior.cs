@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
-public class MusicPlayerBehavior : MonoBehaviour
+public class MusicPlayerBehavior : MonoBehaviour, IObserver
 {
     private static MusicPlayerBehavior _instance = default;
 
@@ -23,6 +23,28 @@ public class MusicPlayerBehavior : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
     }
 
+    private void Start()
+    {
+        SceneManagerBehavior.Instance.CurrentSceneName.Attach(this);
+    }
+
+    private void OnSceneChanged()
+    {
+        var sceneName = SceneManagerBehavior.Instance.CurrentSceneName.Value;
+        var lastSceneName = SceneManagerBehavior.Instance.CurrentSceneName.LastValue;
+        switch (sceneName)
+        {
+            case SceneName.MISSION:
+                _audioSource.Stop();
+                break;
+            case SceneName.COUNTRY:
+                if(lastSceneName == SceneName.MISSION)
+                    _audioSource.Play();
+                break;
+        }
+        StartAllSounds();
+    }
+
     public void PlayClickSound()
     {
         _audioSource.PlayOneShot(_clickSound);
@@ -31,16 +53,6 @@ public class MusicPlayerBehavior : MonoBehaviour
     public void PlayEnemyDeathGoldRewardSound()
     {
         _audioSource.PlayOneShot(_enemyDeathGoldRewardSound, 0.5f);
-    }
-
-    private void OnMasterVolumeChange()
-    {
-        //_audioSource.volume = Options.Instance.MasterVolume;
-    }
-
-    private void PlayClipAtPosition()
-    {
-
     }
 
     public void StartAllSounds()
@@ -52,6 +64,7 @@ public class MusicPlayerBehavior : MonoBehaviour
 
     public IEnumerator StopAllSounds(float delay)
     {
+        _audioSource.Stop();
         _mute = true;
         if (delay != 0f)
         {
@@ -68,5 +81,13 @@ public class MusicPlayerBehavior : MonoBehaviour
         }
         AudioListener.volume = 0;
         AudioListener.pause = true;
+    }
+
+    public void OnNotify(ISubject subject)
+    {
+        if (subject == SceneManagerBehavior.Instance.CurrentSceneName)
+        {
+            OnSceneChanged();
+        }
     }
 }

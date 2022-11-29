@@ -58,7 +58,7 @@ public abstract class DiamondBehavior : MonoBehaviour
 
         IsTargetEnemyFunction = diamondOwnerBehavior.IsTargetEnemy;
         InitializeBuyAndUpgradeResourceBunches();
-        if (SceneManagerBehavior.Instance.CurrentSceneName == SceneName.MISSION)
+        if (SceneManagerBehavior.Instance.CurrentSceneName.Value == SceneName.MISSION)
             _diamondEffectsParent = MissionManagerBehavior.Instance.DiamondEffectsParent;
         else
             _diamondEffectsParent = OutBoxBehavior.Instance.Location1;

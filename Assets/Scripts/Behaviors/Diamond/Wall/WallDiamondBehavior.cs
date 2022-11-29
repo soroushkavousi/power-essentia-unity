@@ -23,7 +23,7 @@ public class WallDiamondBehavior : PermanentDiamondBehavior
     protected override void DoActivationWork()
     {
         Transform wallLocation;
-        if (SceneManagerBehavior.Instance.CurrentSceneName == SceneName.MISSION)
+        if (SceneManagerBehavior.Instance.CurrentSceneName.Value == SceneName.MISSION)
             wallLocation = MissionManagerBehavior.Instance.WallLocation;
         else
             wallLocation = OutBoxBehavior.Instance.Location3;

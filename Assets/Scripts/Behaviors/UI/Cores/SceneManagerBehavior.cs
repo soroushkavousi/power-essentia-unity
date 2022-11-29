@@ -7,24 +7,19 @@ public class SceneManagerBehavior : MonoBehaviour
     [Space(Constants.SpaceSection)]
     [Header(Constants.DebugSectionHeader)]
 
-    [SerializeField] private SceneName _currentSceneName = default;
+    [SerializeField] private Observable<SceneName> _currentSceneName = new(ignoreRepetition: false);
 
     public static SceneManagerBehavior Instance => Utils.GetInstance(ref _instance);
-    public SceneName CurrentSceneName
-    {
-        get
-        {
-            if (_currentSceneName == default)
-                _currentSceneName = SceneManager.GetActiveScene().buildIndex.To<SceneName>();
+    public Observable<SceneName> CurrentSceneName => _currentSceneName;
 
-            return _currentSceneName;
-        }
+    private void Awake()
+    {
+        _currentSceneName.Value = SceneManager.GetActiveScene().buildIndex.To<SceneName>();
     }
 
     private void Start()
     {
-        //If run at custom scene.
-        InitializeCurrentScene();
+
     }
 
     private void Update()
@@ -40,12 +35,6 @@ public class SceneManagerBehavior : MonoBehaviour
         }
     }
 
-    private void InitializeCurrentScene()
-    {
-        if (_currentSceneName == SceneName.MISSION)
-            MusicPlayerBehavior.Instance.AudioSource.Stop();
-    }
-
     //IEnumerator InitializeGame()
     //{
     //    Debug.Log("Initializing the game...");
@@ -56,54 +45,34 @@ public class SceneManagerBehavior : MonoBehaviour
 
     public void LoadStart()
     {
-        if (_currentSceneName == SceneName.START)
+        if (_currentSceneName.Value == SceneName.START)
             return;
-        //GameSessionBehavior.Instance.ResetGame();
-        if (MusicPlayerBehavior.Instance.AudioSource.isPlaying == false)
-            MusicPlayerBehavior.Instance.AudioSource.Play();
         LoadScene(SceneName.START);
     }
 
     public void LoadCountry()
     {
-        if (_currentSceneName == SceneName.COUNTRY)
+        if (_currentSceneName.Value == SceneName.COUNTRY)
             return;
-        //GameSessionBehavior.Instance.ResetGame();
-        if (MusicPlayerBehavior.Instance.AudioSource.isPlaying == false)
-            MusicPlayerBehavior.Instance.AudioSource.Play();
         LoadScene(SceneName.COUNTRY);
-    }
-
-    public void LoadPreparation()
-    {
-        //if (_currentSceneName == SceneName.PREPARATION)
-        //    return;
-        ////GameSessionBehavior.Instance.ResetGame();
-        //if (MusicPlayerBehavior.Instance.AudioSource.isPlaying == false)
-        //    MusicPlayerBehavior.Instance.AudioSource.Play();
-        //LoadScene(SceneName.PREPARATION);
     }
 
     public void LoadMission()
     {
-        if (_currentSceneName == SceneName.MISSION)
+        if (_currentSceneName.Value == SceneName.MISSION)
             return;
-        //GameSessionBehavior.Instance.ResetGame();
-        Debug.Log($"Loading level 1.");
-        MusicPlayerBehavior.Instance.AudioSource.Stop();
         LoadScene(SceneName.MISSION);
     }
 
     public void RestartCurrentScene()
     {
-        LoadScene(_currentSceneName);
+        LoadScene(_currentSceneName.Value);
     }
 
     public void LoadScene(SceneName sceneName)
     {
-        _currentSceneName = sceneName;
         SceneManager.LoadScene(sceneName.To<int>());
-        MusicPlayerBehavior.Instance.StartAllSounds();
+        _currentSceneName.Value = sceneName;
         Time.timeScale = 1;
     }
 

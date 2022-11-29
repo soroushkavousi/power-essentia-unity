@@ -39,7 +39,7 @@ public abstract class PlayerBehavior : MonoBehaviour
         _bodyBehavior.FeedData();
         _playerStaticData = playerStaticData;
         GetDynamicData();
-        if (SceneManagerBehavior.Instance.CurrentSceneName != SceneName.MISSION)
+        if (SceneManagerBehavior.Instance.CurrentSceneName.Value != SceneName.MISSION)
             gameObject.SetActive(false);
     }
 

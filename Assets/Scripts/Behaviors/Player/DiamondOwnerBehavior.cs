@@ -58,7 +58,7 @@ public abstract class DiamondOwnerBehavior : PlayerBehavior
             }
         }
 
-        if (SceneManagerBehavior.Instance.CurrentSceneName == SceneName.MISSION)
+        if (SceneManagerBehavior.Instance.CurrentSceneName.Value == SceneName.MISSION)
             return;
 
         foreach (var otherDiamondName in _diamondDynamicDataMap.Keys)

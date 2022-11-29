@@ -25,7 +25,7 @@ public class WallBehavior : MonoBehaviour
 
         _level = level;
         _healthBehavior.FeedData(_staticData.HealthData, _level);
-        if (SceneManagerBehavior.Instance.CurrentSceneName != SceneName.MISSION)
+        if (SceneManagerBehavior.Instance.CurrentSceneName.Value != SceneName.MISSION)
             gameObject.SetActive(false);
     }
 }

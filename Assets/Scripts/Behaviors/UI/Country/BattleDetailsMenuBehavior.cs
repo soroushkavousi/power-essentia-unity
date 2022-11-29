@@ -31,6 +31,6 @@ public class BattleDetailsMenuBehavior : MonoBehaviour
     public void GoNextMission()
     {
         MusicPlayerBehavior.Instance.PlayClickSound();
-        SceneManagerBehavior.Instance.LoadPreparation();
+        //SceneManagerBehavior.Instance.LoadPreparation();
     }
 }
