@@ -4,7 +4,7 @@ using UnityEngine;
 public class ObserverCollection
 {
     private readonly List<IObserver> _observers = new();
-    
+
     public int Count => _observers.Count;
 
     public void Add(IObserver observer)

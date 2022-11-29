@@ -38,7 +38,7 @@ public class MusicPlayerBehavior : MonoBehaviour, IObserver
                 _audioSource.Stop();
                 break;
             case SceneName.COUNTRY:
-                if(lastSceneName == SceneName.MISSION)
+                if (lastSceneName == SceneName.MISSION)
                     _audioSource.Play();
                 break;
         }
