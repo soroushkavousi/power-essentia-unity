@@ -52,6 +52,23 @@ public class DiamondUpgradeMenuBehavior : MonoBehaviour, IObserver
         ConsumeResourceBunches(_selectedDiamondBehavior.BuyResourceBunches);
         _selectedDiamondBehavior.KnowledgeState.Value = DiamondKnowledgeState.OWNED;
         ShowSelectedDiamondDetails();
+        SetNewDiamondInDeck();
+    }
+
+    private void SetNewDiamondInDeck()
+    {
+        var deck = PlayerBehavior.MainPlayer.DynamicData.SelectedItems.RingDiamondNamesMap;
+        foreach (var ringName in new List<RingName> { RingName.RIGHT, RingName.LEFT })
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                if (deck[ringName][i].Value == DiamondName.NONE)
+                {
+                    deck[ringName][i].Value = _selectedDiamondBehavior.Name;
+                    return;
+                }
+            }
+        }
     }
 
     public void UpgradeDiamond()

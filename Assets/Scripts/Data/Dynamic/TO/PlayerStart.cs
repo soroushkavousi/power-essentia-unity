@@ -15,14 +15,14 @@ public static class PlayerStart
             demonLevel: 1,
             leftRingDiamondNames: new List<string>
             {
-                DiamondName.STONE.ToString(),
+                DiamondName.NONE.ToString(),
                 DiamondName.NONE.ToString(),
                 DiamondName.NONE.ToString(),
                 DiamondName.NONE.ToString(),
             },
             rightRingDiamondNames: new List<string>
             {
-                DiamondName.NONE.ToString(),
+                DiamondName.STONE.ToString(),
                 DiamondName.NONE.ToString(),
                 DiamondName.NONE.ToString(),
                 DiamondName.NONE.ToString(),
