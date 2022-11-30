@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DurationLevelInfo:
     StartValue: 3
-    OneLevelPercentage: 10
+    OneLevelPercentage: 5
   DamageLevelInfo:
-    StartValue: 350
-    OneLevelPercentage: 40
+    StartValue: 1000
+    OneLevelPercentage: 30
   CriticalChanceLevelInfo:
     StartValue: 20
     OneLevelPercentage: 20
@@ -25,6 +25,6 @@ MonoBehaviour:
     StartValue: 100
     OneLevelPercentage: 10
   SlowLevelInfo:
-    StartValue: 5
-    OneLevelPercentage: 30
+    StartValue: 10
+    OneLevelPercentage: 20
   SpawnOffset: {x: -100, y: 0}

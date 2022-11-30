@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: BowData
   m_EditorClassIdentifier: 
   DamageLevelInfo:
-    StartValue: 800
+    StartValue: 750
     OneLevelPercentage: 25
   SpeedLevelInfo:
-    StartValue: 3
-    OneLevelPercentage: 40
+    StartValue: 3.3
+    OneLevelPercentage: 35
   CriticalChanceLevelInfo:
     StartValue: 15
     OneLevelPercentage: 20

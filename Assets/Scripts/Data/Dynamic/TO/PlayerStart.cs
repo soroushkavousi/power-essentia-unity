@@ -5,7 +5,7 @@ public static class PlayerStart
 {
     public static PlayerDynamicDataTO Data { get; set; } = new PlayerDynamicDataTO
     {
-        PatchNumber = 32,
+        PatchNumber = 33,
         Achievements = new AchievementsDynamicDataTO
         (
             demonLevel: 0
@@ -30,9 +30,9 @@ public static class PlayerStart
             baseRingDiamondNames: new List<string>
             {
                 DiamondName.BOW.ToString(),
-                DiamondName.WALL.ToString(),
                 DiamondName.KING.ToString(),
                 DiamondName.BLOOD.ToString(),
+                DiamondName.WALL.ToString(),
             },
             menuDeckDiamondName: DiamondName.STONE.ToString(),
             menuBaseDiamondName: DiamondName.BOW.ToString()
@@ -40,9 +40,9 @@ public static class PlayerStart
         Diamonds = new List<DiamondDynamicDataTO>
         {
             new DiamondDynamicDataTO(DiamondName.BOW.ToString(), DiamondKnowledgeState.OWNED.ToString(),  1),
-            new DiamondDynamicDataTO(DiamondName.WALL.ToString(), DiamondKnowledgeState.OWNED.ToString(),  1),
             new DiamondDynamicDataTO(DiamondName.KING.ToString(), DiamondKnowledgeState.OWNED.ToString(),  1),
             new DiamondDynamicDataTO(DiamondName.BLOOD.ToString(), DiamondKnowledgeState.OWNED.ToString(),  1),
+            new DiamondDynamicDataTO(DiamondName.WALL.ToString(), DiamondKnowledgeState.OWNED.ToString(),  1),
             new DiamondDynamicDataTO(DiamondName.STONE.ToString(), DiamondKnowledgeState.OWNED.ToString(),  1),
             new DiamondDynamicDataTO(DiamondName.FIRE.ToString(), DiamondKnowledgeState.DISCOVERED.ToString(),  1),
             //new DiamondDynamicDataTO(DiamondName.POISON.ToString(), true, false,  1),

@@ -17,7 +17,7 @@ MonoBehaviour:
     StartValue: 15
     OneLevelPercentage: -4
   HealAmountLevelInfo:
-    StartValue: 400
-    OneLevelPercentage: 15
+    StartValue: 600
+    OneLevelPercentage: 30
   MaxHealAreaRadius: 400
   HealAreaGrowTime: 1

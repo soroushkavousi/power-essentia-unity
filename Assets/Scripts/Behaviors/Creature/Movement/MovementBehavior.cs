@@ -46,7 +46,7 @@ public class MovementBehavior : MonoBehaviour, IObserver, ISubject<MovementChang
         _dontStopWhenReach = _staticData.DontStopWhenReach;
 
         _speed = new(_level, _staticData.SpeedLevelInfo,
-            min: _staticData.SpeedLevelInfo.StartValue / 2, max: _staticData.SpeedLevelInfo.StartValue * 2);
+            minPercentage: -40, maxPercentage: 40);
         _speed.Attach(this);
 
         _isStopped = false;

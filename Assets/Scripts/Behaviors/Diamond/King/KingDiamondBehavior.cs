@@ -21,7 +21,7 @@ public class KingDiamondBehavior : PermanentDiamondBehavior
 
         _goldBoost = new Number(_level, _staticData.GoldBoost);
         foreach (var upgradeResource in _upgradeResourceBunches)
-            upgradeResource.Amount.Decrease(80);
+            upgradeResource.Amount.Decrease(95);
     }
 
     protected override void DoActivationWork()

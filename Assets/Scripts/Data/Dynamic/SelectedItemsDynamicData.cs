@@ -35,8 +35,8 @@ namespace Assets.Scripts.Models
         };
         public Dictionary<RingName, Observable<DiamondName>> MenuDiamondName { get; set; } = new Dictionary<RingName, Observable<DiamondName>>()
         {
-            [RingName.DECK] = new Observable<DiamondName>(),
             [RingName.BASE] = new Observable<DiamondName>(),
+            [RingName.DECK] = new Observable<DiamondName>(),
         };
 
         private SelectedItemsDynamicData() { }

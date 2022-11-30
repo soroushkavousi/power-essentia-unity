@@ -27,7 +27,7 @@ MonoBehaviour:
     DeathRewardsData:
     - Type: 0
       AmountLevelInfo:
-        StartValue: 250
+        StartValue: 275
         OneLevelPercentage: 25
     - Type: 1
       AmountLevelInfo:

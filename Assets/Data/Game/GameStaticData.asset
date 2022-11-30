@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Settings:
     DiamondMaxLevel: 10
-    DemonMaxLevel: 15
+    DemonMaxLevel: 12
     AcceptedCollisionDistance: 30
     MaxAttackSpeed: 30
     MaxResistance: 90
@@ -29,11 +29,11 @@ MonoBehaviour:
     - Type: 0
       AmountLevelInfo:
         StartValue: 500
-        OneLevelPercentage: 900
+        OneLevelPercentage: 1000
     - Type: 1
       AmountLevelInfo:
         StartValue: 50
-        OneLevelPercentage: 700
+        OneLevelPercentage: 850
   Defaults:
     DiamondImage: {fileID: 21300000, guid: 7250263116f03f341bb47548a9fd373e, type: 3}
     DiamondName: Undefined

@@ -21,7 +21,7 @@ public class BloodDiamondBehavior : PermanentDiamondBehavior
 
         _bloodRatio = new Number(_level, _staticData.BloodRatioLevelInfo);
         foreach (var upgradeResource in _upgradeResourceBunches)
-            upgradeResource.Amount.Decrease(80);
+            upgradeResource.Amount.Decrease(95);
     }
 
     protected override void DoActivationWork()
