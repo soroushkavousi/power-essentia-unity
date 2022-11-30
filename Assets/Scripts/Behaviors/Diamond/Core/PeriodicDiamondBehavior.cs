@@ -6,7 +6,6 @@ public abstract class PeriodicDiamondBehavior : DiamondBehavior
 {
     [SerializeField] protected Number _activeTime;
     [SerializeField] protected Number _cooldownTime;
-    [SerializeField] protected bool _onCooldown = default;
     [SerializeField] protected float _ramainingTime = default;
     [SerializeField] protected float _ramainingPercentage = default;
     private PeriodicDiamondStaticData _periodicDiamondStaticData = default;
@@ -16,7 +15,6 @@ public abstract class PeriodicDiamondBehavior : DiamondBehavior
     public float RamainingTime => _ramainingTime;
     public float RamainingPercentage => _ramainingPercentage;
 
-    public bool OnCooldown => _onCooldown;
 
     public void FeedData(PeriodicDiamondStaticData periodicDiamondStaticData)
     {
@@ -34,32 +32,29 @@ public abstract class PeriodicDiamondBehavior : DiamondBehavior
 
     private void Update()
     {
-        if (_onUsing)
+        if (_state.Value == DiamondState.USING)
             UpdateRemainingTime(_activeTime.Value, Deactivate);
-        else if (_onCooldown)
+        else if (_state.Value == DiamondState.COOLDOWN)
             UpdateRemainingTime(_cooldownTime.Value, GetReady);
     }
 
     public override void Activate()
     {
-        _isReady = false;
+        _state.Value = DiamondState.USING;
         DoActivationWork();
         _ramainingTime = _activeTime.Value;
-        _onUsing = true;
     }
 
     public override void Deactivate()
     {
-        _onUsing = false;
+        _state.Value = DiamondState.COOLDOWN;
         DoDeactivationWork();
         _ramainingTime = _cooldownTime.Value;
-        _onCooldown = true;
     }
 
     public void GetReady()
     {
-        _onCooldown = false;
-        _isReady = true;
+        _state.Value = DiamondState.READY;
     }
 
     private void UpdateRemainingTime(float maxTime, Action finishingAction)

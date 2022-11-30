@@ -12,12 +12,11 @@ public abstract class DiamondBehavior : MonoBehaviour
     [Space(Constants.SpaceSection)]
     [Header(Constants.DebugSectionHeader)]
     [SerializeField] protected DiamondType _type = default;
+    [SerializeField] protected Observable<DiamondState> _state = new(DiamondState.READY);
     [SerializeField] protected Observable<DiamondKnowledgeState> _knowledgeState = default;
     [SerializeField] protected Level _level = default;
     [SerializeField] protected List<ResourceBunch> _buyResourceBunches = default;
     [SerializeField] protected List<ResourceBunchWithLevel> _upgradeResourceBunches = default;
-    [SerializeField] protected bool _isReady = default;
-    [SerializeField] protected bool _onUsing = default;
     private DiamondStaticData _diamondStaticData = default;
     protected DiamondOwnerBehavior _diamondOwnerBehavior = default;
     protected AttackerBehavior _ownerAttackerBehavior = default;
@@ -29,10 +28,9 @@ public abstract class DiamondBehavior : MonoBehaviour
     public Sprite Icon => _diamondStaticData.Icon;
     public List<ResourceBunch> BuyResourceBunches => _buyResourceBunches;
     public List<ResourceBunchWithLevel> UpgradeResourceBunches => _upgradeResourceBunches;
+    public Observable<DiamondState> State => _state;
     public Observable<DiamondKnowledgeState> KnowledgeState => _knowledgeState;
     public Level Level => _level;
-    public bool IsReady => _isReady;
-    public bool IsOnUsing => _onUsing;
     public DiamondOwnerBehavior DiamondOwnerBehavior => _diamondOwnerBehavior;
     public AttackerBehavior OwnerAttackerBehavior => _ownerAttackerBehavior;
     public Func<GameObject, GameObject> IsTargetEnemyFunction { get; private set; }
@@ -49,7 +47,6 @@ public abstract class DiamondBehavior : MonoBehaviour
     public virtual void Initialize(Observable<DiamondKnowledgeState> knowledgeState,
         Level level, DiamondOwnerBehavior diamondOwnerBehavior)
     {
-        _isReady = true;
         _knowledgeState = knowledgeState;
         _level = level;
         _diamondOwnerBehavior = diamondOwnerBehavior;

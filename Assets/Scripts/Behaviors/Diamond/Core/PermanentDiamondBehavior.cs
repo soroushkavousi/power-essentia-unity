@@ -6,14 +6,13 @@ public abstract class PermanentDiamondBehavior : DiamondBehavior
 
     public override void Activate()
     {
-        _isReady = false;
+        _state.Value = DiamondState.USING;
         DoActivationWork();
-        _onUsing = true;
     }
 
     public override void Deactivate()
     {
-        _onUsing = false;
+        _state.Value = DiamondState.DEACTIVED;
         DoDeactivationWork();
     }
 

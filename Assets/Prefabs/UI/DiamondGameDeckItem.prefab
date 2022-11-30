@@ -28,6 +28,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7909624119381180501}
   m_RootOrder: 1
@@ -163,6 +164,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 0, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7909624120043628677}
   m_RootOrder: 1
@@ -238,6 +240,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7909624120043628677}
   m_RootOrder: 0
@@ -312,6 +315,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7909624120043628677}
   - {fileID: 696894988558701456}
@@ -338,9 +342,15 @@ MonoBehaviour:
   _ringName: 0
   _index: 0
   _keyCode: 0
+  _backgroundImage: {fileID: 7909624120043628678}
   _diamondImage: {fileID: 7909624119308936385}
   _diamondNameText: {fileID: 3674351339686459121}
   _shadowImage: {fileID: 4916145888620200929}
+  _usingColor: {r: 0.7735849, g: 0.054734774, b: 0.13428073, a: 1}
+  _cooldownColor: {r: 0, g: 0, b: 0, a: 0.31764707}
+  _readyColor: {r: 0.9622642, g: 0.4545842, b: 0.031772893, a: 1}
+  _diamondColor: {r: 1, g: 1, b: 1, a: 1}
+  _diamondCooldownColor: {r: 1, g: 1, b: 1, a: 0.3529412}
 --- !u!1 &7909624120043628676
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,6 +382,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7909624119308936384}
   - {fileID: 7381595969001685476}
@@ -404,7 +415,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.16361313, g: 0.5754717, b: 0.008143453, a: 1}
+  m_Color: {r: 0.26415092, g: 0.015680192, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -481,6 +492,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _isColliderDisabled: 0
+  _collider2D: {fileID: 0}
 --- !u!114 &8019837467955152952
 MonoBehaviour:
   m_ObjectHideFlags: 0

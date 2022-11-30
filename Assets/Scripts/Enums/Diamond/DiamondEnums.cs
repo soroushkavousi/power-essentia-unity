@@ -28,4 +28,12 @@
         DECK = 2,
         RIGHT = 3,
     }
+
+    public enum DiamondState
+    {
+        READY,
+        USING,
+        COOLDOWN,
+        DEACTIVED
+    }
 }
