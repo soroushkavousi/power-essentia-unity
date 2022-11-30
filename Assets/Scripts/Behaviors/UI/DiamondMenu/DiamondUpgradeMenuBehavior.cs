@@ -76,7 +76,7 @@ public class DiamondUpgradeMenuBehavior : MonoBehaviour, IObserver
         var level = _selectedDiamondBehavior.Level.Value;
         var title = $"{_selectedDiamondBehavior.ShowName} Diamond (Level {level})";
         _diamondTitle.text = title;
-
+        _upgradeButtonBehavior.Text.text = $"Upgrade to level {level + 1}";
         _diamondDescription.text = _selectedDiamondBehavior.Description;
         _diamondStatsDescription.text = _selectedDiamondBehavior.StatsDescription;
         UpdateUpgradeDetails();

@@ -47,7 +47,7 @@ public class MusicPlayerBehavior : MonoBehaviour, IObserver
 
     public void PlayClickSound()
     {
-        _audioSource.PlayOneShot(_clickSound);
+        _audioSource.PlayOneShot(_clickSound, 2.5f);
     }
 
     public void PlayEnemyDeathGoldRewardSound()

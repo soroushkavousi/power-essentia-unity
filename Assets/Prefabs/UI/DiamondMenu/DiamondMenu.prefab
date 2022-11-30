@@ -2307,6 +2307,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4707280836575721537, guid: 7e93d1a36bd8ad642bde834abc15fc14,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4785921531683884675, guid: 7e93d1a36bd8ad642bde834abc15fc14,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -2512,6 +2517,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6842424087004359086, guid: 7e93d1a36bd8ad642bde834abc15fc14,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7456505946607831721, guid: 7e93d1a36bd8ad642bde834abc15fc14,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -2536,6 +2546,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DiamondUpgradeMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 7972374627818232948, guid: 7e93d1a36bd8ad642bde834abc15fc14,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8107152003827892167, guid: 7e93d1a36bd8ad642bde834abc15fc14,
         type: 3}
@@ -2601,6 +2616,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8927270387498158322, guid: 7e93d1a36bd8ad642bde834abc15fc14,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9033271096164734238, guid: 7e93d1a36bd8ad642bde834abc15fc14,
         type: 3}
