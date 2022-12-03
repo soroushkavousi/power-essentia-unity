@@ -10,11 +10,13 @@ public class ButtonBehavior : MonoBehaviour
     [SerializeField] private GameObject _owner = default;
     [SerializeField] private TextMeshProUGUI _text = default;
     [SerializeField] private Graphic _targetGraphic = default;
-    [SerializeField] private Color _pressedColor = default;
-    [SerializeField] private Color _lockColor = default;
+    [SerializeField] private Color _pressedColor = Color.clear;
+    [SerializeField] private Color _lockColor = Color.clear;
+    [SerializeField] private Color _lockTextColor = Color.clear;
     [SerializeField] private AudioClip _clickSound = default;
     [SerializeField] private UnityEvent _clickEvent;
-    private Color _normalColor = default;
+    private Color _normalColor = Color.clear;
+    private Color _normalTextColor = Color.clear;
 
     [Space(Constants.SpaceSection)]
     [Header(Constants.DebugSectionHeader)]
@@ -33,10 +35,13 @@ public class ButtonBehavior : MonoBehaviour
 
     private void Awake()
     {
-        if (_normalColor == default)
+        _collider2D = GetComponent<Collider2D>();
+
+        if (_normalColor == Color.clear)
             _normalColor = _targetGraphic.color;
 
-        _collider2D = GetComponent<Collider2D>();
+        if (_text != default)
+            _normalTextColor = _text.color;
     }
 
     private void Update()
@@ -82,7 +87,7 @@ public class ButtonBehavior : MonoBehaviour
 
     private IEnumerator SetPressedColor()
     {
-        if (_pressedColor == default)
+        if (_pressedColor == Color.clear)
             yield break;
         var originColor = _targetGraphic.color;
         _targetGraphic.color = _pressedColor;
@@ -100,17 +105,20 @@ public class ButtonBehavior : MonoBehaviour
 
     public void Lock()
     {
-        if (_normalColor == default)
-            _normalColor = _targetGraphic.color;
         IsColliderDisabled = true;
-        _targetGraphic.color = _lockColor;
+
+        if (_lockColor != Color.clear)
+            _targetGraphic.color = _lockColor;
+        if(_lockTextColor != Color.clear)
+            _text.color = _lockTextColor;
     }
 
     public void Unlock()
     {
-        if (_normalColor == default)
-            _normalColor = _targetGraphic.color;
         IsColliderDisabled = false;
-        _targetGraphic.color = _normalColor;
+        if (_normalColor != Color.clear)
+            _targetGraphic.color = _normalColor;
+        if (_normalTextColor != Color.clear)
+            _text.color = _normalTextColor;
     }
 }

@@ -35,7 +35,6 @@ public class MenuHeaderBehavior : MonoBehaviour
                 currentHeaderImageColor.a = _alpha;
                 currentSubMenu.SetActive(false);
             }
-
             currentHeaderButton.TargetGraphic.color = currentHeaderImageColor;
         }
     }
