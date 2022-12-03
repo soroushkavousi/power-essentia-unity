@@ -9674,7 +9674,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 2863d281779b3f34c810d9723a91341b, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.053
+  m_Volume: 0.175
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -9791,6 +9791,8 @@ MonoBehaviour:
     _level:
       _value: 0
       _lastValue: 0
+      _ignoreRepetition: 0
+      _observersCount: 0
       _max: 0
   _damage:
     _value: 0
@@ -9812,6 +9814,8 @@ MonoBehaviour:
     _level:
       _value: 0
       _lastValue: 0
+      _ignoreRepetition: 0
+      _observersCount: 0
       _max: 0
   _slow:
     _value: 0
@@ -9833,6 +9837,8 @@ MonoBehaviour:
     _level:
       _value: 0
       _lastValue: 0
+      _ignoreRepetition: 0
+      _observersCount: 0
       _max: 0
   _criticalChance:
     _value: 0
@@ -9854,6 +9860,8 @@ MonoBehaviour:
     _level:
       _value: 0
       _lastValue: 0
+      _ignoreRepetition: 0
+      _observersCount: 0
       _max: 0
   _criticalDamage:
     _value: 0
@@ -9875,6 +9883,8 @@ MonoBehaviour:
     _level:
       _value: 0
       _lastValue: 0
+      _ignoreRepetition: 0
+      _observersCount: 0
       _max: 0
   _enemy: {fileID: 0}
   _isSample: 0

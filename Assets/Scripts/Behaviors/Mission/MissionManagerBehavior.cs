@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class MissionManagerBehavior : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class MissionManagerBehavior : MonoBehaviour
 
     [SerializeField] private Observable<int> _selectedDemonLevel = default;
     [SerializeField] private int _startDemonLevel = default;
+    private AudioSource _audioSorce = default;
 
     public static MissionManagerBehavior Instance => Utils.GetInstance(ref _instance);
     public Transform BattleField => _battleField;
@@ -23,12 +25,20 @@ public class MissionManagerBehavior : MonoBehaviour
     public Transform ProjectileBox => _projectileBox;
     public Transform TempBox => _tempBox;
     public int StartDemonLevel => _startDemonLevel;
+    public AudioSource AudioSource => _audioSorce;
 
     private void Awake()
     {
+        _audioSorce = GetComponent<AudioSource>();
         Time.timeScale = 1;
         _selectedDemonLevel = PlayerBehavior.MainPlayer.DynamicData.SelectedItems.DemonLevel;
         StartSelectedLevel();
+    }
+
+    private IEnumerator Start()
+    {
+        yield return new WaitForSeconds(1f);
+        _audioSorce.Play();
     }
 
     public void StartSelectedLevel()

@@ -48,7 +48,7 @@ public class RangeWeaponBehavior : WeaponBehavior, ISubject<ProjectileBehavior>,
             projectileBehavior.transform.SetParent(MissionManagerBehavior.Instance.ProjectileBox, true);
             projectileBehavior.MovementBehavior.MoveToPosition(targetPosition);
             if (_fireSound != null)
-                MusicPlayerBehavior.Instance.AudioSource.PlayOneShot(_fireSound, 0.2f);
+                MusicPlayerBehavior.Instance.AudioSource.PlayOneShot(_fireSound, 0.4f);
         }
     }
 

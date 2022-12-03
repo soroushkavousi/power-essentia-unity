@@ -18,6 +18,9 @@ public class WallDiamondBehavior : PermanentDiamondBehavior
     {
         base.FeedData(_staticData);
         base.Initialize(state, level, diamondOwnerBehavior);
+
+        foreach (var upgradeResource in _upgradeResourceBunches)
+            upgradeResource.Amount.Decrease(50);
     }
 
     protected override void DoActivationWork()

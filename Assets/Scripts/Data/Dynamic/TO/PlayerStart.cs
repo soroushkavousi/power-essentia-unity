@@ -5,7 +5,7 @@ public static class PlayerStart
 {
     public static PlayerDynamicDataTO Data { get; set; } = new PlayerDynamicDataTO
     {
-        PatchNumber = 33,
+        PatchNumber = 34,
         Achievements = new AchievementsDynamicDataTO
         (
             demonLevel: 0
@@ -53,8 +53,8 @@ public static class PlayerStart
         },
         ResourceBunches = new List<ResourceBunchDynamicDataTO>
         {
-            new ResourceBunchDynamicDataTO(ResourceType.COIN.ToString(), 2000),
-            new ResourceBunchDynamicDataTO(ResourceType.DEMON_BLOOD.ToString(), 200),
+            new ResourceBunchDynamicDataTO(ResourceType.COIN.ToString(), 3000),
+            new ResourceBunchDynamicDataTO(ResourceType.DEMON_BLOOD.ToString(), 300),
             new ResourceBunchDynamicDataTO(ResourceType.DARK_DEMON_BLOOD.ToString(), 0),
         },
     };

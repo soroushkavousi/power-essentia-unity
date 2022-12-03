@@ -31,7 +31,7 @@ public class MeleeWeaponBehavior : WeaponBehavior
             criticalEffect.IsApplied);
         enemyHealthBehavior.Health.Damage(damage);
         if (_staticData.HitSound != null)
-            MusicPlayerBehavior.Instance.AudioSource.PlayOneShot(_staticData.HitSound, 0.2f);
+            MusicPlayerBehavior.Instance.AudioSource.PlayOneShot(_staticData.HitSound, 0.4f);
         var hitParameters = new HitParameters(gameObject, default, enemy);
         Notify(hitParameters);
     }

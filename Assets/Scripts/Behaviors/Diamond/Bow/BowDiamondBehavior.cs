@@ -22,6 +22,9 @@ public class BowDiamondBehavior : PermanentDiamondBehavior
         base.FeedData(_staticData);
         base.Initialize(state, level, diamondOwnerBehavior);
         _ownerRangeAttackerBehavior = diamondOwnerBehavior.GetComponent<RangeAttackerBehavior>();
+
+        foreach (var upgradeResource in _upgradeResourceBunches)
+            upgradeResource.Amount.Decrease(50);
     }
 
     protected override void DoActivationWork()

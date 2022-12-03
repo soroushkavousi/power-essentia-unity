@@ -18,10 +18,10 @@ MonoBehaviour:
     - _demonName: 0
       _count: 5
     - _demonName: 1
-      _count: 4
-  - _columnCount: 4
+      _count: 3
+  - _columnCount: 5
     _demonBunches:
     - _demonName: 0
-      _count: 6
+      _count: 5
     - _demonName: 1
-      _count: 4
+      _count: 3

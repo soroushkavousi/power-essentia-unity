@@ -9,6 +9,7 @@ public class DiamondUpgradeMenuItemBehavior : MonoBehaviour, IObserver
     [SerializeField] private DiamondName _diamondName = default;
     [SerializeField] private Image _diamondImage = default;
     [SerializeField] private TextMeshProUGUI _diamondNameText = default;
+    [SerializeField] private TextMeshProUGUI _diamondLevelText = default;
     [SerializeField] private Image _glow = default;
     private DiamondOwnerBehavior _diamondOwnerBehavior = default;
     private DiamondBehavior _diamondBehavior = default;
@@ -36,6 +37,8 @@ public class DiamondUpgradeMenuItemBehavior : MonoBehaviour, IObserver
         _diamondBehavior = _diamondOwnerBehavior.AllDiamondBehaviors[_diamondName];
         _diamondImage.sprite = _diamondBehavior.Icon;
         _diamondNameText.text = _diamondBehavior.ShowName;
+        _diamondBehavior.Level.Attach(this);
+        SetDiamondLevel();
     }
 
     public void Select()
@@ -67,11 +70,20 @@ public class DiamondUpgradeMenuItemBehavior : MonoBehaviour, IObserver
         _isGlowing = false;
     }
 
+    private void SetDiamondLevel()
+    {
+        _diamondLevelText.text = $"Level {_diamondBehavior.Level.Value}";
+    }
+
     public void OnNotify(ISubject subject)
     {
         if (subject == _selectedDiamondName)
         {
             HandleSelectedDiamondChange();
+        }
+        else if(subject == _diamondBehavior.Level)
+        {
+            SetDiamondLevel();
         }
     }
 }

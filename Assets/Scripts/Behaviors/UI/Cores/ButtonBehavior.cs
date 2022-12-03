@@ -93,7 +93,7 @@ public class ButtonBehavior : MonoBehaviour
     private void PlayClickSound()
     {
         if (_clickSound != default)
-            MusicPlayerBehavior.Instance.AudioSource.PlayOneShot(_clickSound, 1);
+            MusicPlayerBehavior.Instance.AudioSource.PlayOneShot(_clickSound, 0.4f);
         else
             MusicPlayerBehavior.Instance.PlayClickSound();
     }

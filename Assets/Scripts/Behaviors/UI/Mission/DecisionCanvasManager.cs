@@ -85,23 +85,24 @@ public class DecisionCanvasManager : MonoBehaviour
 
     private void OnEnable()
     {
+        MissionManagerBehavior.Instance.AudioSource.Stop();
         if (WinSystemBehavior.Instance.Win)
         {
             if (_selectedDemonLevel.IsMax)
             {
-                _audioSource.PlayOneShot(_staticData.VictorySoundClip, 0.8f);
+                _audioSource.PlayOneShot(_staticData.VictorySoundClip, 0.75f);
                 StartCoroutine(MusicPlayerBehavior.Instance.StopAllSounds(0.6f));
             }
             else
             {
                 _selectedDemonLevel.Value += 1;
-                _audioSource.PlayOneShot(_staticData.WinAudioClip, 0.1f);
+                _audioSource.PlayOneShot(_staticData.WinAudioClip, 0.15f);
                 StartCoroutine(MusicPlayerBehavior.Instance.StopAllSounds(4.5f));
             }
         }
         else if (LoseSystemBehavior.Instance.Lose)
         {
-            _audioSource.PlayOneShot(_staticData.LoseAudioClip, 0.6f);
+            _audioSource.PlayOneShot(_staticData.LoseAudioClip, 0.60f);
             StartCoroutine(MusicPlayerBehavior.Instance.StopAllSounds(4f));
         }
     }

@@ -60,7 +60,7 @@ public class ProjectileBehavior : MonoBehaviour, IObserver<CollideData>, ISubjec
         if (_done == true)
             return;
         _done = true;
-        MusicPlayerBehavior.Instance.AudioSource.PlayOneShot(_staticData.HitSound, 0.3f);
+        MusicPlayerBehavior.Instance.AudioSource.PlayOneShot(_staticData.HitSound, 0.4f);
 
         var criticalEffect = new CriticalEffect(Damage,
             _criticalChance, _criticalDamage);

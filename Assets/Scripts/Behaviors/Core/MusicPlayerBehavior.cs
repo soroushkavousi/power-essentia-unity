@@ -26,6 +26,7 @@ public class MusicPlayerBehavior : MonoBehaviour, IObserver
     private void Start()
     {
         SceneManagerBehavior.Instance.CurrentSceneName.Attach(this);
+        OnSceneChanged();
     }
 
     private void OnSceneChanged()
@@ -47,12 +48,12 @@ public class MusicPlayerBehavior : MonoBehaviour, IObserver
 
     public void PlayClickSound()
     {
-        _audioSource.PlayOneShot(_clickSound, 2.5f);
+        _audioSource.PlayOneShot(_clickSound, 0.4f);
     }
 
     public void PlayEnemyDeathGoldRewardSound()
     {
-        _audioSource.PlayOneShot(_enemyDeathGoldRewardSound, 0.5f);
+        _audioSource.PlayOneShot(_enemyDeathGoldRewardSound, 0.6f);
     }
 
     public void StartAllSounds()

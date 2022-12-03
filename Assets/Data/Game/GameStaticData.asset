@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Settings:
     DiamondMaxLevel: 10
-    DemonMaxLevel: 12
+    DemonMaxLevel: 14
     AcceptedCollisionDistance: 30
     MaxAttackSpeed: 30
     MaxResistance: 90
