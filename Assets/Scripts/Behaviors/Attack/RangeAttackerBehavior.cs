@@ -15,8 +15,8 @@ public class RangeAttackerBehavior : AttackerBehavior
     [SerializeField] protected Vector2 _attackTargetPosition = default;
     [SerializeField] protected Vector2 _aimTargetPosition = default;
     [SerializeField] protected bool _aimingIsFinished = default;
+    [SerializeField] protected RotationUtils _rotationUtils = default;
     private RangeAttackerStaticData _staticData = default;
-    protected RotationUtils _rotationUtils = default;
 
     public override AttackerState AttackerState => (AttackerState)_state;
     public RangeAttackerState State => _state;
@@ -31,7 +31,7 @@ public class RangeAttackerBehavior : AttackerBehavior
         _staticData = staticData;
         _rangeWeaponBehavior = rangeWeaponBehavior;
         base.FeedData(_staticData, _rangeWeaponBehavior, isTargetEnemyFunction);
-        _rotationUtils = new RotationUtils(this, _projectileShotLocation.localPosition);
+        _rotationUtils = new RotationUtils(this, _projectileShotLocation.localPosition, _weaponBehavior.AttackSpeed);
     }
 
     public override void StartAttacking()

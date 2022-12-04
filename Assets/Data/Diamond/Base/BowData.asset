@@ -16,8 +16,8 @@ MonoBehaviour:
     StartValue: 750
     OneLevelPercentage: 25
   SpeedLevelInfo:
-    StartValue: 3.3
-    OneLevelPercentage: 35
+    StartValue: 1.6
+    OneLevelPercentage: 40
   CriticalChanceLevelInfo:
     StartValue: 15
     OneLevelPercentage: 20

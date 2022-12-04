@@ -6477,6 +6477,7 @@ MonoBehaviour:
   _targetGraphic: {fileID: 835086837}
   _pressedColor: {r: 0.32809716, g: 0.7719466, b: 0.9528302, a: 1}
   _lockColor: {r: 0, g: 0, b: 0, a: 0}
+  _lockTextColor: {r: 0, g: 0, b: 0, a: 0}
   _clickSound: {fileID: 0}
   _clickEvent:
     m_PersistentCalls:
@@ -6612,6 +6613,7 @@ MonoBehaviour:
   _targetGraphic: {fileID: 1361473660}
   _pressedColor: {r: 0.8962264, g: 0.32088515, b: 0.13950695, a: 1}
   _lockColor: {r: 0, g: 0, b: 0, a: 0}
+  _lockTextColor: {r: 0, g: 0, b: 0, a: 0}
   _clickSound: {fileID: 0}
   _clickEvent:
     m_PersistentCalls:
@@ -7361,6 +7363,7 @@ MonoBehaviour:
   _diamondName: 5
   _diamondImage: {fileID: 7630502781018975506}
   _diamondNameText: {fileID: 4575695060023165718}
+  _diamondLevelText: {fileID: 0}
   _glow: {fileID: 1099446531609023984}
   _isGlowing: 0
 --- !u!222 &241184483253718969
@@ -7558,6 +7561,7 @@ MonoBehaviour:
   _diamondName: 1
   _diamondImage: {fileID: 7941922727205581783}
   _diamondNameText: {fileID: 4058797783854112211}
+  _diamondLevelText: {fileID: 0}
   _glow: {fileID: 617443631340702517}
   _isGlowing: 0
 --- !u!114 &373583589539827295
@@ -7639,6 +7643,7 @@ MonoBehaviour:
   _targetGraphic: {fileID: 3620534576879148068}
   _pressedColor: {r: 0, g: 0, b: 0, a: 0}
   _lockColor: {r: 0, g: 0, b: 0, a: 0}
+  _lockTextColor: {r: 0, g: 0, b: 0, a: 0}
   _clickSound: {fileID: 0}
   _clickEvent:
     m_PersistentCalls:
@@ -7674,6 +7679,7 @@ MonoBehaviour:
   _targetGraphic: {fileID: 6016239529184481783}
   _pressedColor: {r: 0, g: 0, b: 0, a: 0}
   _lockColor: {r: 0.50980395, g: 0.26666668, b: 0.26666668, a: 0.6745098}
+  _lockTextColor: {r: 0, g: 0, b: 0, a: 0}
   _clickSound: {fileID: 0}
   _clickEvent:
     m_PersistentCalls:
@@ -7915,6 +7921,7 @@ MonoBehaviour:
   _targetGraphic: {fileID: 4146063205679639488}
   _pressedColor: {r: 0, g: 0, b: 0, a: 0}
   _lockColor: {r: 0, g: 0, b: 0, a: 0}
+  _lockTextColor: {r: 0, g: 0, b: 0, a: 0}
   _clickSound: {fileID: 0}
   _clickEvent:
     m_PersistentCalls:
@@ -9474,6 +9481,7 @@ MonoBehaviour:
   _targetGraphic: {fileID: 1515046130482922763}
   _pressedColor: {r: 0, g: 0, b: 0, a: 0}
   _lockColor: {r: 0, g: 0, b: 0, a: 0}
+  _lockTextColor: {r: 0, g: 0, b: 0, a: 0}
   _clickSound: {fileID: 0}
   _clickEvent:
     m_PersistentCalls:
@@ -9629,6 +9637,7 @@ MonoBehaviour:
   _diamondName: 0
   _diamondImage: {fileID: 5264531811456117496}
   _diamondNameText: {fileID: 2264044499827229948}
+  _diamondLevelText: {fileID: 0}
   _glow: {fileID: 3434459638643724826}
   _isGlowing: 0
 --- !u!114 &2602756638556956158
@@ -9790,6 +9799,7 @@ MonoBehaviour:
   _targetGraphic: {fileID: 1357020619282537422}
   _pressedColor: {r: 0, g: 0, b: 0, a: 0}
   _lockColor: {r: 0, g: 0, b: 0, a: 0}
+  _lockTextColor: {r: 0, g: 0, b: 0, a: 0}
   _clickSound: {fileID: 0}
   _clickEvent:
     m_PersistentCalls:
@@ -10120,6 +10130,7 @@ MonoBehaviour:
   _diamondName: 1
   _diamondImage: {fileID: 4807628117766659356}
   _diamondNameText: {fileID: 1503357837976122136}
+  _diamondLevelText: {fileID: 0}
   _glow: {fileID: 2602756638556956158}
   _isGlowing: 0
 --- !u!224 &2935514659356181693
@@ -11703,6 +11714,7 @@ MonoBehaviour:
   _diamondName: 1
   _diamondImage: {fileID: 3436331719282258048}
   _diamondNameText: {fileID: 8778802987503787652}
+  _diamondLevelText: {fileID: 0}
   _glow: {fileID: 5266595192158980194}
   _isGlowing: 0
 --- !u!58 &5018763649764988595
@@ -11849,6 +11861,7 @@ MonoBehaviour:
   _targetGraphic: {fileID: 8243912086333469206}
   _pressedColor: {r: 0, g: 0, b: 0, a: 0}
   _lockColor: {r: 0, g: 0, b: 0, a: 0}
+  _lockTextColor: {r: 0, g: 0, b: 0, a: 0}
   _clickSound: {fileID: 0}
   _clickEvent:
     m_PersistentCalls:
@@ -12544,6 +12557,7 @@ MonoBehaviour:
   _targetGraphic: {fileID: 7039369620932346465}
   _pressedColor: {r: 0, g: 0, b: 0, a: 0}
   _lockColor: {r: 0, g: 0, b: 0, a: 0}
+  _lockTextColor: {r: 0, g: 0, b: 0, a: 0}
   _clickSound: {fileID: 0}
   _clickEvent:
     m_PersistentCalls:
@@ -13045,6 +13059,7 @@ MonoBehaviour:
   _targetGraphic: {fileID: 6089336977260971612}
   _pressedColor: {r: 0, g: 0, b: 0, a: 0}
   _lockColor: {r: 0, g: 0, b: 0, a: 0}
+  _lockTextColor: {r: 0, g: 0, b: 0, a: 0}
   _clickSound: {fileID: 0}
   _clickEvent:
     m_PersistentCalls:
@@ -13235,6 +13250,7 @@ MonoBehaviour:
   _diamondName: 1
   _diamondImage: {fileID: 673750577448469706}
   _diamondNameText: {fileID: 6862776804037569230}
+  _diamondLevelText: {fileID: 0}
   _glow: {fileID: 8070271891309640744}
   _isGlowing: 0
 --- !u!222 &7194803662575183959
@@ -13946,6 +13962,7 @@ MonoBehaviour:
   _diamondName: 1
   _diamondImage: {fileID: 1909873232801576125}
   _diamondNameText: {fileID: 5541085768448924345}
+  _diamondLevelText: {fileID: 0}
   _glow: {fileID: 8946333058621590623}
   _isGlowing: 0
 --- !u!224 &8226349903955595516
@@ -14511,6 +14528,7 @@ MonoBehaviour:
   _targetGraphic: {fileID: 8977552888099751896}
   _pressedColor: {r: 0, g: 0, b: 0, a: 0}
   _lockColor: {r: 0.50980395, g: 0.26666668, b: 0.26666668, a: 0.6745098}
+  _lockTextColor: {r: 0, g: 0, b: 0, a: 0}
   _clickSound: {fileID: 0}
   _clickEvent:
     m_PersistentCalls:
