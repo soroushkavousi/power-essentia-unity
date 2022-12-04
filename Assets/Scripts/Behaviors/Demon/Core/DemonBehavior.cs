@@ -77,7 +77,7 @@ public abstract class DemonBehavior : MonoBehaviour, ISubject,
     {
         _state = DemonState.DEAD;
         Notify();
-        MusicPlayerBehavior.Instance.PlayEnemyDeathGoldRewardSound();
+        MusicPlayerBehavior.Instance.PlayEnemyDeathRewardSound();
     }
 
     public void OnNotify(ISubject<CollideData> subject, CollideData collideData)
