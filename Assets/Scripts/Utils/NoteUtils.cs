@@ -24,6 +24,6 @@
     {
         var number = criticalDamagePercentage / 100f + 1;
         number = number.Round();
-        return $"{number}X";
+        return $"{number}x";
     }
 }
