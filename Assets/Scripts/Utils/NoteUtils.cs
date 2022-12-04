@@ -19,4 +19,11 @@
     public static string AddColor(int content, string color) => AddColor($"{content}", color);
     public static string AddColor(long content, string color) => AddColor($"{content}", color);
     public static string AddColor(float content, string color) => AddColor($"{content:N2}", color);
+
+    public static string ConvertCriticalDamageToXFormat(long criticalDamagePercentage)
+    {
+        var number = criticalDamagePercentage / 100f + 1;
+        number = number.Round();
+        return $"{number}X";
+    }
 }

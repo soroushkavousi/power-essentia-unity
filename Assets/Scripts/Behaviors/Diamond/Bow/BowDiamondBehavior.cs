@@ -96,14 +96,16 @@ public class BowDiamondBehavior : PermanentDiamondBehavior
         //------------------------------------------------
 
         var currentCriticalDamage = _bowWeaponBehavior.CriticalDamage.Value.ToLong();
-        var currentCriticalDamageShow = NoteUtils.AddColor(currentCriticalDamage + "%", "black");
+        var currentCriticalDamageShow = NoteUtils.ConvertCriticalDamageToXFormat(currentCriticalDamage);
+        currentCriticalDamageShow = NoteUtils.AddColor(currentCriticalDamageShow, "black");
         currentCriticalDamageShow = NoteUtils.ChangeSize($"Critical Damage: {currentCriticalDamageShow}", NoteUtils.NumberSizeRatio);
 
         var nextCriticalDamageShow = "";
         if (!_level.IsMax)
         {
             var nextCriticalDamage = _bowWeaponBehavior.CriticalDamage.NextLevelValue.ToLong();
-            nextCriticalDamageShow = NoteUtils.AddColor(nextCriticalDamage + "%", NoteUtils.UpgradeColor);
+            nextCriticalDamageShow = NoteUtils.ConvertCriticalDamageToXFormat(nextCriticalDamage);
+            nextCriticalDamageShow = NoteUtils.AddColor(nextCriticalDamageShow, NoteUtils.UpgradeColor);
             nextCriticalDamageShow = NoteUtils.ChangeSize($"({nextCriticalDamageShow})", NoteUtils.NextNumberSizeRatio);
         }
 
