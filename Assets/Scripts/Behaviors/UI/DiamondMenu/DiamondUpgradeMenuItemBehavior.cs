@@ -81,7 +81,7 @@ public class DiamondUpgradeMenuItemBehavior : MonoBehaviour, IObserver
         {
             HandleSelectedDiamondChange();
         }
-        else if(subject == _diamondBehavior.Level)
+        else if (subject == _diamondBehavior.Level)
         {
             SetDiamondLevel();
         }

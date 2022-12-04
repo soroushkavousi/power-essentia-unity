@@ -109,7 +109,7 @@ public class ButtonBehavior : MonoBehaviour
 
         if (_lockColor != Color.clear)
             _targetGraphic.color = _lockColor;
-        if(_lockTextColor != Color.clear)
+        if (_lockTextColor != Color.clear)
             _text.color = _lockTextColor;
     }
 

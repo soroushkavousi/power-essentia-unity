@@ -51,7 +51,7 @@ public class WaveManagerBehavior : MonoBehaviour, ISubject<DemonBehavior>, IObse
 
     private IEnumerator SpawnDemonsRandomly(WaveDescription waveDescription)
     {
-        if(waveDescription.WaveNumber == 1)
+        if (waveDescription.WaveNumber == 1)
             yield return new WaitForSeconds(5);
         _pickedRandomNumbers = new List<int>();
         var level = _selectedDemonLevel.Value;
