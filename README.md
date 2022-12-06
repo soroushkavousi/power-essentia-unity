@@ -1,6 +1,6 @@
-﻿# Power Essentia TD (v0.1.0)
+﻿# Power Essentia TD
 
-This game is just a **fun project** that is developed via **Unity 2D**. Currently, it takes almost **30 minutes** to finish it. You can download the APK and play it. Please check out releases to download. I hope you enjoy playing it.
+Power Essentia TD is a **tower defense 2D game** developed via Unity. It is just a personal, fun project, and it takes almost 30 minutes to finish it. You can download the APK and play it. Please check out releases to download. I hope you enjoy playing it.
 
 <br/>
 
@@ -8,11 +8,12 @@ This game is just a **fun project** that is developed via **Unity 2D**. Currentl
 
 <br/>
 
-# Game Summary
+# Game Story
 
-**Power Essentia TD** is a **tower defense 2D game**. You play as a **magician** to fight monsters and defend countries against **monsters**.
 
-Each country has a special **diamond** that gives magicians a powerful ability. Your mission is to study diamonds and upgrade them, and finally, you will gain great power from an effective **combination of diamonds** with your choice.
+The world faced **monsters** that could not be destroyed with just an ordinary sword or bow. The kings of the countries heard that the **outcast magicians** managed to defend themselves by using **mysterious diamonds**. So the **war heroes** took on a new mission to learn how to use diamonds from magicians.
+
+Magicians of each country have their own special, unique diamond. You, as a hero, travel to different countries to learn how to use these diamonds. Each diamond you learn gives you supernatural power to defeat more monsters. Finally, you will gain great power from an **effective combination of diamonds** with your choice.
 
  <br/>
  
@@ -21,23 +22,23 @@ Each country has a special **diamond** that gives magicians a powerful ability. 
  <br/>
  
 <div align="center">
-  <img src="https://files.bitiano.com/power-essentia/2.fight-scene.png" width="90%" />
+  <img src="https://files.bitiano.com/power-essentia/fight-scene-1.png" width="90%" />
 </div>
 
  <br/>
  
 <div align="center">
-  <img src="https://files.bitiano.com/power-essentia/5.fire-diamond-mastered.png" width="90%" />
+  <img src="https://files.bitiano.com/power-essentia/fire-diamond-mastered.png" width="90%" />
 </div>
 
  <br/>
  
 <div align="center">
-  <img src="https://files.bitiano.com/power-essentia/7.blood-diamond.png" width="90%" />
+  <img src="https://files.bitiano.com/power-essentia/blood-diamond.png" width="90%" />
 </div>
 
  <br/>
  
 <div align="center">
-  <img src="https://files.bitiano.com/power-essentia/11.fight-scene.png" width="90%" />
+  <img src="https://files.bitiano.com/power-essentia/fight-scene-2.png" width="90%" />
 </div>
