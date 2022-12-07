@@ -22,23 +22,23 @@ Magicians of each country have their own special, unique diamond. You, as a hero
  <br/>
  
 <div align="center">
-  <img src="https://files.bitiano.com/power-essentia/fight-scene-1.png" width="90%" />
+  <img src="https://files.bitiano.com/power-essentia/fight-scene-1.png?" width="90%" />
 </div>
 
  <br/>
  
 <div align="center">
-  <img src="https://files.bitiano.com/power-essentia/fire-diamond-mastered.png" width="90%" />
+  <img src="https://files.bitiano.com/power-essentia/fire-diamond-mastered.png?" width="90%" />
 </div>
 
  <br/>
  
 <div align="center">
-  <img src="https://files.bitiano.com/power-essentia/blood-diamond.png" width="90%" />
+  <img src="https://files.bitiano.com/power-essentia/blood-diamond.png?" width="90%" />
 </div>
 
  <br/>
  
 <div align="center">
-  <img src="https://files.bitiano.com/power-essentia/fight-scene-2.png" width="90%" />
+  <img src="https://files.bitiano.com/power-essentia/fight-scene-2.png?" width="90%" />
 </div>
