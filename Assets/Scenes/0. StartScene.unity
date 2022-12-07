@@ -216,7 +216,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Power Essentia
+  m_text: Power Essentia TD
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 38f09d88ed8a7a44cb1de25b818c2aac, type: 2}
   m_sharedMaterial: {fileID: -9148301708230554120, guid: 38f09d88ed8a7a44cb1de25b818c2aac,
@@ -1210,6 +1210,7 @@ MonoBehaviour:
   _targetGraphic: {fileID: 1406357436}
   _pressedColor: {r: 0.96575665, g: 1, b: 0, a: 1}
   _lockColor: {r: 0.96470594, g: 1, b: 0, a: 1}
+  _lockTextColor: {r: 0, g: 0, b: 0, a: 0}
   _clickSound: {fileID: 0}
   _clickEvent:
     m_PersistentCalls:
@@ -1664,6 +1665,7 @@ MonoBehaviour:
   _targetGraphic: {fileID: 1972577596}
   _pressedColor: {r: 0.96575665, g: 1, b: 0, a: 1}
   _lockColor: {r: 0.96470594, g: 1, b: 0, a: 1}
+  _lockTextColor: {r: 0, g: 0, b: 0, a: 0}
   _clickSound: {fileID: 0}
   _clickEvent:
     m_PersistentCalls:
@@ -1766,7 +1768,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -14.11, y: 0, z: 0, w: 0}
+  m_margin: {x: -12, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

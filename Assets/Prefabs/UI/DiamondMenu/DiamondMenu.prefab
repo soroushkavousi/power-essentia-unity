@@ -141,7 +141,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Use In Deck
+  m_text: Place in a ring
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 38f09d88ed8a7a44cb1de25b818c2aac, type: 2}
   m_sharedMaterial: {fileID: -9148301708230554120, guid: 38f09d88ed8a7a44cb1de25b818c2aac,
@@ -1411,8 +1411,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 270}
+  m_AnchoredPosition: {x: 0, y: 4}
+  m_SizeDelta: {x: 0, y: 267}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &1139437116162398528
 CanvasRenderer:
@@ -1470,7 +1470,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 3
-  m_Spacing: 1
+  m_Spacing: 3
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -1661,11 +1661,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6779340898740922359, guid: b715549599c67b34ca5e399e9fa1112c,
         type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6779340898740922359, guid: b715549599c67b34ca5e399e9fa1112c,
-        type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
@@ -1742,7 +1737,7 @@ PrefabInstance:
     - target: {fileID: 6779340898740922359, guid: b715549599c67b34ca5e399e9fa1112c,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 410
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6779340898740922359, guid: b715549599c67b34ca5e399e9fa1112c,
         type: 3}
@@ -1950,7 +1945,7 @@ PrefabInstance:
     - target: {fileID: 5564605098365186082, guid: 9f62757244ae07742a8fb00aee5f03ca,
         type: 3}
       propertyPath: m_text
-      value: Base Diamonds
+      value: Necklace Diamonds
       objectReference: {fileID: 0}
     - target: {fileID: 6904615555488472272, guid: 9f62757244ae07742a8fb00aee5f03ca,
         type: 3}
@@ -2783,11 +2778,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6779340898740922359, guid: b715549599c67b34ca5e399e9fa1112c,
         type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6779340898740922359, guid: b715549599c67b34ca5e399e9fa1112c,
-        type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
@@ -2860,11 +2850,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6779340898740922359, guid: b715549599c67b34ca5e399e9fa1112c,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 410
       objectReference: {fileID: 0}
     - target: {fileID: 6779340898740922359, guid: b715549599c67b34ca5e399e9fa1112c,
         type: 3}
@@ -2944,7 +2929,7 @@ PrefabInstance:
     - target: {fileID: 7577414810343552057, guid: b715549599c67b34ca5e399e9fa1112c,
         type: 3}
       propertyPath: m_text
-      value: Right Ring
+      value: Right Hand Rings
       objectReference: {fileID: 0}
     - target: {fileID: 8826659257982098056, guid: b715549599c67b34ca5e399e9fa1112c,
         type: 3}
@@ -3132,7 +3117,7 @@ PrefabInstance:
     - target: {fileID: 5564605098365186082, guid: 9f62757244ae07742a8fb00aee5f03ca,
         type: 3}
       propertyPath: m_text
-      value: Deck Diamonds
+      value: Hand Diamonds
       objectReference: {fileID: 0}
     - target: {fileID: 6904615555488472272, guid: 9f62757244ae07742a8fb00aee5f03ca,
         type: 3}
