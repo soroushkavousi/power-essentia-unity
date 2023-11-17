@@ -10,7 +10,6 @@ Power Essentia TD is a **tower defense 2D game** developed via Unity. It is just
 
 # Game Story
 
-
 The world faced **monsters** that could not be destroyed with just an ordinary sword or bow. The kings of the countries heard that the **outcast magicians** managed to defend themselves by using **mysterious diamonds**. So the **war heroes** took on a new mission to learn how to use diamonds from magicians.
 
 Magicians of each country have their own special, unique diamond. You, as a hero, travel to different countries to learn how to use these diamonds. Each diamond you learn gives you supernatural power to defeat more monsters. Finally, you will gain great power from an **effective combination of diamonds** with your choice.
@@ -19,26 +18,22 @@ Magicians of each country have their own special, unique diamond. You, as a hero
  
 # Images
 
- <br/>
- 
-<div align="center">
-  <img src="https://files.bitiano.com/power-essentia/fight-scene-1.png?" width="90%" />
-</div>
+<br/><br/>
 
- <br/>
- 
-<div align="center">
-  <img src="https://files.bitiano.com/power-essentia/fire-diamond-mastered.png?" width="90%" />
-</div>
+![fight-scene-1](./Images/fight-scene-1.png)
 
- <br/>
- 
-<div align="center">
-  <img src="https://files.bitiano.com/power-essentia/blood-diamond.png?" width="90%" />
-</div>
+<br/><br/>
 
- <br/>
- 
-<div align="center">
-  <img src="https://files.bitiano.com/power-essentia/fight-scene-2.png?" width="90%" />
-</div>
+![fire-diamond-mastered](./Images/fire-diamond-mastered.png)
+
+<br/><br/>
+
+![blood-diamond](./Images/blood-diamond.png)
+
+<br/><br/>
+
+![fight-scene-2](./Images/fight-scene-2.png)
+
+<br/><br/>
+
+![about](./Images/about.png)
